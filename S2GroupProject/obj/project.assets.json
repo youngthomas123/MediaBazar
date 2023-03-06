@@ -8,24 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\lapai\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\bruno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\S2GroupProject.csproj",
+      "projectUniqueName": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
       "projectName": "S2GroupProject",
-      "projectPath": "C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\S2GroupProject.csproj",
-      "packagesPath": "C:\\Users\\lapai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\obj\\",
+      "projectPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+      "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\lapai\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
