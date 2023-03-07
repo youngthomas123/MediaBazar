@@ -38,3 +38,31 @@ C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\bin\Debug\net6.0-windo
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.CopyComplete
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\refint\S2GroupProject.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.pdb
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\S2GroupProject.exe
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\S2GroupProject.deps.json
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\S2GroupProject.runtimeconfig.json
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\S2GroupProject.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\S2GroupProject.pdb
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\MediaBazarLib.dll
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\bin\Debug\net6.0-windows\MediaBazarLib.pdb
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.AssemblyReference.cache
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.EmployeeUC.resources
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.Form1.resources
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.LoginForm.resources
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.GenerateResource.cache
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.AssemblyInfoInputs.cache
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.AssemblyInfo.cs
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.CoreCompileInputs.cache
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.CopyComplete
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
+C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
