@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "8rOmea8+OJpw0V3ogPWudIXWFty2lYupMAd87ZYUfDrhPNxw6iEEOTMisDyDhRqX3vI/jjBBJjTDbOKVZR12fg==",
   "success": true,
   "projectFilePath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
@@ -15,4 +16,34 @@
     "C:\\Users\\bruno\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": []
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "yaP8HwslJgbKm+nGIHXAmZSDcKqViZohwZc+H7kFvJH6dX6a+V6MhKz6y+ssQEzaZoT2uyYSx1ctZTfNRK0flA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\S2GroupProject.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+  "dgSpecHash": "OB+uSTfgoNjD9JPpDqCpMNb7gvAffIzKK066mAPgmU1AsBWICJuqELe5JwycxYc5zCvPbcs9jq7s0FO1xdMHhQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+>>>>>>> f7832bfd4ed4a50a8296f34a93ec6e855bb386de
+    }
+  ]
+>>>>>>> 76ee27e6acc48422ebd36bdbf549285a5a558d33
 }

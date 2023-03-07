@@ -16,6 +16,9 @@ C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.EmployeeUC.resources
+<<<<<<< HEAD
+C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.LoginForm.resources
+=======
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.AssemblyReference.cache
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.EmployeeUC.resources
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.Form1.resources
@@ -38,6 +41,7 @@ C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\bin\Debug\net6.0-windo
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.CopyComplete
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
 C:\Users\vasan_8i\Desktop\S2 Group project\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
+<<<<<<< HEAD
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.dll
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\refint\S2GroupProject.dll
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.pdb
@@ -66,3 +70,6 @@ C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.csproj.CopyComplete
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
 C:\Users\bruno\source\repos\media-bazar\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
+=======
+>>>>>>> 55eb7a71a4b97dd855b4da63fcc6535034498f53
+>>>>>>> 76ee27e6acc48422ebd36bdbf549285a5a558d33
