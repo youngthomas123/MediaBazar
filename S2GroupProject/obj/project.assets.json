@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\bruno\\.nuget\\packages\\": {}
+    "C:\\Users\\vasan_8i\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+      "projectUniqueName": "C:\\Users\\vasan_8i\\Desktop\\S2 Group project\\S2GroupProject\\S2GroupProject.csproj",
       "projectName": "S2GroupProject",
-      "projectPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
-      "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\obj\\",
+      "projectPath": "C:\\Users\\vasan_8i\\Desktop\\S2 Group project\\S2GroupProject\\S2GroupProject.csproj",
+      "packagesPath": "C:\\Users\\vasan_8i\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vasan_8i\\Desktop\\S2 Group project\\S2GroupProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vasan_8i\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
