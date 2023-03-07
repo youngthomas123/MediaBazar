@@ -148,6 +148,26 @@ namespace S2GroupProject
         {
 
         }
+
+        private void ShowEmployees_Click(object sender, EventArgs e)
+        {
+            employeesLb.Items.Clear();
+            foreach (Employee emp in employees)
+            {
+                employeesLb.Items.Add(emp);
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            int bsn = Convert.ToInt32(searchTB.Text);
+            Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
+            if (searchedEmployee != null)
+            {
+                employeesLb.Items.Clear();
+                employeesLb.Items.Add(searchedEmployee);
+            }
+        }
     }
 
 

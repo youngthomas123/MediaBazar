@@ -50,7 +50,7 @@ namespace S2GroupProject.Classes
 					return employee;
 				}
 			}
-			return null;
+			throw new Exception("Employee not found");
 		}
 		public bool AlreadyExists(int bsn)
 		{
