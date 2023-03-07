@@ -59,10 +59,8 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// employeesLb
@@ -340,20 +338,12 @@
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.dateTimePicker1);
 			this.groupBox3.Location = new System.Drawing.Point(399, 492);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(1028, 279);
 			this.groupBox3.TabIndex = 3;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "groupBox3";
-			// 
-			// dateTimePicker1
-			// 
-			this.dateTimePicker1.Location = new System.Drawing.Point(16, 38);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-			this.dateTimePicker1.TabIndex = 0;
 			// 
 			// Form1
 			// 
@@ -371,7 +361,6 @@
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -409,6 +398,5 @@
 		private Button RemoveBtn;
 		private TextBox bsnRemoveTb;
 		private Label label12;
-		private DateTimePicker dateTimePicker1;
 	}
 }
