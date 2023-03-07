@@ -4,21 +4,6 @@
     "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
-        "projectName": "MediaBazarLib",
-        "projectPath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
     "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -58,12 +43,6 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "dependencies": {
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.5, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
