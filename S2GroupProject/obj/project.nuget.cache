@@ -1,0 +1,43 @@
+{
+  "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "OQpBRMf+ADo75BVDE5xoCZ7bq4mktskU3ycoekJuToXM+ouZmW9BxJbpfoCwWqTlzoOsUAT8pGVeULZq8LrZ8A==",
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "8rOmea8+OJpw0V3ogPWudIXWFty2lYupMAd87ZYUfDrhPNxw6iEEOTMisDyDhRqX3vI/jjBBJjTDbOKVZR12fg==",
+>>>>>>> 7e48fc66f359a21991fd8425fe6fdd7c7d8fb28f
+  "success": true,
+  "projectFilePath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+  "expectedPackageFiles": [],
+  "logs": []
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "yaP8HwslJgbKm+nGIHXAmZSDcKqViZohwZc+H7kFvJH6dX6a+V6MhKz6y+ssQEzaZoT2uyYSx1ctZTfNRK0flA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\S2GroupProject.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\lapai\\Desktop\\S2GroupProject\\S2GroupProject\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+  "dgSpecHash": "OB+uSTfgoNjD9JPpDqCpMNb7gvAffIzKK066mAPgmU1AsBWICJuqELe5JwycxYc5zCvPbcs9jq7s0FO1xdMHhQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+>>>>>>> f7832bfd4ed4a50a8296f34a93ec6e855bb386de
+    }
+  ]
+>>>>>>> 76ee27e6acc48422ebd36bdbf549285a5a558d33
+}
