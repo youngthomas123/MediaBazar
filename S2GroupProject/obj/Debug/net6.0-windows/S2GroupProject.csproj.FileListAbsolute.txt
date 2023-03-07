@@ -16,3 +16,4 @@ C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.genruntimeconfig.cache
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\ref\S2GroupProject.dll
 C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.EmployeeUC.resources
+C:\Users\lapai\Desktop\S2GroupProject\S2GroupProject\obj\Debug\net6.0-windows\S2GroupProject.LoginForm.resources
