@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "S2GroupProject/1.0.0": {
+        "dependencies": {
+          "MediaBazarLib": "1.0.0"
+        },
         "runtime": {
           "S2GroupProject.dll": {}
+        }
+      },
+      "MediaBazarLib/1.0.0": {
+        "runtime": {
+          "MediaBazarLib.dll": {}
         }
       }
     }
   },
   "libraries": {
     "S2GroupProject/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MediaBazarLib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

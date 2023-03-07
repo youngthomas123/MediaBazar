@@ -1,402 +1,434 @@
 ﻿namespace S2GroupProject
 {
-	partial class Form1
-	{
-		/// <summary>
-		///  Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class Form1
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		///  Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		///  Required method for Designer support - do not modify
-		///  the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			this.employeesLb = new System.Windows.Forms.ListBox();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.AddEmployee = new System.Windows.Forms.Button();
-			this.daysOffClb = new System.Windows.Forms.CheckedListBox();
-			this.label11 = new System.Windows.Forms.Label();
-			this.ageTb = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.wageTb = new System.Windows.Forms.TextBox();
-			this.jobPositionCb = new System.Windows.Forms.ComboBox();
-			this.hoursPerWeekTb = new System.Windows.Forms.TextBox();
-			this.contractCb = new System.Windows.Forms.ComboBox();
-			this.addressTb = new System.Windows.Forms.TextBox();
-			this.telNumberTb = new System.Windows.Forms.TextBox();
-			this.bsnTb = new System.Windows.Forms.TextBox();
-			this.lastNameTb = new System.Windows.Forms.TextBox();
-			this.firstNameTb = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.RemoveBtn = new System.Windows.Forms.Button();
-			this.bsnRemoveTb = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// employeesLb
-			// 
-			this.employeesLb.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.employeesLb.FormattingEnabled = true;
-			this.employeesLb.ItemHeight = 22;
-			this.employeesLb.Location = new System.Drawing.Point(398, 11);
-			this.employeesLb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.employeesLb.Name = "employeesLb";
-			this.employeesLb.Size = new System.Drawing.Size(1028, 466);
-			this.employeesLb.TabIndex = 0;
-			this.employeesLb.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.AddEmployee);
-			this.groupBox1.Controls.Add(this.daysOffClb);
-			this.groupBox1.Controls.Add(this.label11);
-			this.groupBox1.Controls.Add(this.ageTb);
-			this.groupBox1.Controls.Add(this.label10);
-			this.groupBox1.Controls.Add(this.wageTb);
-			this.groupBox1.Controls.Add(this.jobPositionCb);
-			this.groupBox1.Controls.Add(this.hoursPerWeekTb);
-			this.groupBox1.Controls.Add(this.contractCb);
-			this.groupBox1.Controls.Add(this.addressTb);
-			this.groupBox1.Controls.Add(this.telNumberTb);
-			this.groupBox1.Controls.Add(this.bsnTb);
-			this.groupBox1.Controls.Add(this.lastNameTb);
-			this.groupBox1.Controls.Add(this.firstNameTb);
-			this.groupBox1.Controls.Add(this.label9);
-			this.groupBox1.Controls.Add(this.label8);
-			this.groupBox1.Controls.Add(this.label7);
-			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Location = new System.Drawing.Point(7, 11);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(377, 466);
-			this.groupBox1.TabIndex = 1;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "groupBox1";
-			// 
-			// AddEmployee
-			// 
-			this.AddEmployee.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.AddEmployee.Location = new System.Drawing.Point(207, 400);
-			this.AddEmployee.Name = "AddEmployee";
-			this.AddEmployee.Size = new System.Drawing.Size(159, 49);
-			this.AddEmployee.TabIndex = 22;
-			this.AddEmployee.Text = "Add To Management";
-			this.AddEmployee.UseVisualStyleBackColor = true;
-			this.AddEmployee.Click += new System.EventHandler(this.AddEmployee_Click);
-			// 
-			// daysOffClb
-			// 
-			this.daysOffClb.FormattingEnabled = true;
-			this.daysOffClb.Location = new System.Drawing.Point(72, 345);
-			this.daysOffClb.Name = "daysOffClb";
-			this.daysOffClb.Size = new System.Drawing.Size(108, 112);
-			this.daysOffClb.TabIndex = 21;
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(6, 349);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(55, 15);
-			this.label11.TabIndex = 20;
-			this.label11.Text = "Days Off:";
-			// 
-			// ageTb
-			// 
-			this.ageTb.Location = new System.Drawing.Point(104, 298);
-			this.ageTb.Name = "ageTb";
-			this.ageTb.Size = new System.Drawing.Size(134, 23);
-			this.ageTb.TabIndex = 19;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(55, 306);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(31, 15);
-			this.label10.TabIndex = 18;
-			this.label10.Text = "Age:";
-			// 
-			// wageTb
-			// 
-			this.wageTb.Location = new System.Drawing.Point(104, 266);
-			this.wageTb.Name = "wageTb";
-			this.wageTb.Size = new System.Drawing.Size(134, 23);
-			this.wageTb.TabIndex = 17;
-			// 
-			// jobPositionCb
-			// 
-			this.jobPositionCb.FormattingEnabled = true;
-			this.jobPositionCb.Location = new System.Drawing.Point(80, 227);
-			this.jobPositionCb.Name = "jobPositionCb";
-			this.jobPositionCb.Size = new System.Drawing.Size(158, 23);
-			this.jobPositionCb.TabIndex = 16;
-			// 
-			// hoursPerWeekTb
-			// 
-			this.hoursPerWeekTb.Location = new System.Drawing.Point(148, 198);
-			this.hoursPerWeekTb.Name = "hoursPerWeekTb";
-			this.hoursPerWeekTb.Size = new System.Drawing.Size(134, 23);
-			this.hoursPerWeekTb.TabIndex = 15;
-			// 
-			// contractCb
-			// 
-			this.contractCb.FormattingEnabled = true;
-			this.contractCb.Location = new System.Drawing.Point(88, 161);
-			this.contractCb.Name = "contractCb";
-			this.contractCb.Size = new System.Drawing.Size(150, 23);
-			this.contractCb.TabIndex = 14;
-			// 
-			// addressTb
-			// 
-			this.addressTb.Location = new System.Drawing.Point(75, 129);
-			this.addressTb.Name = "addressTb";
-			this.addressTb.Size = new System.Drawing.Size(134, 23);
-			this.addressTb.TabIndex = 13;
-			// 
-			// telNumberTb
-			// 
-			this.telNumberTb.Location = new System.Drawing.Point(75, 100);
-			this.telNumberTb.Name = "telNumberTb";
-			this.telNumberTb.Size = new System.Drawing.Size(134, 23);
-			this.telNumberTb.TabIndex = 12;
-			// 
-			// bsnTb
-			// 
-			this.bsnTb.Location = new System.Drawing.Point(75, 74);
-			this.bsnTb.Name = "bsnTb";
-			this.bsnTb.Size = new System.Drawing.Size(134, 23);
-			this.bsnTb.TabIndex = 11;
-			// 
-			// lastNameTb
-			// 
-			this.lastNameTb.Location = new System.Drawing.Point(75, 48);
-			this.lastNameTb.Name = "lastNameTb";
-			this.lastNameTb.Size = new System.Drawing.Size(134, 23);
-			this.lastNameTb.TabIndex = 10;
-			// 
-			// firstNameTb
-			// 
-			this.firstNameTb.Location = new System.Drawing.Point(75, 22);
-			this.firstNameTb.Name = "firstNameTb";
-			this.firstNameTb.Size = new System.Drawing.Size(134, 23);
-			this.firstNameTb.TabIndex = 9;
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(3, 269);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(95, 15);
-			this.label9.TabIndex = 8;
-			this.label9.Text = "Employee Wage:";
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(0, 231);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(74, 15);
-			this.label8.TabIndex = 7;
-			this.label8.Text = "Job Position:";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(0, 201);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(142, 15);
-			this.label7.TabIndex = 6;
-			this.label7.Text = "Working Hours Per Week:";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 164);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(83, 15);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Contract Type:";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 135);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(52, 15);
-			this.label5.TabIndex = 4;
-			this.label5.Text = "Address:";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 103);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(71, 15);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Tel Number:";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(37, 74);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(32, 15);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "BSN:";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 51);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(66, 15);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "Last Name:";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 25);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(67, 15);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "First Name:";
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.RemoveBtn);
-			this.groupBox2.Controls.Add(this.bsnRemoveTb);
-			this.groupBox2.Controls.Add(this.label12);
-			this.groupBox2.Location = new System.Drawing.Point(7, 492);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(377, 279);
-			this.groupBox2.TabIndex = 2;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "groupBox2";
-			// 
-			// RemoveBtn
-			// 
-			this.RemoveBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.RemoveBtn.Location = new System.Drawing.Point(7, 102);
-			this.RemoveBtn.Name = "RemoveBtn";
-			this.RemoveBtn.Size = new System.Drawing.Size(159, 49);
-			this.RemoveBtn.TabIndex = 23;
-			this.RemoveBtn.Text = "Remove from Management";
-			this.RemoveBtn.UseVisualStyleBackColor = true;
-			this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click);
-			// 
-			// bsnRemoveTb
-			// 
-			this.bsnRemoveTb.Location = new System.Drawing.Point(46, 35);
-			this.bsnRemoveTb.Name = "bsnRemoveTb";
-			this.bsnRemoveTb.Size = new System.Drawing.Size(134, 23);
-			this.bsnRemoveTb.TabIndex = 23;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(7, 38);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(32, 15);
-			this.label12.TabIndex = 23;
-			this.label12.Text = "BSN:";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Location = new System.Drawing.Point(399, 492);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(1028, 279);
-			this.groupBox3.TabIndex = 3;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "groupBox3";
-			// 
-			// Form1
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1438, 778);
-			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.groupBox2);
-			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.employeesLb);
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.Name = "Form1";
-			this.Text = "Form1";
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
-			this.ResumeLayout(false);
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            employeesLb = new ListBox();
+            groupBox1 = new GroupBox();
+            AddEmployee = new Button();
+            daysOffClb = new CheckedListBox();
+            label11 = new Label();
+            ageTb = new TextBox();
+            label10 = new Label();
+            wageTb = new TextBox();
+            jobPositionCb = new ComboBox();
+            hoursPerWeekTb = new TextBox();
+            contractCb = new ComboBox();
+            addressTb = new TextBox();
+            telNumberTb = new TextBox();
+            bsnTb = new TextBox();
+            lastNameTb = new TextBox();
+            firstNameTb = new TextBox();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            groupBox2 = new GroupBox();
+            RemoveBtn = new Button();
+            bsnRemoveTb = new TextBox();
+            label12 = new Label();
+            groupBox3 = new GroupBox();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
+            // 
+            // employeesLb
+            // 
+            employeesLb.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            employeesLb.FormattingEnabled = true;
+            employeesLb.ItemHeight = 35;
+            employeesLb.Location = new Point(569, 18);
+            employeesLb.Margin = new Padding(4, 3, 4, 3);
+            employeesLb.Name = "employeesLb";
+            employeesLb.Size = new Size(1467, 774);
+            employeesLb.TabIndex = 0;
+            employeesLb.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(AddEmployee);
+            groupBox1.Controls.Add(daysOffClb);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(ageTb);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(wageTb);
+            groupBox1.Controls.Add(jobPositionCb);
+            groupBox1.Controls.Add(hoursPerWeekTb);
+            groupBox1.Controls.Add(contractCb);
+            groupBox1.Controls.Add(addressTb);
+            groupBox1.Controls.Add(telNumberTb);
+            groupBox1.Controls.Add(bsnTb);
+            groupBox1.Controls.Add(lastNameTb);
+            groupBox1.Controls.Add(firstNameTb);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new Point(10, 18);
+            groupBox1.Margin = new Padding(4, 5, 4, 5);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4, 5, 4, 5);
+            groupBox1.Size = new Size(539, 777);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            // 
+            // AddEmployee
+            // 
+            AddEmployee.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            AddEmployee.Location = new Point(296, 667);
+            AddEmployee.Margin = new Padding(4, 5, 4, 5);
+            AddEmployee.Name = "AddEmployee";
+            AddEmployee.Size = new Size(227, 82);
+            AddEmployee.TabIndex = 22;
+            AddEmployee.Text = "Add To Management";
+            AddEmployee.UseVisualStyleBackColor = true;
+            AddEmployee.Click += AddEmployee_Click;
+            // 
+            // daysOffClb
+            // 
+            daysOffClb.FormattingEnabled = true;
+            daysOffClb.Location = new Point(103, 575);
+            daysOffClb.Margin = new Padding(4, 5, 4, 5);
+            daysOffClb.Name = "daysOffClb";
+            daysOffClb.Size = new Size(153, 172);
+            daysOffClb.TabIndex = 21;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(9, 582);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(86, 25);
+            label11.TabIndex = 20;
+            label11.Text = "Days Off:";
+            // 
+            // ageTb
+            // 
+            ageTb.Location = new Point(149, 497);
+            ageTb.Margin = new Padding(4, 5, 4, 5);
+            ageTb.Name = "ageTb";
+            ageTb.Size = new Size(190, 31);
+            ageTb.TabIndex = 19;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(79, 510);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(48, 25);
+            label10.TabIndex = 18;
+            label10.Text = "Age:";
+            // 
+            // wageTb
+            // 
+            wageTb.Location = new Point(149, 443);
+            wageTb.Margin = new Padding(4, 5, 4, 5);
+            wageTb.Name = "wageTb";
+            wageTb.Size = new Size(190, 31);
+            wageTb.TabIndex = 17;
+            // 
+            // jobPositionCb
+            // 
+            jobPositionCb.FormattingEnabled = true;
+            jobPositionCb.Location = new Point(114, 378);
+            jobPositionCb.Margin = new Padding(4, 5, 4, 5);
+            jobPositionCb.Name = "jobPositionCb";
+            jobPositionCb.Size = new Size(224, 33);
+            jobPositionCb.TabIndex = 16;
+            // 
+            // hoursPerWeekTb
+            // 
+            hoursPerWeekTb.Location = new Point(211, 330);
+            hoursPerWeekTb.Margin = new Padding(4, 5, 4, 5);
+            hoursPerWeekTb.Name = "hoursPerWeekTb";
+            hoursPerWeekTb.Size = new Size(190, 31);
+            hoursPerWeekTb.TabIndex = 15;
+            hoursPerWeekTb.TextChanged += hoursPerWeekTb_TextChanged;
+            // 
+            // contractCb
+            // 
+            contractCb.FormattingEnabled = true;
+            contractCb.Location = new Point(126, 268);
+            contractCb.Margin = new Padding(4, 5, 4, 5);
+            contractCb.Name = "contractCb";
+            contractCb.Size = new Size(213, 33);
+            contractCb.TabIndex = 14;
+            // 
+            // addressTb
+            // 
+            addressTb.Location = new Point(107, 215);
+            addressTb.Margin = new Padding(4, 5, 4, 5);
+            addressTb.Name = "addressTb";
+            addressTb.Size = new Size(190, 31);
+            addressTb.TabIndex = 13;
+            // 
+            // telNumberTb
+            // 
+            telNumberTb.Location = new Point(107, 167);
+            telNumberTb.Margin = new Padding(4, 5, 4, 5);
+            telNumberTb.Name = "telNumberTb";
+            telNumberTb.Size = new Size(190, 31);
+            telNumberTb.TabIndex = 12;
+            // 
+            // bsnTb
+            // 
+            bsnTb.Location = new Point(107, 123);
+            bsnTb.Margin = new Padding(4, 5, 4, 5);
+            bsnTb.Name = "bsnTb";
+            bsnTb.Size = new Size(190, 31);
+            bsnTb.TabIndex = 11;
+            // 
+            // lastNameTb
+            // 
+            lastNameTb.Location = new Point(107, 80);
+            lastNameTb.Margin = new Padding(4, 5, 4, 5);
+            lastNameTb.Name = "lastNameTb";
+            lastNameTb.Size = new Size(190, 31);
+            lastNameTb.TabIndex = 10;
+            // 
+            // firstNameTb
+            // 
+            firstNameTb.Location = new Point(107, 37);
+            firstNameTb.Margin = new Padding(4, 5, 4, 5);
+            firstNameTb.Name = "firstNameTb";
+            firstNameTb.Size = new Size(190, 31);
+            firstNameTb.TabIndex = 9;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(4, 448);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(144, 25);
+            label9.TabIndex = 8;
+            label9.Text = "Employee Wage:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(0, 385);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(112, 25);
+            label8.TabIndex = 7;
+            label8.Text = "Job Position:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(0, 335);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(213, 25);
+            label7.TabIndex = 6;
+            label7.Text = "Working Hours Per Week:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(4, 273);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(125, 25);
+            label6.TabIndex = 5;
+            label6.Text = "Contract Type:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(4, 225);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(81, 25);
+            label5.TabIndex = 4;
+            label5.Text = "Address:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(4, 172);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(106, 25);
+            label4.TabIndex = 3;
+            label4.Text = "Tel Number:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(53, 123);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 25);
+            label3.TabIndex = 2;
+            label3.Text = "BSN:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(4, 85);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 25);
+            label2.TabIndex = 1;
+            label2.Text = "Last Name:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(4, 42);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(101, 25);
+            label1.TabIndex = 0;
+            label1.Text = "First Name:";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(RemoveBtn);
+            groupBox2.Controls.Add(bsnRemoveTb);
+            groupBox2.Controls.Add(label12);
+            groupBox2.Location = new Point(10, 820);
+            groupBox2.Margin = new Padding(4, 5, 4, 5);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4, 5, 4, 5);
+            groupBox2.Size = new Size(539, 465);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "groupBox2";
+            // 
+            // RemoveBtn
+            // 
+            RemoveBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            RemoveBtn.Location = new Point(10, 170);
+            RemoveBtn.Margin = new Padding(4, 5, 4, 5);
+            RemoveBtn.Name = "RemoveBtn";
+            RemoveBtn.Size = new Size(227, 82);
+            RemoveBtn.TabIndex = 23;
+            RemoveBtn.Text = "Remove from Management";
+            RemoveBtn.UseVisualStyleBackColor = true;
+            RemoveBtn.Click += RemoveBtn_Click;
+            // 
+            // bsnRemoveTb
+            // 
+            bsnRemoveTb.Location = new Point(66, 58);
+            bsnRemoveTb.Margin = new Padding(4, 5, 4, 5);
+            bsnRemoveTb.Name = "bsnRemoveTb";
+            bsnRemoveTb.Size = new Size(190, 31);
+            bsnRemoveTb.TabIndex = 23;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(10, 63);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(49, 25);
+            label12.TabIndex = 23;
+            label12.Text = "BSN:";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Location = new Point(570, 820);
+            groupBox3.Margin = new Padding(4, 5, 4, 5);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new Padding(4, 5, 4, 5);
+            groupBox3.Size = new Size(1469, 465);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1924, 1050);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(employeesLb);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "Form1";
+            Text = "Form1";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ResumeLayout(false);
+        }
 
-		}
+        #endregion
 
-		#endregion
-
-		private ListBox employeesLb;
-		private GroupBox groupBox1;
-		private GroupBox groupBox2;
-		private GroupBox groupBox3;
-		private TextBox telNumberTb;
-		private TextBox bsnTb;
-		private TextBox lastNameTb;
-		private TextBox firstNameTb;
-		private Label label9;
-		private Label label8;
-		private Label label7;
-		private Label label6;
-		private Label label5;
-		private Label label4;
-		private Label label3;
-		private Label label2;
-		private Label label1;
-		private TextBox wageTb;
-		private ComboBox jobPositionCb;
-		private TextBox hoursPerWeekTb;
-		private ComboBox contractCb;
-		private TextBox addressTb;
-		private TextBox ageTb;
-		private Label label10;
-		private System.ComponentModel.BackgroundWorker backgroundWorker1;
-		private Label label11;
-		private CheckedListBox daysOffClb;
-		private Button AddEmployee;
-		private Button RemoveBtn;
-		private TextBox bsnRemoveTb;
-		private Label label12;
-	}
+        private ListBox employeesLb;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private TextBox telNumberTb;
+        private TextBox bsnTb;
+        private TextBox lastNameTb;
+        private TextBox firstNameTb;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private TextBox wageTb;
+        private ComboBox jobPositionCb;
+        private TextBox hoursPerWeekTb;
+        private ComboBox contractCb;
+        private TextBox addressTb;
+        private TextBox ageTb;
+        private Label label10;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label label11;
+        private CheckedListBox daysOffClb;
+        private Button AddEmployee;
+        private Button RemoveBtn;
+        private TextBox bsnRemoveTb;
+        private Label label12;
+    }
 }
