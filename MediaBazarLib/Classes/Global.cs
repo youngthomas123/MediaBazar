@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace S2GroupProject.Classes
 {
-	static class Global
+	 public static class Global
 	{
-		public static Management myManagement = new Management("Na Maikati Putkata");
+		public static Management myManagement = new Management("Media Bazar");
 	}
 }
 
