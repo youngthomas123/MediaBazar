@@ -1,17 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {}
+    "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {
+    "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
+        "projectName": "MediaBazarLib",
+        "projectPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+        "projectUniqueName": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
         "projectName": "S2GroupProject",
-        "projectPath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
+        "projectPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\S2GroupProject.csproj",
         "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\S2GroupProject\\obj\\",
+        "outputPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\S2GroupProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +43,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj": {
-                "projectPath": "C:\\Users\\bruno\\source\\repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj"
+              "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj": {
+                "projectPath": "C:\\Users\\bruno\\Source\\Repos\\media-bazar\\MediaBazarLib\\MediaBazarLib.csproj"
               }
             }
           }
