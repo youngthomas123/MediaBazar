@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static S2GroupProject.Classes.MyEnums;
 
 namespace S2GroupProject.Classes
@@ -31,13 +32,18 @@ namespace S2GroupProject.Classes
 			//{
 			//	attendedShift = false;
 			//}
-			employees.Add(new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-										wage, daysOff, age, shiftType, attendedShift));
+			bool EmployeeExists = AlreadyExists(bsn);
+			if(EmployeeExists == false)
+			{
+				Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
+										wage, daysOff, age, shiftType, attendedShift);
+                employees.Add(newEmployee);
+            }
 		}
 
 		public Employee GetEmployeeByBcn(int bsn)
 		{
-			foreach (var employee in employees)
+			foreach (Employee employee in employees)
 			{
 				if (employee.BSN == bsn)
 				{
@@ -45,6 +51,20 @@ namespace S2GroupProject.Classes
 				}
 			}
 			return null;
+		}
+		public bool AlreadyExists(int bsn)
+		{
+			bool employeeFound = false;
+			foreach (Employee employee in employees)
+			{
+				if (employee.BSN == bsn)
+				{
+                    MessageBox.Show("This employee already exists!");
+                    employeeFound = true;
+					break;
+				}
+			}
+			return employeeFound;
 		}
 		public List<Employee> GetEmployees()
 		{
