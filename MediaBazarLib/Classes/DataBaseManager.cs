@@ -58,7 +58,10 @@ namespace MediaBazarLib
 
             conn.Open();
 
-            string AddEmployee = "insert into Employee([FirstName], [LastName], [BSN], [TelNumber], [Address], [ContractType], [HoursPerWeek], [JobPosition], [Wage], [Shift], [AttendedShift], [Age]) values(@Fname, @Lname, @bsn, @telnum, @address, @contractType, @hoursPerWeek, @JobPosition, @wage, @shift, @attendedShift, @age);";
+            string AddEmployee = "insert into Employee([FirstName], [LastName], [BSN], [TelNumber]," +
+                "                    [Address], [ContractType], [HoursPerWeek], [JobPosition], [Wage], " +
+                                     "[Shift], [AttendedShift], [Age]) values(@Fname, @Lname, @bsn, @telnum," +
+                                     " @address, @contractType, @hoursPerWeek, @JobPosition, @wage, @shift, @attendedShift, @age);";
             SqlCommand cmd = new SqlCommand(AddEmployee, conn);
 
             cmd.Parameters.Add("@Fname", SqlDbType.VarChar);
