@@ -50,6 +50,7 @@
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\Management.cs" />
     <Compile Include="Classes\MyEnums.cs" />
+    <Compile Include="Classes\Settings.cs" />
     <Compile Include="DataBaseManager.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

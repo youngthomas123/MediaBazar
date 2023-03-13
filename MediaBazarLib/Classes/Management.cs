@@ -21,7 +21,7 @@ namespace S2GroupProject.Classes
 
 		public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, ShiftTypes? shiftType, bool? attendedShift)
+						List<DayOfWeek> daysOff, int age, ShiftTypes? shiftType, bool? attendedShift, List<DateTime> shiftDates)
 		{
 			//if (shiftType == null)
 			//{
@@ -32,11 +32,12 @@ namespace S2GroupProject.Classes
 			//{
 			//	attendedShift = false;
 			//}
+			shiftDates = new List<DateTime>();
 			bool EmployeeExists = AlreadyExists(bsn);
 			if(EmployeeExists == false)
 			{
 				Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-										wage, daysOff, age, shiftType, attendedShift);
+										wage, daysOff, age, shiftType, attendedShift, shiftDates);
                 employees.Add(newEmployee);
             }
 		}
@@ -75,5 +76,19 @@ namespace S2GroupProject.Classes
 		{
 			employees.Remove(emp);
 		}
+
+		public void AddShift(DateTime day, int bsn, ShiftTypes shiftType)
+		{
+			
+			Employee emp = GetEmployeeByBcn(bsn);
+			//if (emp.Shift == shiftType && emp.ShiftsDates.Any)
+			//{
+
+			//}
+			emp.ShiftsDates.Add(day);
+			emp.Shift = shiftType;
+		}
+
+		
 	}
 }
