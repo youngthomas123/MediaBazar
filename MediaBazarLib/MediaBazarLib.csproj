@@ -45,13 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Classes\Class1.cs" />
     <Compile Include="Classes\Employee.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\Management.cs" />
     <Compile Include="Classes\MyEnums.cs" />
-    <Compile Include="DataBaseManager.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Classes\DataBaseManager.cs" />
+    <Compile Include="Classes\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
