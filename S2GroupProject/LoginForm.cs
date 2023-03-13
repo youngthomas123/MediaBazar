@@ -16,19 +16,19 @@ namespace S2GroupProject
 
         }
 
-        private void LoginBT_Click(object sender, EventArgs e)
-        {
-			if (UserNameTB.Text == "Admin" && PasswordTB.Text == "123456")
-			{
-				Form1 form1 = new Form1();
-				form1.Show();
-				this.Hide();
-			}
-			else
-			{
-				MessageBox.Show("Invalid username or password");
-			}
 
-		}
+        private void LoginBT_Click_1(object sender, EventArgs e)
+        {
+            if (UserNameTB.Text == "Admin" && PasswordTB.Text == "123456")
+            {
+                Form1 form1 = new Form1();
+                form1.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password");
+            }
+        }
     }
 }
