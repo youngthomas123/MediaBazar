@@ -1,3 +1,4 @@
+using MediaBazarLib.Classes;
 using S2GroupProject.Classes;
 using S2GroupProject.Forms;
 using System.Drawing;
@@ -30,20 +31,20 @@ namespace S2GroupProject
 
             Global.myManagement.AddEmployee("Mihail", "Mihov", 1, +359123123, "Nqkudesi",
                                             ContractTypes.FULL_TIME, 16, JobPositions.STORE_MANAGER, 25,
-                                            new List<DayOfWeek> { DayOfWeek.Wednesday, DayOfWeek.Saturday }, 19, null, null, new List<DateTime>());
+                                            new List<DayOfWeek> { DayOfWeek.Wednesday, DayOfWeek.Saturday }, 19, null, null, new List<Shift>());
             Global.myManagement.AddEmployee("Panayot", "Panov", 2, +359123123, "Nqkudesi",
-                                    ContractTypes.PART_TIME, 16, JobPositions.SECURITY, 25, DayOfWeeks, 19, null, null, new List<DateTime>());
+                                    ContractTypes.PART_TIME, 16, JobPositions.SECURITY, 25, DayOfWeeks, 19, null, null, new List<Shift>());
 
             Global.myManagement.AddEmployee("Georgi", "Obretenov", 3, +359123123, "Nqkudesi",
-                                        ContractTypes.PART_TIME, 16, JobPositions.CASHIER, 25, DayOfWeeks, 19, null, null, new List<DateTime>());
+                                        ContractTypes.PART_TIME, 16, JobPositions.CASHIER, 25, DayOfWeeks, 19, null, null, new List<Shift>());
 
             Global.myManagement.AddEmployee("Tonkata", "Garboutchev", 4, +359123123, "Nqkudesi",
-                                        ContractTypes.FULL_TIME, 16, JobPositions.WAREHOUSE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<DateTime>());
+                                        ContractTypes.FULL_TIME, 16, JobPositions.WAREHOUSE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<Shift>());
             Global.myManagement.AddEmployee("Nik", "Spek", 5, +359123123, "Nqkudesi",
-                                        ContractTypes.ZERO_HOURS, 16, JobPositions.WAREHOUSE_MANAGER, 25, DayOfWeeks, 19, null, null, new List<DateTime>());
+                                        ContractTypes.ZERO_HOURS, 16, JobPositions.WAREHOUSE_MANAGER, 25, DayOfWeeks, 19, null, null, new List<Shift>());
 
             Global.myManagement.AddEmployee("Averami", "Gurbami", 6, +359123123, "Nqkudesi",
-                                            ContractTypes.ZERO_HOURS, 16, JobPositions.STORE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<DateTime>());
+                                            ContractTypes.ZERO_HOURS, 16, JobPositions.STORE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<Shift>());
 
             LoadingData();
         }
@@ -143,7 +144,7 @@ namespace S2GroupProject
 
             }
 
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, null, new List<DateTime>());
+            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, null, new List<Shift>());
 
             RefreshData();
         }
@@ -326,7 +327,7 @@ namespace S2GroupProject
 
             foreach (var emp in employees)
             {
-                if (emp.ShiftsDates.Any(s => s.Day == shift.Day))
+                if (emp.ShiftsDates.Any(s => s.ShiftDate.Day == shift.Day))
                 {
                     employeesLb.Items.Add(emp);
                 }

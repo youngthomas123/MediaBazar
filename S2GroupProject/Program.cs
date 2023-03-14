@@ -1,3 +1,5 @@
+using MediaBazarLib;
+
 namespace S2GroupProject
 {
 	internal static class Program
@@ -11,6 +13,7 @@ namespace S2GroupProject
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
+			
 			Application.Run(new Form1());
 		}
 	}

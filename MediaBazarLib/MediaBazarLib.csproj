@@ -52,6 +52,7 @@
     <Compile Include="Classes\MyEnums.cs" />
     <Compile Include="Classes\DataBaseManager.cs" />
     <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\Shift.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
