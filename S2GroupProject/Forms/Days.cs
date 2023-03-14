@@ -42,7 +42,7 @@ namespace S2GroupProject.Forms
 			List<Employee> employeesWorkingThatDay = new List<Employee>();
 			foreach (var emp in employees)
 			{
-				if (emp.ShiftsDates.Any(shift => shift.DayOfWeek == Date.DayOfWeek))
+				if (emp.ShiftsDates.Any(shift => shift.ShiftDate.DayOfWeek == Date.DayOfWeek))
 				{
 					employeesWorkingThatDay.Add(emp);
 				}

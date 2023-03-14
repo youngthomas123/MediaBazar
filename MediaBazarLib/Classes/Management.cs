@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaBazarLib.Classes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace S2GroupProject.Classes
 
 		public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, ShiftTypes? shiftType, bool? attendedShift, List<DateTime> shiftDates)
+						List<DayOfWeek> daysOff, int age, ShiftTypes? shiftType, bool? attendedShift, List<Shift> shiftDates)
 		{
 			//if (shiftType == null)
 			//{
@@ -32,7 +33,7 @@ namespace S2GroupProject.Classes
 			//{
 			//	attendedShift = false;
 			//}
-			shiftDates = new List<DateTime>();
+			shiftDates = new List<Shift>();
 			bool EmployeeExists = AlreadyExists(bsn);
 			if(EmployeeExists == false)
 			{
@@ -79,14 +80,14 @@ namespace S2GroupProject.Classes
 
 		public void AddShift(DateTime day, int bsn, ShiftTypes shiftType)
 		{
-			
+			Shift shift = new Shift(day, shiftType);
 			Employee emp = GetEmployeeByBcn(bsn);
 			//if (emp.Shift == shiftType && emp.ShiftsDates.Any)
 			//{
 
 			//}
-			emp.ShiftsDates.Add(day);
-			emp.Shift = shiftType;
+			emp.ShiftsDates.Add(shift);
+			//emp.Shift = shiftType;
 		}
 
 		
