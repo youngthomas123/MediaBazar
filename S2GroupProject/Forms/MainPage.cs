@@ -8,13 +8,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace S2GroupProject
 {
-    public partial class Form1 : Form
+    public partial class MainPage : Form
     {
 
 
         List<Employee> employees = Global.myManagement.GetEmployees();
 
-        public Form1()
+        public MainPage()
         {
             List<DayOfWeek> DayOfWeeks = new List<DayOfWeek>();
             DayOfWeeks.Add(DayOfWeek.Monday);
@@ -175,22 +175,26 @@ namespace S2GroupProject
 
         private void ShowEmployees_Click(object sender, EventArgs e)
         {
-            employeesLb.Items.Clear();
-            foreach (Employee emp in employees)
-            {
-                employeesLb.Items.Add(emp);
-            }
+                employeesLb.Items.Clear();
+                foreach (Employee emp in employees)
+                {
+                    employeesLb.Items.Add(emp);
+                }
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            int bsn = Convert.ToInt32(searchTB.Text);
-            Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
-            if (searchedEmployee != null)
+            try
             {
-                employeesLb.Items.Clear();
-                employeesLb.Items.Add(searchedEmployee);
+                int bsn = Convert.ToInt32(searchTB.Text);
+                Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
+                if (searchedEmployee != null)
+                {
+                    employeesLb.Items.Clear();
+                    employeesLb.Items.Add(searchedEmployee);
+                }
             }
+            catch (Exception ex) { MessageBox.Show("Please select a bsn"); }
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
@@ -349,6 +353,11 @@ namespace S2GroupProject
                 }
             }
            
+        }
+
+        private void RemoveBtn_Click_1(object sender, EventArgs e)
+        {
+  
         }
     }
 }

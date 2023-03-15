@@ -21,7 +21,7 @@ namespace S2GroupProject
         {
             if (UserNameTB.Text == "Admin" && PasswordTB.Text == "123456")
             {
-                Form1 form1 = new Form1();
+                MainPage form1 = new MainPage();
                 form1.Show();
                 this.Hide();
             }
