@@ -123,30 +123,38 @@ namespace S2GroupProject
 
         private void AddEmployee_Click(object sender, EventArgs e)
         {
-            string firstName = firstNameTb.Text;
-            string lastName = lastNameTb.Text;
-            int bsn = int.Parse(bsnTb.Text);
-            int telNubmer = int.Parse(telNumberTb.Text);
-            string address = addressTb.Text;
-            ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
-            int workingHoursPerWeek = int.Parse(hoursPerWeekTb.Text);
-            JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
-            double wage = double.Parse(wageTb.Text);
-            int age = int.Parse(ageTb.Text);
-            List<DayOfWeek> daysOff = new List<DayOfWeek>();
-            foreach (var checkedItem in daysOffClb.CheckedItems)
+            try
             {
-                DayOfWeek day;
-                if (Enum.TryParse(checkedItem.ToString(), out day))
+                string firstName = firstNameTb.Text;
+                string lastName = lastNameTb.Text;
+                int bsn = int.Parse(bsnTb.Text);
+                int telNubmer = int.Parse(telNumberTb.Text);
+                string address = addressTb.Text;
+                ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
+                int workingHoursPerWeek = int.Parse(hoursPerWeekTb.Text);
+                JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
+                double wage = double.Parse(wageTb.Text);
+                int age = int.Parse(ageTb.Text);
+                List<DayOfWeek> daysOff = new List<DayOfWeek>();
+                foreach (var checkedItem in daysOffClb.CheckedItems)
                 {
-                    daysOff.Add(day);
+                    DayOfWeek day;
+                    if (Enum.TryParse(checkedItem.ToString(), out day))
+                    {
+                        daysOff.Add(day);
+                    }
+
                 }
 
+                Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, null, new List<Shift>());
+
+                RefreshData();
             }
-
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, null, new List<Shift>());
-
-            RefreshData();
+            catch (FormatException)
+            {
+                MessageBox.Show("To add an employee, please complete the required fields!");
+            }
+            
         }
 
         private void RemoveBtn_Click(object sender, EventArgs e)
@@ -294,8 +302,15 @@ namespace S2GroupProject
 
 		private void addShiftBtn_Click(object sender, EventArgs e)
 		{
-            Global.myManagement.AddShift(shiftDayPicker.Value, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
-            RefreshData();
+            try
+            {
+                Global.myManagement.AddShift(shiftDayPicker.Value, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
+                RefreshData();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Please fill in the BSN box!");
+            }
 		}
 
 		private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
