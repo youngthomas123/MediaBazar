@@ -81,6 +81,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.SeeItemsButton = new System.Windows.Forms.Button();
             this.contractTypeFilterClb = new System.Windows.Forms.CheckedListBox();
             this.shiftDayPickerFilter = new System.Windows.Forms.DateTimePicker();
             this.jobPositionsFilterCb = new System.Windows.Forms.ComboBox();
@@ -139,7 +140,7 @@
             // 
             // ShowEmployees
             // 
-            this.ShowEmployees.BackColor = System.Drawing.Color.Gold;
+            this.ShowEmployees.BackColor = System.Drawing.Color.LimeGreen;
             this.ShowEmployees.Location = new System.Drawing.Point(296, 610);
             this.ShowEmployees.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ShowEmployees.Name = "ShowEmployees";
@@ -151,9 +152,8 @@
             // 
             // AddEmployee
             // 
-            this.AddEmployee.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.AddEmployee.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.AddEmployee.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AddEmployee.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.AddEmployee.Location = new System.Drawing.Point(296, 667);
             this.AddEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AddEmployee.Name = "AddEmployee";
@@ -165,6 +165,7 @@
             // 
             // daysOffClb
             // 
+            this.daysOffClb.BackColor = System.Drawing.Color.Moccasin;
             this.daysOffClb.FormattingEnabled = true;
             this.daysOffClb.Location = new System.Drawing.Point(103, 575);
             this.daysOffClb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -184,6 +185,7 @@
             // 
             // ageTb
             // 
+            this.ageTb.BackColor = System.Drawing.Color.Moccasin;
             this.ageTb.Location = new System.Drawing.Point(149, 497);
             this.ageTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ageTb.Name = "ageTb";
@@ -202,6 +204,7 @@
             // 
             // wageTb
             // 
+            this.wageTb.BackColor = System.Drawing.Color.Moccasin;
             this.wageTb.Location = new System.Drawing.Point(149, 443);
             this.wageTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.wageTb.Name = "wageTb";
@@ -210,6 +213,7 @@
             // 
             // jobPositionCb
             // 
+            this.jobPositionCb.BackColor = System.Drawing.Color.Moccasin;
             this.jobPositionCb.FormattingEnabled = true;
             this.jobPositionCb.Location = new System.Drawing.Point(114, 378);
             this.jobPositionCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -219,6 +223,7 @@
             // 
             // hoursPerWeekTb
             // 
+            this.hoursPerWeekTb.BackColor = System.Drawing.Color.Moccasin;
             this.hoursPerWeekTb.Location = new System.Drawing.Point(211, 330);
             this.hoursPerWeekTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.hoursPerWeekTb.Name = "hoursPerWeekTb";
@@ -227,6 +232,7 @@
             // 
             // contractCb
             // 
+            this.contractCb.BackColor = System.Drawing.Color.Moccasin;
             this.contractCb.FormattingEnabled = true;
             this.contractCb.Location = new System.Drawing.Point(126, 268);
             this.contractCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -236,6 +242,7 @@
             // 
             // addressTb
             // 
+            this.addressTb.BackColor = System.Drawing.Color.Moccasin;
             this.addressTb.Location = new System.Drawing.Point(107, 215);
             this.addressTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addressTb.Name = "addressTb";
@@ -244,6 +251,7 @@
             // 
             // telNumberTb
             // 
+            this.telNumberTb.BackColor = System.Drawing.Color.Moccasin;
             this.telNumberTb.Location = new System.Drawing.Point(107, 167);
             this.telNumberTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.telNumberTb.Name = "telNumberTb";
@@ -252,6 +260,7 @@
             // 
             // bsnTb
             // 
+            this.bsnTb.BackColor = System.Drawing.Color.Moccasin;
             this.bsnTb.Location = new System.Drawing.Point(107, 123);
             this.bsnTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bsnTb.Name = "bsnTb";
@@ -260,6 +269,7 @@
             // 
             // lastNameTb
             // 
+            this.lastNameTb.BackColor = System.Drawing.Color.Moccasin;
             this.lastNameTb.Location = new System.Drawing.Point(107, 80);
             this.lastNameTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lastNameTb.Name = "lastNameTb";
@@ -268,6 +278,7 @@
             // 
             // firstNameTb
             // 
+            this.firstNameTb.BackColor = System.Drawing.Color.Moccasin;
             this.firstNameTb.Location = new System.Drawing.Point(107, 37);
             this.firstNameTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.firstNameTb.Name = "firstNameTb";
@@ -393,7 +404,7 @@
             // 
             // searchButton
             // 
-            this.searchButton.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.searchButton.BackColor = System.Drawing.Color.LimeGreen;
             this.searchButton.Location = new System.Drawing.Point(144, 348);
             this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchButton.Name = "searchButton";
@@ -415,10 +426,10 @@
             this.RemoveBtn.TabIndex = 23;
             this.RemoveBtn.Text = "Remove from Management";
             this.RemoveBtn.UseVisualStyleBackColor = false;
-            this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click_1);
             // 
             // searchTB
             // 
+            this.searchTB.BackColor = System.Drawing.Color.Moccasin;
             this.searchTB.Location = new System.Drawing.Point(144, 300);
             this.searchTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchTB.Name = "searchTB";
@@ -427,6 +438,7 @@
             // 
             // bsnRemoveTb
             // 
+            this.bsnRemoveTb.BackColor = System.Drawing.Color.Moccasin;
             this.bsnRemoveTb.Location = new System.Drawing.Point(66, 58);
             this.bsnRemoveTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bsnRemoveTb.Name = "bsnRemoveTb";
@@ -483,7 +495,7 @@
             // 
             // addShiftBtn
             // 
-            this.addShiftBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.addShiftBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.addShiftBtn.Location = new System.Drawing.Point(920, 380);
             this.addShiftBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addShiftBtn.Name = "addShiftBtn";
@@ -495,6 +507,7 @@
             // 
             // shiftBsnTb
             // 
+            this.shiftBsnTb.BackColor = System.Drawing.Color.Moccasin;
             this.shiftBsnTb.Location = new System.Drawing.Point(670, 380);
             this.shiftBsnTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.shiftBsnTb.Name = "shiftBsnTb";
@@ -513,6 +526,7 @@
             // 
             // shiftTypeCb
             // 
+            this.shiftTypeCb.BackColor = System.Drawing.Color.Moccasin;
             this.shiftTypeCb.FormattingEnabled = true;
             this.shiftTypeCb.Location = new System.Drawing.Point(387, 380);
             this.shiftTypeCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -522,6 +536,9 @@
             // 
             // shiftDayPicker
             // 
+            this.shiftDayPicker.CalendarForeColor = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarMonthBackground = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarTitleBackColor = System.Drawing.Color.Moccasin;
             this.shiftDayPicker.Location = new System.Drawing.Point(387, 318);
             this.shiftDayPicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.shiftDayPicker.Name = "shiftDayPicker";
@@ -530,7 +547,7 @@
             // 
             // createScheduleBtn
             // 
-            this.createScheduleBtn.BackColor = System.Drawing.Color.LightGreen;
+            this.createScheduleBtn.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.createScheduleBtn.Location = new System.Drawing.Point(120, 390);
             this.createScheduleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.createScheduleBtn.Name = "createScheduleBtn";
@@ -660,6 +677,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.SeeItemsButton);
             this.groupBox4.Controls.Add(this.contractTypeFilterClb);
             this.groupBox4.Controls.Add(this.shiftDayPickerFilter);
             this.groupBox4.Controls.Add(this.jobPositionsFilterCb);
@@ -672,8 +690,20 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
             // 
+            // SeeItemsButton
+            // 
+            this.SeeItemsButton.BackColor = System.Drawing.Color.LimeGreen;
+            this.SeeItemsButton.Location = new System.Drawing.Point(908, 37);
+            this.SeeItemsButton.Name = "SeeItemsButton";
+            this.SeeItemsButton.Size = new System.Drawing.Size(222, 50);
+            this.SeeItemsButton.TabIndex = 36;
+            this.SeeItemsButton.Text = "See Items";
+            this.SeeItemsButton.UseVisualStyleBackColor = false;
+            this.SeeItemsButton.Click += new System.EventHandler(this.SeeItemsButton_Click);
+            // 
             // contractTypeFilterClb
             // 
+            this.contractTypeFilterClb.BackColor = System.Drawing.Color.Moccasin;
             this.contractTypeFilterClb.FormattingEnabled = true;
             this.contractTypeFilterClb.Location = new System.Drawing.Point(1240, 27);
             this.contractTypeFilterClb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -693,6 +723,7 @@
             // 
             // jobPositionsFilterCb
             // 
+            this.jobPositionsFilterCb.BackColor = System.Drawing.Color.Moccasin;
             this.jobPositionsFilterCb.FormattingEnabled = true;
             this.jobPositionsFilterCb.Location = new System.Drawing.Point(4, 42);
             this.jobPositionsFilterCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -786,5 +817,6 @@
 		private ComboBox jobPositionsFilterCb;
 		private DateTimePicker shiftDayPickerFilter;
         private CheckedListBox contractTypeFilterClb;
+        private Button SeeItemsButton;
     }
 }
