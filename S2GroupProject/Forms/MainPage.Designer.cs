@@ -185,7 +185,7 @@
             // 
             // ageTb
             // 
-            this.ageTb.BackColor = System.Drawing.Color.Moccasin;
+            this.ageTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ageTb.Location = new System.Drawing.Point(149, 497);
             this.ageTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ageTb.Name = "ageTb";
@@ -204,7 +204,7 @@
             // 
             // wageTb
             // 
-            this.wageTb.BackColor = System.Drawing.Color.Moccasin;
+            this.wageTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.wageTb.Location = new System.Drawing.Point(149, 443);
             this.wageTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.wageTb.Name = "wageTb";
@@ -213,7 +213,7 @@
             // 
             // jobPositionCb
             // 
-            this.jobPositionCb.BackColor = System.Drawing.Color.Moccasin;
+            this.jobPositionCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.jobPositionCb.FormattingEnabled = true;
             this.jobPositionCb.Location = new System.Drawing.Point(114, 378);
             this.jobPositionCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -223,7 +223,7 @@
             // 
             // hoursPerWeekTb
             // 
-            this.hoursPerWeekTb.BackColor = System.Drawing.Color.Moccasin;
+            this.hoursPerWeekTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.hoursPerWeekTb.Location = new System.Drawing.Point(211, 330);
             this.hoursPerWeekTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.hoursPerWeekTb.Name = "hoursPerWeekTb";
@@ -232,7 +232,7 @@
             // 
             // contractCb
             // 
-            this.contractCb.BackColor = System.Drawing.Color.Moccasin;
+            this.contractCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.contractCb.FormattingEnabled = true;
             this.contractCb.Location = new System.Drawing.Point(126, 268);
             this.contractCb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -242,7 +242,7 @@
             // 
             // addressTb
             // 
-            this.addressTb.BackColor = System.Drawing.Color.Moccasin;
+            this.addressTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.addressTb.Location = new System.Drawing.Point(107, 215);
             this.addressTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addressTb.Name = "addressTb";
@@ -251,7 +251,7 @@
             // 
             // telNumberTb
             // 
-            this.telNumberTb.BackColor = System.Drawing.Color.Moccasin;
+            this.telNumberTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.telNumberTb.Location = new System.Drawing.Point(107, 167);
             this.telNumberTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.telNumberTb.Name = "telNumberTb";
@@ -260,7 +260,7 @@
             // 
             // bsnTb
             // 
-            this.bsnTb.BackColor = System.Drawing.Color.Moccasin;
+            this.bsnTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.bsnTb.Location = new System.Drawing.Point(107, 123);
             this.bsnTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bsnTb.Name = "bsnTb";
@@ -269,7 +269,7 @@
             // 
             // lastNameTb
             // 
-            this.lastNameTb.BackColor = System.Drawing.Color.Moccasin;
+            this.lastNameTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lastNameTb.Location = new System.Drawing.Point(107, 80);
             this.lastNameTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lastNameTb.Name = "lastNameTb";
@@ -278,7 +278,7 @@
             // 
             // firstNameTb
             // 
-            this.firstNameTb.BackColor = System.Drawing.Color.Moccasin;
+            this.firstNameTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.firstNameTb.Location = new System.Drawing.Point(107, 37);
             this.firstNameTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.firstNameTb.Name = "firstNameTb";
@@ -429,7 +429,7 @@
             // 
             // searchTB
             // 
-            this.searchTB.BackColor = System.Drawing.Color.Moccasin;
+            this.searchTB.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchTB.Location = new System.Drawing.Point(144, 300);
             this.searchTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchTB.Name = "searchTB";
@@ -438,7 +438,7 @@
             // 
             // bsnRemoveTb
             // 
-            this.bsnRemoveTb.BackColor = System.Drawing.Color.Moccasin;
+            this.bsnRemoveTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.bsnRemoveTb.Location = new System.Drawing.Point(66, 58);
             this.bsnRemoveTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bsnRemoveTb.Name = "bsnRemoveTb";
@@ -507,7 +507,7 @@
             // 
             // shiftBsnTb
             // 
-            this.shiftBsnTb.BackColor = System.Drawing.Color.Moccasin;
+            this.shiftBsnTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.shiftBsnTb.Location = new System.Drawing.Point(670, 380);
             this.shiftBsnTb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.shiftBsnTb.Name = "shiftBsnTb";

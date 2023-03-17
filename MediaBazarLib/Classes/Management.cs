@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 
 ﻿using MediaBazarLib;
 ﻿using MediaBazarLib.Classes;
-=======
-using MediaBazarLib;
-using MediaBazarLib.Classes;
->>>>>>> 05b0755ce6c57ee3cb919e7ef3dadffa3b6ea187
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
