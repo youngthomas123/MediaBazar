@@ -10,13 +10,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace S2GroupProject
 {
-    public partial class Form1 : Form
+    public partial class MainPage : Form
     {
 
 
         List<Employee> employees = Global.myManagement.GetEmployees();
+
         DataBaseManager database = new DataBaseManager();
-        public Form1()
+
+        public MainPage()
         {
             InitializeComponent();
             LoadingData();
@@ -139,11 +141,17 @@ namespace S2GroupProject
                     daysOff.Add(day);
                 }
 
-            }
+                }
 
             Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, new List<Shift>());
 
-            RefreshData();
+                RefreshData();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("To add an employee, please complete the required fields!");
+            }
+            
         }
 
         private void RemoveBtn_Click(object sender, EventArgs e)
@@ -168,22 +176,26 @@ namespace S2GroupProject
 
         private void ShowEmployees_Click(object sender, EventArgs e)
         {
-            employeesLb.Items.Clear();
-            foreach (Employee emp in employees)
-            {
-                employeesLb.Items.Add(emp);
-            }
+                employeesLb.Items.Clear();
+                foreach (Employee emp in employees)
+                {
+                    employeesLb.Items.Add(emp);
+                }
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            int bsn = Convert.ToInt32(searchTB.Text);
-            Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
-            if (searchedEmployee != null)
+            try
             {
-                employeesLb.Items.Clear();
-                employeesLb.Items.Add(searchedEmployee);
+                int bsn = Convert.ToInt32(searchTB.Text);
+                Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
+                if (searchedEmployee != null)
+                {
+                    employeesLb.Items.Clear();
+                    employeesLb.Items.Add(searchedEmployee);
+                }
             }
+            catch (Exception ex) { MessageBox.Show("Please select a bsn"); }
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
@@ -350,6 +362,42 @@ namespace S2GroupProject
         private void employeesLb_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox1_SelectedIndexChanged(sender, e);
+                }
+            }
+           
+        }
+
+
+        private void SeeItemsButton_Click(object sender, EventArgs e)
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (ItemsPopUp createTask = new ItemsPopUp())
+                {
+                    formBackground.StartPosition = FormStartPosition.CenterScreen;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.TopMost = true;
+                    formBackground.Location = this.Location;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    createTask.Owner = formBackground;
+                    createTask.ShowDialog();
+
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
+
         }
     }
 }

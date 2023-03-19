@@ -8,6 +8,7 @@ namespace MediaBazarLib
 {
     public class Item
     {
+
         public Item(string name, string description, int quantity)
         {
             Name = name;
@@ -19,5 +20,10 @@ namespace MediaBazarLib
         public string Description { get; set; }
         public int Quantity { get; set; }
 
+        public int AddToQuantity(int addedQuantity) 
+        {
+            Quantity += addedQuantity;
+            return Quantity;
+        }
     }
 }
