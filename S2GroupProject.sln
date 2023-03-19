@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2GroupProject", "S2GroupPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBazarLib", "MediaBazarLib\MediaBazarLib.csproj", "{4E28C0E4-D646-4E47-BFD8-8FFDB4B17F22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeWebsite", "EmployeeWebsite\EmployeeWebsite.csproj", "{FF1E2C89-5EA3-4204-BFB9-9451E8621836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebsite", "EmployeeWebsite\EmployeeWebsite.csproj", "{FF1E2C89-5EA3-4204-BFB9-9451E8621836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

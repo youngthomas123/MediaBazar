@@ -1,3 +1,4 @@
+using MediaBazarLib;
 using MediaBazarLib.Classes;
 using S2GroupProject.Classes;
 using S2GroupProject.Forms;
@@ -14,38 +15,10 @@ namespace S2GroupProject
 
 
         List<Employee> employees = Global.myManagement.GetEmployees();
-
+        DataBaseManager database = new DataBaseManager();
         public Form1()
         {
-            List<DayOfWeek> DayOfWeeks = new List<DayOfWeek>();
-            DayOfWeeks.Add(DayOfWeek.Monday);
-            DayOfWeeks.Add(DayOfWeek.Tuesday);
-
-            //daysOffClb = new CheckedListBox();
-
-
             InitializeComponent();
-
-           
-
-
-            Global.myManagement.AddEmployee("Mihail", "Mihov", 1, +359123123, "Nqkudesi",
-                                            ContractTypes.FULL_TIME, 16, JobPositions.STORE_MANAGER, 25,
-                                            new List<DayOfWeek> { DayOfWeek.Wednesday, DayOfWeek.Saturday }, 19, null, null, new List<Shift>());
-            Global.myManagement.AddEmployee("Panayot", "Panov", 2, +359123123, "Nqkudesi",
-                                    ContractTypes.PART_TIME, 16, JobPositions.SECURITY, 25, DayOfWeeks, 19, null, null, new List<Shift>());
-
-            Global.myManagement.AddEmployee("Georgi", "Obretenov", 3, +359123123, "Nqkudesi",
-                                        ContractTypes.PART_TIME, 16, JobPositions.CASHIER, 25, DayOfWeeks, 19, null, null, new List<Shift>());
-
-            Global.myManagement.AddEmployee("Tonkata", "Garboutchev", 4, +359123123, "Nqkudesi",
-                                        ContractTypes.FULL_TIME, 16, JobPositions.WAREHOUSE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<Shift>());
-            Global.myManagement.AddEmployee("Nik", "Spek", 5, +359123123, "Nqkudesi",
-                                        ContractTypes.ZERO_HOURS, 16, JobPositions.WAREHOUSE_MANAGER, 25, DayOfWeeks, 19, null, null, new List<Shift>());
-
-            Global.myManagement.AddEmployee("Averami", "Gurbami", 6, +359123123, "Nqkudesi",
-                                            ContractTypes.ZERO_HOURS, 16, JobPositions.STORE_EMPLOYEE, 25, DayOfWeeks, 19, null, null, new List<Shift>());
-
             LoadingData();
         }
 
@@ -55,13 +28,18 @@ namespace S2GroupProject
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int index = employeesLb.SelectedIndex;
+
             if (employeesLb.SelectedItem != null)
             {
                 var popupForm = new Form();
 
                 // Create an instance of your user control
-                var myUserControl = new EmployeeUC();
-
+                var myUserControl = new EmployeeUC(employees[index]);
+                
+                popupForm.ClientSize = new Size(myUserControl.Width, myUserControl.Height);
+                myUserControl.Dock = DockStyle.Fill;
+            
                 // Set any properties or values on your user control here
                 // ...
 
@@ -69,56 +47,75 @@ namespace S2GroupProject
                 popupForm.Controls.Add(myUserControl);
 
                 // Set the properties of the form to make it look like a popup
-                popupForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                //popupForm.FormBorderStyle = FormBorderStyle.FixedDialog;
                 popupForm.StartPosition = FormStartPosition.CenterParent;
 
                 // Display the form as a modal dialog
                 popupForm.ShowDialog();
-                MessageBox.Show(employees[0].ShiftsDates.ToString());
+                //MessageBox.Show(employees[index].ShiftsDates.Select(s => s.ToString())) ;
             }
         }
 
         public void LoadingData()
         {
+            contractCb.Items.Clear();
+            daysOffClb.Items.Clear();
+            jobPositionCb.Items.Clear();
+            employeesLb.Items.Clear();
+            shiftTypeCb.Items.Clear();
+            contractTypeFilterClb.Items.Clear();
+            jobPositionsFilterCb.Items.Clear();
+            employees = database.LoadEmployees();
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
                 daysOffClb.Items.Add(day.ToString());
             }
             foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
             {
+                
                 jobPositionCb.Items.Add(jobPosition);
             }
 
             foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
             {
+                
                 contractCb.Items.Add(contract);
             }
 
-            foreach (var employee in Global.myManagement.GetEmployees())
+            foreach (var employee in employees)
             {
-                employeesLb.Items.Add(employee);
-            }
 
-            foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
+                employeesLb.Items.Add(employee);
+             }
+                //foreach (var emp in employees)
+                //{
+                //    Global.myManagement.AddEmployee(emp);
+                //    employeesLb.Items.Add(emp);
+                //}
+
+                foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
             {
+                
                 shiftTypeCb.Items.Add(shiftType);
             }
 
 			foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
 			{
+                
 				jobPositionsFilterCb.Items.Add(jobPosition);
 			}
 
             foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
             {
+                
                 contractTypeFilterClb.Items.Add(contract);
             }
         }
 
         public void RefreshData()
         {
-            employeesLb.Items.Clear();
             LoadingData();
+          
         }
 
         private void AddEmployee_Click(object sender, EventArgs e)
@@ -144,7 +141,7 @@ namespace S2GroupProject
 
             }
 
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, null, new List<Shift>());
+            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, new List<Shift>());
 
             RefreshData();
         }
@@ -167,11 +164,6 @@ namespace S2GroupProject
             }
 
             RefreshData();
-        }
-
-        private void hoursPerWeekTb_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void ShowEmployees_Click(object sender, EventArgs e)
@@ -290,7 +282,10 @@ namespace S2GroupProject
 
 		private void addShiftBtn_Click(object sender, EventArgs e)
 		{
-            Global.myManagement.AddShift(shiftDayPicker.Value, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
+
+            DataBaseManager manager = new DataBaseManager();
+            Global.myManagement.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
+            //manager.AddEmpShift(Global.myManagement.GetEmployeeByBcn(int.Parse(shiftBsnTb.Text)));
             RefreshData();
 		}
 
@@ -349,7 +344,12 @@ namespace S2GroupProject
 
                 }
             }
-           
+
+        }
+
+        private void employeesLb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1_SelectedIndexChanged(sender, e);
         }
     }
 }

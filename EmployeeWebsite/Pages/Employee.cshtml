@@ -1,0 +1,94 @@
+﻿@page
+@model EmployeeWebsite.Pages.EmployeeModel
+@{
+}
+<h1>Employee Information</h1>
+@*<div class="card text-center" style="width: 18rem;">
+	<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" class="card-img-top" alt="..." width="150" height="300">
+
+	<label for="First Name">First Name :@Model.Emp.FirstName</label>
+	<label for="Last Name">Last Name: @Model.Emp.LastName</label>
+	<label for="Age">Age: @Model.Emp.Age</label>
+	<label for="Telephone Number">Telephone Number: @Model.Emp.TelNumber</label>
+	<label for="BSN">BSN: @Model.Emp.BSN</label>
+</div*@
+
+<section style="background-color: #eee;">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                         class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3">@Model.Emp.FirstName @Model.Emp.LastName</h5>
+                    <p class="text-muted mb-1">@Model.Emp.Jobposition</p>
+                    <p class="text-muted mb-4">@Model.Emp.Address</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Full Name</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Emp.FirstName @Model.Emp.LastName</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Age</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Emp.Age</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Phone</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Emp.TelNumber</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Address</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Emp.Address</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Shifts</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@string.Join(", ", @Model.Emp.ShiftsDates)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Attended Shift</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Emp.AttendedShift</p>
+                        </div>
+                    </div>
+                    <form method="post">
+                        <input type="hidden" name="bsn" value="@Model.Emp.BSN"/>
+                        <input type="hidden" name="attendedShift" value="true">
+                        <button type="submit" class="btn btn-primary btn-lg">Attend Shift</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

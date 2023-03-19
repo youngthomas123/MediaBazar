@@ -1,4 +1,5 @@
-﻿using MediaBazarLib.Classes;
+﻿using MediaBazarLib;
+using MediaBazarLib.Classes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,14 +16,15 @@ namespace S2GroupProject.Classes
 		string managementName;
 
 		List<Employee> employees = new List<Employee>();
+		DataBaseManager database = new DataBaseManager();
 		public Management(string name) 
 		{ 
 			managementName = name;
 		}
-
+		
 		public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, ShiftTypes? shiftType, bool? attendedShift, List<Shift> shiftDates)
+						List<DayOfWeek> daysOff, int age, bool? attendedShift, List<Shift> shiftDates)
 		{
 			//if (shiftType == null)
 			//{
@@ -38,14 +40,22 @@ namespace S2GroupProject.Classes
 			if(EmployeeExists == false)
 			{
 				Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-										wage, daysOff, age, shiftType, attendedShift, shiftDates);
-                employees.Add(newEmployee);
-            }
+										wage, daysOff, age, attendedShift, shiftDates);
+				employees.Add(newEmployee);
+				database.AddEmployee(newEmployee);
+			}
+		}
+
+		public void AddEmployee(Employee emp)
+		{
+			employees.Add(emp);
 		}
 
 		public Employee GetEmployeeByBcn(int bsn)
 		{
-			foreach (Employee employee in employees)
+			employees = database.LoadEmployees();
+
+            foreach (Employee employee in employees)
 			{
 				if (employee.BSN == bsn)
 				{
@@ -70,6 +80,7 @@ namespace S2GroupProject.Classes
 		}
 		public List<Employee> GetEmployees()
 		{
+			employees= database.LoadEmployees();
 			return employees;
 		}
 
@@ -82,11 +93,9 @@ namespace S2GroupProject.Classes
 		{
 			Shift shift = new Shift(day, shiftType);
 			Employee emp = GetEmployeeByBcn(bsn);
-			//if (emp.Shift == shiftType && emp.ShiftsDates.Any)
-			//{
 
-			//}
 			emp.ShiftsDates.Add(shift);
+			database.AddEmpShift(emp);
 			//emp.Shift = shiftType;
 		}
 

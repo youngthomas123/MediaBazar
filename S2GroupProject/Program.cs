@@ -15,6 +15,7 @@ namespace S2GroupProject
 			ApplicationConfiguration.Initialize();
 			
 			Application.Run(new Form1());
+			
 		}
 	}
 }
