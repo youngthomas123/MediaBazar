@@ -24,11 +24,11 @@ namespace S2GroupProject
             LoadingData();
         }
 
-		static DateTime now = DateTime.Now;
-		static DateTime startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek);
-		DateTime endOfWeek = startOfWeek.AddDays(6);
+        static DateTime now = DateTime.Now;
+        static DateTime startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek);
+        DateTime endOfWeek = startOfWeek.AddDays(6);
 
-		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = employeesLb.SelectedIndex;
 
@@ -38,10 +38,10 @@ namespace S2GroupProject
 
                 // Create an instance of your user control
                 var myUserControl = new EmployeeUC(employees[index]);
-                
+
                 popupForm.ClientSize = new Size(myUserControl.Width, myUserControl.Height);
                 myUserControl.Dock = DockStyle.Fill;
-            
+
                 // Set any properties or values on your user control here
                 // ...
 
@@ -74,13 +74,13 @@ namespace S2GroupProject
             }
             foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
             {
-                
+
                 jobPositionCb.Items.Add(jobPosition);
             }
 
             foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
             {
-                
+
                 contractCb.Items.Add(contract);
             }
 
@@ -88,28 +88,28 @@ namespace S2GroupProject
             {
 
                 employeesLb.Items.Add(employee);
-             }
-                //foreach (var emp in employees)
-                //{
-                //    Global.myManagement.AddEmployee(emp);
-                //    employeesLb.Items.Add(emp);
-                //}
+            }
+            //foreach (var emp in employees)
+            //{
+            //    Global.myManagement.AddEmployee(emp);
+            //    employeesLb.Items.Add(emp);
+            //}
 
-                foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
+            foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
             {
-                
+
                 shiftTypeCb.Items.Add(shiftType);
             }
 
-			foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
-			{
-                
-				jobPositionsFilterCb.Items.Add(jobPosition);
-			}
+            foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
+            {
+
+                jobPositionsFilterCb.Items.Add(jobPosition);
+            }
 
             foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
             {
-                
+
                 contractTypeFilterClb.Items.Add(contract);
             }
         }
@@ -117,7 +117,7 @@ namespace S2GroupProject
         public void RefreshData()
         {
             LoadingData();
-          
+
         }
 
         private void AddEmployee_Click(object sender, EventArgs e)
@@ -141,18 +141,15 @@ namespace S2GroupProject
                     daysOff.Add(day);
                 }
 
-                }
+            }
 
             Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, new List<Shift>());
 
-                RefreshData();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("To add an employee, please complete the required fields!");
-            }
-            
+            RefreshData();
         }
+
+
+
 
         private void RemoveBtn_Click(object sender, EventArgs e)
         {
@@ -176,11 +173,11 @@ namespace S2GroupProject
 
         private void ShowEmployees_Click(object sender, EventArgs e)
         {
-                employeesLb.Items.Clear();
-                foreach (Employee emp in employees)
-                {
-                    employeesLb.Items.Add(emp);
-                }
+            employeesLb.Items.Clear();
+            foreach (Employee emp in employees)
+            {
+                employeesLb.Items.Add(emp);
+            }
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -200,135 +197,135 @@ namespace S2GroupProject
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-           displayWeeklyDays();
+            displayWeeklyDays();
         }
         private void displayWeeklyDays()
         {
-			DateTime now = DateTime.Now;
-			monthLb.Text = now.ToString("yyyy") + " " + now.ToString("MMM");
+            DateTime now = DateTime.Now;
+            monthLb.Text = now.ToString("yyyy") + " " + now.ToString("MMM");
 
-			// Calculate the start and end dates of the current week
-			DateTime startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
-			DateTime endOfWeek = startOfWeek.AddDays(6);
+            // Calculate the start and end dates of the current week
+            DateTime startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
+            DateTime endOfWeek = startOfWeek.AddDays(6);
 
-			for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
-			{
-				// Create a Days control for each day of the week
-				Days calendarDays = new Days();
-				calendarDays.DaysForCal(date.Day);
-				calendarDays.Date = date; // Set the date property of the control
-				flowLayoutPanel1.Controls.Add(calendarDays);
-			}
-		}
+            for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
+            {
+                // Create a Days control for each day of the week
+                Days calendarDays = new Days();
+                calendarDays.DaysForCal(date.Day);
+                calendarDays.Date = date; // Set the date property of the control
+                flowLayoutPanel1.Controls.Add(calendarDays);
+            }
+        }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			now = now.AddDays(-7);
-			startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
-			endOfWeek = startOfWeek.AddDays(6);
-			RefreshCalendar();
-		}
+        private void button1_Click(object sender, EventArgs e)
+        {
+            now = now.AddDays(-7);
+            startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
+            endOfWeek = startOfWeek.AddDays(6);
+            RefreshCalendar();
+        }
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			now = now.AddDays(7);
-			startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
-			endOfWeek = startOfWeek.AddDays(6);
-			RefreshCalendar();
-		}
+        private void button2_Click(object sender, EventArgs e)
+        {
+            now = now.AddDays(7);
+            startOfWeek = now.Date.AddDays(-(int)now.DayOfWeek).AddDays(1);
+            endOfWeek = startOfWeek.AddDays(6);
+            RefreshCalendar();
+        }
 
-		void RefreshCalendar()
+        void RefreshCalendar()
         {
             // Clear the calendar display
             flowLayoutPanel1.Controls.Clear();
-			monthLb.Text = now.ToString("MMMM");
+            monthLb.Text = now.ToString("MMMM");
 
-			// Display the days of the week
-			for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
-			{
-				Days calendarDays = new Days();
-				calendarDays.DaysForCal(date.Day);
-				calendarDays.Date = date;
-				flowLayoutPanel1.Controls.Add(calendarDays);
-			}
-		}
+            // Display the days of the week
+            for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
+            {
+                Days calendarDays = new Days();
+                calendarDays.DaysForCal(date.Day);
+                calendarDays.Date = date;
+                flowLayoutPanel1.Controls.Add(calendarDays);
+            }
+        }
 
-		private void createScheduleBtn_Click(object sender, EventArgs e)
-		{
-			Form formBackground = new Form();
-			try
-			{
-				using (CalendarPopUp createTask = new CalendarPopUp())
-				{
-					formBackground.StartPosition = FormStartPosition.CenterScreen;
-					formBackground.FormBorderStyle = FormBorderStyle.None;
-					//formBackground.Opacity = .70d;
-					//formBackground.BackColor = Color.Black;
-					//formBackground.WindowState = FormWindowState.Maximized;
-					formBackground.TopMost = true;
-					formBackground.Location = this.Location;
-					formBackground.ShowInTaskbar = false;
-					formBackground.Show();
+        private void createScheduleBtn_Click(object sender, EventArgs e)
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (CalendarPopUp createTask = new CalendarPopUp())
+                {
+                    formBackground.StartPosition = FormStartPosition.CenterScreen;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    //formBackground.Opacity = .70d;
+                    //formBackground.BackColor = Color.Black;
+                    //formBackground.WindowState = FormWindowState.Maximized;
+                    formBackground.TopMost = true;
+                    formBackground.Location = this.Location;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
 
-					createTask.Owner = formBackground;
-					createTask.ShowDialog();
+                    createTask.Owner = formBackground;
+                    createTask.ShowDialog();
 
-					formBackground.Dispose();
-				}
-			}
-			catch (Exception ex)
-			{
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
 
-				MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				formBackground.Dispose();
-			}
-		}
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
+        }
 
-		private void addShiftBtn_Click(object sender, EventArgs e)
-		{
+        private void addShiftBtn_Click(object sender, EventArgs e)
+        {
 
             DataBaseManager manager = new DataBaseManager();
             Global.myManagement.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
             //manager.AddEmpShift(Global.myManagement.GetEmployeeByBcn(int.Parse(shiftBsnTb.Text)));
             RefreshData();
-		}
+        }
 
-		private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
             JobPositions jobPostion = (JobPositions)jobPositionsFilterCb.SelectedIndex;
-			employeesLb.Items.Clear();
-			
-			if (jobPostion == JobPositions.NONE)
-			{
-				foreach (var item in employees)
-				{
-					employeesLb.Items.Add(item);
-				}
+            employeesLb.Items.Clear();
+
+            if (jobPostion == JobPositions.NONE)
+            {
+                foreach (var item in employees)
+                {
+                    employeesLb.Items.Add(item);
+                }
             }
             else
             {
-				foreach (var emp in employees)
-				{
+                foreach (var emp in employees)
+                {
 
-					if (emp.Jobposition == jobPostion)
-					{
-						employeesLb.Items.Add(emp);
-					}
+                    if (emp.Jobposition == jobPostion)
+                    {
+                        employeesLb.Items.Add(emp);
+                    }
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-		private void shiftDayPickerFilter_ValueChanged(object sender, EventArgs e)
-		{
+        private void shiftDayPickerFilter_ValueChanged(object sender, EventArgs e)
+        {
             DateTime shift = shiftDayPickerFilter.Value;
             employeesLb.Items.Clear();
 
@@ -339,7 +336,7 @@ namespace S2GroupProject
                     employeesLb.Items.Add(emp);
                 }
             }
-		}
+        }
 
         private void contractTypeFilterClb_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -362,9 +359,8 @@ namespace S2GroupProject
         private void employeesLb_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox1_SelectedIndexChanged(sender, e);
-                }
-            }
-           
+
+
         }
 
 

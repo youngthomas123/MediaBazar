@@ -59,7 +59,7 @@ namespace S2GroupProject.Classes
 			else
 			{
 				Item item = GetItem(name, description);
-				item.AddToQuantity(quantity);
+				//item.AddToQuantity(quantity);
 			}
 		}
 
