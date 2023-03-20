@@ -165,7 +165,7 @@ namespace S2GroupProject
             {
 
 
-                employees.Remove(empToRemove);
+                Global.myManagement.RemoveEmployee(empToRemove);
             }
 
             RefreshData();
