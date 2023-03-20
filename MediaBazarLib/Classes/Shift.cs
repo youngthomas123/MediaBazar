@@ -12,11 +12,13 @@ namespace MediaBazarLib.Classes
     {
         private DateTime shiftDate;
         private ShiftTypes shiftType;
+        private bool attendedShift;
       
-        public Shift(DateTime shiftDate, ShiftTypes shiftType)
+        public Shift(DateTime shiftDate, ShiftTypes shiftType, bool? attendedShift)
         {
             ShiftDate = shiftDate;
             ShiftType = shiftType;
+            AttendedShift= (bool)attendedShift;
         }
 
         public DateTime ShiftDate { get { return shiftDate; }
@@ -24,13 +26,15 @@ namespace MediaBazarLib.Classes
         public ShiftTypes ShiftType { get { return shiftType; }
             private set { shiftType = value; } }
 
-        public override string ToString()
+		public bool AttendedShift { get => attendedShift; set => attendedShift = value; }
+
+		public override string ToString()
         {
             if (ShiftDate == null)
             {
                 return "";
             }else
-            return $"{ShiftDate.ToString("d")} - {ShiftType}";
+            return $"{ShiftDate.ToString("d")} - {ShiftType} - {AttendedShift}";
         }
     }
 }

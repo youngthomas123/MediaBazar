@@ -70,22 +70,21 @@
                             <p class="mb-0">Shifts</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">@string.Join(", ", @Model.Emp.ShiftsDates)</p>
+                            @foreach (var shiftDate in Model.Emp.ShiftsDates)
+                            {
+                                <div>
+                                    <p class="text-muted mb-0">@shiftDate</p>
+                                    <form method="post">
+                                        <input type="hidden" name="bsn" value="@Model.Emp.BSN" />
+                                        <input type="hidden" name="shiftAtIndex" value="@Model.Emp.ShiftsDates.IndexOf(shiftDate)" />
+                                        <button type="submit" class="btn btn-primary btn-sm">Attend Shift</button>
+                                    </form>
+                                </div>
+                            }
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Attended Shift</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0">@Model.Emp.AttendedShift</p>
-                        </div>
-                    </div>
-                    <form method="post">
-                        <input type="hidden" name="bsn" value="@Model.Emp.BSN"/>
-                        <input type="hidden" name="attendedShift" value="true">
-                        <button type="submit" class="btn btn-primary btn-lg">Attend Shift</button>
-                    </form>
+
+
                 </div>
 
             </div>

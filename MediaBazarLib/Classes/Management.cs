@@ -25,7 +25,7 @@ namespace S2GroupProject.Classes
 		
 		public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, bool? attendedShift, List<Shift> shiftDates)
+						List<DayOfWeek> daysOff, int age, List<Shift> shiftDates)
 		{
 			//if (shiftType == null)
 			//{
@@ -41,7 +41,7 @@ namespace S2GroupProject.Classes
 			if(EmployeeExists == false)
 			{
 				Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-										wage, daysOff, age, attendedShift, shiftDates);
+										wage, daysOff, age, shiftDates);
 				employees.Add(newEmployee);
 				database.AddEmployee(newEmployee);
 			}
@@ -146,7 +146,7 @@ namespace S2GroupProject.Classes
 
 		public void AddShift(DateTime day, int bsn, ShiftTypes shiftType)
 		{
-			Shift shift = new Shift(day, shiftType);
+			Shift shift = new Shift(day, shiftType, false);
 			Employee emp = GetEmployeeByBcn(bsn);
 
 			emp.ShiftsDates.Add(shift);

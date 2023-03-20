@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
 using S2GroupProject.Classes;
 using MediaBazarLib;
+using MediaBazarLib.Classes;
 
 namespace EmployeeWebsite.Pages
 {
@@ -16,11 +17,12 @@ namespace EmployeeWebsite.Pages
             Emp = Global.myManagement.GetEmployeeByBcn(bsn);
         }
 
-        public void OnPost(bool attendedShift, int bsn)
+        public void OnPost(int bsn, int shiftAtIndex)
         {
             Emp = Global.myManagement.GetEmployeeByBcn(bsn);
-            attendedShift = true;
-            Emp.AttendedShift = attendedShift;
+            Emp.ShiftsDates[shiftAtIndex].AttendedShift = true;
+            DataBaseManager database = new DataBaseManager();
+            database.UpdateEmpShift(Emp);
         }
     }
 }

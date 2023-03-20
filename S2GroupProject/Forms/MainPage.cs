@@ -143,7 +143,7 @@ namespace S2GroupProject
 
             }
 
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, null, new List<Shift>());
+            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>());
 
             RefreshData();
         }
@@ -376,7 +376,7 @@ namespace S2GroupProject
                     formBackground.TopMost = true;
                     formBackground.Location = this.Location;
                     formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
+                   // formBackground.Show();
 
                     createTask.Owner = formBackground;
                     createTask.ShowDialog();
