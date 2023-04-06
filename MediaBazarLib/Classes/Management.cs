@@ -138,7 +138,6 @@ namespace S2GroupProject.Classes
 		public void RemoveEmployee(Employee emp)
 		{
 			employees.Remove(emp);
-			database.DeleateEmployee(emp.BSN);
 		}
 		public void RemoveItem(Item item)
 		{

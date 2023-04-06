@@ -125,13 +125,13 @@ namespace MediaBazarLib
 				//}
 			}
 		}
-		public void DeleateEmployee(int BSN)
+		public void DeleateEmployee(string BSN)
 		{
 			SqlConnection conn = new SqlConnection(connectionString);
 
 			conn.Open();
 
-			string DeleateEmp = $"DELETE FROM DaysOff2 WHERE BSN = {BSN}; DELETE FROM Shift2 WHERE BSN = {BSN}; DELETE FROM Employee2 WHERE BSN = {BSN}; ";
+			string DeleateEmp = $"delete from Employee where BSN = '{BSN}' ";
 
 			SqlCommand cmd = new SqlCommand(DeleateEmp, conn);
 			cmd.ExecuteNonQuery();
