@@ -1,15 +1,16 @@
-using MediaBazarLib;
-using MediaBazarLib.Classes;
+
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using static S2GroupProject.Classes.MyEnums;
 
-namespace S2GroupProject.Classes
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
+
+
+namespace MediaBazar.BusinessLogic.Classes
 {
 	public class Management
 	{
