@@ -1,27 +1,36 @@
-using MediaBazarLib;
-using MediaBazarLib.Classes;
-using S2GroupProject.Classes;
+
+
+using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using S2GroupProject.Forms;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static S2GroupProject.Classes.MyEnums;
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace S2GroupProject
 {
     public partial class MainPage : Form
     {
-
+        //The containers
+        private readonly IEmployeeContainer _employeeContainer;
+        private readonly IItemContainer _itemContainer;
+        private readonly IServiceProvider _serviceProvider;
 
         List<Employee> employees = Global.myManagement.GetEmployees();
 
         DataBaseManager database = new DataBaseManager();
 
-        public MainPage()
+        public MainPage(IItemContainer itemContainer, IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
         {
+            _employeeContainer = employeeContainer;
+            _itemContainer = itemContainer;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
             LoadingData();
+
         }
 
         static DateTime now = DateTime.Now;
@@ -36,8 +45,11 @@ namespace S2GroupProject
             {
                 var popupForm = new Form();
 
+
+
                 // Create an instance of your user control
                 var myUserControl = new EmployeeUC(employees[index]);
+
 
                 popupForm.ClientSize = new Size(myUserControl.Width, myUserControl.Height);
                 myUserControl.Dock = DockStyle.Fill;
@@ -376,7 +388,7 @@ namespace S2GroupProject
                     formBackground.TopMost = true;
                     formBackground.Location = this.Location;
                     formBackground.ShowInTaskbar = false;
-                   // formBackground.Show();
+                    // formBackground.Show();
 
                     createTask.Owner = formBackground;
                     createTask.ShowDialog();
