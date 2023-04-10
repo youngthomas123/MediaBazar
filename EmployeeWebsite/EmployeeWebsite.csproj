@@ -13,6 +13,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\MediaBazar.BusinessLogic\MediaBazar.BusinessLogic.csproj" />
 	  <ProjectReference Include="..\MediaBazar.DataAccess\MediaBazar.DataAccess.csproj" />
-	  <ProjectReference Include="..\MediaBazarLib\MediaBazarLib.csproj" />
 	</ItemGroup>
 </Project>

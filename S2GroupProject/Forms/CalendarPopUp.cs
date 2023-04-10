@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,18 @@ namespace S2GroupProject.Forms
 {
 	public partial class CalendarPopUp : Form
 	{
-		//private DateTime _currentMonth;
-	
-		static DateTime currentDT = DateTime.Now;
+        private readonly IServiceProvider _serviceProvider;
+
+        //private DateTime _currentMonth;
+
+        static DateTime currentDT = DateTime.Now;
 		static int currentYear = currentDT.Year;
 		static int currentMonth = currentDT.Month;
-		public CalendarPopUp()
+		public CalendarPopUp(IServiceProvider serviceProvider)
 		{
-			InitializeComponent();
+            _serviceProvider = serviceProvider;
+
+            InitializeComponent();
 			//_currentMonth = DateTime.Today;
 			//DisplayCalendar(_currentMonth);
 			DisplayCalendar();
@@ -46,7 +51,7 @@ namespace S2GroupProject.Forms
 
 			for (int i = 1; i <= daysInMoth; i++)
 			{
-				Days dayOfMonth = new Days();
+				Days dayOfMonth = _serviceProvider.GetService<Days>();
 				dayOfMonth.DaysForCal(i);
 				dayOfMonth.Date = new DateTime(currentYear, currentMonth, i);
 				flowLayoutPanel1.Controls.Add(dayOfMonth);

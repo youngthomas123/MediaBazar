@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaBazar.BusinessLogic.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,20 @@ namespace MediaBazar.BusinessLogic.Interfaces
 {
     public interface IEmployeeDataAccess
     {
-        
+        void AddEmployee(Employee employee);
+
+
+        void DeleateEmployee(string BSN);
+
+
+        List<Employee> LoadEmployees();
+
+
+        void AddEmpShift(Employee emp);
+
+        void UpdateEmpShift(Employee emp);
+
+
+
     }
 }

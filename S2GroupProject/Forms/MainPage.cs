@@ -19,9 +19,10 @@ namespace S2GroupProject
         private readonly IItemContainer _itemContainer;
         private readonly IServiceProvider _serviceProvider;
 
-        List<Employee> employees = Global.myManagement.GetEmployees();
+        
+        List <Employee> employees = new List <Employee> ();
 
-        DataBaseManager database = new DataBaseManager();
+        //DataBaseManager database = new DataBaseManager();
 
         public MainPage(IItemContainer itemContainer, IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
         {
@@ -30,7 +31,7 @@ namespace S2GroupProject
             _serviceProvider = serviceProvider;
             InitializeComponent();
             LoadingData();
-
+            
         }
 
         static DateTime now = DateTime.Now;
@@ -79,7 +80,7 @@ namespace S2GroupProject
             shiftTypeCb.Items.Clear();
             contractTypeFilterClb.Items.Clear();
             jobPositionsFilterCb.Items.Clear();
-            employees = database.LoadEmployees();
+            employees = _employeeContainer.LoadEmployees();
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
                 daysOffClb.Items.Add(day.ToString());
@@ -155,7 +156,7 @@ namespace S2GroupProject
 
             }
 
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>());
+            _employeeContainer.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>());
 
             RefreshData();
         }
@@ -166,7 +167,7 @@ namespace S2GroupProject
         private void RemoveBtn_Click(object sender, EventArgs e)
         {
             int bsn = int.Parse(bsnRemoveTb.Text);
-            Employee empToRemove = Global.myManagement.GetEmployeeByBcn(bsn);
+            Employee empToRemove = _employeeContainer.GetEmployeeByBcn(bsn);
             bool isBscnAssigned = employees.Any(e => e.BSN == bsn);
 
             if (!isBscnAssigned)
@@ -197,7 +198,7 @@ namespace S2GroupProject
             try
             {
                 int bsn = Convert.ToInt32(searchTB.Text);
-                Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
+                Employee searchedEmployee = _employeeContainer.GetEmployeeByBcn(bsn);
                 if (searchedEmployee != null)
                 {
                     employeesLb.Items.Clear();
@@ -223,7 +224,7 @@ namespace S2GroupProject
             for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
             {
                 // Create a Days control for each day of the week
-                Days calendarDays = new Days();
+                Days calendarDays = _serviceProvider.GetService<Days>();
                 calendarDays.DaysForCal(date.Day);
                 calendarDays.Date = date; // Set the date property of the control
                 flowLayoutPanel1.Controls.Add(calendarDays);
@@ -260,7 +261,7 @@ namespace S2GroupProject
             // Display the days of the week
             for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
             {
-                Days calendarDays = new Days();
+                Days calendarDays = _serviceProvider.GetService<Days>();
                 calendarDays.DaysForCal(date.Day);
                 calendarDays.Date = date;
                 flowLayoutPanel1.Controls.Add(calendarDays);
@@ -272,7 +273,7 @@ namespace S2GroupProject
             Form formBackground = new Form();
             try
             {
-                using (CalendarPopUp createTask = new CalendarPopUp())
+                using (CalendarPopUp createTask = _serviceProvider.GetService<CalendarPopUp>())
                 {
                     formBackground.StartPosition = FormStartPosition.CenterScreen;
                     formBackground.FormBorderStyle = FormBorderStyle.None;
@@ -304,8 +305,8 @@ namespace S2GroupProject
         private void addShiftBtn_Click(object sender, EventArgs e)
         {
 
-            DataBaseManager manager = new DataBaseManager();
-            Global.myManagement.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
+            
+            _employeeContainer.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
             //manager.AddEmpShift(Global.myManagement.GetEmployeeByBcn(int.Parse(shiftBsnTb.Text)));
             RefreshData();
         }
@@ -381,7 +382,7 @@ namespace S2GroupProject
             Form formBackground = new Form();
             try
             {
-                using (ItemsPopUp createTask = new ItemsPopUp())
+                using (ItemsPopUp createTask = _serviceProvider.GetService<ItemsPopUp>())
                 {
                     formBackground.StartPosition = FormStartPosition.CenterScreen;
                     formBackground.FormBorderStyle = FormBorderStyle.None;

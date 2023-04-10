@@ -1,5 +1,6 @@
-﻿using MediaBazarLib;
-using S2GroupProject.Classes;
+﻿
+using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,21 +15,26 @@ namespace S2GroupProject.Forms
 {
     public partial class ItemsPopUp : Form
     {
-        public ItemsPopUp()
+        private readonly IItemContainer _itemContainer;
+        private readonly IServiceProvider _serviceProvider;
+
+        public ItemsPopUp(IItemContainer itemContainer, IServiceProvider serviceProvider)
         {
+            _itemContainer = itemContainer;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
         }
 
         private void AddItemButton_Click(object sender, EventArgs e)
         {
-            Global.myManagement.AddItem(itemNameTB.Text, descriptionRTB.Text, Convert.ToInt32(quantityTB.Text));
+            _itemContainer.AddItem(itemNameTB.Text, descriptionRTB.Text, Convert.ToInt32(quantityTB.Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             
             string name = searchTB.Text;
-            Item searchedItem = Global.myManagement.GetItem(name);
+            Item searchedItem = _itemContainer.GetItem(name);
             if (searchedItem != null)
             {
                 ItemList.Items.Clear();
@@ -39,7 +45,7 @@ namespace S2GroupProject.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             ItemList.Items.Clear();
-            foreach (Item i in Global.myManagement.GetItems())
+            foreach (Item i in _itemContainer.GetItems())
             {
                 ItemList.Items.Add(i);
             }
@@ -51,7 +57,7 @@ namespace S2GroupProject.Forms
             Item selectedItem = (Item)ItemList.SelectedItem;
             if (selectedItem != null)
             {
-                Global.myManagement.RemoveItem(selectedItem);
+                _itemContainer.RemoveItem(selectedItem);
                 ItemList.Items.Remove(selectedItem);
             }
         }
