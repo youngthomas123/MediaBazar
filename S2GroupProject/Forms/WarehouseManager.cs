@@ -15,6 +15,9 @@ namespace S2GroupProject.Forms
         public WarehouseManager()
         {
             InitializeComponent();
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
