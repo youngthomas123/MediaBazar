@@ -1,22 +1,12 @@
-﻿using MediaBazarLib.Classes;
-using S2GroupProject.Classes;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using MediaBazar.BusinessLogic.Classes;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static S2GroupProject.Classes.MyEnums;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace MediaBazarLib
+
+
+namespace MediaBazar.DataAccess.Database
 {
-	public class DataBaseManager
+    public class DataBaseManager
 	{
 		private const string connectionString = "Server=mssqlstud.fhict.local;Database=dbi493730_s2project;User Id=dbi493730_s2project;Password=123456;MultipleActiveResultSets=true;";
 

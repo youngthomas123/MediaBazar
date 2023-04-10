@@ -1,8 +1,11 @@
-﻿using MediaBazarLib;
+﻿
+using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Containers;
+using MediaBazar.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using S2GroupProject.Classes;
+
 using System.Data.SqlClient;
 using System.Reflection;
 
@@ -11,14 +14,15 @@ namespace EmployeeWebsite.Pages
 	public class IndexModel : PageModel
 	{
         public List<Employee> Employees { get; set; }
-        DataBaseManager database = new DataBaseManager();
+        IEmployeeContainer _employeeContainer;
         public Employee Employee { get; set; }
         private readonly ILogger<IndexModel> _logger;
 
-		public IndexModel(ILogger<IndexModel> logger)
-		{
+		public IndexModel(ILogger<IndexModel> logger, IEmployeeContainer employeeContainer)
+        {
 			_logger = logger;
-			Employees = database.LoadEmployees();
+            _employeeContainer = employeeContainer;
+            Employees = _employeeContainer.LoadEmployees();
 		}
 
 		public void OnGet()

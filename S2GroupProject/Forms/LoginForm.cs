@@ -2,15 +2,21 @@ using System.Security.Cryptography;
 using System.Globalization;
 using System.Threading;
 using System.ComponentModel;
+<<<<<<< HEAD
 using S2GroupProject.Forms;
+=======
+using Microsoft.Extensions.DependencyInjection;
+>>>>>>> 2f302d482ce3e3c959407d6f0fe5afa017d13454
 
 namespace S2GroupProject
 {
     public partial class LoginForm : Form
     {
+        private readonly IServiceProvider _serviceProvider;
 		
-		public LoginForm()
+		public LoginForm(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             InitializeComponent();
             
@@ -30,7 +36,7 @@ namespace S2GroupProject
         {
             if (UserNameTB.Text == "Admin" && PasswordTB.Text == "123456")
             {
-                MainPage form1 = new MainPage();
+                MainPage form1 = _serviceProvider.GetService<MainPage>();
                 form1.Show();
                 this.Hide();
             }

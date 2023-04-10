@@ -1,27 +1,37 @@
-using MediaBazarLib;
-using MediaBazarLib.Classes;
-using S2GroupProject.Classes;
+
+
+using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using S2GroupProject.Forms;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static S2GroupProject.Classes.MyEnums;
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace S2GroupProject
 {
     public partial class MainPage : Form
     {
+        //The containers
+        private readonly IEmployeeContainer _employeeContainer;
+        private readonly IItemContainer _itemContainer;
+        private readonly IServiceProvider _serviceProvider;
 
+        
+        List <Employee> employees = new List <Employee> ();
 
-        List<Employee> employees = Global.myManagement.GetEmployees();
+        //DataBaseManager database = new DataBaseManager();
 
-        DataBaseManager database = new DataBaseManager();
-
-        public MainPage()
+        public MainPage(IItemContainer itemContainer, IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
         {
+            _employeeContainer = employeeContainer;
+            _itemContainer = itemContainer;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
             LoadingData();
+            
         }
 
         static DateTime now = DateTime.Now;
@@ -36,8 +46,11 @@ namespace S2GroupProject
             {
                 var popupForm = new Form();
 
+
+
                 // Create an instance of your user control
                 var myUserControl = new EmployeeUC(employees[index]);
+
 
                 popupForm.ClientSize = new Size(myUserControl.Width, myUserControl.Height);
                 myUserControl.Dock = DockStyle.Fill;
@@ -67,7 +80,7 @@ namespace S2GroupProject
             shiftTypeCb.Items.Clear();
             contractTypeFilterClb.Items.Clear();
             jobPositionsFilterCb.Items.Clear();
-            employees = database.LoadEmployees();
+            employees = _employeeContainer.LoadEmployees();
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
                 daysOffClb.Items.Add(day.ToString());
@@ -143,7 +156,7 @@ namespace S2GroupProject
 
             }
 
-            Global.myManagement.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>());
+            _employeeContainer.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>());
 
             RefreshData();
         }
@@ -154,7 +167,7 @@ namespace S2GroupProject
         private void RemoveBtn_Click(object sender, EventArgs e)
         {
             int bsn = int.Parse(bsnRemoveTb.Text);
-            Employee empToRemove = Global.myManagement.GetEmployeeByBcn(bsn);
+            Employee empToRemove = _employeeContainer.GetEmployeeByBcn(bsn);
             bool isBscnAssigned = employees.Any(e => e.BSN == bsn);
 
             if (!isBscnAssigned)
@@ -165,7 +178,7 @@ namespace S2GroupProject
             {
 
 
-                Global.myManagement.RemoveEmployee(empToRemove);
+                employees.Remove(empToRemove);
             }
 
             RefreshData();
@@ -185,7 +198,7 @@ namespace S2GroupProject
             try
             {
                 int bsn = Convert.ToInt32(searchTB.Text);
-                Employee searchedEmployee = Global.myManagement.GetEmployeeByBcn(bsn);
+                Employee searchedEmployee = _employeeContainer.GetEmployeeByBcn(bsn);
                 if (searchedEmployee != null)
                 {
                     employeesLb.Items.Clear();
@@ -211,7 +224,7 @@ namespace S2GroupProject
             for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
             {
                 // Create a Days control for each day of the week
-                Days calendarDays = new Days();
+                Days calendarDays = _serviceProvider.GetService<Days>();
                 calendarDays.DaysForCal(date.Day);
                 calendarDays.Date = date; // Set the date property of the control
                 flowLayoutPanel1.Controls.Add(calendarDays);
@@ -248,7 +261,7 @@ namespace S2GroupProject
             // Display the days of the week
             for (DateTime date = startOfWeek; date <= endOfWeek; date = date.AddDays(1))
             {
-                Days calendarDays = new Days();
+                Days calendarDays = _serviceProvider.GetService<Days>();
                 calendarDays.DaysForCal(date.Day);
                 calendarDays.Date = date;
                 flowLayoutPanel1.Controls.Add(calendarDays);
@@ -260,7 +273,7 @@ namespace S2GroupProject
             Form formBackground = new Form();
             try
             {
-                using (CalendarPopUp createTask = new CalendarPopUp())
+                using (CalendarPopUp createTask = _serviceProvider.GetService<CalendarPopUp>())
                 {
                     formBackground.StartPosition = FormStartPosition.CenterScreen;
                     formBackground.FormBorderStyle = FormBorderStyle.None;
@@ -292,8 +305,8 @@ namespace S2GroupProject
         private void addShiftBtn_Click(object sender, EventArgs e)
         {
 
-            DataBaseManager manager = new DataBaseManager();
-            Global.myManagement.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
+            
+            _employeeContainer.AddShift(shiftDayPicker.Value.Date, int.Parse(shiftBsnTb.Text), (ShiftTypes)shiftTypeCb.SelectedItem);
             //manager.AddEmpShift(Global.myManagement.GetEmployeeByBcn(int.Parse(shiftBsnTb.Text)));
             RefreshData();
         }
@@ -366,6 +379,7 @@ namespace S2GroupProject
 
         private void SeeItemsButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //Form formBackground = new Form();
             //try
             //{
@@ -377,6 +391,19 @@ namespace S2GroupProject
             //        formBackground.Location = this.Location;
             //        formBackground.ShowInTaskbar = false;
             //       // formBackground.Show();
+=======
+            Form formBackground = new Form();
+            try
+            {
+                using (ItemsPopUp createTask = _serviceProvider.GetService<ItemsPopUp>())
+                {
+                    formBackground.StartPosition = FormStartPosition.CenterScreen;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.TopMost = true;
+                    formBackground.Location = this.Location;
+                    formBackground.ShowInTaskbar = false;
+                    // formBackground.Show();
+>>>>>>> 2f302d482ce3e3c959407d6f0fe5afa017d13454
 
             //        createTask.Owner = formBackground;
             //        createTask.ShowDialog();

@@ -1,4 +1,7 @@
-﻿using S2GroupProject.Classes;
+﻿
+using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Containers;
+using MediaBazar.BusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +16,16 @@ namespace S2GroupProject.Forms
 {
 	public partial class Days : UserControl
 	{
-		public DateTime Date { get; set; }
-		public Days()
+        private readonly IEmployeeContainer _employeeContainer;
+        private readonly IServiceProvider _serviceProvider;
+
+        public DateTime Date { get; set; }
+		public Days(IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
 		{
-			InitializeComponent();
+            _employeeContainer = employeeContainer;
+			_serviceProvider = serviceProvider;
+
+            InitializeComponent();
 		}
 
 		private void Days_Load(object sender, EventArgs e)
@@ -38,7 +47,7 @@ namespace S2GroupProject.Forms
 		//}
 		private void button1_Click(object sender, EventArgs e)
 		{
-			List<Employee> employees = Global.myManagement.GetEmployees();
+			List<Employee> employees = _employeeContainer.GetEmployees();
 			List<Employee> employeesWorkingThatDay = new List<Employee>();
 			foreach (var emp in employees)
 			{
