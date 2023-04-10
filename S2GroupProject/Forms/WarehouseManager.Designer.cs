@@ -63,6 +63,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.UpdateItems = new System.Windows.Forms.TabPage();
+            this.employeeList = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -179,6 +180,7 @@
             // 
             // WarehouseOverview
             // 
+            this.WarehouseOverview.Controls.Add(this.employeeList);
             this.WarehouseOverview.Controls.Add(this.ItemList);
             this.WarehouseOverview.Controls.Add(this.warehouseListbox);
             this.WarehouseOverview.Location = new System.Drawing.Point(4, 34);
@@ -428,6 +430,15 @@
             this.UpdateItems.Text = "UpdateItems";
             this.UpdateItems.UseVisualStyleBackColor = true;
             // 
+            // employeeList
+            // 
+            this.employeeList.FormattingEnabled = true;
+            this.employeeList.ItemHeight = 25;
+            this.employeeList.Location = new System.Drawing.Point(357, 529);
+            this.employeeList.Name = "employeeList";
+            this.employeeList.Size = new System.Drawing.Size(678, 229);
+            this.employeeList.TabIndex = 4;
+            // 
             // WarehouseManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -489,5 +500,6 @@
         private TabPage WarehouseOverview;
         private ListBox ItemList;
         private ListBox warehouseListbox;
+        private ListBox employeeList;
     }
 }
