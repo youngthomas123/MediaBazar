@@ -37,7 +37,6 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 CreateItems.Hide();
                 DeleteItems.Hide();
-                UpdateItems.Hide();
             }
 
         }
@@ -50,7 +49,6 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 ItemOverview.Hide();
                 DeleteItems.Hide();
-                UpdateItems.Hide();
             }
         }
 
@@ -63,22 +61,10 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 ItemOverview.Hide();
                 CreateItems.Hide();
-                UpdateItems.Hide();
+
             }
         }
 
-        private void UpdateItemsRBT_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (UpdateItemsRBT.Checked == true)
-            {
-                UpdateItems.Show();
-                ItemOverview.Hide();
-                CreateItems.Hide();
-                DeleteItems.Hide();
-                WarehouseOverview.Hide();
-            }
-        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked == true)
@@ -87,7 +73,6 @@ namespace S2GroupProject.Forms
                 ItemOverview.Hide();
                 CreateItems.Hide();
                 DeleteItems.Hide();
-                UpdateItems.Hide();
             }
         }
 
@@ -104,11 +89,67 @@ namespace S2GroupProject.Forms
 
         private void SearchItembyName_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ItemListBox.Items.Clear();
+                string searchedItemName = textBox1.Text;
+                foreach (Item item in warehouse.GetItems())
+                {
+                    if (searchedItemName == item.Name)
+                    {
+                        ItemListBox.Items.Add(item);
 
+                    }
+                }
+            }
+            catch (NotImplementedException) { MessageBox.Show("Item not found"); }
+            
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ItemListBox.SelectedItem != null)
+            {
+                try
+                {
+                    Item item = (Item)ItemListBox.SelectedItem;
+                    string newName = textBox8.Text.Trim();
+                    string newDescription = textBox7.Text.Trim();
+                    int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
 
+                    // Validate the user input
+                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription) || newQuantity <= 0)
+                    {
+                        MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        // Update the item properties
+                        item.Name = newName;
+                        item.Description = newDescription;
+                        item.Quantity = newQuantity;
+                        MessageBox.Show("Item updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Please enter valid integer value for the Quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string name = textBox2.Text;
+            string description = textBox3.Text;
+            int quantity = Convert.ToInt32(textBox4.Text);
+
+            Item item = new Item(name, description, quantity);
+            warehouse.AddItems(item);
+        }
     }
 }

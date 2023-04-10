@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.UpdateItemsRBT = new System.Windows.Forms.RadioButton();
             this.DeleteItemsRBT = new System.Windows.Forms.RadioButton();
             this.CreateItemsRBT = new System.Windows.Forms.RadioButton();
             this.ItemOverviewRBT = new System.Windows.Forms.RadioButton();
@@ -42,6 +41,14 @@
             this.ItemList = new System.Windows.Forms.ListBox();
             this.warehouseListbox = new System.Windows.Forms.ListBox();
             this.ItemOverview = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.SearchItembyName = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -62,12 +69,12 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.UpdateItems = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.WarehouseOverview.SuspendLayout();
             this.ItemOverview.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.CreateItems.SuspendLayout();
             this.DeleteItems.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +82,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Controls.Add(this.UpdateItemsRBT);
             this.panel1.Controls.Add(this.DeleteItemsRBT);
             this.panel1.Controls.Add(this.CreateItemsRBT);
             this.panel1.Controls.Add(this.ItemOverviewRBT);
@@ -98,18 +104,6 @@
             this.radioButton1.Text = "Warehouse Overview";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // UpdateItemsRBT
-            // 
-            this.UpdateItemsRBT.Appearance = System.Windows.Forms.Appearance.Button;
-            this.UpdateItemsRBT.Location = new System.Drawing.Point(-1, 191);
-            this.UpdateItemsRBT.Margin = new System.Windows.Forms.Padding(2);
-            this.UpdateItemsRBT.Name = "UpdateItemsRBT";
-            this.UpdateItemsRBT.Size = new System.Drawing.Size(317, 47);
-            this.UpdateItemsRBT.TabIndex = 3;
-            this.UpdateItemsRBT.Text = "Update Items";
-            this.UpdateItemsRBT.UseVisualStyleBackColor = true;
-            this.UpdateItemsRBT.CheckedChanged += new System.EventHandler(this.UpdateItemsRBT_CheckedChanged);
             // 
             // DeleteItemsRBT
             // 
@@ -139,7 +133,7 @@
             // 
             this.ItemOverviewRBT.Appearance = System.Windows.Forms.Appearance.Button;
             this.ItemOverviewRBT.Checked = true;
-            this.ItemOverviewRBT.Location = new System.Drawing.Point(-1, 236);
+            this.ItemOverviewRBT.Location = new System.Drawing.Point(-1, 191);
             this.ItemOverviewRBT.Margin = new System.Windows.Forms.Padding(2);
             this.ItemOverviewRBT.Name = "ItemOverviewRBT";
             this.ItemOverviewRBT.Size = new System.Drawing.Size(317, 47);
@@ -178,7 +172,6 @@
             this.tabControl1.Controls.Add(this.ItemOverview);
             this.tabControl1.Controls.Add(this.CreateItems);
             this.tabControl1.Controls.Add(this.DeleteItems);
-            this.tabControl1.Controls.Add(this.UpdateItems);
             this.tabControl1.Location = new System.Drawing.Point(319, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
@@ -231,6 +224,7 @@
             // 
             // ItemOverview
             // 
+            this.ItemOverview.Controls.Add(this.groupBox1);
             this.ItemOverview.Controls.Add(this.label7);
             this.ItemOverview.Controls.Add(this.SearchItembyName);
             this.ItemOverview.Controls.Add(this.textBox1);
@@ -245,6 +239,86 @@
             this.ItemOverview.TabIndex = 0;
             this.ItemOverview.Text = "ItemOverview";
             this.ItemOverview.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.textBox8);
+            this.groupBox1.Location = new System.Drawing.Point(7, 150);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(286, 184);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Update Items";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(82, 144);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 25);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Update";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 110);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 15);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Quantity";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 73);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 15);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Description";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 41);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 15);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Name";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(82, 107);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(199, 23);
+            this.textBox6.TabIndex = 8;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(82, 70);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(199, 23);
+            this.textBox7.TabIndex = 7;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(82, 38);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(199, 23);
+            this.textBox8.TabIndex = 6;
             // 
             // label7
             // 
@@ -278,12 +352,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 3);
+            this.label2.Location = new System.Drawing.Point(41, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 15);
+            this.label2.Size = new System.Drawing.Size(118, 15);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Search item";
+            this.label2.Text = "Search item by name";
             // 
             // ItemListBox
             // 
@@ -333,6 +407,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Create item";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox4
             // 
@@ -452,16 +527,6 @@
             this.listBox1.Size = new System.Drawing.Size(426, 469);
             this.listBox1.TabIndex = 2;
             // 
-            // UpdateItems
-            // 
-            this.UpdateItems.Location = new System.Drawing.Point(4, 24);
-            this.UpdateItems.Margin = new System.Windows.Forms.Padding(2);
-            this.UpdateItems.Name = "UpdateItems";
-            this.UpdateItems.Size = new System.Drawing.Size(722, 463);
-            this.UpdateItems.TabIndex = 3;
-            this.UpdateItems.Text = "UpdateItems";
-            this.UpdateItems.UseVisualStyleBackColor = true;
-            // 
             // WarehouseManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -479,6 +544,8 @@
             this.WarehouseOverview.ResumeLayout(false);
             this.ItemOverview.ResumeLayout(false);
             this.ItemOverview.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.CreateItems.ResumeLayout(false);
             this.CreateItems.PerformLayout();
             this.DeleteItems.ResumeLayout(false);
@@ -495,12 +562,10 @@
         private Label label1;
         private RadioButton DeleteItemsRBT;
         private RadioButton CreateItemsRBT;
-        private RadioButton UpdateItemsRBT;
         private TabControl tabControl1;
         private TabPage ItemOverview;
         private TabPage CreateItems;
         private TabPage DeleteItems;
-        private TabPage UpdateItems;
         private Button SearchItembyName;
         private TextBox textBox1;
         private Label label2;
@@ -524,5 +589,13 @@
         private ListBox ItemList;
         private ListBox warehouseListbox;
         private ListBox employeeList;
+        private GroupBox groupBox1;
+        private Button button1;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private TextBox textBox6;
+        private TextBox textBox7;
+        private TextBox textBox8;
     }
 }
