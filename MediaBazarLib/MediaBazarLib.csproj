@@ -53,6 +53,7 @@
     <Compile Include="Classes\DataBaseManager.cs" />
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Shift.cs" />
+    <Compile Include="Classes\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ namespace S2GroupProject
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			
-			Application.Run(new MainPage());
+			Application.Run(new LoginForm());
 		}
 	}
 }

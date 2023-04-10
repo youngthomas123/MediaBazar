@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Globalization;
 using System.Threading;
 using System.ComponentModel;
+using S2GroupProject.Forms;
 
 namespace S2GroupProject
 {
@@ -33,10 +34,13 @@ namespace S2GroupProject
                 form1.Show();
                 this.Hide();
             }
-            else
+            else if(UserNameTB.Text == "WAdmin" && PasswordTB.Text == "1234")
             {
-                MessageBox.Show("Invalid username or password");
+                WarehouseManager itemManager = new WarehouseManager();
+                itemManager.Show();
+                this.Hide();
             }
+
         }
 
         private void ChangeLanguage(string language)

@@ -366,33 +366,33 @@ namespace S2GroupProject
 
         private void SeeItemsButton_Click(object sender, EventArgs e)
         {
-            Form formBackground = new Form();
-            try
-            {
-                using (ItemsPopUp createTask = new ItemsPopUp())
-                {
-                    formBackground.StartPosition = FormStartPosition.CenterScreen;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.TopMost = true;
-                    formBackground.Location = this.Location;
-                    formBackground.ShowInTaskbar = false;
-                   // formBackground.Show();
+            //Form formBackground = new Form();
+            //try
+            //{
+            //    using (ItemsPopUp createTask = new ItemsPopUp())
+            //    {
+            //        formBackground.StartPosition = FormStartPosition.CenterScreen;
+            //        formBackground.FormBorderStyle = FormBorderStyle.None;
+            //        formBackground.TopMost = true;
+            //        formBackground.Location = this.Location;
+            //        formBackground.ShowInTaskbar = false;
+            //       // formBackground.Show();
 
-                    createTask.Owner = formBackground;
-                    createTask.ShowDialog();
+            //        createTask.Owner = formBackground;
+            //        createTask.ShowDialog();
 
-                    formBackground.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
+            //        formBackground.Dispose();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                formBackground.Dispose();
-            }
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    formBackground.Dispose();
+            //}
 
         }
     }
