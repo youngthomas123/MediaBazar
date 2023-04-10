@@ -20,10 +20,7 @@ namespace S2GroupProject
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-<<<<<<< HEAD
 			
-			Application.Run(new LoginForm());
-=======
 
             // DI start
             var services = new ServiceCollection();
@@ -36,7 +33,6 @@ namespace S2GroupProject
             //regestring services for forms
             services.AddTransient<MainPage>();
             services.AddTransient<LoginForm>();
-            services.AddTransient<ItemsPopUp>();
             services.AddTransient<CalendarPopUp>();
             services.AddTransient<EmployeeUC>();
             services.AddTransient<Days>();
@@ -46,8 +42,7 @@ namespace S2GroupProject
             var serviceProvider = services.BuildServiceProvider();
             //DI end
 
-            Application.Run(serviceProvider.GetService<MainPage>());
->>>>>>> 2f302d482ce3e3c959407d6f0fe5afa017d13454
+            Application.Run(serviceProvider.GetService<LoginForm>());
 		}
 	}
 }

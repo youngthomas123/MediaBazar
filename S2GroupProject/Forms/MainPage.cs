@@ -379,7 +379,6 @@ namespace S2GroupProject
 
         private void SeeItemsButton_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             //Form formBackground = new Form();
             //try
             //{
@@ -391,35 +390,33 @@ namespace S2GroupProject
             //        formBackground.Location = this.Location;
             //        formBackground.ShowInTaskbar = false;
             //       // formBackground.Show();
-=======
-            Form formBackground = new Form();
-            try
-            {
-                using (ItemsPopUp createTask = _serviceProvider.GetService<ItemsPopUp>())
-                {
-                    formBackground.StartPosition = FormStartPosition.CenterScreen;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.TopMost = true;
-                    formBackground.Location = this.Location;
-                    formBackground.ShowInTaskbar = false;
-                    // formBackground.Show();
->>>>>>> 2f302d482ce3e3c959407d6f0fe5afa017d13454
 
-            //        createTask.Owner = formBackground;
-            //        createTask.ShowDialog();
-
-            //        formBackground.Dispose();
-            //    }
-            //}
-            //catch (Exception ex)
+            //Form formBackground = new Form();
+            //try
             //{
+            //    using (ItemsPopUp createTask = _serviceProvider.GetService<ItemsPopUp>())
+            //    {
+            //        formBackground.StartPosition = FormStartPosition.CenterScreen;
+            //        formBackground.FormBorderStyle = FormBorderStyle.None;
+            //        formBackground.TopMost = true;
+            //        formBackground.Location = this.Location;
+            //        formBackground.ShowInTaskbar = false;
+            //        // formBackground.Show();
+            ////        createTask.Owner = formBackground;
+            ////        createTask.ShowDialog();
 
-            //    MessageBox.Show(ex.Message);
-            //}
-            //finally
-            //{
-            //    formBackground.Dispose();
-            //}
+            ////        formBackground.Dispose();
+            ////    }
+            ////}
+            ////catch (Exception ex)
+            ////{
+
+            ////    MessageBox.Show(ex.Message);
+            ////}
+            ////finally
+            ////{
+            ////    formBackground.Dispose();
+            ////}
 
         }
     }

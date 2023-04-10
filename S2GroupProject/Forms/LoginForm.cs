@@ -2,11 +2,9 @@ using System.Security.Cryptography;
 using System.Globalization;
 using System.Threading;
 using System.ComponentModel;
-<<<<<<< HEAD
 using S2GroupProject.Forms;
-=======
 using Microsoft.Extensions.DependencyInjection;
->>>>>>> 2f302d482ce3e3c959407d6f0fe5afa017d13454
+
 
 namespace S2GroupProject
 {
