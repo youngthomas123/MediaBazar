@@ -4,14 +4,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MediaBazar.BusinessLogic.Classes;
 
 namespace S2GroupProject.Forms
 {
     public partial class WarehouseManager : Form
     {
+        public Warehouse warehouse = new Warehouse();
         public WarehouseManager()
         {
             InitializeComponent();
@@ -90,7 +93,13 @@ namespace S2GroupProject.Forms
 
         private void ShowAllItems_Click(object sender, EventArgs e)
         {
-
+            ItemListBox.Items.Clear();
+            foreach(Item item in warehouse.GetItems())
+            {
+                ItemListBox.Items.Add(item);
+            }
+            int NumberOfItems = warehouse.GetItems().Count;
+            label7.Text = $"Number of items: {NumberOfItems}";
         }
 
         private void SearchItembyName_Click(object sender, EventArgs e)
@@ -98,10 +107,7 @@ namespace S2GroupProject.Forms
 
         }
 
-        private void RefreshNumberOfItems_Click(object sender, EventArgs e)
-        {
 
-        }
 
         
     }
