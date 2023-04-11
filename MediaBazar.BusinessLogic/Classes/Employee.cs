@@ -66,7 +66,7 @@ namespace MediaBazar.BusinessLogic.Classes
 			 string shiftDatesString = string.Join(", ", ShiftsDates); 
 			//{ShiftsDates.Count()
 			string daysOff = string.Join(", ", DaysOff);
-			return $"{FirstName.Substring(0, 1)}. {LastName.Substring(0, 1)}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}";
+			return $"{FirstName} {LastName}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}";
 		}
 	}
 }

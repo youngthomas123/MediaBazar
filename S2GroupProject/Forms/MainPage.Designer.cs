@@ -28,736 +28,677 @@
         /// </summary>
         private void InitializeComponent()
         {
-            employeesLb = new ListBox();
-            groupBox1 = new GroupBox();
-            ShowEmployees = new Button();
-            AddEmployee = new Button();
-            daysOffClb = new CheckedListBox();
-            label11 = new Label();
-            ageTb = new TextBox();
-            label10 = new Label();
-            wageTb = new TextBox();
-            jobPositionCb = new ComboBox();
-            hoursPerWeekTb = new TextBox();
-            contractCb = new ComboBox();
-            addressTb = new TextBox();
-            telNumberTb = new TextBox();
-            bsnTb = new TextBox();
-            lastNameTb = new TextBox();
-            firstNameTb = new TextBox();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            monthLb = new Label();
-            groupBox2 = new GroupBox();
-            searchButton = new Button();
-            RemoveBtn = new Button();
-            searchTB = new TextBox();
-            bsnRemoveTb = new TextBox();
-            label13 = new Label();
-            label12 = new Label();
-            groupBox3 = new GroupBox();
-            addShiftBtn = new Button();
-            shiftBsnTb = new TextBox();
-            label21 = new Label();
-            shiftTypeCb = new ComboBox();
-            shiftDayPicker = new DateTimePicker();
-            createScheduleBtn = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            label20 = new Label();
-            label19 = new Label();
-            label18 = new Label();
-            label17 = new Label();
-            label16 = new Label();
-            label15 = new Label();
-            label14 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            groupBox4 = new GroupBox();
-            SeeItemsButton = new Button();
-            contractTypeFilterClb = new CheckedListBox();
-            shiftDayPickerFilter = new DateTimePicker();
-            jobPositionsFilterCb = new ComboBox();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
-            SuspendLayout();
+            this.employeesLb = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ShowEmployees = new System.Windows.Forms.Button();
+            this.AddEmployee = new System.Windows.Forms.Button();
+            this.daysOffClb = new System.Windows.Forms.CheckedListBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ageTb = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.wageTb = new System.Windows.Forms.TextBox();
+            this.jobPositionCb = new System.Windows.Forms.ComboBox();
+            this.hoursPerWeekTb = new System.Windows.Forms.TextBox();
+            this.contractCb = new System.Windows.Forms.ComboBox();
+            this.addressTb = new System.Windows.Forms.TextBox();
+            this.telNumberTb = new System.Windows.Forms.TextBox();
+            this.bsnTb = new System.Windows.Forms.TextBox();
+            this.lastNameTb = new System.Windows.Forms.TextBox();
+            this.firstNameTb = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.monthLb = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.RemoveBtn = new System.Windows.Forms.Button();
+            this.searchTB = new System.Windows.Forms.TextBox();
+            this.bsnRemoveTb = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.addShiftBtn = new System.Windows.Forms.Button();
+            this.shiftBsnTb = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.shiftTypeCb = new System.Windows.Forms.ComboBox();
+            this.shiftDayPicker = new System.Windows.Forms.DateTimePicker();
+            this.createScheduleBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.SeeItemsButton = new System.Windows.Forms.Button();
+            this.contractTypeFilterClb = new System.Windows.Forms.CheckedListBox();
+            this.shiftDayPickerFilter = new System.Windows.Forms.DateTimePicker();
+            this.jobPositionsFilterCb = new System.Windows.Forms.ComboBox();
+            this.AddAnEmpBtn = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.SuspendLayout();
             // 
             // employeesLb
             // 
-            employeesLb.BackColor = Color.Moccasin;
-            employeesLb.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            employeesLb.FormattingEnabled = true;
-            employeesLb.ItemHeight = 35;
-            employeesLb.Location = new Point(569, 238);
-            employeesLb.Margin = new Padding(4, 3, 4, 3);
-            employeesLb.Name = "employeesLb";
-            employeesLb.Size = new Size(1467, 494);
-            employeesLb.TabIndex = 0;
-            employeesLb.SelectedIndexChanged += employeesLb_SelectedIndexChanged;
+            this.employeesLb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.employeesLb.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.employeesLb.FormattingEnabled = true;
+            this.employeesLb.ItemHeight = 22;
+            this.employeesLb.Location = new System.Drawing.Point(398, 143);
+            this.employeesLb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.employeesLb.Name = "employeesLb";
+            this.employeesLb.Size = new System.Drawing.Size(1028, 290);
+            this.employeesLb.TabIndex = 0;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(ShowEmployees);
-            groupBox1.Controls.Add(AddEmployee);
-            groupBox1.Controls.Add(daysOffClb);
-            groupBox1.Controls.Add(label11);
-            groupBox1.Controls.Add(ageTb);
-            groupBox1.Controls.Add(label10);
-            groupBox1.Controls.Add(wageTb);
-            groupBox1.Controls.Add(jobPositionCb);
-            groupBox1.Controls.Add(hoursPerWeekTb);
-            groupBox1.Controls.Add(contractCb);
-            groupBox1.Controls.Add(addressTb);
-            groupBox1.Controls.Add(telNumberTb);
-            groupBox1.Controls.Add(bsnTb);
-            groupBox1.Controls.Add(lastNameTb);
-            groupBox1.Controls.Add(firstNameTb);
-            groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(10, 18);
-            groupBox1.Margin = new Padding(4, 5, 4, 5);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4, 5, 4, 5);
-            groupBox1.Size = new Size(539, 777);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Add Employee";
+            this.groupBox1.Controls.Add(this.ShowEmployees);
+            this.groupBox1.Controls.Add(this.AddEmployee);
+            this.groupBox1.Controls.Add(this.daysOffClb);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.ageTb);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.wageTb);
+            this.groupBox1.Controls.Add(this.jobPositionCb);
+            this.groupBox1.Controls.Add(this.hoursPerWeekTb);
+            this.groupBox1.Controls.Add(this.contractCb);
+            this.groupBox1.Controls.Add(this.addressTb);
+            this.groupBox1.Controls.Add(this.telNumberTb);
+            this.groupBox1.Controls.Add(this.bsnTb);
+            this.groupBox1.Controls.Add(this.lastNameTb);
+            this.groupBox1.Controls.Add(this.firstNameTb);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(7, 11);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(377, 466);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Add Employee";
             // 
             // ShowEmployees
             // 
-            ShowEmployees.BackColor = Color.LimeGreen;
-            ShowEmployees.Location = new Point(296, 610);
-            ShowEmployees.Margin = new Padding(4, 5, 4, 5);
-            ShowEmployees.Name = "ShowEmployees";
-            ShowEmployees.Size = new Size(227, 47);
-            ShowEmployees.TabIndex = 25;
-            ShowEmployees.Text = "Show all";
-            ShowEmployees.UseVisualStyleBackColor = false;
-            ShowEmployees.Click += ShowEmployees_Click;
+            this.ShowEmployees.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ShowEmployees.Location = new System.Drawing.Point(207, 366);
+            this.ShowEmployees.Name = "ShowEmployees";
+            this.ShowEmployees.Size = new System.Drawing.Size(159, 28);
+            this.ShowEmployees.TabIndex = 25;
+            this.ShowEmployees.Text = "Show all";
+            this.ShowEmployees.UseVisualStyleBackColor = false;
             // 
             // AddEmployee
             // 
-            AddEmployee.BackColor = Color.DeepSkyBlue;
-            AddEmployee.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            AddEmployee.Location = new Point(296, 667);
-            AddEmployee.Margin = new Padding(4, 5, 4, 5);
-            AddEmployee.Name = "AddEmployee";
-            AddEmployee.Size = new Size(227, 82);
-            AddEmployee.TabIndex = 22;
-            AddEmployee.Text = "Add To Management";
-            AddEmployee.UseVisualStyleBackColor = false;
-            AddEmployee.Click += AddEmployee_Click;
+            this.AddEmployee.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AddEmployee.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AddEmployee.Location = new System.Drawing.Point(207, 400);
+            this.AddEmployee.Name = "AddEmployee";
+            this.AddEmployee.Size = new System.Drawing.Size(159, 49);
+            this.AddEmployee.TabIndex = 22;
+            this.AddEmployee.Text = "Add To Management";
+            this.AddEmployee.UseVisualStyleBackColor = false;
             // 
             // daysOffClb
             // 
-            daysOffClb.BackColor = Color.Moccasin;
-            daysOffClb.FormattingEnabled = true;
-            daysOffClb.Location = new Point(103, 575);
-            daysOffClb.Margin = new Padding(4, 5, 4, 5);
-            daysOffClb.Name = "daysOffClb";
-            daysOffClb.Size = new Size(153, 116);
-            daysOffClb.TabIndex = 21;
+            this.daysOffClb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.daysOffClb.FormattingEnabled = true;
+            this.daysOffClb.Location = new System.Drawing.Point(72, 345);
+            this.daysOffClb.Name = "daysOffClb";
+            this.daysOffClb.Size = new System.Drawing.Size(108, 112);
+            this.daysOffClb.TabIndex = 21;
             // 
             // label11
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(9, 582);
-            label11.Margin = new Padding(4, 0, 4, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(86, 25);
-            label11.TabIndex = 20;
-            label11.Text = "Days Off:";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 349);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 15);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Days Off:";
             // 
             // ageTb
             // 
-            ageTb.BackColor = SystemColors.ButtonHighlight;
-            ageTb.Location = new Point(149, 497);
-            ageTb.Margin = new Padding(4, 5, 4, 5);
-            ageTb.Name = "ageTb";
-            ageTb.Size = new Size(190, 31);
-            ageTb.TabIndex = 19;
+            this.ageTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ageTb.Location = new System.Drawing.Point(104, 298);
+            this.ageTb.Name = "ageTb";
+            this.ageTb.Size = new System.Drawing.Size(134, 23);
+            this.ageTb.TabIndex = 19;
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(79, 510);
-            label10.Margin = new Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(48, 25);
-            label10.TabIndex = 18;
-            label10.Text = "Age:";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(55, 306);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 15);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Age:";
             // 
             // wageTb
             // 
-            wageTb.BackColor = SystemColors.ButtonHighlight;
-            wageTb.Location = new Point(149, 443);
-            wageTb.Margin = new Padding(4, 5, 4, 5);
-            wageTb.Name = "wageTb";
-            wageTb.Size = new Size(190, 31);
-            wageTb.TabIndex = 17;
+            this.wageTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.wageTb.Location = new System.Drawing.Point(104, 266);
+            this.wageTb.Name = "wageTb";
+            this.wageTb.Size = new System.Drawing.Size(134, 23);
+            this.wageTb.TabIndex = 17;
             // 
             // jobPositionCb
             // 
-            jobPositionCb.BackColor = SystemColors.ButtonHighlight;
-            jobPositionCb.FormattingEnabled = true;
-            jobPositionCb.Location = new Point(114, 378);
-            jobPositionCb.Margin = new Padding(4, 5, 4, 5);
-            jobPositionCb.Name = "jobPositionCb";
-            jobPositionCb.Size = new Size(224, 33);
-            jobPositionCb.TabIndex = 16;
+            this.jobPositionCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.jobPositionCb.FormattingEnabled = true;
+            this.jobPositionCb.Location = new System.Drawing.Point(80, 227);
+            this.jobPositionCb.Name = "jobPositionCb";
+            this.jobPositionCb.Size = new System.Drawing.Size(158, 23);
+            this.jobPositionCb.TabIndex = 16;
             // 
             // hoursPerWeekTb
             // 
-            hoursPerWeekTb.BackColor = SystemColors.ButtonHighlight;
-            hoursPerWeekTb.Location = new Point(211, 330);
-            hoursPerWeekTb.Margin = new Padding(4, 5, 4, 5);
-            hoursPerWeekTb.Name = "hoursPerWeekTb";
-            hoursPerWeekTb.Size = new Size(190, 31);
-            hoursPerWeekTb.TabIndex = 15;
+            this.hoursPerWeekTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.hoursPerWeekTb.Location = new System.Drawing.Point(148, 198);
+            this.hoursPerWeekTb.Name = "hoursPerWeekTb";
+            this.hoursPerWeekTb.Size = new System.Drawing.Size(134, 23);
+            this.hoursPerWeekTb.TabIndex = 15;
             // 
             // contractCb
             // 
-            contractCb.BackColor = SystemColors.ButtonHighlight;
-            contractCb.FormattingEnabled = true;
-            contractCb.Location = new Point(126, 268);
-            contractCb.Margin = new Padding(4, 5, 4, 5);
-            contractCb.Name = "contractCb";
-            contractCb.Size = new Size(213, 33);
-            contractCb.TabIndex = 14;
+            this.contractCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contractCb.FormattingEnabled = true;
+            this.contractCb.Location = new System.Drawing.Point(88, 161);
+            this.contractCb.Name = "contractCb";
+            this.contractCb.Size = new System.Drawing.Size(150, 23);
+            this.contractCb.TabIndex = 14;
             // 
             // addressTb
             // 
-            addressTb.BackColor = SystemColors.ButtonHighlight;
-            addressTb.Location = new Point(107, 215);
-            addressTb.Margin = new Padding(4, 5, 4, 5);
-            addressTb.Name = "addressTb";
-            addressTb.Size = new Size(190, 31);
-            addressTb.TabIndex = 13;
+            this.addressTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addressTb.Location = new System.Drawing.Point(75, 129);
+            this.addressTb.Name = "addressTb";
+            this.addressTb.Size = new System.Drawing.Size(134, 23);
+            this.addressTb.TabIndex = 13;
             // 
             // telNumberTb
             // 
-            telNumberTb.BackColor = SystemColors.ButtonHighlight;
-            telNumberTb.Location = new Point(107, 167);
-            telNumberTb.Margin = new Padding(4, 5, 4, 5);
-            telNumberTb.Name = "telNumberTb";
-            telNumberTb.Size = new Size(190, 31);
-            telNumberTb.TabIndex = 12;
+            this.telNumberTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.telNumberTb.Location = new System.Drawing.Point(75, 100);
+            this.telNumberTb.Name = "telNumberTb";
+            this.telNumberTb.Size = new System.Drawing.Size(134, 23);
+            this.telNumberTb.TabIndex = 12;
             // 
             // bsnTb
             // 
-            bsnTb.BackColor = SystemColors.ButtonHighlight;
-            bsnTb.Location = new Point(107, 123);
-            bsnTb.Margin = new Padding(4, 5, 4, 5);
-            bsnTb.Name = "bsnTb";
-            bsnTb.Size = new Size(190, 31);
-            bsnTb.TabIndex = 11;
+            this.bsnTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bsnTb.Location = new System.Drawing.Point(75, 74);
+            this.bsnTb.Name = "bsnTb";
+            this.bsnTb.Size = new System.Drawing.Size(134, 23);
+            this.bsnTb.TabIndex = 11;
             // 
             // lastNameTb
             // 
-            lastNameTb.BackColor = SystemColors.ButtonHighlight;
-            lastNameTb.Location = new Point(107, 80);
-            lastNameTb.Margin = new Padding(4, 5, 4, 5);
-            lastNameTb.Name = "lastNameTb";
-            lastNameTb.Size = new Size(190, 31);
-            lastNameTb.TabIndex = 10;
+            this.lastNameTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lastNameTb.Location = new System.Drawing.Point(75, 48);
+            this.lastNameTb.Name = "lastNameTb";
+            this.lastNameTb.Size = new System.Drawing.Size(134, 23);
+            this.lastNameTb.TabIndex = 10;
             // 
             // firstNameTb
             // 
-            firstNameTb.BackColor = SystemColors.ButtonHighlight;
-            firstNameTb.Location = new Point(107, 37);
-            firstNameTb.Margin = new Padding(4, 5, 4, 5);
-            firstNameTb.Name = "firstNameTb";
-            firstNameTb.Size = new Size(190, 31);
-            firstNameTb.TabIndex = 9;
+            this.firstNameTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.firstNameTb.Location = new System.Drawing.Point(75, 22);
+            this.firstNameTb.Name = "firstNameTb";
+            this.firstNameTb.Size = new System.Drawing.Size(134, 23);
+            this.firstNameTb.TabIndex = 9;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(4, 448);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(144, 25);
-            label9.TabIndex = 8;
-            label9.Text = "Employee Wage:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 269);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(95, 15);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Employee Wage:";
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(0, 385);
-            label8.Margin = new Padding(4, 0, 4, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(112, 25);
-            label8.TabIndex = 7;
-            label8.Text = "Job Position:";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(0, 231);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 15);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Job Position:";
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(0, 335);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(213, 25);
-            label7.TabIndex = 6;
-            label7.Text = "Working Hours Per Week:";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(0, 201);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(142, 15);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Working Hours Per Week:";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(4, 273);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(125, 25);
-            label6.TabIndex = 5;
-            label6.Text = "Contract Type:";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 164);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 15);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Contract Type:";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(4, 225);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(81, 25);
-            label5.TabIndex = 4;
-            label5.Text = "Address:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 15);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Address:";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(4, 172);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(106, 25);
-            label4.TabIndex = 3;
-            label4.Text = "Tel Number:";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Tel Number:";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(53, 123);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(49, 25);
-            label3.TabIndex = 2;
-            label3.Text = "BSN:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(37, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "BSN:";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(4, 85);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Last Name:";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Last Name:";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(4, 42);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(101, 25);
-            label1.TabIndex = 0;
-            label1.Text = "First Name:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "First Name:";
             // 
             // monthLb
             // 
-            monthLb.AutoSize = true;
-            monthLb.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            monthLb.Location = new Point(40, 313);
-            monthLb.Margin = new Padding(4, 0, 4, 0);
-            monthLb.Name = "monthLb";
-            monthLb.Size = new Size(0, 31);
-            monthLb.TabIndex = 26;
+            this.monthLb.AutoSize = true;
+            this.monthLb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.monthLb.Location = new System.Drawing.Point(28, 188);
+            this.monthLb.Name = "monthLb";
+            this.monthLb.Size = new System.Drawing.Size(0, 20);
+            this.monthLb.TabIndex = 26;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(searchButton);
-            groupBox2.Controls.Add(RemoveBtn);
-            groupBox2.Controls.Add(searchTB);
-            groupBox2.Controls.Add(bsnRemoveTb);
-            groupBox2.Controls.Add(label13);
-            groupBox2.Controls.Add(label12);
-            groupBox2.Location = new Point(10, 820);
-            groupBox2.Margin = new Padding(4, 5, 4, 5);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4, 5, 4, 5);
-            groupBox2.Size = new Size(539, 465);
-            groupBox2.TabIndex = 2;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Delete Employee";
+            this.groupBox2.Controls.Add(this.searchButton);
+            this.groupBox2.Controls.Add(this.RemoveBtn);
+            this.groupBox2.Controls.Add(this.searchTB);
+            this.groupBox2.Controls.Add(this.bsnRemoveTb);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Location = new System.Drawing.Point(7, 492);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(377, 279);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Delete Employee";
             // 
             // searchButton
             // 
-            searchButton.BackColor = Color.LimeGreen;
-            searchButton.Location = new Point(144, 348);
-            searchButton.Margin = new Padding(4, 5, 4, 5);
-            searchButton.Name = "searchButton";
-            searchButton.Size = new Size(191, 47);
-            searchButton.TabIndex = 24;
-            searchButton.Text = "Search";
-            searchButton.UseVisualStyleBackColor = false;
-            searchButton.Click += searchButton_Click;
+            this.searchButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchButton.Location = new System.Drawing.Point(101, 209);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(134, 28);
+            this.searchButton.TabIndex = 24;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = false;
             // 
             // RemoveBtn
             // 
-            RemoveBtn.BackColor = Color.IndianRed;
-            RemoveBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            RemoveBtn.ForeColor = SystemColors.ControlText;
-            RemoveBtn.Location = new Point(10, 170);
-            RemoveBtn.Margin = new Padding(4, 5, 4, 5);
-            RemoveBtn.Name = "RemoveBtn";
-            RemoveBtn.Size = new Size(227, 82);
-            RemoveBtn.TabIndex = 23;
-            RemoveBtn.Text = "Remove from Management";
-            RemoveBtn.UseVisualStyleBackColor = false;
-            RemoveBtn.Click += RemoveBtn_Click;
+            this.RemoveBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.RemoveBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.RemoveBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.RemoveBtn.Location = new System.Drawing.Point(7, 102);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(159, 49);
+            this.RemoveBtn.TabIndex = 23;
+            this.RemoveBtn.Text = "Remove from Management";
+            this.RemoveBtn.UseVisualStyleBackColor = false;
             // 
             // searchTB
             // 
-            searchTB.BackColor = SystemColors.ButtonHighlight;
-            searchTB.Location = new Point(144, 300);
-            searchTB.Margin = new Padding(4, 5, 4, 5);
-            searchTB.Name = "searchTB";
-            searchTB.Size = new Size(190, 31);
-            searchTB.TabIndex = 23;
+            this.searchTB.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchTB.Location = new System.Drawing.Point(101, 180);
+            this.searchTB.Name = "searchTB";
+            this.searchTB.Size = new System.Drawing.Size(134, 23);
+            this.searchTB.TabIndex = 23;
             // 
             // bsnRemoveTb
             // 
-            bsnRemoveTb.BackColor = SystemColors.ButtonHighlight;
-            bsnRemoveTb.Location = new Point(66, 58);
-            bsnRemoveTb.Margin = new Padding(4, 5, 4, 5);
-            bsnRemoveTb.Name = "bsnRemoveTb";
-            bsnRemoveTb.Size = new Size(190, 31);
-            bsnRemoveTb.TabIndex = 23;
+            this.bsnRemoveTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bsnRemoveTb.Location = new System.Drawing.Point(46, 35);
+            this.bsnRemoveTb.Name = "bsnRemoveTb";
+            this.bsnRemoveTb.Size = new System.Drawing.Size(134, 23);
+            this.bsnRemoveTb.TabIndex = 23;
             // 
             // label13
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(10, 307);
-            label13.Margin = new Padding(4, 0, 4, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(133, 25);
-            label13.TabIndex = 0;
-            label13.Text = "Search via BSN:";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 184);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Search via BSN:";
             // 
             // label12
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(10, 63);
-            label12.Margin = new Padding(4, 0, 4, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(49, 25);
-            label12.TabIndex = 23;
-            label12.Text = "BSN:";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 38);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "BSN:";
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(addShiftBtn);
-            groupBox3.Controls.Add(shiftBsnTb);
-            groupBox3.Controls.Add(label21);
-            groupBox3.Controls.Add(shiftTypeCb);
-            groupBox3.Controls.Add(shiftDayPicker);
-            groupBox3.Controls.Add(createScheduleBtn);
-            groupBox3.Controls.Add(button2);
-            groupBox3.Controls.Add(button1);
-            groupBox3.Controls.Add(monthLb);
-            groupBox3.Controls.Add(label20);
-            groupBox3.Controls.Add(label19);
-            groupBox3.Controls.Add(label18);
-            groupBox3.Controls.Add(label17);
-            groupBox3.Controls.Add(label16);
-            groupBox3.Controls.Add(label15);
-            groupBox3.Controls.Add(label14);
-            groupBox3.Controls.Add(flowLayoutPanel1);
-            groupBox3.Location = new Point(570, 820);
-            groupBox3.Margin = new Padding(4, 5, 4, 5);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(4, 5, 4, 5);
-            groupBox3.Size = new Size(1469, 465);
-            groupBox3.TabIndex = 3;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Schedule Shifts";
+            this.groupBox3.Controls.Add(this.addShiftBtn);
+            this.groupBox3.Controls.Add(this.shiftBsnTb);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.shiftTypeCb);
+            this.groupBox3.Controls.Add(this.shiftDayPicker);
+            this.groupBox3.Controls.Add(this.createScheduleBtn);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.monthLb);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox3.Location = new System.Drawing.Point(399, 492);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1028, 279);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Schedule Shifts";
             // 
             // addShiftBtn
             // 
-            addShiftBtn.BackColor = Color.LimeGreen;
-            addShiftBtn.Location = new Point(920, 380);
-            addShiftBtn.Margin = new Padding(4, 5, 4, 5);
-            addShiftBtn.Name = "addShiftBtn";
-            addShiftBtn.Size = new Size(191, 47);
-            addShiftBtn.TabIndex = 25;
-            addShiftBtn.Text = "Add Shift";
-            addShiftBtn.UseVisualStyleBackColor = false;
-            addShiftBtn.Click += addShiftBtn_Click;
+            this.addShiftBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addShiftBtn.Location = new System.Drawing.Point(644, 228);
+            this.addShiftBtn.Name = "addShiftBtn";
+            this.addShiftBtn.Size = new System.Drawing.Size(134, 28);
+            this.addShiftBtn.TabIndex = 25;
+            this.addShiftBtn.Text = "Add Shift";
+            this.addShiftBtn.UseVisualStyleBackColor = false;
             // 
             // shiftBsnTb
             // 
-            shiftBsnTb.BackColor = SystemColors.ButtonHighlight;
-            shiftBsnTb.Location = new Point(670, 380);
-            shiftBsnTb.Margin = new Padding(4, 5, 4, 5);
-            shiftBsnTb.Name = "shiftBsnTb";
-            shiftBsnTb.Size = new Size(190, 31);
-            shiftBsnTb.TabIndex = 33;
+            this.shiftBsnTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.shiftBsnTb.Location = new System.Drawing.Point(469, 228);
+            this.shiftBsnTb.Name = "shiftBsnTb";
+            this.shiftBsnTb.Size = new System.Drawing.Size(134, 23);
+            this.shiftBsnTb.TabIndex = 33;
             // 
             // label21
             // 
-            label21.AutoSize = true;
-            label21.Location = new Point(616, 385);
-            label21.Margin = new Padding(4, 0, 4, 0);
-            label21.Name = "label21";
-            label21.Size = new Size(49, 25);
-            label21.TabIndex = 32;
-            label21.Text = "BSN:";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(431, 231);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 15);
+            this.label21.TabIndex = 32;
+            this.label21.Text = "BSN:";
             // 
             // shiftTypeCb
             // 
-            shiftTypeCb.BackColor = Color.Moccasin;
-            shiftTypeCb.FormattingEnabled = true;
-            shiftTypeCb.Location = new Point(387, 380);
-            shiftTypeCb.Margin = new Padding(4, 5, 4, 5);
-            shiftTypeCb.Name = "shiftTypeCb";
-            shiftTypeCb.Size = new Size(194, 33);
-            shiftTypeCb.TabIndex = 31;
+            this.shiftTypeCb.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.shiftTypeCb.FormattingEnabled = true;
+            this.shiftTypeCb.Location = new System.Drawing.Point(271, 228);
+            this.shiftTypeCb.Name = "shiftTypeCb";
+            this.shiftTypeCb.Size = new System.Drawing.Size(137, 23);
+            this.shiftTypeCb.TabIndex = 31;
             // 
             // shiftDayPicker
             // 
-            shiftDayPicker.CalendarForeColor = Color.Moccasin;
-            shiftDayPicker.CalendarMonthBackground = Color.Moccasin;
-            shiftDayPicker.CalendarTitleBackColor = Color.Moccasin;
-            shiftDayPicker.Location = new Point(387, 318);
-            shiftDayPicker.Margin = new Padding(4, 5, 4, 5);
-            shiftDayPicker.Name = "shiftDayPicker";
-            shiftDayPicker.Size = new Size(448, 31);
-            shiftDayPicker.TabIndex = 30;
+            this.shiftDayPicker.CalendarForeColor = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarMonthBackground = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarTitleBackColor = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.Location = new System.Drawing.Point(271, 191);
+            this.shiftDayPicker.Name = "shiftDayPicker";
+            this.shiftDayPicker.Size = new System.Drawing.Size(315, 23);
+            this.shiftDayPicker.TabIndex = 30;
             // 
             // createScheduleBtn
             // 
-            createScheduleBtn.BackColor = Color.DeepSkyBlue;
-            createScheduleBtn.Location = new Point(120, 390);
-            createScheduleBtn.Margin = new Padding(4, 5, 4, 5);
-            createScheduleBtn.Name = "createScheduleBtn";
-            createScheduleBtn.Size = new Size(186, 60);
-            createScheduleBtn.TabIndex = 29;
-            createScheduleBtn.Text = "Create Schedule";
-            createScheduleBtn.UseVisualStyleBackColor = false;
-            createScheduleBtn.Click += createScheduleBtn_Click;
+            this.createScheduleBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.createScheduleBtn.Location = new System.Drawing.Point(84, 234);
+            this.createScheduleBtn.Name = "createScheduleBtn";
+            this.createScheduleBtn.Size = new System.Drawing.Size(130, 36);
+            this.createScheduleBtn.TabIndex = 29;
+            this.createScheduleBtn.Text = "Create Schedule";
+            this.createScheduleBtn.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
-            button2.Location = new Point(1439, 148);
-            button2.Margin = new Padding(4, 5, 4, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(29, 42);
-            button2.TabIndex = 28;
-            button2.Text = ">";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            this.button2.Location = new System.Drawing.Point(1007, 89);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 25);
+            this.button2.TabIndex = 28;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ImageAlign = ContentAlignment.TopCenter;
-            button1.Location = new Point(6, 148);
-            button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(29, 42);
-            button1.TabIndex = 27;
-            button1.Text = "<";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(4, 89);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(20, 25);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "<";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label20
             // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label20.Location = new Point(1063, 25);
-            label20.Margin = new Padding(4, 0, 4, 0);
-            label20.Name = "label20";
-            label20.Size = new Size(104, 31);
-            label20.TabIndex = 7;
-            label20.Text = "Saturday";
-            label20.TextAlign = ContentAlignment.MiddleCenter;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(744, 15);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(67, 20);
+            this.label20.TabIndex = 7;
+            this.label20.Text = "Saturday";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(883, 25);
-            label19.Margin = new Padding(4, 0, 4, 0);
-            label19.Name = "label19";
-            label19.Size = new Size(76, 31);
-            label19.TabIndex = 6;
-            label19.Text = "Friday";
-            label19.TextAlign = ContentAlignment.MiddleCenter;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(618, 15);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 20);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "Friday";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label18.Location = new Point(670, 25);
-            label18.Margin = new Padding(4, 0, 4, 0);
-            label18.Name = "label18";
-            label18.Size = new Size(107, 31);
-            label18.TabIndex = 5;
-            label18.Text = "Thursday";
-            label18.TextAlign = ContentAlignment.MiddleCenter;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(469, 15);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(68, 20);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Thursday";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label17
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(461, 25);
-            label17.Margin = new Padding(4, 0, 4, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(132, 31);
-            label17.TabIndex = 4;
-            label17.Text = "Wednesday";
-            label17.TextAlign = ContentAlignment.MiddleCenter;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(323, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(85, 20);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Wednesday";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(281, 25);
-            label16.Margin = new Padding(4, 0, 4, 0);
-            label16.Name = "label16";
-            label16.Size = new Size(98, 31);
-            label16.TabIndex = 3;
-            label16.Text = "Tuesday";
-            label16.TextAlign = ContentAlignment.MiddleCenter;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.Location = new System.Drawing.Point(197, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 20);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Tuesday";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label15
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(104, 30);
-            label15.Margin = new Padding(4, 0, 4, 0);
-            label15.Name = "label15";
-            label15.Size = new Size(98, 31);
-            label15.TabIndex = 2;
-            label15.Text = "Monday";
-            label15.TextAlign = ContentAlignment.MiddleCenter;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(73, 18);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 20);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Monday";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label14
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(1236, 30);
-            label14.Margin = new Padding(4, 0, 4, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(89, 31);
-            label14.TabIndex = 1;
-            label14.Text = "Sunday";
-            label14.TextAlign = ContentAlignment.MiddleCenter;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(865, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 20);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Sunday";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            flowLayoutPanel1.Location = new Point(40, 63);
-            flowLayoutPanel1.Margin = new Padding(4, 5, 4, 5);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1400, 233);
-            flowLayoutPanel1.TabIndex = 0;
-            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(28, 38);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(980, 140);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(SeeItemsButton);
-            groupBox4.Controls.Add(contractTypeFilterClb);
-            groupBox4.Controls.Add(shiftDayPickerFilter);
-            groupBox4.Controls.Add(jobPositionsFilterCb);
-            groupBox4.Location = new Point(566, 18);
-            groupBox4.Margin = new Padding(4, 5, 4, 5);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(4, 5, 4, 5);
-            groupBox4.Size = new Size(1467, 193);
-            groupBox4.TabIndex = 4;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Filtering Options";
+            this.groupBox4.Controls.Add(this.SeeItemsButton);
+            this.groupBox4.Controls.Add(this.contractTypeFilterClb);
+            this.groupBox4.Controls.Add(this.shiftDayPickerFilter);
+            this.groupBox4.Controls.Add(this.jobPositionsFilterCb);
+            this.groupBox4.Location = new System.Drawing.Point(396, 11);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1027, 116);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Filtering Options";
             // 
             // SeeItemsButton
             // 
-            SeeItemsButton.BackColor = Color.LimeGreen;
-            SeeItemsButton.Location = new Point(909, 37);
-            SeeItemsButton.Name = "SeeItemsButton";
-            SeeItemsButton.Size = new Size(221, 50);
-            SeeItemsButton.TabIndex = 36;
-            SeeItemsButton.Text = "See Items";
-            SeeItemsButton.UseVisualStyleBackColor = false;
-            SeeItemsButton.Click += SeeItemsButton_Click;
+            this.SeeItemsButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SeeItemsButton.Location = new System.Drawing.Point(636, 22);
+            this.SeeItemsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeItemsButton.Name = "SeeItemsButton";
+            this.SeeItemsButton.Size = new System.Drawing.Size(155, 30);
+            this.SeeItemsButton.TabIndex = 36;
+            this.SeeItemsButton.Text = "See Items";
+            this.SeeItemsButton.UseVisualStyleBackColor = false;
             // 
             // contractTypeFilterClb
             // 
-            contractTypeFilterClb.BackColor = Color.Moccasin;
-            contractTypeFilterClb.FormattingEnabled = true;
-            contractTypeFilterClb.Location = new Point(1240, 27);
-            contractTypeFilterClb.Margin = new Padding(4, 5, 4, 5);
-            contractTypeFilterClb.Name = "contractTypeFilterClb";
-            contractTypeFilterClb.Size = new Size(213, 116);
-            contractTypeFilterClb.TabIndex = 35;
-            contractTypeFilterClb.SelectedIndexChanged += contractTypeFilterClb_SelectedIndexChanged;
+            this.contractTypeFilterClb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contractTypeFilterClb.FormattingEnabled = true;
+            this.contractTypeFilterClb.Location = new System.Drawing.Point(868, 16);
+            this.contractTypeFilterClb.Name = "contractTypeFilterClb";
+            this.contractTypeFilterClb.Size = new System.Drawing.Size(150, 58);
+            this.contractTypeFilterClb.TabIndex = 35;
             // 
             // shiftDayPickerFilter
             // 
-            shiftDayPickerFilter.Location = new Point(354, 42);
-            shiftDayPickerFilter.Margin = new Padding(4, 5, 4, 5);
-            shiftDayPickerFilter.Name = "shiftDayPickerFilter";
-            shiftDayPickerFilter.Size = new Size(448, 31);
-            shiftDayPickerFilter.TabIndex = 34;
-            shiftDayPickerFilter.ValueChanged += shiftDayPickerFilter_ValueChanged;
+            this.shiftDayPickerFilter.Location = new System.Drawing.Point(248, 25);
+            this.shiftDayPickerFilter.Name = "shiftDayPickerFilter";
+            this.shiftDayPickerFilter.Size = new System.Drawing.Size(315, 23);
+            this.shiftDayPickerFilter.TabIndex = 34;
             // 
             // jobPositionsFilterCb
             // 
-            jobPositionsFilterCb.BackColor = Color.Moccasin;
-            jobPositionsFilterCb.FormattingEnabled = true;
-            jobPositionsFilterCb.Location = new Point(4, 42);
-            jobPositionsFilterCb.Margin = new Padding(4, 5, 4, 5);
-            jobPositionsFilterCb.Name = "jobPositionsFilterCb";
-            jobPositionsFilterCb.Size = new Size(308, 33);
-            jobPositionsFilterCb.TabIndex = 0;
-            jobPositionsFilterCb.SelectedIndexChanged += jobPositionsFilterCb_SelectedIndexChanged;
+            this.jobPositionsFilterCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.jobPositionsFilterCb.FormattingEnabled = true;
+            this.jobPositionsFilterCb.Location = new System.Drawing.Point(3, 25);
+            this.jobPositionsFilterCb.Name = "jobPositionsFilterCb";
+            this.jobPositionsFilterCb.Size = new System.Drawing.Size(217, 23);
+            this.jobPositionsFilterCb.TabIndex = 0;
+            // 
+            // AddAnEmpBtn
+            // 
+            this.AddAnEmpBtn.Location = new System.Drawing.Point(428, 444);
+            this.AddAnEmpBtn.Name = "AddAnEmpBtn";
+            this.AddAnEmpBtn.Size = new System.Drawing.Size(265, 34);
+            this.AddAnEmpBtn.TabIndex = 5;
+            this.AddAnEmpBtn.Text = "Add an Employee";
+            this.AddAnEmpBtn.UseVisualStyleBackColor = true;
+            this.AddAnEmpBtn.Click += new System.EventHandler(this.AddAnEmpBtn_Click);
             // 
             // MainPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Moccasin;
-            ClientSize = new Size(1924, 1050);
-            Controls.Add(groupBox4);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
-            Controls.Add(employeesLb);
-            Margin = new Padding(4, 3, 4, 3);
-            Name = "MainPage";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainPage";
-            Load += Form1_Load_1;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            groupBox4.ResumeLayout(false);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1483, 787);
+            this.Controls.Add(this.AddAnEmpBtn);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.employeesLb);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "MainPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "MainPage";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -819,5 +760,6 @@
         private DateTimePicker shiftDayPickerFilter;
         private CheckedListBox contractTypeFilterClb;
         private Button SeeItemsButton;
+        private Button AddAnEmpBtn;
     }
 }
