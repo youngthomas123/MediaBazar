@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MediaBazar.DataAccess.Database
 {
@@ -73,5 +74,33 @@ namespace MediaBazar.DataAccess.Database
 
             return LoadedItems;
         }
+
+
+        public void LoadDataIntoColumns(string ChartData)
+        {
+            // Create a list to hold the data for the chart
+            List<object> chartData = new List<object>();
+
+            // Open a connection to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Create a command to get the data you want to display
+                string query = "SELECT Column1, Column2 FROM YourTable";
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                // Loop through the results and add them to the chart data list
+                while (reader.Read())
+                {
+                    chartData.Add(new { Column1 = reader["Column1"], Column2 = reader["Column2"] });
+                }
+            }
+
+            // Convert the chart data to JSON and store it in the ChartData property
+            ChartData = JsonConvert.SerializeObject(chartData);
+        }
+
     }
 }
