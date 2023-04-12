@@ -9,10 +9,15 @@ using MediaBazar.BusinessLogic.Interfaces;
 
 namespace MediaBazar.BusinessLogic.Containers
 {
-    public class StatisticsContainer: IStatisticsContainer, IStatisticsDataAccess
+    public class StatisticsContainer: IStatisticsContainer
     {
         private readonly IStatisticsDataAccess _statisticsDataAccess;
         
+    
+        public StatisticsContainer(IStatisticsDataAccess statisticsDataAccess)
+        {
+            _statisticsDataAccess = statisticsDataAccess;
+        }
 
         public void LoadDataIntoColumns(string ChartData)
         {
