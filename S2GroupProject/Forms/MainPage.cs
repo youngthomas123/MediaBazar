@@ -179,6 +179,7 @@ namespace S2GroupProject
 
 
                 employees.Remove(empToRemove);
+                _employeeContainer.DeleateEmployee(bsn);
             }
 
             RefreshData();
@@ -448,6 +449,7 @@ namespace S2GroupProject
             finally
             {
                 formBackground.Dispose();
+                RefreshData();
             }
         }
 
@@ -495,11 +497,11 @@ namespace S2GroupProject
         //        }
         //    }
         //}
-       // }
+        // }
 
-       
 
-        
+
+
     }
 }
 

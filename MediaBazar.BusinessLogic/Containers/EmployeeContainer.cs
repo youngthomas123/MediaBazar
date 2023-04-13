@@ -54,7 +54,7 @@ namespace MediaBazar.BusinessLogic.Containers
             _employeeDataAccess.AddEmpShift(emp);
         }
 
-        public void DeleateEmployee(string BSN)
+        public void DeleateEmployee(int BSN)
         {
             _employeeDataAccess.DeleateEmployee(BSN);
         }

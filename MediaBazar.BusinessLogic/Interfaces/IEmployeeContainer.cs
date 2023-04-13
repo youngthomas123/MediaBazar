@@ -13,7 +13,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
         void AddEmployee(Employee employee);
 
 
-        void DeleateEmployee(string BSN);
+        void DeleateEmployee(int BSN);
 
 
         List<Employee> LoadEmployees();

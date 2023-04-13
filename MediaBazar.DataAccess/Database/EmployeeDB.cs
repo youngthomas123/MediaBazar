@@ -99,13 +99,14 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
-        public void DeleateEmployee(string BSN)
+        public void DeleateEmployee(int BSN)
         {
             SqlConnection conn = new SqlConnection(connectionString);
 
             conn.Open();
 
-            string DeleateEmp = $"delete from Employee where BSN = '{BSN}' ";
+            string DeleateEmp = $"DELETE FROM DaysOff2 WHERE BSN = {BSN}; DELETE FROM Shift2 WHERE BSN = {BSN}; DELETE FROM Employee2 WHERE BSN = {BSN}; ";
+
 
             SqlCommand cmd = new SqlCommand(DeleateEmp, conn);
             cmd.ExecuteNonQuery();
