@@ -26,6 +26,26 @@
                 </div>
             </div>
         </div>
+        @if (Model.IsEditMode)
+        {
+            <form method="post">
+                <input type="hidden" name="bsn" value="@Model.Emp.BSN" />
+                <div class="form-group row">
+                    <label for="FirstName" class="col-sm-3 col-form-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.Emp.FirstName" required>
+                    </div>
+                </div>
+                <!-- Add more input fields for the other employee data -->
+                <div class="form-group row">
+                    <div class="offset-sm-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="@Url.Action("Employee", new { bsn = Model.Emp.BSN })" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        }
+
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card-body">
@@ -63,8 +83,11 @@
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">@Model.Emp.Address</p>
                         </div>
-                    </div>
+                   </div>
                     <hr>
+                    <form method="post">
+                        <button type="submit" name="edit" class="btn btn-primary">Edit</button>
+                    </form>
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="mb-0">Shifts</p>
@@ -74,17 +97,66 @@
                             {
                                 <div>
                                     <p class="text-muted mb-0">@shiftDate</p>
-                                    <form method="post">
+                                    <form method="post" asp-page-handler="OnPost" >
                                         <input type="hidden" name="bsn" value="@Model.Emp.BSN" />
                                         <input type="hidden" name="shiftAtIndex" value="@Model.Emp.ShiftsDates.IndexOf(shiftDate)" />
-                                        <button type="submit" class="btn btn-primary btn-sm">Attend Shift</button>
+                                        <button type="submit" asp-page-handler="OnPost" class="btn btn-primary btn-sm">Attend Shift</button>
                                     </form>
                                 </div>
                             }
                         </div>
                     </div>
 
-
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Sick Leave</p>
+                        </div>
+                        <div class="col-sm-9">
+                            @if (Model.Emp.SickLeaves != null && Model.Emp.SickLeaves.Count > 0)
+                            {
+                                foreach (var sickLeave in Model.Emp.SickLeaves)
+                                {    
+                                     <div>
+                                        <p class="text-muted mb-0">@sickLeave.StartDate.ToShortDateString() - @sickLeave.EndDate.ToShortDateString()</p>
+                                        <p class="text-muted mb-0">Reason: @sickLeave.Reason</p>
+                                        <p class="text-muted mb-0">Approved: @sickLeave.IsScheduled</p>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">No sick leave scheduled</p>
+                            }
+                            <form method="post" >
+                                <div class="mb-3">
+                                    <input type="hidden" name="bsn" asp-for="Emp.BSN" class="form-control">
+                                    <span asp-validation-for="Emp.BSN" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="SickLeave.StartDate" class="form-label"></label>
+                                    <input asp-for="SickLeave.StartDate" type="date" class="form-control">
+                                    <span asp-validation-for="SickLeave.StartDate" class="text-danger"></span>
+                                </div>
+                               <div class="mb-3">
+                                    <label asp-for="SickLeave.EndDate" class="form-label"></label>
+                                    <input asp-for="SickLeave.EndDate" type="date" class="form-control">
+                                    <span asp-validation-for="SickLeave.EndDate" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="SickLeave.Reason" class="form-label"></label>
+                                    <input asp-for="SickLeave.Reason" class="form-control">
+                                    <span asp-validation-for="SickLeave.Reason" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                
+                                    <input type="hidden" asp-for="SickLeave.IsScheduled" value ="false" class="form-control">
+                                    <span asp-validation-for="SickLeave.IsScheduled" class="text-danger"></span>
+                                </div>
+                                <button type="submit" asp-page-handler="AssignSickLeave" class="btn btn-primary btn-sm">Schedule Sick Leave</button>
+                            </form>
+                        
+                        </div>
+                    </div>
                 </div>
 
             </div>

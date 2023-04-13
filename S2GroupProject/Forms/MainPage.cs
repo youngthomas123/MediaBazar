@@ -49,7 +49,7 @@ namespace S2GroupProject
 
 
                 // Create an instance of your user control
-                var myUserControl = new EmployeeUC(employees[index]);
+                var myUserControl = new EmployeeUC(employees[index], _employeeContainer);
 
 
                 popupForm.ClientSize = new Size(myUserControl.Width, myUserControl.Height);

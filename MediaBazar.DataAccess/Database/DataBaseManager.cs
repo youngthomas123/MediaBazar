@@ -187,8 +187,25 @@ namespace MediaBazar.DataAccess.Database
 								}
 							}
 						}
+						List<SickLeave> sickLeaves = new List<SickLeave>();
+						SqlCommand sickLeavesCommand = new SqlCommand("SELECT StartDate, EndDate, IsScheduled FROM SickLeave2 WHERE BSN = @BSN", connection);
+						sickLeavesCommand.Parameters.AddWithValue("@BSN", bsn);
 
-						Employee employee = new Employee(firstName, lastName, bsn, Convert.ToInt32(telNumber), address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts);
+						using (SqlDataReader sickLeavesReader = sickLeavesCommand.ExecuteReader())
+						{
+							while (sickLeavesReader.Read())
+							{
+								DateTime startDate = (DateTime)sickLeavesReader["StartDate"];
+								DateTime endDate = (DateTime)sickLeavesReader["EndDate"];
+								bool isScheduled = sickLeavesReader.IsDBNull(sickLeavesReader.GetOrdinal("IsScheduled")) ? false : (bool)sickLeavesReader["IsScheduled"];
+								string reason = sickLeavesReader["Reason"].ToString();
+
+								sickLeaves.Add(new SickLeave(startDate, endDate, reason, isScheduled));
+
+							}
+						}
+
+						Employee employee = new Employee(firstName, lastName, bsn, Convert.ToInt32(telNumber), address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts, sickLeaves);
 						employees.Add(employee);
 					}
 				}

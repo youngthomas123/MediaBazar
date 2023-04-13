@@ -24,7 +24,9 @@ namespace MediaBazar.BusinessLogic.Containers
             _employeeDataAccess.AddEmployee(employee);
         }
 
-        public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address, MyEnums.ContractTypes contractType, int hoursPerWeek, MyEnums.JobPositions jobposition, double wage, List<DayOfWeek> daysOff, int age, List<Shift> shiftDates)
+        public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
+                                MyEnums.ContractTypes contractType, int hoursPerWeek, MyEnums.JobPositions jobposition, 
+                                double wage, List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves)
         {
             
             shiftDates = new List<Shift>();
@@ -32,7 +34,7 @@ namespace MediaBazar.BusinessLogic.Containers
             if (EmployeeExists == false)
             {
                 Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-                                        wage, daysOff, age, shiftDates);
+                                        wage, daysOff, age, shiftDates, sickLeaves);
                 employees.Add(newEmployee);
                 _employeeDataAccess.AddEmployee(newEmployee);
             }
@@ -106,6 +108,16 @@ namespace MediaBazar.BusinessLogic.Containers
                 }
             }
             return employeeFound;
+        }
+
+        public void UpdateEmpSickLeave(Employee emp, SickLeave sickLeave)
+        {
+            _employeeDataAccess.UpdateEmpSickLeave(emp, sickLeave);
+        }
+
+        public void UpdateEmpSickLeaveApproval(Employee emp, SickLeave sickLeave)
+        {
+            _employeeDataAccess.UpdateEmpSickLeaveApproval(emp, sickLeave);
         }
     }
 }
