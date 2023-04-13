@@ -7,7 +7,7 @@ namespace MediaBazar.BusinessLogic.Classes
 		//List<DateTime> shiftDates = new List<DateTime>();
 		public Employee( string firstName, string lastName, int bsn, int telNumber, string address, 
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, List<Shift> shiftsDates)
+						List<DayOfWeek> daysOff, int age, List<Shift> shiftsDates, List<SickLeave> sickLeaves)
 		{
 		
 			FirstName= firstName;
@@ -22,6 +22,7 @@ namespace MediaBazar.BusinessLogic.Classes
 			DaysOff= daysOff;
 			Age= age;
 			ShiftsDates = shiftsDates;
+			SickLeaves= sickLeaves;
 		}
 
 		//public Employee(string firstName, string lastName, int bSN, int telNumber, 
@@ -59,14 +60,15 @@ namespace MediaBazar.BusinessLogic.Classes
 		public List<DayOfWeek> DaysOff { get; set;}
 		public int Age { get; set; }
 		public List<Shift> ShiftsDates { get; set; }
-
+		public List<SickLeave> SickLeaves { get; set; }
 		public override string ToString()
 		{
 
 			 string shiftDatesString = string.Join(", ", ShiftsDates); 
+			string sickLeaves = string.Join(", ", SickLeaves);
 			//{ShiftsDates.Count()
 			string daysOff = string.Join(", ", DaysOff);
-			return $"{FirstName.Substring(0, 1)}. {LastName.Substring(0, 1)}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}";
+			return $"{FirstName} {LastName}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}, Sick leaves: {sickLeaves}";
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
         void AddEmployee(Employee employee);
 
 
-        void DeleateEmployee(string BSN);
+        void DeleateEmployee(int BSN);
 
 
         List<Employee> LoadEmployees();
@@ -23,12 +23,15 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         void UpdateEmpShift(Employee emp);
 
+        void UpdateEmpSickLeave(Employee emp, SickLeave sickLeave);
+
+        void UpdateEmpSickLeaveApproval(Employee emp, SickLeave sickLeave);
 
         // management 
 
         void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
                         ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-                        List<DayOfWeek> daysOff, int age, List<Shift> shiftDates);
+                        List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves);
 
 
         Employee GetEmployeeByBcn(int bsn);

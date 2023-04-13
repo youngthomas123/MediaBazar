@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBazarLib", "MediaBazar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeWebsite", "EmployeeWebsite\EmployeeWebsite.csproj", "{FF1E2C89-5EA3-4204-BFB9-9451E8621836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBazar.BusinessLogic", "MediaBazar.BusinessLogic\MediaBazar.BusinessLogic.csproj", "{F2D0E0A3-C5E9-486E-A5F0-68A9B37E6718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaBazar.BusinessLogic", "MediaBazar.BusinessLogic\MediaBazar.BusinessLogic.csproj", "{F2D0E0A3-C5E9-486E-A5F0-68A9B37E6718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBazar.DataAccess", "MediaBazar.DataAccess\MediaBazar.DataAccess.csproj", "{D65682CB-1862-455D-9399-092DA16EDD3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaBazar.DataAccess", "MediaBazar.DataAccess\MediaBazar.DataAccess.csproj", "{D65682CB-1862-455D-9399-092DA16EDD3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

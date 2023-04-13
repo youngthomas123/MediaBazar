@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
@@ -35,7 +36,20 @@ namespace MediaBazar.BusinessLogic.Classes
             {
                 return "";
             }else
-            return $"{ShiftDate.ToString("d")} - {ShiftType} - {AttendedShift}";
+            if (AttendedShift == true )
+            {
+                
+                return $"{ShiftDate.ToString("d")} - {ShiftType} - Attended";
+            }else
+            if (AttendedShift == false)
+            {
+                return $"{ShiftDate.ToString("d")} - {ShiftType} - Not-Attended";
+            }
+            else
+            {
+                return "";
+            }
+            
         }
     }
 }
