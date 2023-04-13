@@ -9,21 +9,62 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Interfaces;
 
 namespace S2GroupProject.Forms
 {
     public partial class WarehouseManager : Form
     {
-        public Warehouse warehouse = new Warehouse();
-        public WarehouseManager()
+		private readonly IEmployeeContainer _employeeContainer;
+		private readonly IItemContainer _itemContainer;
+		private readonly IServiceProvider _serviceProvider;
+
+        List<Item> items = new List<Item>();
+		List<Employee> employees = new List<Employee>();
+
+		public Warehouse warehouse = new Warehouse();
+        public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
         {
-            InitializeComponent();
+			_employeeContainer = employeeContainer;
+			_itemContainer = itemContainer;
+			_serviceProvider = serviceProvider;
+			InitializeComponent();
+            LoadData();
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        public void LoadData()
+        {
+            warehouseListbox.Items.Clear();
+            ItemList.Items.Clear();
+            employeeList.Items.Clear();
+            ItemListBox.Items.Clear();
+            listBox1.Items.Clear();
+
+            items = _itemContainer.GetItems();
+			employees = _employeeContainer.LoadEmployees();
+
+            foreach (Item item in items)
+            {
+                ItemListBox.Items.Add(item);
+                listBox1.Items.Add(item);
+            }
+            foreach(Employee employee in employees)
+            {
+                employeeList.Items.Add(employee);
+            }
+		}
+
+		public void RefreshData()
+		{
+			LoadData();
+
+		}
+
+
+		private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

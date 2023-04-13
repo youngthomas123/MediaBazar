@@ -20,7 +20,7 @@ namespace S2GroupProject
         private readonly IServiceProvider _serviceProvider;
 
         
-        List <Employee> employees = new List <Employee> ();
+        List <Employee> employees = new List <Employee>();
 
         //DataBaseManager database = new DataBaseManager();
 
