@@ -28,7 +28,7 @@ namespace MediaBazar.DataAccess.Database
 
 
 			cmd.Parameters["@name"].Value = item.Name;
-			cmd.Parameters["@quantity"].Value = item.Quantity;
+			cmd.Parameters["@quantity"].Value = item.Category;
 			cmd.Parameters["@description"].Value = item.Description;
 
 			cmd.ExecuteNonQuery();
@@ -63,7 +63,7 @@ namespace MediaBazar.DataAccess.Database
 
 			while (dr.Read())
 			{
-				Item item = new Item((string)dr[0], (string)dr[2], (int)dr[1]);
+				Item item = new Item((string)dr[0], (string)dr[2], (string)dr[1]);
 				LoadedItems.Add(item);
 			}
 			dr.Close();

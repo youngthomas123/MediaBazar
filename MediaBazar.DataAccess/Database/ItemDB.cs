@@ -20,20 +20,22 @@ namespace MediaBazar.DataAccess.Database
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string insertItem = "insert into Item([Name], [Quantity], [Description]) values(@name, @quantity, @description); ";
+            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category]) values(@Item_ID, @Name, @Description, @Category); ";
 
             SqlCommand cmd = new SqlCommand(insertItem, conn);
 
-            cmd.Parameters.Add("@name", SqlDbType.VarChar);
-            cmd.Parameters.Add("@quantity", SqlDbType.Int);
-            cmd.Parameters.Add("@description", SqlDbType.VarChar);
+            cmd.Parameters.Add("@Item_ID", SqlDbType.UniqueIdentifier);
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar);
+            cmd.Parameters.Add("@Description", SqlDbType.VarChar);
+			cmd.Parameters.Add("@Category", SqlDbType.VarChar);
 
 
-            cmd.Parameters["@name"].Value = item.Name;
-            cmd.Parameters["@quantity"].Value = item.Quantity;
-            cmd.Parameters["@description"].Value = item.Description;
+            cmd.Parameters["@Item_ID"].Value = item.Id;
+			cmd.Parameters["@Name"].Value = item.Name;
+            cmd.Parameters["@Description"].Value = item.Description;
+			cmd.Parameters["@Category"].Value = item.Category;
 
-            cmd.ExecuteNonQuery();
+			cmd.ExecuteNonQuery();
 
 
             conn.Close();
@@ -59,14 +61,14 @@ namespace MediaBazar.DataAccess.Database
 
             conn.Open();
 
-            string GetItems = "select * from Item";
+            string GetItems = "select * from Items";
 
             SqlCommand cmd = new SqlCommand(GetItems, conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
-                Item item = new Item((string)dr[0], (string)dr[2], (int)dr[1]);
+                Item item = new Item((string)dr[1], (string)dr[2], (string)dr[3]);
                 LoadedItems.Add(item);
             }
             dr.Close();

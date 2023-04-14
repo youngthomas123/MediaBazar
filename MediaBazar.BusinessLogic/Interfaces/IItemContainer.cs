@@ -18,7 +18,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         // management
 
-        void AddItem(string name, string description, int quantity);
+        void AddItem(string name, string description, string category);
 
         Item GetItem(string name, string description);
 

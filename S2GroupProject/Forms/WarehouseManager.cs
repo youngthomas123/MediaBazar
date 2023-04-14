@@ -17,17 +17,15 @@ namespace S2GroupProject.Forms
     {
 		private readonly IEmployeeContainer _employeeContainer;
 		private readonly IItemContainer _itemContainer;
-		private readonly IServiceProvider _serviceProvider;
 
         List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
 
 		public Warehouse warehouse = new Warehouse();
-        public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer, IServiceProvider serviceProvider)
+        public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer)
         {
 			_employeeContainer = employeeContainer;
 			_itemContainer = itemContainer;
-			_serviceProvider = serviceProvider;
 			InitializeComponent();
             LoadData();
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -43,7 +41,7 @@ namespace S2GroupProject.Forms
             ItemListBox.Items.Clear();
             listBox1.Items.Clear();
 
-            items = _itemContainer.GetItems();
+            items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
 
             foreach (Item item in items)
@@ -120,11 +118,11 @@ namespace S2GroupProject.Forms
         private void ShowAllItems_Click(object sender, EventArgs e)
         {
             ItemListBox.Items.Clear();
-            foreach(Item item in warehouse.GetItems())
+            foreach(Item item in items)
             {
                 ItemListBox.Items.Add(item);
             }
-            int NumberOfItems = warehouse.GetItems().Count;
+            int NumberOfItems = items.Count;
             label7.Text = $"Number of items: {NumberOfItems}";
         }
 
@@ -156,10 +154,10 @@ namespace S2GroupProject.Forms
                     Item item = (Item)ItemListBox.SelectedItem;
                     string newName = textBox8.Text.Trim();
                     string newDescription = textBox7.Text.Trim();
-                    int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
+                    string newQuantity = textBox6.Text.Trim();
 
                     // Validate the user input
-                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription) || newQuantity <= 0)
+                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription))
                     {
                         MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -168,7 +166,7 @@ namespace S2GroupProject.Forms
                         // Update the item properties
                         item.Name = newName;
                         item.Description = newDescription;
-                        item.Quantity = newQuantity;
+                        item.Category = newQuantity;
                         MessageBox.Show("Item updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -187,10 +185,12 @@ namespace S2GroupProject.Forms
         {
             string name = textBox2.Text;
             string description = textBox3.Text;
-            int quantity = Convert.ToInt32(textBox4.Text);
+            string category = textBox4.Text;
 
-            Item item = new Item(name, description, quantity);
-            warehouse.AddItems(item);
+            Item item = new Item(name, description, category);
+            _itemContainer.AddItem(item);
+            RefreshData();
+
         }
     }
 }
