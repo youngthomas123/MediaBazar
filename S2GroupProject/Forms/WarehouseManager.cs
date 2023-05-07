@@ -21,7 +21,7 @@ namespace S2GroupProject.Forms
         List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
 
-		public Warehouse warehouse = new Warehouse();
+		public Warehouse warehouse = new Warehouse("Warehouse 1", "street 1");
         public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer)
         {
 			_employeeContainer = employeeContainer;
