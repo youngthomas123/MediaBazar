@@ -10,22 +10,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace S2GroupProject.Forms
 {
     public partial class WarehouseManager : Form
     {
-		private readonly IEmployeeContainer _employeeContainer;
+
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IEmployeeContainer _employeeContainer;
 		private readonly IItemContainer _itemContainer;
+        private readonly IWarehouseContainer _warehouseContainer;
 
         List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
+        List<Warehouse> warehouses = new List<Warehouse>();
 
 		public Warehouse warehouse = new Warehouse("Warehouse 1", "street 1");
-        public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer)
+        public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
         {
+            _serviceProvider = serviceProvider;
 			_employeeContainer = employeeContainer;
 			_itemContainer = itemContainer;
+            _warehouseContainer = warehouseContainer;
 			InitializeComponent();
             LoadData();
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -36,11 +43,11 @@ namespace S2GroupProject.Forms
         public void LoadData()
         {
             warehouseListbox.Items.Clear();
-            ItemList.Items.Clear();
             employeeList.Items.Clear();
             ItemListBox.Items.Clear();
             listBox1.Items.Clear();
 
+            warehouses = _warehouseContainer.LoadWarehouse();
             items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
 
@@ -52,6 +59,10 @@ namespace S2GroupProject.Forms
             foreach(Employee employee in employees)
             {
                 employeeList.Items.Add(employee);
+            }
+            foreach(Warehouse warehouse in warehouses)
+            {
+                warehouseListbox.Items.Add(warehouse);
             }
 		}
 
@@ -76,6 +87,7 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 CreateItems.Hide();
                 DeleteItems.Hide();
+                RefreshData();
             }
 
         }
@@ -88,6 +100,7 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 ItemOverview.Hide();
                 DeleteItems.Hide();
+                RefreshData();
             }
         }
 
@@ -100,7 +113,7 @@ namespace S2GroupProject.Forms
                 WarehouseOverview.Hide();
                 ItemOverview.Hide();
                 CreateItems.Hide();
-
+                RefreshData();
             }
         }
 
@@ -112,6 +125,19 @@ namespace S2GroupProject.Forms
                 ItemOverview.Hide();
                 CreateItems.Hide();
                 DeleteItems.Hide();
+                RefreshData();
+            }
+        }
+        private void WarehouseEmployeeRBT_CheckedChanged(object sender, EventArgs e)
+        {
+            if(WarehouseEmployeeRBT.Checked == true)
+            {
+                WarehouseOverview.Hide();
+                ItemOverview.Hide();
+                CreateItems.Hide();
+                DeleteItems.Hide();
+                WarehouseEmployees.Show();
+                RefreshData();
             }
         }
 
@@ -190,6 +216,17 @@ namespace S2GroupProject.Forms
             Item item = new Item(name, description, category);
             _itemContainer.AddItem(item);
             RefreshData();
+
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            CreateWarehousePopUp createWarehouse = _serviceProvider.GetService<CreateWarehousePopUp>();
+            createWarehouse.ShowDialog();
+        }
+
+        private void warehouseListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
