@@ -60,6 +60,7 @@
             this.shiftDayPickerFilter = new System.Windows.Forms.DateTimePicker();
             this.jobPositionsFilterCb = new System.Windows.Forms.ComboBox();
             this.AddAnEmpBtn = new System.Windows.Forms.Button();
+            this.ScheduleMonthlyShifts = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ScheduleMonthlyShifts);
             this.groupBox2.Controls.Add(this.searchButton);
             this.groupBox2.Controls.Add(this.RemoveBtn);
             this.groupBox2.Controls.Add(this.searchTB);
@@ -402,6 +404,16 @@
             this.AddAnEmpBtn.UseVisualStyleBackColor = true;
             this.AddAnEmpBtn.Click += new System.EventHandler(this.AddAnEmpBtn_Click);
             // 
+            // ScheduleMonthlyShifts
+            // 
+            this.ScheduleMonthlyShifts.Location = new System.Drawing.Point(205, 38);
+            this.ScheduleMonthlyShifts.Name = "ScheduleMonthlyShifts";
+            this.ScheduleMonthlyShifts.Size = new System.Drawing.Size(116, 49);
+            this.ScheduleMonthlyShifts.TabIndex = 25;
+            this.ScheduleMonthlyShifts.Text = "Schedule Monthly Shifts";
+            this.ScheduleMonthlyShifts.UseVisualStyleBackColor = true;
+            this.ScheduleMonthlyShifts.Click += new System.EventHandler(this.ScheduleMonthlyShifts_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -460,5 +472,6 @@
         private DateTimePicker shiftDayPickerFilter;
         private CheckedListBox contractTypeFilterClb;
         private Button AddAnEmpBtn;
+        private Button ScheduleMonthlyShifts;
     }
 }

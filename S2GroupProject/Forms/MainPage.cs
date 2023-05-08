@@ -453,56 +453,63 @@ namespace S2GroupProject
             }
         }
 
-        //public void AssignShifts()
-        //{
-        //    // Get all full-time employees
-        //    List<Employee> fullTimeEmployees = Employees.Where(e => e.ContractType == ContractTypes.FULL_TIME).ToList();
+        public void AssignShifts()
+        {
+            // Get all full-time employees
+            List<Employee> fullTimeEmployees = employees.Where(e => e.ContractType == ContractTypes.FULL_TIME).ToList();
 
-        //    // Generate all possible shifts for the next month
-        //    DateTime currentDate = DateTime.Now.AddDays(1); // start from tomorrow
-        //    DateTime endDate = currentDate.AddMonths(1).AddDays(-1); // end at the last day of next month
-        //    List<Shift> allShifts = new List<Shift>();
-        //    while (currentDate <= endDate)
-        //    {
-        //        foreach (Employee employee in fullTimeEmployees)
-        //        {
-        //            if (!employee.DaysOff.Contains(currentDate.DayOfWeek))
-        //            {
-        //                allShifts.Add(new Shift(currentDate, ShiftTypes.Day, null)); // add day shift
-        //                allShifts.Add(new Shift(currentDate, ShiftTypes.Evening, null)); // add evening shift
-        //                allShifts.Add(new Shift(currentDate, ShiftTypes.Night, null)); // add night shift
-        //            }
-        //        }
-        //        currentDate = currentDate.AddDays(1); // move to the next day
-        //    }
+            // Generate all possible shifts for the next month
+            DateTime currentDate = DateTime.Now.AddDays(1); // start from tomorrow
+            DateTime endDate = currentDate.AddMonths(1).AddDays(-1); // end at the last day of next month
+            List<Shift> allShifts = new List<Shift>();
+            while (currentDate <= endDate)
+            {
+                foreach (Employee employee in fullTimeEmployees)
+                {
+                    if (!employee.DaysOff.Contains(currentDate.DayOfWeek))
+                    {
+                        allShifts.Add(new Shift(currentDate, ShiftTypes.MORNING, false)); // add day shift
+                        //allShifts.Add(new Shift(currentDate, ShiftTypes.Evening, null)); // add evening shift
+                        //allShifts.Add(new Shift(currentDate, ShiftTypes.Night, null)); // add night shift
+                    }
+                }
+                currentDate = currentDate.AddDays(1); // move to the next day
+            }
 
-        //    // Assign shifts to employees
-        //    Random rnd = new Random();
-        //    foreach (Employee employee in fullTimeEmployees)
-        //    {
-        //        List<Shift> availableShifts = allShifts.Where(s => !employee.DaysOff.Contains(s.ShiftDate.DayOfWeek) && !employee.ShiftsDates.Contains(s)).ToList();
-        //        int shiftsToAssign = employee.HoursPerWeek / 8 * 3; // calculate the number of shifts to assign based on the employee's weekly hours
-        //        for (int i = 0; i < shiftsToAssign; i++)
-        //        {
-        //            if (availableShifts.Count > 0)
-        //            {
-        //                Shift shift = availableShifts[rnd.Next(availableShifts.Count)]; // randomly select a shift from the available shifts
-        //                employee.ShiftsDates.Add(shift);
-        //                availableShifts.Remove(shift);
-        //            }
-        //            else
-        //            {
-        //                break; // no more shifts available for this employee
-        //            }
-        //        }
-        //    }
-        //}
-        // }
+            // Assign shifts to employees
+            Random rnd = new Random();
+            foreach (Employee employee in fullTimeEmployees)
+            {
+                List<Shift> availableShifts = allShifts.Where(s => !employee.DaysOff.Contains(s.ShiftDate.DayOfWeek) && !employee.ShiftsDates.Contains(s)).ToList();
+                int shiftsToAssign = employee.HoursPerWeek / 8 * 3; // calculate the number of shifts to assign based on the employee's weekly hours
+                for (int i = 0; i < shiftsToAssign; i++)
+                {
+                    if (availableShifts.Count > 0)
+                    {
+                        Shift shift = availableShifts[rnd.Next(availableShifts.Count)]; // randomly select a shift from the available shifts
+                        employee.ShiftsDates.Add(shift);
+                        _employeeContainer.AddEmpShift(employee);
+                        availableShifts.Remove(shift);
+                    }
+                    else
+                    {
+                        break; // no more shifts available for this employee
+                    }
+                }
+            }
+        }
 
-
-
-
+        private void ScheduleMonthlyShifts_Click(object sender, EventArgs e)
+        {
+            AssignShifts();
+            RefreshData();
+        }
     }
+
+
+
+
 }
+
 
 
