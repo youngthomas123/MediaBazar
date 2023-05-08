@@ -40,8 +40,8 @@ namespace S2GroupProject
             }
             else if(UserNameTB.Text == "WAdmin" && PasswordTB.Text == "1234")
             {
-                WarehouseManager itemManager = new WarehouseManager();
-                itemManager.Show();
+                WarehouseManager itemManager = _serviceProvider.GetService<WarehouseManager>();
+				itemManager.Show();
                 this.Hide();
             }
 

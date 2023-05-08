@@ -9,21 +9,60 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaBazar.BusinessLogic.Classes;
+using MediaBazar.BusinessLogic.Interfaces;
 
 namespace S2GroupProject.Forms
 {
     public partial class WarehouseManager : Form
     {
-        public Warehouse warehouse = new Warehouse();
-        public WarehouseManager()
+		private readonly IEmployeeContainer _employeeContainer;
+		private readonly IItemContainer _itemContainer;
+
+        List<Item> items = new List<Item>();
+		List<Employee> employees = new List<Employee>();
+
+		public Warehouse warehouse = new Warehouse("Warehouse 1", "street 1");
+        public WarehouseManager(IItemContainer itemContainer, IEmployeeContainer employeeContainer)
         {
-            InitializeComponent();
+			_employeeContainer = employeeContainer;
+			_itemContainer = itemContainer;
+			InitializeComponent();
+            LoadData();
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        public void LoadData()
+        {
+            warehouseListbox.Items.Clear();
+            ItemList.Items.Clear();
+            employeeList.Items.Clear();
+            ItemListBox.Items.Clear();
+            listBox1.Items.Clear();
+
+            items = _itemContainer.LoadItem();
+			employees = _employeeContainer.LoadEmployees();
+
+            foreach (Item item in items)
+            {
+                ItemListBox.Items.Add(item);
+                listBox1.Items.Add(item);
+            }
+            foreach(Employee employee in employees)
+            {
+                employeeList.Items.Add(employee);
+            }
+		}
+
+		public void RefreshData()
+		{
+			LoadData();
+
+		}
+
+
+		private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -79,11 +118,11 @@ namespace S2GroupProject.Forms
         private void ShowAllItems_Click(object sender, EventArgs e)
         {
             ItemListBox.Items.Clear();
-            foreach(Item item in warehouse.GetItems())
+            foreach(Item item in items)
             {
                 ItemListBox.Items.Add(item);
             }
-            int NumberOfItems = warehouse.GetItems().Count;
+            int NumberOfItems = items.Count;
             label7.Text = $"Number of items: {NumberOfItems}";
         }
 
@@ -115,10 +154,10 @@ namespace S2GroupProject.Forms
                     Item item = (Item)ItemListBox.SelectedItem;
                     string newName = textBox8.Text.Trim();
                     string newDescription = textBox7.Text.Trim();
-                    int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
+                    string newQuantity = textBox6.Text.Trim();
 
                     // Validate the user input
-                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription) || newQuantity <= 0)
+                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription))
                     {
                         MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -127,7 +166,7 @@ namespace S2GroupProject.Forms
                         // Update the item properties
                         item.Name = newName;
                         item.Description = newDescription;
-                        item.Quantity = newQuantity;
+                        item.Category = newQuantity;
                         MessageBox.Show("Item updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -146,10 +185,12 @@ namespace S2GroupProject.Forms
         {
             string name = textBox2.Text;
             string description = textBox3.Text;
-            int quantity = Convert.ToInt32(textBox4.Text);
+            string category = textBox4.Text;
 
-            Item item = new Item(name, description, quantity);
-            warehouse.AddItems(item);
+            Item item = new Item(name, description, category);
+            _itemContainer.AddItem(item);
+            RefreshData();
+
         }
     }
 }

@@ -8,48 +8,54 @@ namespace MediaBazar.BusinessLogic.Classes
 {
     public class Warehouse
     {
-        private List<Item> items;
-        private List<Employee> warehouseemployees;
 
-        public Warehouse() 
+        public Warehouse(string name, string address) 
         {
-            items = new List<Item>();
-            warehouseemployees = new List<Employee>();
+            if (Id == Guid.Empty) Id = Guid.NewGuid();
+            Name = name;
+            Address = address;
         }
 
-        public void AddItems(Item item)
-        {
-            items.Add(item);
-        }
-        public void Addemployee(Employee employee)
-        {
-            warehouseemployees.Add(employee);
-        }
-        public List<Item> RemoveFromItems(Item item)
-        {
-            if(item != null)
-            {
-                items.Remove(item);
-            }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public List<Item> Items { get; set; }
+        public List<Employee> Warehouseemployees { get; set; }
 
-            return items;
-        }
-        public List<Employee> RemoveFromEmployees(Employee employee)
-        {
-            if(employee != null)
-            {
-                warehouseemployees.Remove(employee);
-            }
-            return warehouseemployees;
-        }
+
+        //public void AddItems(Item item)
+        //{
+        //    items.Add(item);
+        //}
+        //public void Addemployee(Employee employee)
+        //{
+        //    warehouseemployees.Add(employee);
+        //}
+        //public List<Item> RemoveFromItems(Item item)
+        //{
+        //    if(item != null)
+        //    {
+        //        items.Remove(item);
+        //    }
+
+        //    return items;
+        //}
+        //public List<Employee> RemoveFromEmployees(Employee employee)
+        //{
+        //    if(employee != null)
+        //    {
+        //        warehouseemployees.Remove(employee);
+        //    }
+        //    return warehouseemployees;
+        //}
 
         public List<Item> GetItems()
         {
-            return items;
+            return Items;
         }
         public List<Employee> GetWarehouseEmployees()
         {
-            return warehouseemployees;
+            return Warehouseemployees;
         }
 
 

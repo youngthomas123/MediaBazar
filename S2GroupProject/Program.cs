@@ -34,6 +34,7 @@ namespace S2GroupProject
             services.AddTransient<MainPage>();
             services.AddTransient<LoginForm>();
             services.AddTransient<CalendarPopUp>();
+            services.AddTransient<WarehouseManager>();
             services.AddTransient<EmployeeUC>();
             services.AddTransient<Days>();
             services.AddTransient<CalendarDay>();

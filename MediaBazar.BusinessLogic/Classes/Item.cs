@@ -9,21 +9,23 @@ namespace MediaBazar.BusinessLogic.Classes
     public class Item
     {
 
-        public Item(string name, string description, int quantity)
+        public Item(string name, string description, string category)
         {
-            Name = name;
+			if (Id == Guid.Empty) Id = Guid.NewGuid();
+			Name = name;
             Description = description;
-            Quantity = quantity;
+			Category = category;
         }
 
+        public Guid Id { get; set; }
         public string Name { get; set; }    
         public string Description { get; set; }
-        public int Quantity { get; set; }
+        public string Category { get; set; }
+        public Guid Warehouse { get; set; }
 
-        public int AddToQuantity(int addedQuantity) 
-        {
-            Quantity += addedQuantity;
-            return Quantity;
-        }
-    }
+		public override string ToString()
+		{
+            return $"Name: {Name} | Description: {Description} | Category: {Category}";
+		}
+	}
 }
