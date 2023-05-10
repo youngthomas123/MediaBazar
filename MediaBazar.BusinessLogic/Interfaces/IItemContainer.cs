@@ -26,6 +26,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         Item GetItem(string name);
 
+        Item GetItemById(Guid itemId);
+
         void RemoveItem(Item item);
 
         List<Item> GetItems();

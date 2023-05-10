@@ -46,6 +46,7 @@ namespace S2GroupProject.Forms
             employeeList.Items.Clear();
             ItemListBox.Items.Clear();
             listBox1.Items.Clear();
+            ShopRequests.Items.Clear();
 
             warehouses = _warehouseContainer.LoadWarehouse();
             items = _itemContainer.LoadItem();
@@ -228,6 +229,23 @@ namespace S2GroupProject.Forms
         private void warehouseListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RefreshDataBTN_Click(object sender, EventArgs e)
+        {
+            RefreshData();
+            //numberOfItemsLabel.Text = ItemListBox.Items.Count.ToString();
+            //numberOfEmployeesLabel.Text = employeeList.Items.Count.ToString();
+        }
+
+        private void AssignItemBTN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ViewDataBTN_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"The number of items in the warehouse");
         }
     }
 }

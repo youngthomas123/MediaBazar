@@ -29,7 +29,23 @@ namespace MediaBazar.DataAccess.Database
             conn.Close();
         }
 
-        public void DeleteItem(string name)
+        public void AssignEmployeeToWarehouse(Guid employeeId, Guid warehouseId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            string assignEmployee = "insert into EmployeesAssigned(EmployeeID, WarehouseID) values(@EmployeeID, @WarehouseID);";
+
+            SqlCommand cmd = new SqlCommand(assignEmployee, conn);
+            cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+            cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+
+
+        public void DeleteWarehouse(string name)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
@@ -69,6 +85,58 @@ namespace MediaBazar.DataAccess.Database
                 }
             }
             return warehouses;
+        }
+
+        public List<Item> LoadWarehouseItems(Guid warehouseId)
+        {
+            List<Item> items = new List<Item>();
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT ItemID FROM ItemsAssigned" + 
+                    "WHERE WarehouseID = @WarehouseID;";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Guid itemId = (Guid)reader["ItemID"];
+                        Item warehouseItem = GetItemById(itemId);
+                        items.Add(warehouseItem);
+                    }
+                }
+            }
+            return items;
+        }
+
+        public Item GetItemById(Guid itemId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            string sql = "SELECT * FROM Items WHERE Item_ID = @Item_ID";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Item_ID", itemId);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string name = (string)reader[1];
+                    string description = (string)reader[2];
+                    string category = (string)reader[3];
+
+                    Item foundItem = new Item(name, description, category);
+                    foundItem.Id = itemId;
+
+                    return foundItem;
+                }
+                else
+                {
+                    throw new Exception("Item not found");
+                }
+            }
         }
 
     }
