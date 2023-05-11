@@ -186,7 +186,7 @@ namespace MediaBazar.DataAccess.Database
                             }
                         }
 
-                        Employee employee = new Employee(firstName, lastName, bsn, Convert.ToInt32(telNumber), address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts, sickLeaves);
+                        Employee employee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts, sickLeaves);
                         employees.Add(employee);
                     }
                 }

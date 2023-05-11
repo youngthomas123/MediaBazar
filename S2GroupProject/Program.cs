@@ -46,7 +46,7 @@ namespace S2GroupProject
             var serviceProvider = services.BuildServiceProvider();
             //DI end
 
-            Application.Run(serviceProvider.GetService<LoginForm>());
+            Application.Run(serviceProvider.GetService<MainPage>());
 		}
 	}
 }

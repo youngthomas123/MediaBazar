@@ -39,6 +39,8 @@ namespace S2GroupProject
 				sickLeavesLb.Items.Add(sickLeave);
 
 			}
+
+			TabControlSettings();
 		}
         private void ApproveSickLeave_Click(object sender, EventArgs e)
         {
@@ -58,5 +60,17 @@ namespace S2GroupProject
             }
         }
 		
+
+		public void TabControlSettings()
+		{
+			tabControl1.TabPages[0].Text = "Shifts";
+			tabControl1.TabPages[1].Text = "Sick Leaves";
+
+			tabControl1.TabPages[0].BackColor = Color.LightGreen;
+			employeeShiftLb.BackColor = Color.LightGreen;
+			
+			tabControl1.TabPages[1].BackColor = Color.LightBlue;
+			sickLeavesLb.BackColor = Color.LightBlue;
+		}
     }
 }

@@ -5,7 +5,7 @@ namespace MediaBazar.BusinessLogic.Classes
     public class Employee
 	{
 		//List<DateTime> shiftDates = new List<DateTime>();
-		public Employee( string firstName, string lastName, int bsn, int telNumber, string address, 
+		public Employee( string firstName, string lastName, int bsn, string telNumber, string address, 
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
 						List<DayOfWeek> daysOff, int age, List<Shift> shiftsDates, List<SickLeave> sickLeaves)
 		{
@@ -49,7 +49,7 @@ namespace MediaBazar.BusinessLogic.Classes
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public int BSN { get; set; }
-		public int TelNumber { get; set; }
+		public string TelNumber { get; set; }
 		public string Address { get; set; }
 		public ContractTypes ContractType { get; set; }
 		public int HoursPerWeek { get; set; }

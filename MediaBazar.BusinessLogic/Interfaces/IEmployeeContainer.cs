@@ -29,7 +29,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         // management 
 
-        void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
+        void AddEmployee(string firstName, string lastName, int bsn, string telNumber, string address,
                         ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
                         List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves);
 

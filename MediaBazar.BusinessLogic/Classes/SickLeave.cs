@@ -25,9 +25,26 @@ namespace MediaBazar.BusinessLogic.Classes
 		{
 
 		}
-        public override string ToString()
-        {
-			return $"From{StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} {IsScheduled}";
+		public override string ToString()
+		{
+			if (StartDate == null || EndDate == null)
+			{
+				return "";
+			}else
+			if (IsScheduled == false)
+			{
+				return $"From {StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} - Not Approved";
+			}
+			else
+			if(IsScheduled== true) 
+			{
+				return $"From {StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} - Approved";
+			}
+			else
+			{
+				return "";
+			}
+			
         }
     }
 }

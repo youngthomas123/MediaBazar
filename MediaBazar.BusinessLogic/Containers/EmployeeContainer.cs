@@ -24,7 +24,7 @@ namespace MediaBazar.BusinessLogic.Containers
             _employeeDataAccess.AddEmployee(employee);
         }
 
-        public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
+        public void AddEmployee(string firstName, string lastName, int bsn, string telNumber, string address,
                                 MyEnums.ContractTypes contractType, int hoursPerWeek, MyEnums.JobPositions jobposition, 
                                 double wage, List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves)
         {

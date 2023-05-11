@@ -77,55 +77,37 @@ namespace S2GroupProject
            // daysOffClb.Items.Clear();
            // jobPositionCb.Items.Clear();
             employeesLb.Items.Clear();
-            shiftTypeCb.Items.Clear();
+            //shiftTypeCb.Items.Clear();
             contractTypeFilterClb.Items.Clear();
-            jobPositionsFilterCb.Items.Clear();
+           // jobPositionsFilterCb.Items.Clear();
             employees = _employeeContainer.LoadEmployees();
-            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-            {
-             //   daysOffClb.Items.Add(day.ToString());
-            }
-            foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
-            {
 
-            //    jobPositionCb.Items.Add(jobPosition);
-            }
-
-            foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
-            {
-
-              //  contractCb.Items.Add(contract);
-            }
 
             foreach (var employee in employees)
             {
 
                 employeesLb.Items.Add(employee);
             }
-            //foreach (var emp in employees)
-            //{
-            //    Global.myManagement.AddEmployee(emp);
-            //    employeesLb.Items.Add(emp);
-            //}
 
-            foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
-            {
+            shiftTypeCb.DataSource = Enum.GetValues(typeof(ShiftTypes));
 
-                shiftTypeCb.Items.Add(shiftType);
-            }
-
-            foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
-            {
-
-                jobPositionsFilterCb.Items.Add(jobPosition);
-            }
-
-            foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
+			foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
             {
 
                 contractTypeFilterClb.Items.Add(contract);
             }
-        }
+            
+			jobPositionsFilterCb.DataSource = Enum.GetValues(typeof(JobPositions));
+			jobPositionsFilterCb.SelectedIndex = -1;
+
+			foreach (Control control in groupBox4.Controls)
+			{
+				if (control is System.Windows.Forms.ComboBox comboBox)
+				{
+					comboBox.Text = "NONE";
+				}
+			}
+		}
 
         public void RefreshData()
         {
@@ -314,6 +296,7 @@ namespace S2GroupProject
 
         private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             JobPositions jobPostion = (JobPositions)jobPositionsFilterCb.SelectedIndex;
             employeesLb.Items.Clear();
 

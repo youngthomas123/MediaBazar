@@ -48,19 +48,21 @@ namespace S2GroupProject.Forms
 
         }
 
-        private void AddEmployee_Click(object sender, EventArgs e)
+		private int workingHoursPerWeek;
+		private void AddEmployee_Click(object sender, EventArgs e)
         {
-            string firstName = firstNameTb.Text;
+			string firstName = firstNameTb.Text;
             string lastName = lastNameTb.Text;
             int bsn = int.Parse(bsnTb.Text);
-            int telNubmer = int.Parse(telNumberTb.Text);
+            string telNubmer = telNumberTb.Text;
             string address = addressTb.Text;
             ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
-            int workingHoursPerWeek = int.Parse(hoursPerWeekTb.Text);
-            JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
+			int workingHours = workingHoursPerWeek;
+			JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
             double wage = double.Parse(wageTb.Text);
             int age = int.Parse(ageTb.Text);
             List<DayOfWeek> daysOff = new List<DayOfWeek>();
+
             foreach (var checkedItem in daysOffClb.CheckedItems)
             {
                 DayOfWeek day;
@@ -74,5 +76,35 @@ namespace S2GroupProject.Forms
             _employeeContainer.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>(), new List<SickLeave>());
             this.Close();
         }
-    }
+
+		private void contractCb_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Update the workingHoursPerWeek variable based on the selected contract type
+			ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
+			if (contractType == MyEnums.ContractTypes.FULL_TIME)
+			{
+				workingHoursPerWeek = 40;
+				hoursPerWeekTb.Visible = false;
+				label7.Visible = false;
+			}
+			else
+			{
+				// Prompt the user to enter the working hours per week for other contract types
+				// and store it in the workingHoursPerWeek variable
+				if (int.TryParse(hoursPerWeekTb.Text, out int hours))
+				{
+					workingHoursPerWeek = hours;
+				}
+				else
+				{
+					// Handle the case where the entered value is not a valid integer
+					// You can show an error message or set a default value, for example.
+					// In this example, I'm setting it to 0.
+					workingHoursPerWeek = 0;
+				}
+				hoursPerWeekTb.Visible = true;
+				label7.Visible = true;
+			}
+		}
+	}
 }
