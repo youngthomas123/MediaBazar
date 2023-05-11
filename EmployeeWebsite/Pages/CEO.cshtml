@@ -3,76 +3,11 @@
 @{
 	ViewData["Title"] = "Stats";
 }
-@*<h1>Quota of sold items for this month</h1>
-<h3>Keyboards:</h3>
-<div class="progress">
-    <div class="progress-bar bg-success" role="progressbar" style="width: @Model.AttendancePercentage%" aria-valuenow="@Model.AttendancePercentage" aria-valuemin="0" aria-valuemax="100"></div>
-</div>*@
-@*Line chart code*@
-@*<html>
-<head>
-    <style>
-        #sampleChart {
-            max-width: 550px;
-            height: 300px;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
-</head>
-<body>
-    <h2> Item sales this month</h2>
-    <canvas id="sampleChart"> </canvas>
-    <div id="output"> </div>
-    <script>
-        let output = document.getElementById('output');
-        let canvas = document.getElementById("sampleChart");
-        let line1Data = [20, 10, 30, 40, 60, 70, 100, 120, 220, 200];
-        let line2Data = [10, 5, 20, 25, 60, 55, 47, 80, 100, 30, 55];
-        let line3Data = [30, 40, 50, 60, 70, 80, 90, 100, 102, 34];
-        var xValues = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300];
-        new Chart(canvas, {
-            type: "line",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    borderColor: "red",
-                    pointBackgroundColor: "green",
-                    fill: false,
-                    data: line1Data,
-                    label: "Fridges"
-                }, {
-                    borderColor: "yellow",
-                    pointBackgroundColor: "blue",
-                    fill: false,
-                    data: line2Data,
-                    label: "TVs"
-                }, {
-                    borderColor: "black",
-                    pointBackgroundColor: "pink",
-                    fill: false,
-                    data: line3Data,
-                    label: "Keyboards"
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{ ticks: { min: 5, max: 300 } }],
-                    yAxes: [{ ticks: { min: 5, max: 300 } }],
-                }
-            }
-        });
-    </script>
-</body>
-</html>*@
 
-<br />
-<br />
-<br />
 
-<html>
-<head>
-    <style>
+
+
+    @*<style>
         #sampleChart {
             max-width: auto;
             height: auto;
@@ -80,8 +15,8 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
-</head>
-<body>
+
+
     <h2>Items sold per month</h2>
     <canvas id="sampleChart"></canvas>
     <div id="output"></div>
@@ -146,62 +81,177 @@
                 }
             }
         });
-    </script>
-</body>
-</html>
+    </script>*@
 
 
-   
 
 
-@**Dot chart code*
-<html>
-<head>
-    <style>
+
+  @*<style>
         #sampleChart {
             max-width: 550px;
             height: 300px;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
+    <h2>Item Sales This Year</h2>
+    <canvas id="sampleChart"></canvas>
+    <script>
+        let canvas = document.getElementById("sampleChart");
+
+        // Create an array of months for the x-axis labels
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Create an array of data for the y-axis
+        let data = [10, -5, 15, -10, 0, 5, -15, 20, -10, 5, -15, 10];
+
+        // Create a new chart object
+        new Chart(canvas, {
+            type: "bar",
+            data: {
+                labels: months, // Use the months array for the x-axis labels
+                datasets: [{
+                    backgroundColor: "blue",
+                    data: data // Use the data array for the y-axis values
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: -20, // Set the minimum value of the y-axis to -20
+                            max: 20 // Set the maximum value of the y-axis to 20
+                        }
+                    }]
+                }
+            }
+        });
+    </script>*@
+
+
+
+
+<html>
+<head>
+    <style>
+        #lineChart {
+            max-width: 550px;
+            height: 300px;
+        }
+
+        #barChart {
+            max-width: 550px;
+            height: 300px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
-    <h2> Sales of different items throughout the month</h2>
-    <canvas id="sampleChart"> </canvas>
-    <div id="output"> </div>
+    <h2>Sales per Month</h2>
+    <canvas id="lineChart"></canvas>
+    <div id="output"></div>
     <script>
         let output = document.getElementById('output');
-        var chartData = [
-            { x: keyboards, y: 1 },
-            { x: 2, y: 3 },
-            { x: 3, y: 5 },
-            { x: 4, y: 7 },
-            { x: 5, y: 11 },
-            { x: 6, y: 9 },
-            { x: 7, y: 5 },
-            { x: 8, y: 6 },
-            { x: 9, y: 15 },
-            { x: 10, y: 14 },
-        ];
-        let canvas = document.getElementById("sampleChart")
+        let canvas = document.getElementById("lineChart");
+
+        // Create an array of months for the x-axis labels
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Create arrays for each category of items
+        let UncategorizableItems = [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec];
+        let Electronics = [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec];
+        let Kitchen = [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec];
+        let Sports = [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec];
+
+        // Create a new line chart object
         new Chart(canvas, {
-            type: "scatter",
+            type: "line",
             data: {
-                datasets: [{
-                    borderColor: "yellow",
-                    pointBackgroundColor: "green",
-                                   data: chartData
-            }]
-         },
-         options: {
-            scales: {
-               xAxes: [{ ticks: { min: 1, max: 10 } }],
-               yAxes: [{ ticks: { min: 1, max: 20 } }],
+                labels: months,
+                datasets: [
+                    {
+                        borderColor: "red",
+                        pointBackgroundColor: "green",
+                        fill: false,
+                        data: UncategorizableItems,
+                        label: "Uncategorizable Items"
+                    },
+                    {
+                        borderColor: "black",
+                        pointBackgroundColor: "pink",
+                        fill: false,
+                        data: Electronics,
+                        label: "Electronics"
+                    },
+                    {
+                        borderColor: "blue",
+                        pointBackgroundColor: "yellow",
+                        fill: false,
+                        data: Kitchen,
+                        label: "Kitchen"
+                    },
+                    {
+                        borderColor: "green",
+                        pointBackgroundColor: "black",
+                        fill: false,
+                        data: Sports,
+                        label: "Sports"
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 40
+                        }
+                    }]
+                }
             }
-         }
-      });
-   </script>
+        });
+    </script>
+
+    <br />
+    <br />
+
+    <h2>Profits per month</h2>
+    <canvas id="barChart"></canvas>
+    <script>
+        let canvasBar = document.getElementById("barChart");
+
+        // Create an array of months for the x-axis labels
+        let monthsBar = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Create an array of data for the y-axis
+        let dataBar = [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8];
+
+        // Create a new bar chart object
+        new Chart(canvasBar, {
+            type: "bar",
+            data: {
+                labels: monthsBar,
+                datasets: [{
+                    backgroundColor: "blue",
+                    data: dataBar
+                   
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: -20,
+                            max: 20
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </body>
 </html>
-*@
+
+
