@@ -28,7 +28,7 @@ namespace S2GroupProject.Forms
             string address = warehouseAddressTB.Text;
             if(name != "" && address != "")
             {
-                Warehouse warehouse = new Warehouse(name, address);
+                Warehouse warehouse = new Warehouse(Guid.NewGuid(), name, address);
                 _warehouseContainer.AddWarehouse(warehouse);
             }
             else

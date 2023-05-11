@@ -43,6 +43,19 @@ namespace MediaBazar.DataAccess.Database
             conn.Close();
         }
 
+        public void AssignItemToWarehouse(Guid itemId, Guid warehouseId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            string sql = "insert into ItemsAssigned(ItemID, WarehouseID) values(@ItemID, @WarehouseID)";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@ItemID", itemId);
+            cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
 
 
         public void DeleteWarehouse(string name)
@@ -74,8 +87,7 @@ namespace MediaBazar.DataAccess.Database
                         string name = (string)reader["Name"];
                         string address = (string)reader["Address"];
 
-                        Warehouse warehouse = new Warehouse(name, address);
-                        warehouse.Id = id;
+                        Warehouse warehouse = new Warehouse(id, name, address);
                         warehouses.Add(warehouse);
                     }
                     reader.Close();
@@ -87,14 +99,46 @@ namespace MediaBazar.DataAccess.Database
             return warehouses;
         }
 
+        public Warehouse GetWarehouseByName(string name)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM Warehouses;";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Guid id = (Guid)reader["Warehouse_ID"];
+                        string address = (string)reader["Address"];
+
+                        Warehouse warehouse = new Warehouse(id, name, address);
+                        warehouse.Id = id;
+                        return warehouse;
+                    }
+                    else
+                    {
+                        throw new Exception("No warehouse has been found.");
+                    }
+                    reader.Close();
+                    cmd.Dispose();
+                    conn.Dispose();
+                    conn.Close();
+                }
+            }
+        }
+
+
         public List<Item> LoadWarehouseItems(Guid warehouseId)
         {
             List<Item> items = new List<Item>();
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "SELECT ItemID FROM ItemsAssigned" + 
-                    "WHERE WarehouseID = @WarehouseID;";
+                string sql = "SELECT ItemID FROM ItemsAssigned " +
+                        "WHERE WarehouseID = @WarehouseID;";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
 
@@ -126,8 +170,9 @@ namespace MediaBazar.DataAccess.Database
                     string name = (string)reader[1];
                     string description = (string)reader[2];
                     string category = (string)reader[3];
+                    int quantity = (int)reader[4];
 
-                    Item foundItem = new Item(name, description, category);
+                    Item foundItem = new Item(itemId, name, description, quantity, category);
                     foundItem.Id = itemId;
 
                     return foundItem;
@@ -138,6 +183,7 @@ namespace MediaBazar.DataAccess.Database
                 }
             }
         }
+
 
     }
 }

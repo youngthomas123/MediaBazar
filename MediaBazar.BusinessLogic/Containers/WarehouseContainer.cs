@@ -28,9 +28,19 @@ namespace MediaBazar.BusinessLogic.Containers
             _warehouseDataAccess.AssignEmployeeToWarehouse(employeeId, warehouseId);
         }
 
+        public void AssignItemToWarehouse(Guid itemId, Guid warehouseId)
+        {
+            _warehouseDataAccess.AssignItemToWarehouse(itemId, warehouseId);
+        }
+
         public void DeleteWarehouse(string name)
         {
             _warehouseDataAccess.DeleteWarehouse(name);
+        }
+
+        public Warehouse GetWarehouseByName(string name)
+        {
+            return _warehouseDataAccess.GetWarehouseByName(name);
         }
 
         public List<Warehouse> LoadWarehouse()

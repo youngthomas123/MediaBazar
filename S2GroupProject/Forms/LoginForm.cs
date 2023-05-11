@@ -36,13 +36,13 @@ namespace S2GroupProject
             {
                 MainPage form1 = _serviceProvider.GetService<MainPage>();
                 form1.Show();
-                this.Hide();
+                //this.Hide();
             }
             else if(UserNameTB.Text == "WAdmin" && PasswordTB.Text == "1234")
             {
                 WarehouseManager itemManager = _serviceProvider.GetService<WarehouseManager>();
 				itemManager.Show();
-                this.Hide();
+                //this.Hide();
             }
 
         }

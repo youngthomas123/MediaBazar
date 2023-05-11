@@ -9,11 +9,12 @@ namespace MediaBazar.BusinessLogic.Classes
     public class Item
     {
 
-        public Item(string name, string description, string category)
+        public Item(Guid id, string name, string description, int quantity, string category)
         {
-			if (Id == Guid.Empty) Id = Guid.NewGuid();
+			Id = id;
 			Name = name;
             Description = description;
+            Quantity = quantity;
 			Category = category;
         }
 
@@ -26,7 +27,7 @@ namespace MediaBazar.BusinessLogic.Classes
 
 		public override string ToString()
 		{
-            return $"Name: {Name} | Description: {Description} | Category: {Category}";
+            return $"Name: {Name} | Category: {Category} | Quantity: {Quantity}";
 		}
 	}
 }

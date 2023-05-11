@@ -63,7 +63,7 @@ namespace MediaBazar.DataAccess.Database
 
 			while (dr.Read())
 			{
-				Item item = new Item((string)dr[0], (string)dr[2], (string)dr[1]);
+				Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (string)dr[3]);
 				LoadedItems.Add(item);
 			}
 			dr.Close();
