@@ -1,8 +1,7 @@
 ﻿using MediaBazar.BusinessLogic.Classes;
 using System.Data;
 using System.Data.SqlClient;
-
-
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 
 namespace MediaBazar.DataAccess.Database
 {
@@ -205,7 +204,25 @@ namespace MediaBazar.DataAccess.Database
 							}
 						}
 
-						Employee employee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts, sickLeaves);
+						List<ShiftPreference> shiftPreferences= new List<ShiftPreference>();
+						SqlCommand shiftPreferenceCommand = new SqlCommand("Select Year, Month, Preference\r\nFrom ShiftPreferences2\r\nwhere BSN = @BSN", connection);
+						shiftPreferenceCommand.Parameters.AddWithValue("@BSN", bsn);
+
+						using(SqlDataReader shiftPreferenceReader = shiftPreferenceCommand.ExecuteReader())
+						{
+							while (shiftPreferenceReader.Read())
+							{
+                                int year = (int)shiftPreferenceReader["Year"];
+                                int month = (int)shiftPreferenceReader["Month"];
+                                ShiftTypes preference = (ShiftTypes)Enum.ToObject(typeof(ShiftTypes), (int)shiftPreferenceReader["Preference"]);
+
+								shiftPreferences.Add(new ShiftPreference(year, month, preference));
+                            }
+						}
+
+                        Employee employee = new Employee(firstName, lastName, bsn, telNumber, address, 
+														contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage),
+														daysOff, age, shifts, sickLeaves, shiftPreferences);
 						employees.Add(employee);
 					}
 				}

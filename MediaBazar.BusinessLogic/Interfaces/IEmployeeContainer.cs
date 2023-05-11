@@ -26,12 +26,17 @@ namespace MediaBazar.BusinessLogic.Interfaces
         void UpdateEmpSickLeave(Employee emp, SickLeave sickLeave);
 
         void UpdateEmpSickLeaveApproval(Employee emp, SickLeave sickLeave);
+        void AddShiftPreference(Employee emp, ShiftPreference preference);
+        void UpdateEmployeeFirstName(Employee emp, string newFirstName);
+        void UpdateEmployeeLastName(Employee emp, string newLastName);
+        void UpdateEmployeeTelNumber(Employee emp, string newTelNumber);
+        void UpdateEmployeeAddress(Employee emp, string newAddress);
 
         // management 
 
         void AddEmployee(string firstName, string lastName, int bsn, string telNumber, string address,
                         ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-                        List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves);
+                        List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves, List<ShiftPreference> shiftPreferences);
 
 
         Employee GetEmployeeByBcn(int bsn);

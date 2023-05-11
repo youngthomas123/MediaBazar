@@ -10,10 +10,10 @@ namespace MediaBazar.BusinessLogic.Classes
 	{
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
-		public string Reason { get; set; }
+		public string? Reason { get; set; }
 		public bool IsScheduled { get; set; }
 
-		public SickLeave(DateTime startDate, DateTime endDate, string reason, bool isScheduled)
+		public SickLeave(DateTime startDate, DateTime endDate, string? reason, bool isScheduled)
 		{
 			StartDate = startDate;
 			EndDate = endDate;

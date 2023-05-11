@@ -1,6 +1,7 @@
 ﻿using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
 using System.Data.SqlClient;
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 
 namespace MediaBazar.DataAccess.Database
 {
@@ -186,7 +187,25 @@ namespace MediaBazar.DataAccess.Database
                             }
                         }
 
-                        Employee employee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), daysOff, age, shifts, sickLeaves);
+                        List<ShiftPreference> shiftPreferences = new List<ShiftPreference>();
+                        SqlCommand shiftPreferenceCommand = new SqlCommand("Select Year, Month, Preference\r\nFrom ShiftPreferences2\r\nwhere BSN = @BSN", connection);
+                        shiftPreferenceCommand.Parameters.AddWithValue("@BSN", bsn);
+
+                        using (SqlDataReader shiftPreferenceReader = shiftPreferenceCommand.ExecuteReader())
+                        {
+                            while (shiftPreferenceReader.Read())
+                            {
+                                int year = (int)shiftPreferenceReader["Year"];
+                                int month = (int)shiftPreferenceReader["Month"];
+                                ShiftTypes preference = (ShiftTypes)Enum.ToObject(typeof(ShiftTypes), (int)shiftPreferenceReader["Preference"]);
+
+                                shiftPreferences.Add(new ShiftPreference(year, month, preference));
+                            }
+                        }
+
+                        Employee employee = new Employee(firstName, lastName, bsn, telNumber, address,
+                                                        contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage),
+                                                        daysOff, age, shifts, sickLeaves, shiftPreferences); 
                         employees.Add(employee);
                     }
                 }
@@ -253,6 +272,108 @@ namespace MediaBazar.DataAccess.Database
 
                     connection.Open();
                     command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateEmployeeFirstName(Employee emp, string newFirstName)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Employee2 SET FirstName = @NewFirstName\r\nWhere BSN = @BSN";
+
+                using (SqlCommand updateFirstNameCommand= new SqlCommand(query, connection))
+                {
+                    updateFirstNameCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    updateFirstNameCommand.Parameters.AddWithValue("@NewFirstName", newFirstName);
+
+                    connection.Open();
+                    updateFirstNameCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateEmployeeLastName(Employee emp, string newLastName)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Employee2 SET LastName = @NewLastName\r\nWhere BSN = @BSN";
+
+                using (SqlCommand updateFirstNameCommand = new SqlCommand(query, connection))
+                {
+                    updateFirstNameCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    updateFirstNameCommand.Parameters.AddWithValue("@NewLastName", newLastName);
+
+                    connection.Open();
+                    updateFirstNameCommand.ExecuteNonQuery();
+                }
+            }
+        }
+        public void UpdateEmployeeTelNumber(Employee emp, string newTelNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Employee2 SET TelNumber = @NewTelNumber\r\nWhere BSN = @BSN";
+
+                using (SqlCommand updateFirstNameCommand = new SqlCommand(query, connection))
+                {
+                    updateFirstNameCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    updateFirstNameCommand.Parameters.AddWithValue("@NewTelNumber", newTelNumber);
+
+                    connection.Open();
+                    updateFirstNameCommand.ExecuteNonQuery();
+                }
+            }
+        }
+        public void UpdateEmployeeAddress(Employee emp, string newAddress)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Employee2 SET Address = @NewAddress\r\nWhere BSN = @BSN";
+
+                using (SqlCommand updateFirstNameCommand = new SqlCommand(query, connection))
+                {
+                    updateFirstNameCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    updateFirstNameCommand.Parameters.AddWithValue("@NewAddress", newAddress);
+
+                    connection.Open();
+                    updateFirstNameCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public void AddShiftPreference(Employee emp, ShiftPreference preference)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = "SELECT COUNT(*) FROM ShiftPreferences2 WHERE BSN = @BSN AND Year = @Year AND Month = @Month";
+
+                using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    selectCommand.Parameters.AddWithValue("@Year", preference.Year);
+                    selectCommand.Parameters.AddWithValue("@Month", preference.Month);
+
+                    connection.Open();
+                    int count = (int)selectCommand.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        throw new Exception($"A shift preference for this month already exists. It's set to {preference.Preference}");
+                    }
+                }
+
+                string insertQuery = "INSERT INTO ShiftPreferences2(BSN, Year, Month, Preference) VALUES(@BSN, @Year, @Month, @Preference)";
+
+                using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("@BSN", emp.BSN);
+                    insertCommand.Parameters.AddWithValue("@Year", preference.Year);
+                    insertCommand.Parameters.AddWithValue("@Month", preference.Month);
+                    insertCommand.Parameters.AddWithValue("@Preference", (int)preference.Preference);
+
+                    insertCommand.ExecuteNonQuery();
                 }
             }
         }

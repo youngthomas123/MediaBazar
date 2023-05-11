@@ -51,18 +51,77 @@ namespace S2GroupProject.Forms
 		private int workingHoursPerWeek;
 		private void AddEmployee_Click(object sender, EventArgs e)
         {
-			string firstName = firstNameTb.Text;
-            string lastName = lastNameTb.Text;
-            int bsn = int.Parse(bsnTb.Text);
-            string telNubmer = telNumberTb.Text;
-            string address = addressTb.Text;
-            ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
-			int workingHours = workingHoursPerWeek;
-			JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
-            double wage = double.Parse(wageTb.Text);
-            int age = int.Parse(ageTb.Text);
-            List<DayOfWeek> daysOff = new List<DayOfWeek>();
+            string firstName = firstNameTb.Text;
+            if (string.IsNullOrEmpty(firstName))
+            {
+                MessageBox.Show("First name cannot be empty.");
+                return;
+            }
 
+            string lastName = lastNameTb.Text;
+            if (string.IsNullOrEmpty(lastName))
+            {
+                MessageBox.Show("Last name cannot be empty.");
+                return;
+            }
+
+            int bsn;
+            if (!int.TryParse(bsnTb.Text, out bsn))
+            {
+                MessageBox.Show("Invalid BSN. Please enter a valid integer.");
+                return;
+            }
+
+            string telNumber = telNumberTb.Text;
+            if (string.IsNullOrEmpty(telNumber))
+            {
+                MessageBox.Show("Telephone number cannot be empty.");
+                return;
+            }
+
+            string address = addressTb.Text;
+            if (string.IsNullOrEmpty(address))
+            {
+                MessageBox.Show("Address cannot be empty.");
+                return;
+            }
+
+            ContractTypes contractType = (ContractTypes)contractCb.SelectedItem;
+            if (contractType == null)
+            {
+                MessageBox.Show("Please select a contract type.");
+                return;
+            }
+
+            int workingHours;
+            if (!int.TryParse(hoursPerWeekTb.Text, out workingHours))
+            {
+                MessageBox.Show("Invalid working hours per week. Please enter a valid integer.");
+                return;
+            }
+
+            JobPositions jobPosition = (JobPositions)jobPositionCb.SelectedItem;
+            if (jobPosition == null)
+            {
+                MessageBox.Show("Please select a job position.");
+                return;
+            }
+
+            double wage;
+            if (!double.TryParse(wageTb.Text, out wage))
+            {
+                MessageBox.Show("Invalid wage. Please enter a valid decimal number.");
+                return;
+            }
+
+            int age;
+            if (!int.TryParse(ageTb.Text, out age))
+            {
+                MessageBox.Show("Invalid age. Please enter a valid integer.");
+                return;
+            }
+
+            List<DayOfWeek> daysOff = new List<DayOfWeek>();
             foreach (var checkedItem in daysOffClb.CheckedItems)
             {
                 DayOfWeek day;
@@ -70,10 +129,9 @@ namespace S2GroupProject.Forms
                 {
                     daysOff.Add(day);
                 }
-
             }
 
-            _employeeContainer.AddEmployee(firstName, lastName, bsn, telNubmer, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>(), new List<SickLeave>());
+            _employeeContainer.AddEmployee(firstName, lastName, bsn, telNumber, address, contractType, workingHoursPerWeek, jobPosition, wage, daysOff, age, new List<Shift>(), new List<SickLeave>(), new List<ShiftPreference>());
             this.Close();
         }
 
