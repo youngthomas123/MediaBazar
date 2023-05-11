@@ -29,6 +29,8 @@ namespace S2GroupProject
             services.AddTransient<IItemDataAccess, ItemDB>();
             services.AddTransient<IEmployeeContainer, EmployeeContainer>();
             services.AddTransient<IItemContainer, ItemContainer>();
+            services.AddTransient<IWarehouseDataAccess, WarehouseDB>();
+            services.AddTransient<IWarehouseContainer, WarehouseContainer>();
 
             //regestring services for forms
             services.AddTransient<MainPage>();
@@ -38,6 +40,7 @@ namespace S2GroupProject
             services.AddTransient<EmployeeUC>();
             services.AddTransient<Days>();
             services.AddTransient<CalendarDay>();
+            services.AddTransient<CreateWarehousePopUp>();
 
 
             var serviceProvider = services.BuildServiceProvider();

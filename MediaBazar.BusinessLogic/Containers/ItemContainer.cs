@@ -65,6 +65,11 @@ namespace MediaBazar.BusinessLogic.Containers
             throw new Exception("Item not found");
         }
 
+        public Item GetItemById(Guid itemId)
+        {
+            return _itemDataAccess.GetItemById(itemId);
+        }
+
         public List<Item> GetItems()
         {
             return items;

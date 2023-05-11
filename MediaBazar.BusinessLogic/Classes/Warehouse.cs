@@ -22,6 +22,11 @@ namespace MediaBazar.BusinessLogic.Classes
         public List<Item> Items { get; set; }
         public List<Employee> Warehouseemployees { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Name} | {Address}";
+        }
+
 
         //public void AddItems(Item item)
         //{
