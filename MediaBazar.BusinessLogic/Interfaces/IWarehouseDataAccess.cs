@@ -11,8 +11,10 @@ namespace MediaBazar.BusinessLogic.Interfaces
     {
         void AddWarehouse(Warehouse warehouse);
         void AssignEmployeeToWarehouse(Guid employeeId, Guid warehouseId);
+        void AssignItemToWarehouse(Guid itemId, Guid warehouseId);
         void DeleteWarehouse(string name);
         List<Warehouse> LoadWarehouse();
         List<Item> LoadWarehouseItems(Guid warehouseId);
+        Warehouse GetWarehouseByName(string name);
     }
 }

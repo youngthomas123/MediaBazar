@@ -9,9 +9,9 @@ namespace MediaBazar.BusinessLogic.Classes
     public class Warehouse
     {
 
-        public Warehouse(string name, string address) 
+        public Warehouse(Guid id,string name, string address) 
         {
-            if (Id == Guid.Empty) Id = Guid.NewGuid();
+            Id = id;
             Name = name;
             Address = address;
         }

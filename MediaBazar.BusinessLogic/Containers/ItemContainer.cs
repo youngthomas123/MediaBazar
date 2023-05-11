@@ -24,21 +24,21 @@ namespace MediaBazar.BusinessLogic.Containers
              _itemDataAccess.AddItem(item);
         }
 
-        public void AddItem(string name, string description, string category)
-        {
-            bool ItemExists = ItemAlreadyExists(name, description);
-            if (ItemExists == false)
-            {
-                Item newItem = new Item(name, description, category);
-                items.Add(newItem);
+        //public void AddItem(string name, string description, string category)
+        //{
+        //    bool ItemExists = ItemAlreadyExists(name, description);
+        //    if (ItemExists == false)
+        //    {
+        //        Item newItem = new Item(name, description, category);
+        //        items.Add(newItem);
                 
-            }
+        //    }
             
-        }
+        //}
 
-        public void DeleteItem(string name)
+        public void DeleteItem(Item item)
         {
-            _itemDataAccess.DeleteItem(name);
+            _itemDataAccess.DeleteItem(item);
         }
 
         public Item GetItem(string name, string description)
@@ -99,5 +99,10 @@ namespace MediaBazar.BusinessLogic.Containers
         {
             items.Remove(item);
         }
-    }
+
+		public void UpdateItem(Guid itemId, string name, string description, int quantity)
+		{
+			_itemDataAccess.UpdateItem(itemId, name, description, quantity);
+		}
+	}
 }

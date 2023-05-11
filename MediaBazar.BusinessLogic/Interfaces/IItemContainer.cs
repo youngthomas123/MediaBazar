@@ -11,14 +11,14 @@ namespace MediaBazar.BusinessLogic.Interfaces
     {
         void AddItem(Item item);
 
-        void DeleteItem(string name);
+        void DeleteItem(Item item);
 
         List<Item> LoadItem();
 
 
         // management
 
-        void AddItem(string name, string description, string category);
+        //void AddItem(string name, string description, string category);
 
         Item GetItem(string name, string description);
 
@@ -31,5 +31,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
         void RemoveItem(Item item);
 
         List<Item> GetItems();
-    }
+
+        void UpdateItem(Guid itemId, string name, string description, int quantity);
+
+	}
 }

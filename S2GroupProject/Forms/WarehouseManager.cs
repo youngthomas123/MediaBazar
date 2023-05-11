@@ -26,7 +26,6 @@ namespace S2GroupProject.Forms
 		List<Employee> employees = new List<Employee>();
         List<Warehouse> warehouses = new List<Warehouse>();
 
-		public Warehouse warehouse = new Warehouse("Warehouse 1", "street 1");
         public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
         {
             _serviceProvider = serviceProvider;
@@ -157,19 +156,19 @@ namespace S2GroupProject.Forms
         {
             try
             {
-                ItemListBox.Items.Clear();
-                string searchedItemName = textBox1.Text;
-                foreach (Item item in warehouse.GetItems())
+				ItemListBox.Items.Clear();
+				items = _itemContainer.LoadItem();
+				string searchedItemName = textBox1.Text;
+                foreach (Item item in items)
                 {
                     if (searchedItemName == item.Name)
                     {
                         ItemListBox.Items.Add(item);
-
                     }
                 }
             }
             catch (NotImplementedException) { MessageBox.Show("Item not found"); }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -181,7 +180,7 @@ namespace S2GroupProject.Forms
                     Item item = (Item)ItemListBox.SelectedItem;
                     string newName = textBox8.Text.Trim();
                     string newDescription = textBox7.Text.Trim();
-                    string newQuantity = textBox6.Text.Trim();
+                    int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
 
                     // Validate the user input
                     if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription))
@@ -191,9 +190,8 @@ namespace S2GroupProject.Forms
                     else
                     {
                         // Update the item properties
-                        item.Name = newName;
-                        item.Description = newDescription;
-                        item.Category = newQuantity;
+                        _itemContainer.UpdateItem(item.Id, newName, newDescription, newQuantity);
+                        RefreshData();
                         MessageBox.Show("Item updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -212,9 +210,10 @@ namespace S2GroupProject.Forms
         {
             string name = textBox2.Text;
             string description = textBox3.Text;
+            int quantity = Convert.ToInt32(quantityTB.Text);
             string category = textBox4.Text;
 
-            Item item = new Item(name, description, category);
+            Item item = new Item(Guid.NewGuid(), name, description, quantity, category);
             _itemContainer.AddItem(item);
             RefreshData();
 
@@ -240,12 +239,63 @@ namespace S2GroupProject.Forms
 
         private void AssignItemBTN_Click(object sender, EventArgs e)
         {
-
+            string warehouseName = nameOfWarehouseTB.Text;
+            Item selectedItem = (Item)ItemListBox.SelectedItem;
+            Warehouse selectedWarehouse = _warehouseContainer.GetWarehouseByName(warehouseName);
+            if (selectedItem != null && selectedWarehouse != null)
+            {
+                _warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
+                MessageBox.Show("Item was added successfully");
+            }
+            else
+            { MessageBox.Show("Item or Warehouse is null"); }
         }
 
         private void ViewDataBTN_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"The number of items in the warehouse");
+            Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
+            if(selectedWarehouse != null )
+            {
+                warehouseListbox.Items.Clear();
+                List<Item> warehouseItems = _warehouseContainer.LoadWarehouseItems(selectedWarehouse.Id);
+
+                foreach(Item item in warehouseItems)
+                {
+                    warehouseListbox.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select a warehouse first");
+            }
         }
-    }
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+            Item selectedItem = (Item)listBox1.SelectedItem;
+            if (selectedItem != null)
+            {
+                _itemContainer.DeleteItem(selectedItem);
+                RefreshData();
+            }
+		}
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				ItemListBox.Items.Clear();
+				items = _itemContainer.LoadItem();
+				string searchedItemName = textBox5.Text;
+				foreach (Item item in items)
+				{
+					if (searchedItemName == item.Name)
+					{
+						ItemListBox.Items.Add(item);
+					}
+				}
+			}
+			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
+		}
+	}
 }

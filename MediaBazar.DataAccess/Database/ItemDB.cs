@@ -41,13 +41,14 @@ namespace MediaBazar.DataAccess.Database
             conn.Close();
         }
 
-        public void DeleteItem(string name)
+        public void DeleteItem(Item item)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string DeleateItem = $"delete from Item where Name = '{name}' ";
+            string DeleateItem = $"delete from Items where Name = @Name ";
 
             SqlCommand cmd = new SqlCommand(DeleateItem, conn);
+            cmd.Parameters.AddWithValue("@Name", item.Name);
             cmd.ExecuteNonQuery();
 
             conn.Close();
@@ -68,7 +69,7 @@ namespace MediaBazar.DataAccess.Database
 
             while (dr.Read())
             {
-                Item item = new Item((string)dr[1], (string)dr[2], (string)dr[3]);
+                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (string)dr[3]);
                 LoadedItems.Add(item);
             }
             dr.Close();
@@ -92,9 +93,9 @@ namespace MediaBazar.DataAccess.Database
                     string name = (string)reader[1];
                     string description = (string)reader[2];
                     string category = (string)reader[3];
+                    int quantity = (int)reader[4];
 
-                    Item foundItem = new Item(name, description, category);
-                    foundItem.Id = itemId;
+                    Item foundItem = new Item(itemId, name, description, quantity, category);
 
                     return foundItem;
                 }
@@ -105,6 +106,27 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
+        public void UpdateItem(Guid itemId, string name, string description, int quantity)
+        {
+            if(itemId != Guid.Empty)
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                conn.Open();
+                string sql = "UPDATE Items " +
+                    "SET Name = @Name, Description = @Description, Quantity = @Quantity " +
+                    "WHERE Item_ID = @Item_ID";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
+                cmd.Parameters.AddWithValue("@Item_ID", itemId);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
+        }
 
 
         public void LoadDataIntoColumns(string ChartData)
