@@ -77,6 +77,35 @@ namespace MediaBazar.DataAccess.Database
             return LoadedItems;
         }
 
+        public Item GetItemById(Guid itemId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            string sql = "SELECT * FROM Items WHERE Item_ID = @Item_ID";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Item_ID", itemId);
+
+            using(SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string name = (string)reader[1];
+                    string description = (string)reader[2];
+                    string category = (string)reader[3];
+
+                    Item foundItem = new Item(name, description, category);
+                    foundItem.Id = itemId;
+
+                    return foundItem;
+                }
+                else
+                {
+                    throw new Exception("Item not found");
+                }
+            }
+        }
+
+
 
         public void LoadDataIntoColumns(string ChartData)
         {

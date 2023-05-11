@@ -15,6 +15,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         List<Item> LoadItem();
 
+        Item GetItemById(Guid itemId);
+
 
 
     }

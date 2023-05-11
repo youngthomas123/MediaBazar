@@ -38,9 +38,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.WarehouseOverview = new System.Windows.Forms.TabPage();
+            this.ShopRequests = new System.Windows.Forms.ListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Restock = new System.Windows.Forms.Button();
+            this.ViewDataBTN = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.RefreshDataBTN = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.warehouseListbox = new System.Windows.Forms.ListBox();
             this.ItemOverview = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.AssignItemBTN = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nameOfWarehouseTB = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -75,7 +86,9 @@
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.WarehouseOverview.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.ItemOverview.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.CreateItems.SuspendLayout();
             this.DeleteItems.SuspendLayout();
@@ -91,19 +104,17 @@
             this.panel1.Controls.Add(this.ItemOverviewRBT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(316, 493);
+            this.panel1.Size = new System.Drawing.Size(451, 822);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // WarehouseEmployeeRBT
             // 
             this.WarehouseEmployeeRBT.Appearance = System.Windows.Forms.Appearance.Button;
-            this.WarehouseEmployeeRBT.Location = new System.Drawing.Point(-1, 236);
-            this.WarehouseEmployeeRBT.Margin = new System.Windows.Forms.Padding(2);
+            this.WarehouseEmployeeRBT.Location = new System.Drawing.Point(-1, 393);
             this.WarehouseEmployeeRBT.Name = "WarehouseEmployeeRBT";
-            this.WarehouseEmployeeRBT.Size = new System.Drawing.Size(316, 47);
+            this.WarehouseEmployeeRBT.Size = new System.Drawing.Size(451, 78);
             this.WarehouseEmployeeRBT.TabIndex = 5;
             this.WarehouseEmployeeRBT.Text = "Warehouse Employees";
             this.WarehouseEmployeeRBT.UseVisualStyleBackColor = true;
@@ -112,10 +123,9 @@
             // radioButton1
             // 
             this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton1.Location = new System.Drawing.Point(-1, 59);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton1.Location = new System.Drawing.Point(-1, 98);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(316, 47);
+            this.radioButton1.Size = new System.Drawing.Size(451, 78);
             this.radioButton1.TabIndex = 4;
             this.radioButton1.Text = "Warehouse Overview";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -124,10 +134,9 @@
             // DeleteItemsRBT
             // 
             this.DeleteItemsRBT.Appearance = System.Windows.Forms.Appearance.Button;
-            this.DeleteItemsRBT.Location = new System.Drawing.Point(-1, 146);
-            this.DeleteItemsRBT.Margin = new System.Windows.Forms.Padding(2);
+            this.DeleteItemsRBT.Location = new System.Drawing.Point(-1, 243);
             this.DeleteItemsRBT.Name = "DeleteItemsRBT";
-            this.DeleteItemsRBT.Size = new System.Drawing.Size(316, 47);
+            this.DeleteItemsRBT.Size = new System.Drawing.Size(451, 78);
             this.DeleteItemsRBT.TabIndex = 2;
             this.DeleteItemsRBT.Text = "Delete Items";
             this.DeleteItemsRBT.UseVisualStyleBackColor = true;
@@ -136,10 +145,9 @@
             // CreateItemsRBT
             // 
             this.CreateItemsRBT.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CreateItemsRBT.Location = new System.Drawing.Point(0, 191);
-            this.CreateItemsRBT.Margin = new System.Windows.Forms.Padding(2);
+            this.CreateItemsRBT.Location = new System.Drawing.Point(0, 318);
             this.CreateItemsRBT.Name = "CreateItemsRBT";
-            this.CreateItemsRBT.Size = new System.Drawing.Size(316, 47);
+            this.CreateItemsRBT.Size = new System.Drawing.Size(451, 78);
             this.CreateItemsRBT.TabIndex = 1;
             this.CreateItemsRBT.Text = "Create Items";
             this.CreateItemsRBT.UseVisualStyleBackColor = true;
@@ -149,10 +157,9 @@
             // 
             this.ItemOverviewRBT.Appearance = System.Windows.Forms.Appearance.Button;
             this.ItemOverviewRBT.Checked = true;
-            this.ItemOverviewRBT.Location = new System.Drawing.Point(0, 103);
-            this.ItemOverviewRBT.Margin = new System.Windows.Forms.Padding(2);
+            this.ItemOverviewRBT.Location = new System.Drawing.Point(0, 172);
             this.ItemOverviewRBT.Name = "ItemOverviewRBT";
-            this.ItemOverviewRBT.Size = new System.Drawing.Size(316, 47);
+            this.ItemOverviewRBT.Size = new System.Drawing.Size(451, 78);
             this.ItemOverviewRBT.TabIndex = 0;
             this.ItemOverviewRBT.TabStop = true;
             this.ItemOverviewRBT.Text = "Items Overview";
@@ -163,10 +170,9 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Desktop;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(-1, 1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(-1, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(317, 56);
+            this.panel2.Size = new System.Drawing.Size(453, 93);
             this.panel2.TabIndex = 1;
             // 
             // label1
@@ -175,9 +181,8 @@
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(317, 56);
+            this.label1.Size = new System.Drawing.Size(453, 93);
             this.label1.TabIndex = 1;
             this.label1.Text = "Dashboard";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -189,49 +194,118 @@
             this.tabControl1.Controls.Add(this.CreateItems);
             this.tabControl1.Controls.Add(this.DeleteItems);
             this.tabControl1.Controls.Add(this.WarehouseEmployees);
-            this.tabControl1.Location = new System.Drawing.Point(319, 3);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.Location = new System.Drawing.Point(456, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(730, 491);
+            this.tabControl1.Size = new System.Drawing.Size(1043, 818);
             this.tabControl1.TabIndex = 2;
             // 
             // WarehouseOverview
             // 
+            this.WarehouseOverview.Controls.Add(this.ShopRequests);
+            this.WarehouseOverview.Controls.Add(this.groupBox2);
+            this.WarehouseOverview.Controls.Add(this.ViewDataBTN);
+            this.WarehouseOverview.Controls.Add(this.label11);
+            this.WarehouseOverview.Controls.Add(this.RefreshDataBTN);
             this.WarehouseOverview.Controls.Add(this.Add);
             this.WarehouseOverview.Controls.Add(this.warehouseListbox);
-            this.WarehouseOverview.Location = new System.Drawing.Point(4, 24);
-            this.WarehouseOverview.Margin = new System.Windows.Forms.Padding(2);
+            this.WarehouseOverview.Location = new System.Drawing.Point(4, 34);
             this.WarehouseOverview.Name = "WarehouseOverview";
-            this.WarehouseOverview.Size = new System.Drawing.Size(722, 463);
+            this.WarehouseOverview.Size = new System.Drawing.Size(1035, 780);
             this.WarehouseOverview.TabIndex = 4;
             this.WarehouseOverview.Text = "WarehouseOverview";
             this.WarehouseOverview.UseVisualStyleBackColor = true;
             // 
+            // ShopRequests
+            // 
+            this.ShopRequests.FormattingEnabled = true;
+            this.ShopRequests.ItemHeight = 25;
+            this.ShopRequests.Location = new System.Drawing.Point(424, 442);
+            this.ShopRequests.Name = "ShopRequests";
+            this.ShopRequests.Size = new System.Drawing.Size(605, 329);
+            this.ShopRequests.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.Restock);
+            this.groupBox2.Location = new System.Drawing.Point(3, 442);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(415, 223);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Manage and restock";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 34);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(230, 34);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Send requested items";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // Restock
+            // 
+            this.Restock.Location = new System.Drawing.Point(17, 93);
+            this.Restock.Name = "Restock";
+            this.Restock.Size = new System.Drawing.Size(126, 34);
+            this.Restock.TabIndex = 0;
+            this.Restock.Text = "Restock Item";
+            this.Restock.UseVisualStyleBackColor = true;
+            // 
+            // ViewDataBTN
+            // 
+            this.ViewDataBTN.Location = new System.Drawing.Point(103, 61);
+            this.ViewDataBTN.Name = "ViewDataBTN";
+            this.ViewDataBTN.Size = new System.Drawing.Size(192, 34);
+            this.ViewDataBTN.TabIndex = 8;
+            this.ViewDataBTN.Text = "View Data";
+            this.ViewDataBTN.UseVisualStyleBackColor = true;
+            this.ViewDataBTN.Click += new System.EventHandler(this.ViewDataBTN_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(45, 33);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(336, 25);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Select a warehouse and press \'View Data\'";
+            // 
+            // RefreshDataBTN
+            // 
+            this.RefreshDataBTN.Location = new System.Drawing.Point(424, 362);
+            this.RefreshDataBTN.Name = "RefreshDataBTN";
+            this.RefreshDataBTN.Size = new System.Drawing.Size(192, 34);
+            this.RefreshDataBTN.TabIndex = 6;
+            this.RefreshDataBTN.Text = "Refresh Data";
+            this.RefreshDataBTN.UseVisualStyleBackColor = true;
+            this.RefreshDataBTN.Click += new System.EventHandler(this.RefreshDataBTN_Click);
+            // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(668, 429);
-            this.Add.Margin = new System.Windows.Forms.Padding(2);
+            this.Add.Location = new System.Drawing.Point(992, 362);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(52, 32);
+            this.Add.Size = new System.Drawing.Size(37, 34);
             this.Add.TabIndex = 3;
-            this.Add.Text = "Add";
+            this.Add.Text = "+";
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // warehouseListbox
             // 
             this.warehouseListbox.FormattingEnabled = true;
-            this.warehouseListbox.ItemHeight = 15;
-            this.warehouseListbox.Location = new System.Drawing.Point(297, 1);
-            this.warehouseListbox.Margin = new System.Windows.Forms.Padding(2);
+            this.warehouseListbox.ItemHeight = 25;
+            this.warehouseListbox.Location = new System.Drawing.Point(424, 2);
             this.warehouseListbox.Name = "warehouseListbox";
-            this.warehouseListbox.Size = new System.Drawing.Size(429, 424);
+            this.warehouseListbox.Size = new System.Drawing.Size(611, 354);
             this.warehouseListbox.TabIndex = 2;
             this.warehouseListbox.SelectedIndexChanged += new System.EventHandler(this.warehouseListbox_SelectedIndexChanged);
             // 
             // ItemOverview
             // 
+            this.ItemOverview.Controls.Add(this.groupBox3);
             this.ItemOverview.Controls.Add(this.groupBox1);
             this.ItemOverview.Controls.Add(this.label7);
             this.ItemOverview.Controls.Add(this.SearchItembyName);
@@ -239,14 +313,51 @@
             this.ItemOverview.Controls.Add(this.label2);
             this.ItemOverview.Controls.Add(this.ItemListBox);
             this.ItemOverview.Controls.Add(this.ShowAllItems);
-            this.ItemOverview.Location = new System.Drawing.Point(4, 24);
-            this.ItemOverview.Margin = new System.Windows.Forms.Padding(2);
+            this.ItemOverview.Location = new System.Drawing.Point(4, 34);
             this.ItemOverview.Name = "ItemOverview";
-            this.ItemOverview.Padding = new System.Windows.Forms.Padding(2);
-            this.ItemOverview.Size = new System.Drawing.Size(722, 463);
+            this.ItemOverview.Padding = new System.Windows.Forms.Padding(3);
+            this.ItemOverview.Size = new System.Drawing.Size(1035, 780);
             this.ItemOverview.TabIndex = 0;
             this.ItemOverview.Text = "ItemOverview";
             this.ItemOverview.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.AssignItemBTN);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.nameOfWarehouseTB);
+            this.groupBox3.Location = new System.Drawing.Point(10, 571);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(409, 195);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Assign Item to warehouse";
+            // 
+            // AssignItemBTN
+            // 
+            this.AssignItemBTN.Location = new System.Drawing.Point(7, 122);
+            this.AssignItemBTN.Name = "AssignItemBTN";
+            this.AssignItemBTN.Size = new System.Drawing.Size(393, 44);
+            this.AssignItemBTN.TabIndex = 15;
+            this.AssignItemBTN.Text = "Assign selected item to warehouse";
+            this.AssignItemBTN.UseVisualStyleBackColor = true;
+            this.AssignItemBTN.Click += new System.EventHandler(this.AssignItemBTN_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(274, 25);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "input the name of the warehouse";
+            // 
+            // nameOfWarehouseTB
+            // 
+            this.nameOfWarehouseTB.Location = new System.Drawing.Point(7, 74);
+            this.nameOfWarehouseTB.Name = "nameOfWarehouseTB";
+            this.nameOfWarehouseTB.Size = new System.Drawing.Size(393, 31);
+            this.nameOfWarehouseTB.TabIndex = 13;
             // 
             // groupBox1
             // 
@@ -257,18 +368,21 @@
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.textBox7);
             this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Location = new System.Drawing.Point(7, 150);
+            this.groupBox1.Location = new System.Drawing.Point(10, 250);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 184);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(409, 307);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Update Items";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(82, 144);
+            this.button1.Location = new System.Drawing.Point(140, 236);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 25);
+            this.button1.Size = new System.Drawing.Size(113, 42);
             this.button1.TabIndex = 12;
             this.button1.Text = "Update";
             this.button1.UseVisualStyleBackColor = true;
@@ -277,73 +391,65 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 110);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(7, 183);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 15);
+            this.label8.Size = new System.Drawing.Size(80, 25);
             this.label8.TabIndex = 11;
             this.label8.Text = "Quantity";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 73);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(7, 122);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 15);
+            this.label9.Size = new System.Drawing.Size(102, 25);
             this.label9.TabIndex = 10;
             this.label9.Text = "Description";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(5, 41);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(7, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 15);
+            this.label10.Size = new System.Drawing.Size(59, 25);
             this.label10.TabIndex = 9;
             this.label10.Text = "Name";
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(82, 107);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Location = new System.Drawing.Point(117, 178);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(199, 23);
+            this.textBox6.Size = new System.Drawing.Size(283, 31);
             this.textBox6.TabIndex = 8;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(82, 70);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox7.Location = new System.Drawing.Point(117, 117);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(199, 23);
+            this.textBox7.Size = new System.Drawing.Size(283, 31);
             this.textBox7.TabIndex = 7;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(82, 38);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox8.Location = new System.Drawing.Point(117, 63);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(199, 23);
+            this.textBox8.Size = new System.Drawing.Size(283, 31);
             this.textBox8.TabIndex = 6;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 110);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(17, 183);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 15);
+            this.label7.Size = new System.Drawing.Size(156, 25);
             this.label7.TabIndex = 5;
             this.label7.Text = "Number of items: ";
             // 
             // SearchItembyName
             // 
-            this.SearchItembyName.Location = new System.Drawing.Point(206, 15);
-            this.SearchItembyName.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchItembyName.Location = new System.Drawing.Point(294, 25);
             this.SearchItembyName.Name = "SearchItembyName";
-            this.SearchItembyName.Size = new System.Drawing.Size(93, 28);
+            this.SearchItembyName.Size = new System.Drawing.Size(133, 47);
             this.SearchItembyName.TabIndex = 4;
             this.SearchItembyName.Text = "Search";
             this.SearchItembyName.UseVisualStyleBackColor = true;
@@ -351,38 +457,34 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(2, 20);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(3, 33);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
+            this.textBox1.Size = new System.Drawing.Size(284, 31);
             this.textBox1.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 3);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(59, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 15);
+            this.label2.Size = new System.Drawing.Size(178, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Search item by name";
             // 
             // ItemListBox
             // 
             this.ItemListBox.FormattingEnabled = true;
-            this.ItemListBox.ItemHeight = 15;
-            this.ItemListBox.Location = new System.Drawing.Point(302, 1);
-            this.ItemListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ItemListBox.ItemHeight = 25;
+            this.ItemListBox.Location = new System.Drawing.Point(431, 2);
             this.ItemListBox.Name = "ItemListBox";
-            this.ItemListBox.Size = new System.Drawing.Size(426, 469);
+            this.ItemListBox.Size = new System.Drawing.Size(607, 779);
             this.ItemListBox.TabIndex = 1;
             // 
             // ShowAllItems
             // 
-            this.ShowAllItems.Location = new System.Drawing.Point(0, 52);
-            this.ShowAllItems.Margin = new System.Windows.Forms.Padding(2);
+            this.ShowAllItems.Location = new System.Drawing.Point(0, 87);
             this.ShowAllItems.Name = "ShowAllItems";
-            this.ShowAllItems.Size = new System.Drawing.Size(302, 37);
+            this.ShowAllItems.Size = new System.Drawing.Size(431, 62);
             this.ShowAllItems.TabIndex = 0;
             this.ShowAllItems.Text = "Show all items";
             this.ShowAllItems.UseVisualStyleBackColor = true;
@@ -397,21 +499,19 @@
             this.CreateItems.Controls.Add(this.label5);
             this.CreateItems.Controls.Add(this.label4);
             this.CreateItems.Controls.Add(this.label3);
-            this.CreateItems.Location = new System.Drawing.Point(4, 24);
-            this.CreateItems.Margin = new System.Windows.Forms.Padding(2);
+            this.CreateItems.Location = new System.Drawing.Point(4, 34);
             this.CreateItems.Name = "CreateItems";
-            this.CreateItems.Padding = new System.Windows.Forms.Padding(2);
-            this.CreateItems.Size = new System.Drawing.Size(722, 463);
+            this.CreateItems.Padding = new System.Windows.Forms.Padding(3);
+            this.CreateItems.Size = new System.Drawing.Size(1035, 780);
             this.CreateItems.TabIndex = 1;
             this.CreateItems.Text = "CreateItems";
             this.CreateItems.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(28, 134);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(40, 223);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(318, 25);
+            this.button3.Size = new System.Drawing.Size(454, 42);
             this.button3.TabIndex = 6;
             this.button3.Text = "Create item";
             this.button3.UseVisualStyleBackColor = true;
@@ -419,55 +519,49 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(148, 98);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox4.Location = new System.Drawing.Point(211, 163);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(199, 23);
+            this.textBox4.Size = new System.Drawing.Size(283, 31);
             this.textBox4.TabIndex = 5;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(148, 61);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Location = new System.Drawing.Point(211, 102);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(199, 23);
+            this.textBox3.Size = new System.Drawing.Size(283, 31);
             this.textBox3.TabIndex = 4;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(148, 29);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Location = new System.Drawing.Point(211, 48);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(199, 23);
+            this.textBox2.Size = new System.Drawing.Size(283, 31);
             this.textBox2.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 101);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(40, 168);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 15);
+            this.label5.Size = new System.Drawing.Size(84, 25);
             this.label5.TabIndex = 2;
             this.label5.Text = "Category";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 65);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(40, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
+            this.label4.Size = new System.Drawing.Size(102, 25);
             this.label4.TabIndex = 1;
             this.label4.Text = "Description";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 33);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(40, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 15);
+            this.label3.Size = new System.Drawing.Size(151, 25);
             this.label3.TabIndex = 0;
             this.label3.Text = "Name of the item";
             // 
@@ -478,71 +572,64 @@
             this.DeleteItems.Controls.Add(this.textBox5);
             this.DeleteItems.Controls.Add(this.label6);
             this.DeleteItems.Controls.Add(this.listBox1);
-            this.DeleteItems.Location = new System.Drawing.Point(4, 24);
-            this.DeleteItems.Margin = new System.Windows.Forms.Padding(2);
+            this.DeleteItems.Location = new System.Drawing.Point(4, 34);
             this.DeleteItems.Name = "DeleteItems";
-            this.DeleteItems.Padding = new System.Windows.Forms.Padding(2);
-            this.DeleteItems.Size = new System.Drawing.Size(722, 463);
+            this.DeleteItems.Padding = new System.Windows.Forms.Padding(3);
+            this.DeleteItems.Size = new System.Drawing.Size(1035, 780);
             this.DeleteItems.TabIndex = 2;
             this.DeleteItems.Text = "DeleteItems";
             this.DeleteItems.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(0, 62);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(0, 103);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(302, 37);
+            this.button5.Size = new System.Drawing.Size(431, 62);
             this.button5.TabIndex = 6;
             this.button5.Text = "Delete selected item";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(207, 33);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Location = new System.Drawing.Point(296, 55);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 20);
+            this.button4.Size = new System.Drawing.Size(133, 33);
             this.button4.TabIndex = 5;
             this.button4.Text = "Search";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(4, 33);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox5.Location = new System.Drawing.Point(6, 55);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(200, 23);
+            this.textBox5.Size = new System.Drawing.Size(284, 31);
             this.textBox5.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(111, 10);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(159, 17);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 15);
+            this.label6.Size = new System.Drawing.Size(104, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Search item";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(302, 0);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(431, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(426, 469);
+            this.listBox1.Size = new System.Drawing.Size(607, 779);
             this.listBox1.TabIndex = 2;
             // 
             // WarehouseEmployees
             // 
             this.WarehouseEmployees.Controls.Add(this.employeeList);
-            this.WarehouseEmployees.Location = new System.Drawing.Point(4, 24);
-            this.WarehouseEmployees.Margin = new System.Windows.Forms.Padding(2);
+            this.WarehouseEmployees.Location = new System.Drawing.Point(4, 34);
             this.WarehouseEmployees.Name = "WarehouseEmployees";
-            this.WarehouseEmployees.Padding = new System.Windows.Forms.Padding(2);
-            this.WarehouseEmployees.Size = new System.Drawing.Size(722, 463);
+            this.WarehouseEmployees.Padding = new System.Windows.Forms.Padding(3);
+            this.WarehouseEmployees.Size = new System.Drawing.Size(1035, 780);
             this.WarehouseEmployees.TabIndex = 5;
             this.WarehouseEmployees.Text = "WarehouseEmployees";
             this.WarehouseEmployees.UseVisualStyleBackColor = true;
@@ -550,30 +637,32 @@
             // employeeList
             // 
             this.employeeList.FormattingEnabled = true;
-            this.employeeList.ItemHeight = 15;
-            this.employeeList.Location = new System.Drawing.Point(307, 4);
-            this.employeeList.Margin = new System.Windows.Forms.Padding(2);
+            this.employeeList.ItemHeight = 25;
+            this.employeeList.Location = new System.Drawing.Point(439, 7);
             this.employeeList.Name = "employeeList";
-            this.employeeList.Size = new System.Drawing.Size(414, 244);
+            this.employeeList.Size = new System.Drawing.Size(590, 404);
             this.employeeList.TabIndex = 5;
             // 
             // WarehouseManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 493);
+            this.ClientSize = new System.Drawing.Size(1501, 822);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WarehouseManager";
             this.Text = "ItemManager";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.WarehouseOverview.ResumeLayout(false);
+            this.WarehouseOverview.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ItemOverview.ResumeLayout(false);
             this.ItemOverview.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.CreateItems.ResumeLayout(false);
@@ -630,5 +719,16 @@
         private TabPage WarehouseEmployees;
         private ListBox employeeList;
         private Button Add;
+        private ListBox ShopRequests;
+        private GroupBox groupBox2;
+        private Button button2;
+        private Button Restock;
+        private Button ViewDataBTN;
+        private Label label11;
+        private Button RefreshDataBTN;
+        private GroupBox groupBox3;
+        private Button AssignItemBTN;
+        private Label label12;
+        private TextBox nameOfWarehouseTB;
     }
 }
