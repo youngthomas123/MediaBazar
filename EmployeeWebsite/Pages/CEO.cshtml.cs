@@ -1,23 +1,42 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MediaBazar.BusinessLogic.Interfaces;
+using MediaBazar.BusinessLogic.Dtos;
 
 namespace EmployeeWebsite.Pages
 {
     public class CEOModel : PageModel
     {
         public string ChartData { get; set; }
+
+		public ItemStatsDto UncategorizableItems { get; set; }
+		public ItemStatsDto Electronics { get; set; }
+
+		public ItemStatsDto Kitchen { get; set; }
+
+		public ItemStatsDto Sports { get; set; }
+
+
 		private readonly IStatisticsDataAccess _statisticsDataAccess;
-		public CEOModel(IStatisticsDataAccess statisticsDataAccess)
+
+		private readonly IStatisticsContainer _statisticsContainer;
+		public CEOModel(IStatisticsDataAccess statisticsDataAccess, IStatisticsContainer statisticsContainer )
         {
 			_statisticsDataAccess = statisticsDataAccess;  
+			_statisticsContainer = statisticsContainer;
         }
 
 		public double AttendancePercentage { get; private set; }
 
 		public void OnGet()
 		{
-			AttendancePercentage = _statisticsDataAccess.ShowShiftAttendance();
+            UncategorizableItems = _statisticsContainer.GetItemStatsDto("null");
+            Electronics = _statisticsContainer.GetItemStatsDto("electronics");
+			Kitchen = _statisticsContainer.GetItemStatsDto("kitchen");
+			Sports = _statisticsContainer.GetItemStatsDto("sports");
+
+
+            AttendancePercentage = _statisticsDataAccess.ShowShiftAttendance();
 		}
 	}
 }
