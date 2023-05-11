@@ -3,13 +3,13 @@
 @{
 	ViewData["Title"] = "Stats";
 }
-<h1>Quota of sold items for this month</h1>
+@*<h1>Quota of sold items for this month</h1>
 <h3>Keyboards:</h3>
 <div class="progress">
     <div class="progress-bar bg-success" role="progressbar" style="width: @Model.AttendancePercentage%" aria-valuenow="@Model.AttendancePercentage" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
+</div>*@
 @*Line chart code*@
-<html>
+@*<html>
 <head>
     <style>
         #sampleChart {
@@ -64,9 +64,98 @@
         });
     </script>
 </body>
+</html>*@
+
+<br />
+<br />
+<br />
+
+<html>
+<head>
+    <style>
+        #sampleChart {
+            max-width: auto;
+            height: auto;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+</head>
+<body>
+    <h2>Items sold per month</h2>
+    <canvas id="sampleChart"></canvas>
+    <div id="output"></div>
+    <script>
+        let output = document.getElementById('output');
+        let canvas = document.getElementById("sampleChart");
+
+        // Create an array of months for the x-axis labels
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Create an array of random data for the y-axis
+        let UncategorizableItems = [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb , @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec];
+        let Electronics = [@Model.Electronics.Jan,@Model.Electronics.Feb,@Model.Electronics.Mar,@Model.Electronics.Apr,@Model.Electronics.May,@Model.Electronics.Jun,@Model.Electronics.Jul,@Model.Electronics.Aug,@Model.Electronics.Sep,@Model.Electronics.Oct,@Model.Electronics.Nov,@Model.Electronics.Dec]
+        let Kitchen = [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec]
+        let Sports = [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
+        // Create a new chart object
+        new Chart(canvas, {
+            type: "line",
+            data: {
+                labels: months, // Use the months array for the x-axis labels
+                datasets: [
+                    {
+                    borderColor: "red",
+                    pointBackgroundColor: "green",
+                    fill: false,
+                    data: UncategorizableItems, // Use the data array for the y-axis values
+                    label: "UncategorizableItems"
+                }, 
+                {
+                    borderColor: "black",
+                    pointBackgroundColor: "pink",
+                    fill: false,
+                    data: Electronics,
+                    label: "Electronics"
+                },
+                {
+                        borderColor: "blue",
+                        pointBackgroundColor: "yellow",
+                        fill: false,
+                        data: Kitchen,
+                        label: "Kitchen"
+                },
+                {
+                        borderColor: "green",
+                        pointBackgroundColor: "black",
+                        fill: false,
+                        data: Sports,
+                        label: "Sports"
+                }
+                ]
+
+                
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 50 // Set the maximum value of the y-axis to 50
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
 </html>
-@*Dot chart code*@
-@*<html>
+
+
+   
+
+
+@**Dot chart code*
+<html>
 <head>
     <style>
         #sampleChart {
@@ -114,4 +203,5 @@
       });
    </script>
 </body>
-</html>*@
+</html>
+*@

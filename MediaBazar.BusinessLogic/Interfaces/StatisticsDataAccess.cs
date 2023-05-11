@@ -10,5 +10,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
     {
         void LoadDataIntoColumns(string ChartData);
         double ShowShiftAttendance();
+
+        int NumberOfSales(int month, string category);
     }
 }
