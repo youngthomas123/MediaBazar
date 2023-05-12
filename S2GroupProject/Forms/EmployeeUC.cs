@@ -24,6 +24,7 @@ namespace S2GroupProject
 			InitializeComponent();
 			_employeeContainer = employeeContainer;
 			this.emp = employee;
+			var newEmpData = _employeeContainer.GetEmployeeByBcn(employee.BSN);
 			employeeName.AutoSize = true;
 			employeeName.Text = emp.FirstName + " " + emp.LastName;
 			bsn.Text = emp.BSN.ToString();

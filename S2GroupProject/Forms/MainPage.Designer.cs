@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.employeesLb = new System.Windows.Forms.ListBox();
             this.monthLb = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -62,6 +63,7 @@
             this.shiftDayPickerFilter = new System.Windows.Forms.DateTimePicker();
             this.jobPositionsFilterCb = new System.Windows.Forms.ComboBox();
             this.AddAnEmpBtn = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -82,6 +84,7 @@
             this.employeesLb.Size = new System.Drawing.Size(1415, 334);
             this.employeesLb.TabIndex = 0;
             this.employeesLb.Click += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.employeesLb.SelectedIndexChanged += new System.EventHandler(this.employeesLb_SelectedIndexChanged_1);
             // 
             // monthLb
             // 
@@ -437,6 +440,12 @@
             this.AddAnEmpBtn.UseVisualStyleBackColor = true;
             this.AddAnEmpBtn.Click += new System.EventHandler(this.AddAnEmpBtn_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -499,5 +508,6 @@
         private Button AddAnEmpBtn;
         private Button ScheduleMonthlyShifts;
         private ComboBox ScheduleShiftsMonthCbb;
+        private System.Windows.Forms.Timer timer1;
     }
 }

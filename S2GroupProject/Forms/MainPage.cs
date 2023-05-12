@@ -488,6 +488,16 @@ namespace S2GroupProject
             AssignShifts(currentYear, monthNumber);
             RefreshData();
         }
+
+        private void employeesLb_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+			RefreshData();
+        }
     }
 }
 
