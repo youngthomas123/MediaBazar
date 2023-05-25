@@ -26,6 +26,22 @@ namespace MediaBazar.BusinessLogic.Classes
             ShiftPreferences = shiftPreferences;
         }
 		
+		public Employee(string firstName, string lastName, int bsn, string telNumber, string address,
+						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage, int age) 
+		{
+			FirstName = firstName;
+			LastName = lastName;
+			BSN = bsn;
+			TelNumber = telNumber;
+			Address = address;
+			ContractType = contractType;
+			HoursPerWeek = hoursPerWeek;
+			Jobposition = jobposition;
+			Wage = wage;
+			Age = age;
+		}
+
+
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public int BSN { get; set; }
@@ -44,12 +60,19 @@ namespace MediaBazar.BusinessLogic.Classes
         public List<ShiftPreference> ShiftPreferences { get; set; }
         public override string ToString()
 		{
-
-			 string shiftDatesString = string.Join(", ", ShiftsDates); 
-			string sickLeaves = string.Join(", ", SickLeaves);
-			//{ShiftsDates.Count()
-			string daysOff = string.Join(", ", DaysOff);
-			return $"{FirstName} {LastName}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}, Sick leaves: {sickLeaves}";
+			if(ShiftsDates != null && SickLeaves != null)
+			{
+				string shiftDatesString = string.Join(", ", ShiftsDates);
+				string sickLeaves = string.Join(", ", SickLeaves);
+				//{ShiftsDates.Count()
+				string daysOff = string.Join(", ", DaysOff);
+				return $"{FirstName} {LastName}. BSN: {BSN} Num: {TelNumber} Working as: {Jobposition}, {daysOff}, {shiftDatesString}, Sick leaves: {sickLeaves}";
+			}
+			else
+			{
+				return $"{FirstName} {LastName} | Working as: {Jobposition}";
+			}
+			
 		}
 	}
 }

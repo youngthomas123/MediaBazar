@@ -43,9 +43,9 @@ namespace S2GroupProject.Forms
 			listBox1.Items.Clear();
 			ShopRequests.Items.Clear();
 			warehouseComboBox.Items.Clear();
+			warehouseComboBox2.Items.Clear();
 
 			warehouses = _warehouseContainer.LoadWarehouse();
-			warehouseComboBox.Items.Add(warehouses);
 			items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
 
@@ -62,13 +62,13 @@ namespace S2GroupProject.Forms
 			{
 				warehouseListbox.Items.Add(warehouse);
 				warehouseComboBox.Items.Add(warehouse);
+				warehouseComboBox2.Items.Add(warehouse);
 			}
 		}
 
 		public void RefreshData()
 		{
 			LoadData();
-
 		}
 
 
@@ -86,7 +86,6 @@ namespace S2GroupProject.Forms
 				WarehouseOverview.Hide();
 				CreateItems.Hide();
 				DeleteItems.Hide();
-				RefreshData();
 			}
 
 		}
@@ -99,7 +98,6 @@ namespace S2GroupProject.Forms
 				WarehouseOverview.Hide();
 				ItemOverview.Hide();
 				DeleteItems.Hide();
-				RefreshData();
 			}
 		}
 
@@ -112,7 +110,6 @@ namespace S2GroupProject.Forms
 				WarehouseOverview.Hide();
 				ItemOverview.Hide();
 				CreateItems.Hide();
-				RefreshData();
 			}
 		}
 
@@ -124,7 +121,6 @@ namespace S2GroupProject.Forms
 				ItemOverview.Hide();
 				CreateItems.Hide();
 				DeleteItems.Hide();
-				RefreshData();
 			}
 		}
 		private void WarehouseEmployeeRBT_CheckedChanged(object sender, EventArgs e)
@@ -136,7 +132,6 @@ namespace S2GroupProject.Forms
 				CreateItems.Hide();
 				DeleteItems.Hide();
 				WarehouseEmployees.Show();
-				RefreshData();
 			}
 		}
 
@@ -233,8 +228,6 @@ namespace S2GroupProject.Forms
 		private void RefreshDataBTN_Click(object sender, EventArgs e)
 		{
 			RefreshData();
-			//numberOfItemsLabel.Text = ItemListBox.Items.Count.ToString();
-			//numberOfEmployeesLabel.Text = employeeList.Items.Count.ToString();
 		}
 
 		private void AssignItemBTN_Click(object sender, EventArgs e)
@@ -303,6 +296,38 @@ namespace S2GroupProject.Forms
 			//this.Close();
 			//LoginForm loginForm = _serviceProvider.GetService<LoginForm>();
 			//loginForm.Show();
+		}
+
+		private void AssignEmployeeToWarehouseBTN_Click(object sender, EventArgs e)
+		{
+			Employee selectedEmployee = (Employee)employeeList.SelectedItem;
+			Warehouse selectedWarehouse = (Warehouse)warehouseComboBox2.SelectedItem;
+			if (selectedEmployee != null && selectedWarehouse != null)
+			{
+				_warehouseContainer.AssignEmployeeToWarehouse(selectedEmployee.BSN, selectedWarehouse.Id);
+
+			}
+			else
+			{ MessageBox.Show("Please select an employee/warehouse!"); }
+		}
+
+		private void ShowWarehouseEmployeesBTN_Click(object sender, EventArgs e)
+		{
+			Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
+			if (selectedWarehouse != null)
+			{
+				warehouseListbox.Items.Clear();
+				List<Employee> warehouseEmployees = _warehouseContainer.LoadWarehouseEmployees(selectedWarehouse.Id);
+
+				foreach (Employee employee in warehouseEmployees)
+				{
+					warehouseListbox.Items.Add(employee);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Select a warehouse first");
+			}
 		}
 	}
 }
