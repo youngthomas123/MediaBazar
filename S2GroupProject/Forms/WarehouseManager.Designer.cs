@@ -1,812 +1,828 @@
 ﻿namespace S2GroupProject.Forms
 {
-    partial class WarehouseManager
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class WarehouseManager
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.WarehouseEmployeeRBT = new System.Windows.Forms.RadioButton();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.DeleteItemsRBT = new System.Windows.Forms.RadioButton();
-			this.CreateItemsRBT = new System.Windows.Forms.RadioButton();
-			this.ItemOverviewRBT = new System.Windows.Forms.RadioButton();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.WarehouseOverview = new System.Windows.Forms.TabPage();
-			this.ShopRequests = new System.Windows.Forms.ListBox();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.button2 = new System.Windows.Forms.Button();
-			this.Restock = new System.Windows.Forms.Button();
-			this.ViewDataBTN = new System.Windows.Forms.Button();
-			this.label11 = new System.Windows.Forms.Label();
-			this.RefreshDataBTN = new System.Windows.Forms.Button();
-			this.Add = new System.Windows.Forms.Button();
-			this.warehouseListbox = new System.Windows.Forms.ListBox();
-			this.ItemOverview = new System.Windows.Forms.TabPage();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.AssignItemBTN = new System.Windows.Forms.Button();
-			this.label12 = new System.Windows.Forms.Label();
-			this.nameOfWarehouseTB = new System.Windows.Forms.TextBox();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox7 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.SearchItembyName = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.ItemListBox = new System.Windows.Forms.ListBox();
-			this.ShowAllItems = new System.Windows.Forms.Button();
-			this.CreateItems = new System.Windows.Forms.TabPage();
-			this.quantityTB = new System.Windows.Forms.TextBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.DeleteItems = new System.Windows.Forms.TabPage();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.WarehouseEmployees = new System.Windows.Forms.TabPage();
-			this.employeeList = new System.Windows.Forms.ListBox();
-			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.tabControl1.SuspendLayout();
-			this.WarehouseOverview.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.ItemOverview.SuspendLayout();
-			this.groupBox3.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.CreateItems.SuspendLayout();
-			this.DeleteItems.SuspendLayout();
-			this.WarehouseEmployees.SuspendLayout();
-			this.SuspendLayout();
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			panel1 = new Panel();
+			radioButton2 = new RadioButton();
+			WarehouseEmployeeRBT = new RadioButton();
+			radioButton1 = new RadioButton();
+			DeleteItemsRBT = new RadioButton();
+			CreateItemsRBT = new RadioButton();
+			ItemOverviewRBT = new RadioButton();
+			panel2 = new Panel();
+			label1 = new Label();
+			tabControl1 = new TabControl();
+			WarehouseOverview = new TabPage();
+			WarehouseItemRestocking = new ListBox();
+			ShopRequests = new ListBox();
+			groupBox2 = new GroupBox();
+			button2 = new Button();
+			Restock = new Button();
+			ViewDataBTN = new Button();
+			label11 = new Label();
+			RefreshDataBTN = new Button();
+			Add = new Button();
+			warehouseListbox = new ListBox();
+			ItemOverview = new TabPage();
+			groupBox3 = new GroupBox();
+			warehouseComboBox = new ComboBox();
+			AssignItemBTN = new Button();
+			label12 = new Label();
+			groupBox1 = new GroupBox();
+			textBox10 = new TextBox();
+			label15 = new Label();
+			button1 = new Button();
+			label8 = new Label();
+			label9 = new Label();
+			label10 = new Label();
+			textBox6 = new TextBox();
+			textBox7 = new TextBox();
+			textBox8 = new TextBox();
+			label7 = new Label();
+			SearchItembyName = new Button();
+			textBox1 = new TextBox();
+			label2 = new Label();
+			ItemListBox = new ListBox();
+			ShowAllItems = new Button();
+			CreateItems = new TabPage();
+			textBox9 = new TextBox();
+			label14 = new Label();
+			quantityTB = new TextBox();
+			label13 = new Label();
+			button3 = new Button();
+			textBox4 = new TextBox();
+			textBox3 = new TextBox();
+			textBox2 = new TextBox();
+			label5 = new Label();
+			label4 = new Label();
+			label3 = new Label();
+			DeleteItems = new TabPage();
+			button5 = new Button();
+			button4 = new Button();
+			textBox5 = new TextBox();
+			label6 = new Label();
+			listBox1 = new ListBox();
+			WarehouseEmployees = new TabPage();
+			employeeList = new ListBox();
+			panel1.SuspendLayout();
+			panel2.SuspendLayout();
+			tabControl1.SuspendLayout();
+			WarehouseOverview.SuspendLayout();
+			groupBox2.SuspendLayout();
+			ItemOverview.SuspendLayout();
+			groupBox3.SuspendLayout();
+			groupBox1.SuspendLayout();
+			CreateItems.SuspendLayout();
+			DeleteItems.SuspendLayout();
+			WarehouseEmployees.SuspendLayout();
+			SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.WarehouseEmployeeRBT);
-			this.panel1.Controls.Add(this.radioButton1);
-			this.panel1.Controls.Add(this.DeleteItemsRBT);
-			this.panel1.Controls.Add(this.CreateItemsRBT);
-			this.panel1.Controls.Add(this.ItemOverviewRBT);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(316, 495);
-			this.panel1.TabIndex = 0;
-			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+			panel1.Controls.Add(radioButton2);
+			panel1.Controls.Add(WarehouseEmployeeRBT);
+			panel1.Controls.Add(radioButton1);
+			panel1.Controls.Add(DeleteItemsRBT);
+			panel1.Controls.Add(CreateItemsRBT);
+			panel1.Controls.Add(ItemOverviewRBT);
+			panel1.Dock = DockStyle.Left;
+			panel1.Location = new Point(0, 0);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(451, 952);
+			panel1.TabIndex = 0;
+			panel1.Paint += panel1_Paint;
+			// 
+			// radioButton2
+			// 
+			radioButton2.Appearance = Appearance.Button;
+			radioButton2.Location = new Point(3, 870);
+			radioButton2.Name = "radioButton2";
+			radioButton2.Size = new Size(451, 78);
+			radioButton2.TabIndex = 6;
+			radioButton2.Text = "Log out";
+			radioButton2.UseVisualStyleBackColor = true;
+			radioButton2.CheckedChanged += radioButton2_CheckedChanged;
 			// 
 			// WarehouseEmployeeRBT
 			// 
-			this.WarehouseEmployeeRBT.Appearance = System.Windows.Forms.Appearance.Button;
-			this.WarehouseEmployeeRBT.Location = new System.Drawing.Point(-1, 236);
-			this.WarehouseEmployeeRBT.Margin = new System.Windows.Forms.Padding(2);
-			this.WarehouseEmployeeRBT.Name = "WarehouseEmployeeRBT";
-			this.WarehouseEmployeeRBT.Size = new System.Drawing.Size(316, 47);
-			this.WarehouseEmployeeRBT.TabIndex = 5;
-			this.WarehouseEmployeeRBT.Text = "Warehouse Employees";
-			this.WarehouseEmployeeRBT.UseVisualStyleBackColor = true;
-			this.WarehouseEmployeeRBT.CheckedChanged += new System.EventHandler(this.WarehouseEmployeeRBT_CheckedChanged);
+			WarehouseEmployeeRBT.Appearance = Appearance.Button;
+			WarehouseEmployeeRBT.Location = new Point(-1, 393);
+			WarehouseEmployeeRBT.Name = "WarehouseEmployeeRBT";
+			WarehouseEmployeeRBT.Size = new Size(451, 78);
+			WarehouseEmployeeRBT.TabIndex = 5;
+			WarehouseEmployeeRBT.Text = "Warehouse Employees";
+			WarehouseEmployeeRBT.UseVisualStyleBackColor = true;
+			WarehouseEmployeeRBT.CheckedChanged += WarehouseEmployeeRBT_CheckedChanged;
 			// 
 			// radioButton1
 			// 
-			this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-			this.radioButton1.Location = new System.Drawing.Point(-1, 59);
-			this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(316, 47);
-			this.radioButton1.TabIndex = 4;
-			this.radioButton1.Text = "Warehouse Overview";
-			this.radioButton1.UseVisualStyleBackColor = true;
-			this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+			radioButton1.Appearance = Appearance.Button;
+			radioButton1.Location = new Point(-1, 98);
+			radioButton1.Name = "radioButton1";
+			radioButton1.Size = new Size(451, 78);
+			radioButton1.TabIndex = 4;
+			radioButton1.Text = "Warehouse Overview";
+			radioButton1.UseVisualStyleBackColor = true;
+			radioButton1.CheckedChanged += radioButton1_CheckedChanged;
 			// 
 			// DeleteItemsRBT
 			// 
-			this.DeleteItemsRBT.Appearance = System.Windows.Forms.Appearance.Button;
-			this.DeleteItemsRBT.Location = new System.Drawing.Point(-1, 146);
-			this.DeleteItemsRBT.Margin = new System.Windows.Forms.Padding(2);
-			this.DeleteItemsRBT.Name = "DeleteItemsRBT";
-			this.DeleteItemsRBT.Size = new System.Drawing.Size(316, 47);
-			this.DeleteItemsRBT.TabIndex = 2;
-			this.DeleteItemsRBT.Text = "Delete Items";
-			this.DeleteItemsRBT.UseVisualStyleBackColor = true;
-			this.DeleteItemsRBT.CheckedChanged += new System.EventHandler(this.DeleteItemsRBT_CheckedChanged);
+			DeleteItemsRBT.Appearance = Appearance.Button;
+			DeleteItemsRBT.Location = new Point(-1, 243);
+			DeleteItemsRBT.Name = "DeleteItemsRBT";
+			DeleteItemsRBT.Size = new Size(451, 78);
+			DeleteItemsRBT.TabIndex = 2;
+			DeleteItemsRBT.Text = "Delete Items";
+			DeleteItemsRBT.UseVisualStyleBackColor = true;
+			DeleteItemsRBT.CheckedChanged += DeleteItemsRBT_CheckedChanged;
 			// 
 			// CreateItemsRBT
 			// 
-			this.CreateItemsRBT.Appearance = System.Windows.Forms.Appearance.Button;
-			this.CreateItemsRBT.Location = new System.Drawing.Point(0, 191);
-			this.CreateItemsRBT.Margin = new System.Windows.Forms.Padding(2);
-			this.CreateItemsRBT.Name = "CreateItemsRBT";
-			this.CreateItemsRBT.Size = new System.Drawing.Size(316, 47);
-			this.CreateItemsRBT.TabIndex = 1;
-			this.CreateItemsRBT.Text = "Create Items";
-			this.CreateItemsRBT.UseVisualStyleBackColor = true;
-			this.CreateItemsRBT.CheckedChanged += new System.EventHandler(this.CreateItemsRBT_CheckedChanged);
+			CreateItemsRBT.Appearance = Appearance.Button;
+			CreateItemsRBT.Location = new Point(0, 318);
+			CreateItemsRBT.Name = "CreateItemsRBT";
+			CreateItemsRBT.Size = new Size(451, 78);
+			CreateItemsRBT.TabIndex = 1;
+			CreateItemsRBT.Text = "Create Items";
+			CreateItemsRBT.UseVisualStyleBackColor = true;
+			CreateItemsRBT.CheckedChanged += CreateItemsRBT_CheckedChanged;
 			// 
 			// ItemOverviewRBT
 			// 
-			this.ItemOverviewRBT.Appearance = System.Windows.Forms.Appearance.Button;
-			this.ItemOverviewRBT.Checked = true;
-			this.ItemOverviewRBT.Location = new System.Drawing.Point(0, 103);
-			this.ItemOverviewRBT.Margin = new System.Windows.Forms.Padding(2);
-			this.ItemOverviewRBT.Name = "ItemOverviewRBT";
-			this.ItemOverviewRBT.Size = new System.Drawing.Size(316, 47);
-			this.ItemOverviewRBT.TabIndex = 0;
-			this.ItemOverviewRBT.TabStop = true;
-			this.ItemOverviewRBT.Text = "Items Overview";
-			this.ItemOverviewRBT.UseVisualStyleBackColor = true;
-			this.ItemOverviewRBT.CheckedChanged += new System.EventHandler(this.ItemOverviewRBT_CheckedChanged);
+			ItemOverviewRBT.Appearance = Appearance.Button;
+			ItemOverviewRBT.Checked = true;
+			ItemOverviewRBT.Location = new Point(0, 172);
+			ItemOverviewRBT.Name = "ItemOverviewRBT";
+			ItemOverviewRBT.Size = new Size(451, 78);
+			ItemOverviewRBT.TabIndex = 0;
+			ItemOverviewRBT.TabStop = true;
+			ItemOverviewRBT.Text = "Items Overview";
+			ItemOverviewRBT.UseVisualStyleBackColor = true;
+			ItemOverviewRBT.CheckedChanged += ItemOverviewRBT_CheckedChanged;
 			// 
 			// panel2
 			// 
-			this.panel2.BackColor = System.Drawing.SystemColors.Desktop;
-			this.panel2.Controls.Add(this.label1);
-			this.panel2.Location = new System.Drawing.Point(-1, 1);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(317, 56);
-			this.panel2.TabIndex = 1;
+			panel2.BackColor = SystemColors.Desktop;
+			panel2.Controls.Add(label1);
+			panel2.Location = new Point(-1, 2);
+			panel2.Name = "panel2";
+			panel2.Size = new Size(453, 93);
+			panel2.TabIndex = 1;
 			// 
 			// label1
 			// 
-			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.label1.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(317, 56);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Dashboard";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			label1.Dock = DockStyle.Fill;
+			label1.Font = new Font("MS Reference Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point);
+			label1.ForeColor = SystemColors.GradientInactiveCaption;
+			label1.Location = new Point(0, 0);
+			label1.Name = "label1";
+			label1.Size = new Size(453, 93);
+			label1.TabIndex = 1;
+			label1.Text = "Dashboard";
+			label1.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.Add(this.WarehouseOverview);
-			this.tabControl1.Controls.Add(this.ItemOverview);
-			this.tabControl1.Controls.Add(this.CreateItems);
-			this.tabControl1.Controls.Add(this.DeleteItems);
-			this.tabControl1.Controls.Add(this.WarehouseEmployees);
-			this.tabControl1.Location = new System.Drawing.Point(319, 4);
-			this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(730, 491);
-			this.tabControl1.TabIndex = 2;
+			tabControl1.Controls.Add(WarehouseOverview);
+			tabControl1.Controls.Add(ItemOverview);
+			tabControl1.Controls.Add(CreateItems);
+			tabControl1.Controls.Add(DeleteItems);
+			tabControl1.Controls.Add(WarehouseEmployees);
+			tabControl1.Location = new Point(456, 7);
+			tabControl1.Name = "tabControl1";
+			tabControl1.SelectedIndex = 0;
+			tabControl1.Size = new Size(1167, 945);
+			tabControl1.TabIndex = 2;
 			// 
 			// WarehouseOverview
 			// 
-			this.WarehouseOverview.Controls.Add(this.ShopRequests);
-			this.WarehouseOverview.Controls.Add(this.groupBox2);
-			this.WarehouseOverview.Controls.Add(this.ViewDataBTN);
-			this.WarehouseOverview.Controls.Add(this.label11);
-			this.WarehouseOverview.Controls.Add(this.RefreshDataBTN);
-			this.WarehouseOverview.Controls.Add(this.Add);
-			this.WarehouseOverview.Controls.Add(this.warehouseListbox);
-			this.WarehouseOverview.Location = new System.Drawing.Point(4, 24);
-			this.WarehouseOverview.Margin = new System.Windows.Forms.Padding(2);
-			this.WarehouseOverview.Name = "WarehouseOverview";
-			this.WarehouseOverview.Size = new System.Drawing.Size(722, 463);
-			this.WarehouseOverview.TabIndex = 4;
-			this.WarehouseOverview.Text = "WarehouseOverview";
-			this.WarehouseOverview.UseVisualStyleBackColor = true;
+			WarehouseOverview.Controls.Add(WarehouseItemRestocking);
+			WarehouseOverview.Controls.Add(ShopRequests);
+			WarehouseOverview.Controls.Add(groupBox2);
+			WarehouseOverview.Controls.Add(ViewDataBTN);
+			WarehouseOverview.Controls.Add(label11);
+			WarehouseOverview.Controls.Add(RefreshDataBTN);
+			WarehouseOverview.Controls.Add(Add);
+			WarehouseOverview.Controls.Add(warehouseListbox);
+			WarehouseOverview.Location = new Point(4, 34);
+			WarehouseOverview.Name = "WarehouseOverview";
+			WarehouseOverview.Size = new Size(1159, 907);
+			WarehouseOverview.TabIndex = 4;
+			WarehouseOverview.Text = "WarehouseOverview";
+			WarehouseOverview.UseVisualStyleBackColor = true;
+			// 
+			// WarehouseItemRestocking
+			// 
+			WarehouseItemRestocking.FormattingEnabled = true;
+			WarehouseItemRestocking.ItemHeight = 25;
+			WarehouseItemRestocking.Location = new Point(538, 600);
+			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
+			WarehouseItemRestocking.Size = new Size(611, 304);
+			WarehouseItemRestocking.TabIndex = 11;
 			// 
 			// ShopRequests
 			// 
-			this.ShopRequests.FormattingEnabled = true;
-			this.ShopRequests.ItemHeight = 15;
-			this.ShopRequests.Location = new System.Drawing.Point(297, 265);
-			this.ShopRequests.Margin = new System.Windows.Forms.Padding(2);
-			this.ShopRequests.Name = "ShopRequests";
-			this.ShopRequests.Size = new System.Drawing.Size(425, 199);
-			this.ShopRequests.TabIndex = 10;
+			ShopRequests.FormattingEnabled = true;
+			ShopRequests.ItemHeight = 25;
+			ShopRequests.Location = new Point(538, 401);
+			ShopRequests.Name = "ShopRequests";
+			ShopRequests.Size = new Size(611, 179);
+			ShopRequests.TabIndex = 10;
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.button2);
-			this.groupBox2.Controls.Add(this.Restock);
-			this.groupBox2.Location = new System.Drawing.Point(2, 265);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox2.Size = new System.Drawing.Size(290, 134);
-			this.groupBox2.TabIndex = 9;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Manage and restock";
+			groupBox2.Controls.Add(button2);
+			groupBox2.Controls.Add(Restock);
+			groupBox2.Location = new Point(3, 676);
+			groupBox2.Name = "groupBox2";
+			groupBox2.Size = new Size(414, 223);
+			groupBox2.TabIndex = 9;
+			groupBox2.TabStop = false;
+			groupBox2.Text = "Manage and restock";
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(12, 20);
-			this.button2.Margin = new System.Windows.Forms.Padding(2);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(161, 32);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "Send requested items";
-			this.button2.UseVisualStyleBackColor = true;
+			button2.Location = new Point(17, 33);
+			button2.Name = "button2";
+			button2.Size = new Size(230, 53);
+			button2.TabIndex = 1;
+			button2.Text = "Send requested items";
+			button2.UseVisualStyleBackColor = true;
 			// 
 			// Restock
 			// 
-			this.Restock.Location = new System.Drawing.Point(12, 56);
-			this.Restock.Margin = new System.Windows.Forms.Padding(2);
-			this.Restock.Name = "Restock";
-			this.Restock.Size = new System.Drawing.Size(88, 20);
-			this.Restock.TabIndex = 0;
-			this.Restock.Text = "Restock Item";
-			this.Restock.UseVisualStyleBackColor = true;
+			Restock.Location = new Point(17, 93);
+			Restock.Name = "Restock";
+			Restock.Size = new Size(126, 33);
+			Restock.TabIndex = 0;
+			Restock.Text = "Restock Item";
+			Restock.UseVisualStyleBackColor = true;
 			// 
 			// ViewDataBTN
 			// 
-			this.ViewDataBTN.Location = new System.Drawing.Point(72, 37);
-			this.ViewDataBTN.Margin = new System.Windows.Forms.Padding(2);
-			this.ViewDataBTN.Name = "ViewDataBTN";
-			this.ViewDataBTN.Size = new System.Drawing.Size(134, 20);
-			this.ViewDataBTN.TabIndex = 8;
-			this.ViewDataBTN.Text = "View Data";
-			this.ViewDataBTN.UseVisualStyleBackColor = true;
-			this.ViewDataBTN.Click += new System.EventHandler(this.ViewDataBTN_Click);
+			ViewDataBTN.Location = new Point(103, 62);
+			ViewDataBTN.Name = "ViewDataBTN";
+			ViewDataBTN.Size = new Size(191, 33);
+			ViewDataBTN.TabIndex = 8;
+			ViewDataBTN.Text = "View Data";
+			ViewDataBTN.UseVisualStyleBackColor = true;
+			ViewDataBTN.Click += ViewDataBTN_Click;
 			// 
 			// label11
 			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(32, 20);
-			this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(221, 15);
-			this.label11.TabIndex = 7;
-			this.label11.Text = "Select a warehouse and press \'View Data\'";
+			label11.AutoSize = true;
+			label11.Location = new Point(46, 33);
+			label11.Name = "label11";
+			label11.Size = new Size(336, 25);
+			label11.TabIndex = 7;
+			label11.Text = "Select a warehouse and press 'View Data'";
 			// 
 			// RefreshDataBTN
 			// 
-			this.RefreshDataBTN.Location = new System.Drawing.Point(297, 217);
-			this.RefreshDataBTN.Margin = new System.Windows.Forms.Padding(2);
-			this.RefreshDataBTN.Name = "RefreshDataBTN";
-			this.RefreshDataBTN.Size = new System.Drawing.Size(134, 20);
-			this.RefreshDataBTN.TabIndex = 6;
-			this.RefreshDataBTN.Text = "Refresh Data";
-			this.RefreshDataBTN.UseVisualStyleBackColor = true;
-			this.RefreshDataBTN.Click += new System.EventHandler(this.RefreshDataBTN_Click);
+			RefreshDataBTN.Location = new Point(538, 362);
+			RefreshDataBTN.Name = "RefreshDataBTN";
+			RefreshDataBTN.Size = new Size(191, 33);
+			RefreshDataBTN.TabIndex = 6;
+			RefreshDataBTN.Text = "Refresh Data";
+			RefreshDataBTN.UseVisualStyleBackColor = true;
+			RefreshDataBTN.Click += RefreshDataBTN_Click;
 			// 
 			// Add
 			// 
-			this.Add.Location = new System.Drawing.Point(698, 217);
-			this.Add.Margin = new System.Windows.Forms.Padding(2);
-			this.Add.Name = "Add";
-			this.Add.Size = new System.Drawing.Size(22, 20);
-			this.Add.TabIndex = 3;
-			this.Add.Text = "+";
-			this.Add.UseVisualStyleBackColor = true;
-			this.Add.Click += new System.EventHandler(this.Add_Click);
+			Add.Location = new Point(1118, 362);
+			Add.Name = "Add";
+			Add.Size = new Size(31, 33);
+			Add.TabIndex = 3;
+			Add.Text = "+";
+			Add.UseVisualStyleBackColor = true;
+			Add.Click += Add_Click;
 			// 
 			// warehouseListbox
 			// 
-			this.warehouseListbox.FormattingEnabled = true;
-			this.warehouseListbox.ItemHeight = 15;
-			this.warehouseListbox.Location = new System.Drawing.Point(297, 1);
-			this.warehouseListbox.Margin = new System.Windows.Forms.Padding(2);
-			this.warehouseListbox.Name = "warehouseListbox";
-			this.warehouseListbox.Size = new System.Drawing.Size(429, 214);
-			this.warehouseListbox.TabIndex = 2;
-			this.warehouseListbox.SelectedIndexChanged += new System.EventHandler(this.warehouseListbox_SelectedIndexChanged);
+			warehouseListbox.FormattingEnabled = true;
+			warehouseListbox.ItemHeight = 25;
+			warehouseListbox.Location = new Point(538, 2);
+			warehouseListbox.Name = "warehouseListbox";
+			warehouseListbox.Size = new Size(611, 354);
+			warehouseListbox.TabIndex = 2;
+			warehouseListbox.SelectedIndexChanged += warehouseListbox_SelectedIndexChanged;
 			// 
 			// ItemOverview
 			// 
-			this.ItemOverview.Controls.Add(this.groupBox3);
-			this.ItemOverview.Controls.Add(this.groupBox1);
-			this.ItemOverview.Controls.Add(this.label7);
-			this.ItemOverview.Controls.Add(this.SearchItembyName);
-			this.ItemOverview.Controls.Add(this.textBox1);
-			this.ItemOverview.Controls.Add(this.label2);
-			this.ItemOverview.Controls.Add(this.ItemListBox);
-			this.ItemOverview.Controls.Add(this.ShowAllItems);
-			this.ItemOverview.Location = new System.Drawing.Point(4, 24);
-			this.ItemOverview.Margin = new System.Windows.Forms.Padding(2);
-			this.ItemOverview.Name = "ItemOverview";
-			this.ItemOverview.Padding = new System.Windows.Forms.Padding(2);
-			this.ItemOverview.Size = new System.Drawing.Size(722, 463);
-			this.ItemOverview.TabIndex = 0;
-			this.ItemOverview.Text = "ItemOverview";
-			this.ItemOverview.UseVisualStyleBackColor = true;
+			ItemOverview.Controls.Add(groupBox3);
+			ItemOverview.Controls.Add(groupBox1);
+			ItemOverview.Controls.Add(label7);
+			ItemOverview.Controls.Add(SearchItembyName);
+			ItemOverview.Controls.Add(textBox1);
+			ItemOverview.Controls.Add(label2);
+			ItemOverview.Controls.Add(ItemListBox);
+			ItemOverview.Controls.Add(ShowAllItems);
+			ItemOverview.Location = new Point(4, 34);
+			ItemOverview.Name = "ItemOverview";
+			ItemOverview.Padding = new Padding(3);
+			ItemOverview.Size = new Size(1159, 907);
+			ItemOverview.TabIndex = 0;
+			ItemOverview.Text = "ItemOverview";
+			ItemOverview.UseVisualStyleBackColor = true;
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.AssignItemBTN);
-			this.groupBox3.Controls.Add(this.label12);
-			this.groupBox3.Controls.Add(this.nameOfWarehouseTB);
-			this.groupBox3.Location = new System.Drawing.Point(7, 343);
-			this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox3.Size = new System.Drawing.Size(286, 117);
-			this.groupBox3.TabIndex = 7;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Assign Item to warehouse";
+			groupBox3.Controls.Add(warehouseComboBox);
+			groupBox3.Controls.Add(AssignItemBTN);
+			groupBox3.Controls.Add(label12);
+			groupBox3.Location = new Point(10, 706);
+			groupBox3.Name = "groupBox3";
+			groupBox3.Size = new Size(409, 195);
+			groupBox3.TabIndex = 7;
+			groupBox3.TabStop = false;
+			groupBox3.Text = "Assign Item to warehouse";
+			// 
+			// warehouseComboBox
+			// 
+			warehouseComboBox.FormattingEnabled = true;
+			warehouseComboBox.Location = new Point(15, 69);
+			warehouseComboBox.Name = "warehouseComboBox";
+			warehouseComboBox.Size = new Size(381, 33);
+			warehouseComboBox.TabIndex = 16;
 			// 
 			// AssignItemBTN
 			// 
-			this.AssignItemBTN.Location = new System.Drawing.Point(5, 73);
-			this.AssignItemBTN.Margin = new System.Windows.Forms.Padding(2);
-			this.AssignItemBTN.Name = "AssignItemBTN";
-			this.AssignItemBTN.Size = new System.Drawing.Size(275, 26);
-			this.AssignItemBTN.TabIndex = 15;
-			this.AssignItemBTN.Text = "Assign selected item to warehouse";
-			this.AssignItemBTN.UseVisualStyleBackColor = true;
-			this.AssignItemBTN.Click += new System.EventHandler(this.AssignItemBTN_Click);
+			AssignItemBTN.Location = new Point(7, 122);
+			AssignItemBTN.Name = "AssignItemBTN";
+			AssignItemBTN.Size = new Size(393, 43);
+			AssignItemBTN.TabIndex = 15;
+			AssignItemBTN.Text = "Assign selected item to warehouse";
+			AssignItemBTN.UseVisualStyleBackColor = true;
+			AssignItemBTN.Click += AssignItemBTN_Click;
 			// 
 			// label12
 			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(5, 22);
-			this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(182, 15);
-			this.label12.TabIndex = 14;
-			this.label12.Text = "input the name of the warehouse";
-			// 
-			// nameOfWarehouseTB
-			// 
-			this.nameOfWarehouseTB.Location = new System.Drawing.Point(5, 44);
-			this.nameOfWarehouseTB.Margin = new System.Windows.Forms.Padding(2);
-			this.nameOfWarehouseTB.Name = "nameOfWarehouseTB";
-			this.nameOfWarehouseTB.Size = new System.Drawing.Size(276, 23);
-			this.nameOfWarehouseTB.TabIndex = 13;
+			label12.AutoSize = true;
+			label12.Location = new Point(7, 37);
+			label12.Name = "label12";
+			label12.Size = new Size(274, 25);
+			label12.TabIndex = 14;
+			label12.Text = "input the name of the warehouse";
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.button1);
-			this.groupBox1.Controls.Add(this.label8);
-			this.groupBox1.Controls.Add(this.label9);
-			this.groupBox1.Controls.Add(this.label10);
-			this.groupBox1.Controls.Add(this.textBox6);
-			this.groupBox1.Controls.Add(this.textBox7);
-			this.groupBox1.Controls.Add(this.textBox8);
-			this.groupBox1.Location = new System.Drawing.Point(7, 150);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(286, 184);
-			this.groupBox1.TabIndex = 6;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Update Items";
+			groupBox1.Controls.Add(textBox10);
+			groupBox1.Controls.Add(label15);
+			groupBox1.Controls.Add(button1);
+			groupBox1.Controls.Add(label8);
+			groupBox1.Controls.Add(label9);
+			groupBox1.Controls.Add(label10);
+			groupBox1.Controls.Add(textBox6);
+			groupBox1.Controls.Add(textBox7);
+			groupBox1.Controls.Add(textBox8);
+			groupBox1.Location = new Point(10, 347);
+			groupBox1.Margin = new Padding(4, 5, 4, 5);
+			groupBox1.Name = "groupBox1";
+			groupBox1.Padding = new Padding(4, 5, 4, 5);
+			groupBox1.Size = new Size(409, 351);
+			groupBox1.TabIndex = 6;
+			groupBox1.TabStop = false;
+			groupBox1.Text = "Update Items";
+			// 
+			// textBox10
+			// 
+			textBox10.Location = new Point(140, 235);
+			textBox10.Name = "textBox10";
+			textBox10.Size = new Size(256, 31);
+			textBox10.TabIndex = 14;
+			// 
+			// label15
+			// 
+			label15.AutoSize = true;
+			label15.Location = new Point(7, 241);
+			label15.Name = "label15";
+			label15.Size = new Size(127, 25);
+			label15.TabIndex = 13;
+			label15.Text = "Shop Quantity";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(98, 142);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(79, 25);
-			this.button1.TabIndex = 12;
-			this.button1.Text = "Update";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			button1.Location = new Point(140, 285);
+			button1.Margin = new Padding(4, 5, 4, 5);
+			button1.Name = "button1";
+			button1.Size = new Size(113, 42);
+			button1.TabIndex = 12;
+			button1.Text = "Update";
+			button1.UseVisualStyleBackColor = true;
+			button1.Click += button1_Click;
 			// 
 			// label8
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(5, 110);
-			this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(53, 15);
-			this.label8.TabIndex = 11;
-			this.label8.Text = "Quantity";
+			label8.AutoSize = true;
+			label8.Location = new Point(7, 183);
+			label8.Name = "label8";
+			label8.Size = new Size(173, 25);
+			label8.TabIndex = 11;
+			label8.Text = "Warehouse Quantity";
 			// 
 			// label9
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(5, 73);
-			this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(67, 15);
-			this.label9.TabIndex = 10;
-			this.label9.Text = "Description";
+			label9.AutoSize = true;
+			label9.Location = new Point(7, 122);
+			label9.Name = "label9";
+			label9.Size = new Size(102, 25);
+			label9.TabIndex = 10;
+			label9.Text = "Description";
 			// 
 			// label10
 			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(5, 41);
-			this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(39, 15);
-			this.label10.TabIndex = 9;
-			this.label10.Text = "Name";
+			label10.AutoSize = true;
+			label10.Location = new Point(7, 68);
+			label10.Name = "label10";
+			label10.Size = new Size(59, 25);
+			label10.TabIndex = 9;
+			label10.Text = "Name";
 			// 
 			// textBox6
 			// 
-			this.textBox6.Location = new System.Drawing.Point(82, 107);
-			this.textBox6.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(199, 23);
-			this.textBox6.TabIndex = 8;
+			textBox6.Location = new Point(182, 180);
+			textBox6.Name = "textBox6";
+			textBox6.Size = new Size(227, 31);
+			textBox6.TabIndex = 8;
 			// 
 			// textBox7
 			// 
-			this.textBox7.Location = new System.Drawing.Point(82, 70);
-			this.textBox7.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(199, 23);
-			this.textBox7.TabIndex = 7;
+			textBox7.Location = new Point(117, 117);
+			textBox7.Name = "textBox7";
+			textBox7.Size = new Size(283, 31);
+			textBox7.TabIndex = 7;
 			// 
 			// textBox8
 			// 
-			this.textBox8.Location = new System.Drawing.Point(82, 38);
-			this.textBox8.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(199, 23);
-			this.textBox8.TabIndex = 6;
+			textBox8.Location = new Point(117, 63);
+			textBox8.Name = "textBox8";
+			textBox8.Size = new Size(283, 31);
+			textBox8.TabIndex = 6;
 			// 
 			// label7
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 110);
-			this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(103, 15);
-			this.label7.TabIndex = 5;
-			this.label7.Text = "Number of items: ";
+			label7.AutoSize = true;
+			label7.Location = new Point(3, 67);
+			label7.Name = "label7";
+			label7.Size = new Size(156, 25);
+			label7.TabIndex = 5;
+			label7.Text = "Number of items: ";
 			// 
 			// SearchItembyName
 			// 
-			this.SearchItembyName.Location = new System.Drawing.Point(206, 15);
-			this.SearchItembyName.Margin = new System.Windows.Forms.Padding(2);
-			this.SearchItembyName.Name = "SearchItembyName";
-			this.SearchItembyName.Size = new System.Drawing.Size(93, 28);
-			this.SearchItembyName.TabIndex = 4;
-			this.SearchItembyName.Text = "Search";
-			this.SearchItembyName.UseVisualStyleBackColor = true;
-			this.SearchItembyName.Click += new System.EventHandler(this.SearchItembyName_Click);
+			SearchItembyName.Location = new Point(294, 25);
+			SearchItembyName.Name = "SearchItembyName";
+			SearchItembyName.Size = new Size(133, 47);
+			SearchItembyName.TabIndex = 4;
+			SearchItembyName.Text = "Search";
+			SearchItembyName.UseVisualStyleBackColor = true;
+			SearchItembyName.Click += SearchItembyName_Click;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(2, 20);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(200, 23);
-			this.textBox1.TabIndex = 3;
+			textBox1.Location = new Point(3, 33);
+			textBox1.Name = "textBox1";
+			textBox1.Size = new Size(284, 31);
+			textBox1.TabIndex = 3;
 			// 
 			// label2
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(41, 3);
-			this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(118, 15);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Search item by name";
+			label2.AutoSize = true;
+			label2.Location = new Point(59, 5);
+			label2.Name = "label2";
+			label2.Size = new Size(178, 25);
+			label2.TabIndex = 2;
+			label2.Text = "Search item by name";
 			// 
 			// ItemListBox
 			// 
-			this.ItemListBox.FormattingEnabled = true;
-			this.ItemListBox.ItemHeight = 15;
-			this.ItemListBox.Location = new System.Drawing.Point(302, 1);
-			this.ItemListBox.Margin = new System.Windows.Forms.Padding(2);
-			this.ItemListBox.Name = "ItemListBox";
-			this.ItemListBox.Size = new System.Drawing.Size(426, 469);
-			this.ItemListBox.TabIndex = 1;
+			ItemListBox.FormattingEnabled = true;
+			ItemListBox.ItemHeight = 25;
+			ItemListBox.Location = new Point(550, 3);
+			ItemListBox.Name = "ItemListBox";
+			ItemListBox.Size = new Size(599, 879);
+			ItemListBox.TabIndex = 1;
 			// 
 			// ShowAllItems
 			// 
-			this.ShowAllItems.Location = new System.Drawing.Point(0, 52);
-			this.ShowAllItems.Margin = new System.Windows.Forms.Padding(2);
-			this.ShowAllItems.Name = "ShowAllItems";
-			this.ShowAllItems.Size = new System.Drawing.Size(302, 37);
-			this.ShowAllItems.TabIndex = 0;
-			this.ShowAllItems.Text = "Show all items";
-			this.ShowAllItems.UseVisualStyleBackColor = true;
-			this.ShowAllItems.Click += new System.EventHandler(this.ShowAllItems_Click);
+			ShowAllItems.Location = new Point(3, 95);
+			ShowAllItems.Name = "ShowAllItems";
+			ShowAllItems.Size = new Size(421, 48);
+			ShowAllItems.TabIndex = 0;
+			ShowAllItems.Text = "Show all items";
+			ShowAllItems.UseVisualStyleBackColor = true;
+			ShowAllItems.Click += ShowAllItems_Click;
 			// 
 			// CreateItems
 			// 
-			this.CreateItems.Controls.Add(this.quantityTB);
-			this.CreateItems.Controls.Add(this.label13);
-			this.CreateItems.Controls.Add(this.button3);
-			this.CreateItems.Controls.Add(this.textBox4);
-			this.CreateItems.Controls.Add(this.textBox3);
-			this.CreateItems.Controls.Add(this.textBox2);
-			this.CreateItems.Controls.Add(this.label5);
-			this.CreateItems.Controls.Add(this.label4);
-			this.CreateItems.Controls.Add(this.label3);
-			this.CreateItems.Location = new System.Drawing.Point(4, 24);
-			this.CreateItems.Margin = new System.Windows.Forms.Padding(2);
-			this.CreateItems.Name = "CreateItems";
-			this.CreateItems.Padding = new System.Windows.Forms.Padding(2);
-			this.CreateItems.Size = new System.Drawing.Size(722, 463);
-			this.CreateItems.TabIndex = 1;
-			this.CreateItems.Text = "CreateItems";
-			this.CreateItems.UseVisualStyleBackColor = true;
+			CreateItems.Controls.Add(textBox9);
+			CreateItems.Controls.Add(label14);
+			CreateItems.Controls.Add(quantityTB);
+			CreateItems.Controls.Add(label13);
+			CreateItems.Controls.Add(button3);
+			CreateItems.Controls.Add(textBox4);
+			CreateItems.Controls.Add(textBox3);
+			CreateItems.Controls.Add(textBox2);
+			CreateItems.Controls.Add(label5);
+			CreateItems.Controls.Add(label4);
+			CreateItems.Controls.Add(label3);
+			CreateItems.Location = new Point(4, 34);
+			CreateItems.Name = "CreateItems";
+			CreateItems.Padding = new Padding(3);
+			CreateItems.Size = new Size(1159, 907);
+			CreateItems.TabIndex = 1;
+			CreateItems.Text = "CreateItems";
+			CreateItems.UseVisualStyleBackColor = true;
+			// 
+			// textBox9
+			// 
+			textBox9.Location = new Point(241, 233);
+			textBox9.Name = "textBox9";
+			textBox9.Size = new Size(283, 31);
+			textBox9.TabIndex = 10;
+			// 
+			// label14
+			// 
+			label14.AutoSize = true;
+			label14.Location = new Point(40, 239);
+			label14.Name = "label14";
+			label14.Size = new Size(127, 25);
+			label14.TabIndex = 9;
+			label14.Text = "Shop Quantity";
 			// 
 			// quantityTB
 			// 
-			this.quantityTB.Location = new System.Drawing.Point(147, 99);
-			this.quantityTB.Margin = new System.Windows.Forms.Padding(2);
-			this.quantityTB.Name = "quantityTB";
-			this.quantityTB.Size = new System.Drawing.Size(199, 23);
-			this.quantityTB.TabIndex = 8;
+			quantityTB.Location = new Point(241, 159);
+			quantityTB.Name = "quantityTB";
+			quantityTB.Size = new Size(283, 31);
+			quantityTB.TabIndex = 8;
 			// 
 			// label13
 			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(28, 99);
-			this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(53, 15);
-			this.label13.TabIndex = 7;
-			this.label13.Text = "Quantity";
+			label13.AutoSize = true;
+			label13.Location = new Point(40, 165);
+			label13.Name = "label13";
+			label13.Size = new Size(173, 25);
+			label13.TabIndex = 7;
+			label13.Text = "Warehouse Quantity";
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(28, 174);
-			this.button3.Margin = new System.Windows.Forms.Padding(2);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(318, 25);
-			this.button3.TabIndex = 6;
-			this.button3.Text = "Create item";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			button3.Location = new Point(40, 370);
+			button3.Name = "button3";
+			button3.Size = new Size(454, 42);
+			button3.TabIndex = 6;
+			button3.Text = "Create item";
+			button3.UseVisualStyleBackColor = true;
+			button3.Click += button3_Click;
 			// 
 			// textBox4
 			// 
-			this.textBox4.Location = new System.Drawing.Point(147, 139);
-			this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(199, 23);
-			this.textBox4.TabIndex = 5;
+			textBox4.Location = new Point(241, 292);
+			textBox4.Name = "textBox4";
+			textBox4.Size = new Size(283, 31);
+			textBox4.TabIndex = 5;
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(148, 61);
-			this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(199, 23);
-			this.textBox3.TabIndex = 4;
+			textBox3.Location = new Point(241, 104);
+			textBox3.Name = "textBox3";
+			textBox3.Size = new Size(283, 31);
+			textBox3.TabIndex = 4;
 			// 
 			// textBox2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(148, 29);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(199, 23);
-			this.textBox2.TabIndex = 3;
+			textBox2.Location = new Point(241, 49);
+			textBox2.Name = "textBox2";
+			textBox2.Size = new Size(283, 31);
+			textBox2.TabIndex = 3;
 			// 
 			// label5
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(28, 139);
-			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(55, 15);
-			this.label5.TabIndex = 2;
-			this.label5.Text = "Category";
+			label5.AutoSize = true;
+			label5.Location = new Point(40, 298);
+			label5.Name = "label5";
+			label5.Size = new Size(84, 25);
+			label5.TabIndex = 2;
+			label5.Text = "Category";
 			// 
 			// label4
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(28, 65);
-			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(67, 15);
-			this.label4.TabIndex = 1;
-			this.label4.Text = "Description";
+			label4.AutoSize = true;
+			label4.Location = new Point(40, 108);
+			label4.Name = "label4";
+			label4.Size = new Size(102, 25);
+			label4.TabIndex = 1;
+			label4.Text = "Description";
 			// 
 			// label3
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(28, 33);
-			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(100, 15);
-			this.label3.TabIndex = 0;
-			this.label3.Text = "Name of the item";
+			label3.AutoSize = true;
+			label3.Location = new Point(40, 55);
+			label3.Name = "label3";
+			label3.Size = new Size(151, 25);
+			label3.TabIndex = 0;
+			label3.Text = "Name of the item";
 			// 
 			// DeleteItems
 			// 
-			this.DeleteItems.Controls.Add(this.button5);
-			this.DeleteItems.Controls.Add(this.button4);
-			this.DeleteItems.Controls.Add(this.textBox5);
-			this.DeleteItems.Controls.Add(this.label6);
-			this.DeleteItems.Controls.Add(this.listBox1);
-			this.DeleteItems.Location = new System.Drawing.Point(4, 24);
-			this.DeleteItems.Margin = new System.Windows.Forms.Padding(2);
-			this.DeleteItems.Name = "DeleteItems";
-			this.DeleteItems.Padding = new System.Windows.Forms.Padding(2);
-			this.DeleteItems.Size = new System.Drawing.Size(722, 463);
-			this.DeleteItems.TabIndex = 2;
-			this.DeleteItems.Text = "DeleteItems";
-			this.DeleteItems.UseVisualStyleBackColor = true;
+			DeleteItems.Controls.Add(button5);
+			DeleteItems.Controls.Add(button4);
+			DeleteItems.Controls.Add(textBox5);
+			DeleteItems.Controls.Add(label6);
+			DeleteItems.Controls.Add(listBox1);
+			DeleteItems.Location = new Point(4, 34);
+			DeleteItems.Name = "DeleteItems";
+			DeleteItems.Padding = new Padding(3);
+			DeleteItems.Size = new Size(1159, 907);
+			DeleteItems.TabIndex = 2;
+			DeleteItems.Text = "DeleteItems";
+			DeleteItems.UseVisualStyleBackColor = true;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(0, 62);
-			this.button5.Margin = new System.Windows.Forms.Padding(2);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(302, 37);
-			this.button5.TabIndex = 6;
-			this.button5.Text = "Delete selected item";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
+			button5.Location = new Point(6, 119);
+			button5.Name = "button5";
+			button5.Size = new Size(534, 62);
+			button5.TabIndex = 6;
+			button5.Text = "Delete selected item";
+			button5.UseVisualStyleBackColor = true;
+			button5.Click += button5_Click;
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(207, 33);
-			this.button4.Margin = new System.Windows.Forms.Padding(2);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(93, 25);
-			this.button4.TabIndex = 5;
-			this.button4.Text = "Search";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
+			button4.Location = new Point(373, 44);
+			button4.Name = "button4";
+			button4.Size = new Size(133, 42);
+			button4.TabIndex = 5;
+			button4.Text = "Search";
+			button4.UseVisualStyleBackColor = true;
+			button4.Click += button4_Click;
 			// 
 			// textBox5
 			// 
-			this.textBox5.Location = new System.Drawing.Point(4, 33);
-			this.textBox5.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(200, 23);
-			this.textBox5.TabIndex = 4;
+			textBox5.Location = new Point(61, 50);
+			textBox5.Name = "textBox5";
+			textBox5.Size = new Size(284, 31);
+			textBox5.TabIndex = 4;
 			// 
 			// label6
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(111, 10);
-			this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(69, 15);
-			this.label6.TabIndex = 3;
-			this.label6.Text = "Search item";
+			label6.AutoSize = true;
+			label6.Location = new Point(159, 17);
+			label6.Name = "label6";
+			label6.Size = new Size(104, 25);
+			label6.TabIndex = 3;
+			label6.Text = "Search item";
 			// 
 			// listBox1
 			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 15;
-			this.listBox1.Location = new System.Drawing.Point(302, 0);
-			this.listBox1.Margin = new System.Windows.Forms.Padding(2);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(426, 469);
-			this.listBox1.TabIndex = 2;
+			listBox1.FormattingEnabled = true;
+			listBox1.ItemHeight = 25;
+			listBox1.Location = new Point(546, 3);
+			listBox1.Name = "listBox1";
+			listBox1.Size = new Size(607, 904);
+			listBox1.TabIndex = 2;
 			// 
 			// WarehouseEmployees
 			// 
-			this.WarehouseEmployees.Controls.Add(this.employeeList);
-			this.WarehouseEmployees.Location = new System.Drawing.Point(4, 24);
-			this.WarehouseEmployees.Margin = new System.Windows.Forms.Padding(2);
-			this.WarehouseEmployees.Name = "WarehouseEmployees";
-			this.WarehouseEmployees.Padding = new System.Windows.Forms.Padding(2);
-			this.WarehouseEmployees.Size = new System.Drawing.Size(722, 463);
-			this.WarehouseEmployees.TabIndex = 5;
-			this.WarehouseEmployees.Text = "WarehouseEmployees";
-			this.WarehouseEmployees.UseVisualStyleBackColor = true;
+			WarehouseEmployees.Controls.Add(employeeList);
+			WarehouseEmployees.Location = new Point(4, 34);
+			WarehouseEmployees.Name = "WarehouseEmployees";
+			WarehouseEmployees.Padding = new Padding(3);
+			WarehouseEmployees.Size = new Size(1159, 907);
+			WarehouseEmployees.TabIndex = 5;
+			WarehouseEmployees.Text = "WarehouseEmployees";
+			WarehouseEmployees.UseVisualStyleBackColor = true;
 			// 
 			// employeeList
 			// 
-			this.employeeList.FormattingEnabled = true;
-			this.employeeList.ItemHeight = 15;
-			this.employeeList.Location = new System.Drawing.Point(307, 4);
-			this.employeeList.Margin = new System.Windows.Forms.Padding(2);
-			this.employeeList.Name = "employeeList";
-			this.employeeList.Size = new System.Drawing.Size(414, 244);
-			this.employeeList.TabIndex = 5;
+			employeeList.FormattingEnabled = true;
+			employeeList.ItemHeight = 25;
+			employeeList.Location = new Point(563, 6);
+			employeeList.Name = "employeeList";
+			employeeList.Size = new Size(590, 404);
+			employeeList.TabIndex = 5;
 			// 
 			// WarehouseManager
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1051, 495);
-			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.panel2);
-			this.Controls.Add(this.panel1);
-			this.Margin = new System.Windows.Forms.Padding(2);
-			this.Name = "WarehouseManager";
-			this.Text = "ItemManager";
-			this.panel1.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.tabControl1.ResumeLayout(false);
-			this.WarehouseOverview.ResumeLayout(false);
-			this.WarehouseOverview.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.ItemOverview.ResumeLayout(false);
-			this.ItemOverview.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			this.CreateItems.ResumeLayout(false);
-			this.CreateItems.PerformLayout();
-			this.DeleteItems.ResumeLayout(false);
-			this.DeleteItems.PerformLayout();
-			this.WarehouseEmployees.ResumeLayout(false);
-			this.ResumeLayout(false);
+			AutoScaleDimensions = new SizeF(10F, 25F);
+			AutoScaleMode = AutoScaleMode.Font;
+			ClientSize = new Size(1621, 952);
+			Controls.Add(tabControl1);
+			Controls.Add(panel2);
+			Controls.Add(panel1);
+			Name = "WarehouseManager";
+			Text = "ItemManager";
+			panel1.ResumeLayout(false);
+			panel2.ResumeLayout(false);
+			tabControl1.ResumeLayout(false);
+			WarehouseOverview.ResumeLayout(false);
+			WarehouseOverview.PerformLayout();
+			groupBox2.ResumeLayout(false);
+			ItemOverview.ResumeLayout(false);
+			ItemOverview.PerformLayout();
+			groupBox3.ResumeLayout(false);
+			groupBox3.PerformLayout();
+			groupBox1.ResumeLayout(false);
+			groupBox1.PerformLayout();
+			CreateItems.ResumeLayout(false);
+			CreateItems.PerformLayout();
+			DeleteItems.ResumeLayout(false);
+			DeleteItems.PerformLayout();
+			WarehouseEmployees.ResumeLayout(false);
+			ResumeLayout(false);
+		}
 
-        }
+		#endregion
 
-        #endregion
-
-        private Panel panel1;
-        private RadioButton ItemOverviewRBT;
-        private Panel panel2;
-        private Label label1;
-        private RadioButton DeleteItemsRBT;
-        private RadioButton CreateItemsRBT;
-        private TabControl tabControl1;
-        private TabPage ItemOverview;
-        private TabPage CreateItems;
-        private TabPage DeleteItems;
-        private Button SearchItembyName;
-        private TextBox textBox1;
-        private Label label2;
-        private ListBox ItemListBox;
-        private Button ShowAllItems;
-        private Label label7;
-        private Button button3;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Button button5;
-        private Button button4;
-        private TextBox textBox5;
-        private Label label6;
-        private ListBox listBox1;
-        private RadioButton radioButton1;
-        private TabPage WarehouseOverview;
-        private ListBox warehouseListbox;
-        private GroupBox groupBox1;
-        private Button button1;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private RadioButton WarehouseEmployeeRBT;
-        private TabPage WarehouseEmployees;
-        private ListBox employeeList;
-        private Button Add;
-        private ListBox ShopRequests;
-        private GroupBox groupBox2;
-        private Button button2;
-        private Button Restock;
-        private Button ViewDataBTN;
-        private Label label11;
-        private Button RefreshDataBTN;
-        private GroupBox groupBox3;
-        private Button AssignItemBTN;
-        private Label label12;
-        private TextBox nameOfWarehouseTB;
+		private Panel panel1;
+		private RadioButton ItemOverviewRBT;
+		private Panel panel2;
+		private Label label1;
+		private RadioButton DeleteItemsRBT;
+		private RadioButton CreateItemsRBT;
+		private TabControl tabControl1;
+		private TabPage ItemOverview;
+		private TabPage CreateItems;
+		private TabPage DeleteItems;
+		private Button SearchItembyName;
+		private TextBox textBox1;
+		private Label label2;
+		private ListBox ItemListBox;
+		private Button ShowAllItems;
+		private Label label7;
+		private Button button3;
+		private TextBox textBox4;
+		private TextBox textBox3;
+		private TextBox textBox2;
+		private Label label5;
+		private Label label4;
+		private Label label3;
+		private Button button5;
+		private Button button4;
+		private TextBox textBox5;
+		private Label label6;
+		private ListBox listBox1;
+		private RadioButton radioButton1;
+		private TabPage WarehouseOverview;
+		private ListBox warehouseListbox;
+		private GroupBox groupBox1;
+		private Button button1;
+		private Label label8;
+		private Label label9;
+		private Label label10;
+		private TextBox textBox6;
+		private TextBox textBox7;
+		private TextBox textBox8;
+		private RadioButton WarehouseEmployeeRBT;
+		private TabPage WarehouseEmployees;
+		private ListBox employeeList;
+		private Button Add;
+		private ListBox ShopRequests;
+		private GroupBox groupBox2;
+		private Button button2;
+		private Button Restock;
+		private Button ViewDataBTN;
+		private Label label11;
+		private Button RefreshDataBTN;
+		private GroupBox groupBox3;
+		private Button AssignItemBTN;
+		private Label label12;
 		private TextBox quantityTB;
 		private Label label13;
+		private TextBox textBox9;
+		private Label label14;
+		private ComboBox warehouseComboBox;
+		private TextBox textBox10;
+		private Label label15;
+		private RadioButton radioButton2;
+		private ListBox WarehouseItemRestocking;
 	}
 }

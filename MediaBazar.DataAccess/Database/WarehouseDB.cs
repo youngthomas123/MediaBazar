@@ -170,9 +170,10 @@ namespace MediaBazar.DataAccess.Database
                     string name = (string)reader[1];
                     string description = (string)reader[2];
                     string category = (string)reader[3];
-                    int quantity = (int)reader[4];
+                    int warehouseQuantity = (int)reader[4];
+                    int shopQuantity = (int)reader[5];
 
-                    Item foundItem = new Item(itemId, name, description, quantity, category);
+                    Item foundItem = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
                     foundItem.Id = itemId;
 
                     return foundItem;

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,56 +10,59 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace S2GroupProject.Forms
 {
-    public partial class WarehouseManager : Form
-    {
+	public partial class WarehouseManager : Form
+	{
 
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IEmployeeContainer _employeeContainer;
+		private readonly IServiceProvider _serviceProvider;
+		private readonly IEmployeeContainer _employeeContainer;
 		private readonly IItemContainer _itemContainer;
-        private readonly IWarehouseContainer _warehouseContainer;
+		private readonly IWarehouseContainer _warehouseContainer;
 
-        List<Item> items = new List<Item>();
+		List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
-        List<Warehouse> warehouses = new List<Warehouse>();
+		List<Warehouse> warehouses = new List<Warehouse>();
 
-        public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
-        {
-            _serviceProvider = serviceProvider;
+		public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
+		{
+			_serviceProvider = serviceProvider;
 			_employeeContainer = employeeContainer;
 			_itemContainer = itemContainer;
-            _warehouseContainer = warehouseContainer;
+			_warehouseContainer = warehouseContainer;
 			InitializeComponent();
-            LoadData();
-            tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.ItemSize = new Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
-        }
+			LoadData();
+			tabControl1.Appearance = TabAppearance.FlatButtons;
+			tabControl1.ItemSize = new Size(0, 1);
+			tabControl1.SizeMode = TabSizeMode.Fixed;
+		}
 
-        public void LoadData()
-        {
-            warehouseListbox.Items.Clear();
-            employeeList.Items.Clear();
-            ItemListBox.Items.Clear();
-            listBox1.Items.Clear();
-            ShopRequests.Items.Clear();
+		public void LoadData()
+		{
+			warehouseListbox.Items.Clear();
+			employeeList.Items.Clear();
+			ItemListBox.Items.Clear();
+			listBox1.Items.Clear();
+			ShopRequests.Items.Clear();
+			warehouseComboBox.Items.Clear();
 
-            warehouses = _warehouseContainer.LoadWarehouse();
-            items = _itemContainer.LoadItem();
+			warehouses = _warehouseContainer.LoadWarehouse();
+			warehouseComboBox.Items.Add(warehouses);
+			items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
 
-            foreach (Item item in items)
-            {
-                ItemListBox.Items.Add(item);
-                listBox1.Items.Add(item);
-            }
-            foreach(Employee employee in employees)
-            {
-                employeeList.Items.Add(employee);
-            }
-            foreach(Warehouse warehouse in warehouses)
-            {
-                warehouseListbox.Items.Add(warehouse);
-            }
+			foreach (Item item in items)
+			{
+				ItemListBox.Items.Add(item);
+				listBox1.Items.Add(item);
+			}
+			foreach (Employee employee in employees)
+			{
+				employeeList.Items.Add(employee);
+			}
+			foreach (Warehouse warehouse in warehouses)
+			{
+				warehouseListbox.Items.Add(warehouse);
+				warehouseComboBox.Items.Add(warehouse);
+			}
 		}
 
 		public void RefreshData()
@@ -74,210 +73,210 @@ namespace S2GroupProject.Forms
 
 
 		private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+		{
 
-        }
+		}
 
-        private void ItemOverviewRBT_CheckedChanged(object sender, EventArgs e)
-        {
+		private void ItemOverviewRBT_CheckedChanged(object sender, EventArgs e)
+		{
 
-            if(ItemOverviewRBT.Checked == true)
-            {
-                ItemOverview.Show();
-                WarehouseOverview.Hide();
-                CreateItems.Hide();
-                DeleteItems.Hide();
-                RefreshData();
-            }
+			if (ItemOverviewRBT.Checked == true)
+			{
+				ItemOverview.Show();
+				WarehouseOverview.Hide();
+				CreateItems.Hide();
+				DeleteItems.Hide();
+				RefreshData();
+			}
 
-        }
+		}
 
-        private void CreateItemsRBT_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CreateItemsRBT.Checked == true)
-            {
-                CreateItems.Show();
-                WarehouseOverview.Hide();
-                ItemOverview.Hide();
-                DeleteItems.Hide();
-                RefreshData();
-            }
-        }
+		private void CreateItemsRBT_CheckedChanged(object sender, EventArgs e)
+		{
+			if (CreateItemsRBT.Checked == true)
+			{
+				CreateItems.Show();
+				WarehouseOverview.Hide();
+				ItemOverview.Hide();
+				DeleteItems.Hide();
+				RefreshData();
+			}
+		}
 
-        private void DeleteItemsRBT_CheckedChanged(object sender, EventArgs e)
-        {
+		private void DeleteItemsRBT_CheckedChanged(object sender, EventArgs e)
+		{
 
-            if (DeleteItemsRBT.Checked == true)
-            {
-                DeleteItems.Show();
-                WarehouseOverview.Hide();
-                ItemOverview.Hide();
-                CreateItems.Hide();
-                RefreshData();
-            }
-        }
+			if (DeleteItemsRBT.Checked == true)
+			{
+				DeleteItems.Show();
+				WarehouseOverview.Hide();
+				ItemOverview.Hide();
+				CreateItems.Hide();
+				RefreshData();
+			}
+		}
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked == true)
-            {
-                WarehouseOverview.Show();
-                ItemOverview.Hide();
-                CreateItems.Hide();
-                DeleteItems.Hide();
-                RefreshData();
-            }
-        }
-        private void WarehouseEmployeeRBT_CheckedChanged(object sender, EventArgs e)
-        {
-            if(WarehouseEmployeeRBT.Checked == true)
-            {
-                WarehouseOverview.Hide();
-                ItemOverview.Hide();
-                CreateItems.Hide();
-                DeleteItems.Hide();
-                WarehouseEmployees.Show();
-                RefreshData();
-            }
-        }
+		private void radioButton1_CheckedChanged(object sender, EventArgs e)
+		{
+			if (radioButton1.Checked == true)
+			{
+				WarehouseOverview.Show();
+				ItemOverview.Hide();
+				CreateItems.Hide();
+				DeleteItems.Hide();
+				RefreshData();
+			}
+		}
+		private void WarehouseEmployeeRBT_CheckedChanged(object sender, EventArgs e)
+		{
+			if (WarehouseEmployeeRBT.Checked == true)
+			{
+				WarehouseOverview.Hide();
+				ItemOverview.Hide();
+				CreateItems.Hide();
+				DeleteItems.Hide();
+				WarehouseEmployees.Show();
+				RefreshData();
+			}
+		}
 
-        private void ShowAllItems_Click(object sender, EventArgs e)
-        {
-            ItemListBox.Items.Clear();
-            foreach(Item item in items)
-            {
-                ItemListBox.Items.Add(item);
-            }
-            int NumberOfItems = items.Count;
-            label7.Text = $"Number of items: {NumberOfItems}";
-        }
+		private void ShowAllItems_Click(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+			foreach (Item item in items)
+			{
+				ItemListBox.Items.Add(item);
+			}
+			int NumberOfItems = items.Count;
+			label7.Text = $"Number of items: {NumberOfItems}";
+		}
 
-        private void SearchItembyName_Click(object sender, EventArgs e)
-        {
-            try
-            {
+		private void SearchItembyName_Click(object sender, EventArgs e)
+		{
+			try
+			{
 				ItemListBox.Items.Clear();
 				items = _itemContainer.LoadItem();
 				string searchedItemName = textBox1.Text;
-                foreach (Item item in items)
-                {
-                    if (searchedItemName == item.Name)
-                    {
-                        ItemListBox.Items.Add(item);
-                    }
-                }
-            }
-            catch (NotImplementedException) { MessageBox.Show("Item not found"); }
+				foreach (Item item in items)
+				{
+					if (searchedItemName == item.Name)
+					{
+						ItemListBox.Items.Add(item);
+					}
+				}
+			}
+			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
 
-        }
+		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (ItemListBox.SelectedItem != null)
-            {
-                try
-                {
-                    Item item = (Item)ItemListBox.SelectedItem;
-                    string newName = textBox8.Text.Trim();
-                    string newDescription = textBox7.Text.Trim();
-                    int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if (ItemListBox.SelectedItem != null)
+			{
+				try
+				{
+					Item item = (Item)ItemListBox.SelectedItem;
+					string newName = textBox8.Text.Trim();
+					string newDescription = textBox7.Text.Trim();
+					int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
+					item.WarehouseQuantity = newQuantity;
 
-                    // Validate the user input
-                    if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newDescription))
-                    {
-                        MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        // Update the item properties
-                        _itemContainer.UpdateItem(item.Id, newName, newDescription, newQuantity);
-                        RefreshData();
-                        MessageBox.Show("Item updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Please enter valid integer value for the Quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select an item to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+					// Validate the user input
+					if (textBox6.Text == "" || textBox6.Text == null)
+					{
+						MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+					else
+					{
+						// Update the item properties
+						_itemContainer.UpdateItemQuantity(item);
+						RefreshData();
+					}
+				}
+				catch (FormatException)
+				{
+					MessageBox.Show("Please enter valid integer value for the Quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Please select an item to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string name = textBox2.Text;
-            string description = textBox3.Text;
-            int quantity = Convert.ToInt32(quantityTB.Text);
-            string category = textBox4.Text;
+		private void button3_Click(object sender, EventArgs e)
+		{
+			string name = textBox2.Text;
+			string description = textBox3.Text;
+			int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
+			int shopQuantity = Convert.ToInt32(textBox9.Text);
+			string category = textBox4.Text;
 
-            Item item = new Item(Guid.NewGuid(), name, description, quantity, category);
-            _itemContainer.AddItem(item);
-            RefreshData();
+			Item item = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopQuantity, category);
+			_itemContainer.AddItem(item);
+			RefreshData();
 
-        }
+		}
 
-        private void Add_Click(object sender, EventArgs e)
-        {
-            CreateWarehousePopUp createWarehouse = _serviceProvider.GetService<CreateWarehousePopUp>();
-            createWarehouse.ShowDialog();
-        }
+		private void Add_Click(object sender, EventArgs e)
+		{
+			CreateWarehousePopUp createWarehouse = _serviceProvider.GetService<CreateWarehousePopUp>();
+			createWarehouse.ShowDialog();
+		}
 
-        private void warehouseListbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+		private void warehouseListbox_SelectedIndexChanged(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void RefreshDataBTN_Click(object sender, EventArgs e)
-        {
-            RefreshData();
-            //numberOfItemsLabel.Text = ItemListBox.Items.Count.ToString();
-            //numberOfEmployeesLabel.Text = employeeList.Items.Count.ToString();
-        }
+		private void RefreshDataBTN_Click(object sender, EventArgs e)
+		{
+			RefreshData();
+			//numberOfItemsLabel.Text = ItemListBox.Items.Count.ToString();
+			//numberOfEmployeesLabel.Text = employeeList.Items.Count.ToString();
+		}
 
-        private void AssignItemBTN_Click(object sender, EventArgs e)
-        {
-            string warehouseName = nameOfWarehouseTB.Text;
-            Item selectedItem = (Item)ItemListBox.SelectedItem;
-            Warehouse selectedWarehouse = _warehouseContainer.GetWarehouseByName(warehouseName);
-            if (selectedItem != null && selectedWarehouse != null)
-            {
-                _warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
-                MessageBox.Show("Item was added successfully");
-            }
-            else
-            { MessageBox.Show("Item or Warehouse is null"); }
-        }
+		private void AssignItemBTN_Click(object sender, EventArgs e)
+		{
+			Item selectedItem = (Item)ItemListBox.SelectedItem;
+			Warehouse selectedWarehouse = (Warehouse)warehouseComboBox.SelectedItem;
+			if (selectedItem != null && selectedWarehouse != null)
+			{
+				_warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
 
-        private void ViewDataBTN_Click(object sender, EventArgs e)
-        {
-            Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
-            if(selectedWarehouse != null )
-            {
-                warehouseListbox.Items.Clear();
-                List<Item> warehouseItems = _warehouseContainer.LoadWarehouseItems(selectedWarehouse.Id);
+			}
+			else
+			{ MessageBox.Show("Please select an item/warehouse!"); }
+		}
 
-                foreach(Item item in warehouseItems)
-                {
-                    warehouseListbox.Items.Add(item);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Select a warehouse first");
-            }
-        }
+		private void ViewDataBTN_Click(object sender, EventArgs e)
+		{
+			Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
+			if (selectedWarehouse != null)
+			{
+				warehouseListbox.Items.Clear();
+				List<Item> warehouseItems = _warehouseContainer.LoadWarehouseItems(selectedWarehouse.Id);
+
+				foreach (Item item in warehouseItems)
+				{
+					warehouseListbox.Items.Add(item);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Select a warehouse first");
+			}
+		}
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-            Item selectedItem = (Item)listBox1.SelectedItem;
-            if (selectedItem != null)
-            {
-                _itemContainer.DeleteItem(selectedItem);
-                RefreshData();
-            }
+			Item selectedItem = (Item)listBox1.SelectedItem;
+			if (selectedItem != null)
+			{
+				_itemContainer.DeleteItem(selectedItem);
+				RefreshData();
+			}
 		}
 
 		private void button4_Click(object sender, EventArgs e)
@@ -296,6 +295,14 @@ namespace S2GroupProject.Forms
 				}
 			}
 			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
+		}
+
+		private void radioButton2_CheckedChanged(object sender, EventArgs e)
+		{
+			//WarehouseManager itemManager = _serviceProvider.GetService<WarehouseManager>();
+			//this.Close();
+			//LoginForm loginForm = _serviceProvider.GetService<LoginForm>();
+			//loginForm.Show();
 		}
 	}
 }
