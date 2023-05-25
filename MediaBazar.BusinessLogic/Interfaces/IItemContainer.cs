@@ -32,7 +32,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         List<Item> GetItems();
 
-        void UpdateItemQuantity(Item item);
+        void UpdateItemQuantity(Item item, int quantity);
 
 	}
 }

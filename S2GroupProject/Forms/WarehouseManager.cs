@@ -30,6 +30,7 @@ namespace S2GroupProject.Forms
 			_warehouseContainer = warehouseContainer;
 			InitializeComponent();
 			LoadData();
+			WarehouseRestockData();
 			tabControl1.Appearance = TabAppearance.FlatButtons;
 			tabControl1.ItemSize = new Size(0, 1);
 			tabControl1.SizeMode = TabSizeMode.Fixed;
@@ -65,6 +66,21 @@ namespace S2GroupProject.Forms
 				warehouseComboBox2.Items.Add(warehouse);
 			}
 		}
+
+		public void WarehouseRestockData()
+		{
+			WarehouseItemRestocking.Items.Clear();
+			items = _itemContainer.LoadItem();
+			foreach (Item item in items)
+			{
+				if (item.WarehouseQuantity <= 50)
+				{
+					WarehouseItemRestocking.Items.Add(item);
+				}
+			}
+		}
+
+
 
 		public void RefreshData()
 		{
@@ -175,7 +191,6 @@ namespace S2GroupProject.Forms
 					string newName = textBox8.Text.Trim();
 					string newDescription = textBox7.Text.Trim();
 					int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
-					item.WarehouseQuantity = newQuantity;
 
 					// Validate the user input
 					if (textBox6.Text == "" || textBox6.Text == null)
@@ -185,7 +200,7 @@ namespace S2GroupProject.Forms
 					else
 					{
 						// Update the item properties
-						_itemContainer.UpdateItemQuantity(item);
+						_itemContainer.UpdateItemQuantity(item, newQuantity);
 						RefreshData();
 					}
 				}
@@ -228,6 +243,7 @@ namespace S2GroupProject.Forms
 		private void RefreshDataBTN_Click(object sender, EventArgs e)
 		{
 			RefreshData();
+			WarehouseRestockData();
 		}
 
 		private void AssignItemBTN_Click(object sender, EventArgs e)
@@ -328,6 +344,16 @@ namespace S2GroupProject.Forms
 			{
 				MessageBox.Show("Select a warehouse first");
 			}
+		}
+
+		private void Restock_Click(object sender, EventArgs e)
+		{
+			Item selectedItemForRestock = (Item)WarehouseItemRestocking.SelectedItem;
+			if (selectedItemForRestock != null)
+			{
+				_itemContainer.UpdateItemQuantity(selectedItemForRestock, 200);
+			}
+			WarehouseRestockData();
 		}
 	}
 }

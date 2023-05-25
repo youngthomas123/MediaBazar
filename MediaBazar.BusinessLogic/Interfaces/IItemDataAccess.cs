@@ -16,7 +16,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
         List<Item> LoadItem();
 
         Item GetItemById(Guid itemId);
-        void UpdateItemQuantity(Item item);
+        void UpdateItemQuantity(Item item, int quantity);
 
 
 

@@ -100,9 +100,9 @@ namespace MediaBazar.BusinessLogic.Containers
             items.Remove(item);
         }
 
-		public void UpdateItemQuantity(Item item)
+		public void UpdateItemQuantity(Item item, int quantity)
 		{
-			_itemDataAccess.UpdateItemQuantity(item);
+			_itemDataAccess.UpdateItemQuantity(item, quantity);
 		}
 	}
 }

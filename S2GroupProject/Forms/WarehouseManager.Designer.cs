@@ -39,6 +39,7 @@
 			label1 = new Label();
 			tabControl1 = new TabControl();
 			WarehouseOverview = new TabPage();
+			label18 = new Label();
 			groupBox6 = new GroupBox();
 			ShowWarehouseEmployeesBTN = new Button();
 			label11 = new Label();
@@ -243,6 +244,7 @@
 			// 
 			// WarehouseOverview
 			// 
+			WarehouseOverview.Controls.Add(label18);
 			WarehouseOverview.Controls.Add(groupBox6);
 			WarehouseOverview.Controls.Add(WarehouseItemRestocking);
 			WarehouseOverview.Controls.Add(ShopRequests);
@@ -257,6 +259,15 @@
 			WarehouseOverview.TabIndex = 4;
 			WarehouseOverview.Text = "WarehouseOverview";
 			WarehouseOverview.UseVisualStyleBackColor = true;
+			// 
+			// label18
+			// 
+			label18.AutoSize = true;
+			label18.Location = new Point(377, 355);
+			label18.Name = "label18";
+			label18.Size = new Size(147, 15);
+			label18.TabIndex = 20;
+			label18.Text = "Items that need restocking";
 			// 
 			// groupBox6
 			// 
@@ -305,7 +316,7 @@
 			// 
 			WarehouseItemRestocking.FormattingEnabled = true;
 			WarehouseItemRestocking.ItemHeight = 15;
-			WarehouseItemRestocking.Location = new Point(377, 360);
+			WarehouseItemRestocking.Location = new Point(376, 372);
 			WarehouseItemRestocking.Margin = new Padding(2);
 			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
 			WarehouseItemRestocking.Size = new Size(429, 169);
@@ -315,7 +326,7 @@
 			// 
 			ShopRequests.FormattingEnabled = true;
 			ShopRequests.ItemHeight = 15;
-			ShopRequests.Location = new Point(377, 241);
+			ShopRequests.Location = new Point(376, 244);
 			ShopRequests.Margin = new Padding(2);
 			ShopRequests.Name = "ShopRequests";
 			ShopRequests.Size = new Size(429, 109);
@@ -364,6 +375,7 @@
 			Restock.TabIndex = 0;
 			Restock.Text = "Restock Item";
 			Restock.UseVisualStyleBackColor = true;
+			Restock.Click += Restock_Click;
 			// 
 			// Add
 			// 
@@ -919,6 +931,7 @@
 			panel2.ResumeLayout(false);
 			tabControl1.ResumeLayout(false);
 			WarehouseOverview.ResumeLayout(false);
+			WarehouseOverview.PerformLayout();
 			groupBox6.ResumeLayout(false);
 			groupBox6.PerformLayout();
 			groupBox2.ResumeLayout(false);
@@ -1014,5 +1027,6 @@
 		private Label label16;
 		private GroupBox groupBox6;
 		private Button ShowWarehouseEmployeesBTN;
+		private Label label18;
 	}
 }

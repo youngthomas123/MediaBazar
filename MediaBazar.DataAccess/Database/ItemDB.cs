@@ -112,19 +112,19 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
-        public void UpdateItemQuantity(Item item)
+        public void UpdateItemQuantity(Item item, int quantity)
         {
-            if(item != null)
+            if(quantity != 0)
             {
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
                 string sql = "UPDATE Items " +
-                    "SET Quantity = @Quantity " +
+					"SET WarehouseQuantity = @WarehouseQuantity " +
                     "WHERE Item_ID = @Item_ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@Quantity", item.WarehouseQuantity);
+                cmd.Parameters.AddWithValue("@WarehouseQuantity", quantity);
                 cmd.Parameters.AddWithValue("@Item_ID", item.Id);
                 cmd.ExecuteNonQuery();
 
