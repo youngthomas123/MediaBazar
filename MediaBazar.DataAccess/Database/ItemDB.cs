@@ -114,7 +114,7 @@ namespace MediaBazar.DataAccess.Database
 
         public void UpdateItemQuantity(Item item, int quantity)
         {
-            if(quantity != 0)
+            if(quantity != 0 && item != null)
             {
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
@@ -131,6 +131,27 @@ namespace MediaBazar.DataAccess.Database
                 conn.Close();
             }
         }
+
+        public void UpdateItemNameAndDescription(Item item, string name, string description)
+        {
+            if (item != null && name != "" && description != "")
+            {
+				SqlConnection conn = new SqlConnection(connectionString);
+				conn.Open();
+				string sql = "UPDATE Items " +
+					"SET Name = @Name, Description = @Description " +
+					"WHERE Item_ID = @Item_ID";
+				SqlCommand cmd = new SqlCommand(sql, conn);
+				cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@Item_ID", item.Id);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+			}
+        }
+
 
 
         public void LoadDataIntoColumns(string ChartData)

@@ -58,13 +58,9 @@
 			AssignItemBTN = new Button();
 			label12 = new Label();
 			groupBox1 = new GroupBox();
-			textBox10 = new TextBox();
-			label15 = new Label();
 			button1 = new Button();
-			label8 = new Label();
 			label9 = new Label();
 			label10 = new Label();
-			textBox6 = new TextBox();
 			textBox7 = new TextBox();
 			textBox8 = new TextBox();
 			label7 = new Label();
@@ -423,7 +419,7 @@
 			groupBox3.Controls.Add(warehouseComboBox);
 			groupBox3.Controls.Add(AssignItemBTN);
 			groupBox3.Controls.Add(label12);
-			groupBox3.Location = new Point(5, 334);
+			groupBox3.Location = new Point(5, 260);
 			groupBox3.Margin = new Padding(2);
 			groupBox3.Name = "groupBox3";
 			groupBox3.Padding = new Padding(2);
@@ -464,59 +460,27 @@
 			// 
 			// groupBox1
 			// 
-			groupBox1.Controls.Add(textBox10);
-			groupBox1.Controls.Add(label15);
 			groupBox1.Controls.Add(button1);
-			groupBox1.Controls.Add(label8);
 			groupBox1.Controls.Add(label9);
 			groupBox1.Controls.Add(label10);
-			groupBox1.Controls.Add(textBox6);
 			groupBox1.Controls.Add(textBox7);
 			groupBox1.Controls.Add(textBox8);
 			groupBox1.Location = new Point(5, 118);
 			groupBox1.Name = "groupBox1";
-			groupBox1.Size = new Size(286, 211);
+			groupBox1.Size = new Size(286, 137);
 			groupBox1.TabIndex = 6;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Update Items";
 			// 
-			// textBox10
-			// 
-			textBox10.Location = new Point(98, 141);
-			textBox10.Margin = new Padding(2);
-			textBox10.Name = "textBox10";
-			textBox10.Size = new Size(180, 23);
-			textBox10.TabIndex = 14;
-			// 
-			// label15
-			// 
-			label15.AutoSize = true;
-			label15.Location = new Point(5, 145);
-			label15.Margin = new Padding(2, 0, 2, 0);
-			label15.Name = "label15";
-			label15.Size = new Size(83, 15);
-			label15.TabIndex = 13;
-			label15.Text = "Shop Quantity";
-			// 
 			// button1
 			// 
-			button1.Location = new Point(98, 171);
+			button1.Location = new Point(82, 101);
 			button1.Name = "button1";
-			button1.Size = new Size(79, 25);
+			button1.Size = new Size(196, 25);
 			button1.TabIndex = 12;
 			button1.Text = "Update";
 			button1.UseVisualStyleBackColor = true;
 			button1.Click += button1_Click;
-			// 
-			// label8
-			// 
-			label8.AutoSize = true;
-			label8.Location = new Point(5, 110);
-			label8.Margin = new Padding(2, 0, 2, 0);
-			label8.Name = "label8";
-			label8.Size = new Size(115, 15);
-			label8.TabIndex = 11;
-			label8.Text = "Warehouse Quantity";
 			// 
 			// label9
 			// 
@@ -537,14 +501,6 @@
 			label10.Size = new Size(39, 15);
 			label10.TabIndex = 9;
 			label10.Text = "Name";
-			// 
-			// textBox6
-			// 
-			textBox6.Location = new Point(127, 108);
-			textBox6.Margin = new Padding(2);
-			textBox6.Name = "textBox6";
-			textBox6.Size = new Size(160, 23);
-			textBox6.TabIndex = 8;
 			// 
 			// textBox7
 			// 
@@ -988,10 +944,8 @@
 		private ListBox warehouseListbox;
 		private GroupBox groupBox1;
 		private Button button1;
-		private Label label8;
 		private Label label9;
 		private Label label10;
-		private TextBox textBox6;
 		private TextBox textBox7;
 		private TextBox textBox8;
 		private RadioButton WarehouseEmployeeRBT;
@@ -1013,8 +967,6 @@
 		private TextBox textBox9;
 		private Label label14;
 		private ComboBox warehouseComboBox;
-		private TextBox textBox10;
-		private Label label15;
 		private RadioButton radioButton2;
 		private ListBox WarehouseItemRestocking;
 		private GroupBox groupBox5;

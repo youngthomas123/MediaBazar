@@ -190,17 +190,16 @@ namespace S2GroupProject.Forms
 					Item item = (Item)ItemListBox.SelectedItem;
 					string newName = textBox8.Text.Trim();
 					string newDescription = textBox7.Text.Trim();
-					int newQuantity = Convert.ToInt32(textBox6.Text.Trim());
 
 					// Validate the user input
-					if (textBox6.Text == "" || textBox6.Text == null)
+					if (textBox7.Text == "" || textBox8.Text == null)
 					{
 						MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 					else
 					{
 						// Update the item properties
-						_itemContainer.UpdateItemQuantity(item, newQuantity);
+						_itemContainer.UpdateItemNameAndDescription(item, newName, newDescription);
 						RefreshData();
 					}
 				}
