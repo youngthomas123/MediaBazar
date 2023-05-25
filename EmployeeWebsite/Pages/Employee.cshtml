@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization
 @model EmployeeWebsite.Pages.EmployeeModel
 @{
 }
@@ -25,6 +26,46 @@
                     <p class="text-muted mb-4">@Model.Emp.Address</p>
                 </div>
             </div>
+            <h4>Shift Preference</h4>
+            <form method="post" asp-page-handler="CreateShiftPreference">
+             <div class="mb-3">
+                    <input type="hidden" name="bsn" asp-for="Emp.BSN" class="form-control">
+                    <span asp-validation-for="Emp.BSN" class="text-danger"></span>
+              </div>
+            <div class="form-group">
+                    <label asp-for="ShiftPreferenceViewModel.Year" class="control-label"></label>
+                    <input asp-for="ShiftPreferenceViewModel.Year" class="form-control" value="@DateTime.Now.Year" readonly />
+                    <span asp-validation-for="ShiftPreferenceViewModel.Year" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="ShiftPreferenceViewModel.Month" class="control-label"></label>
+                    <select asp-for="ShiftPreferenceViewModel.Month" class="form-control">
+                        <option value="">Select Month</option>
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+                        }
+                    </select>
+                    <span asp-validation-for="ShiftPreferenceViewModel.Month" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShiftPreferenceViewModel.Preference" class="control-label"></label>
+                    <select asp-for="ShiftPreferenceViewModel.Preference" class="form-control">
+                        <option value="">Select Shift Type</option>
+                        @foreach (var shiftType in Enum.GetValues(typeof(MediaBazar.BusinessLogic.Classes.MyEnums.ShiftTypes)))
+                        {
+                            <option value="@shiftType">@shiftType</option>
+                        }
+                    </select>
+                    <span asp-validation-for="ShiftPreferenceViewModel.Preference" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Submit Preference</button>
+            </form>
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@Model.ErrorMessage</div>
+                }
+
         </div>
         @if (Model.IsEditMode)
         {
@@ -84,10 +125,12 @@
                             <p class="text-muted mb-0">@Model.Emp.Address</p>
                         </div>
                    </div>
+
                     <hr>
-                    <form method="post">
-                        <button type="submit" name="edit" class="btn btn-primary">Edit</button>
-                    </form>
+
+                    <a href="EditEmpInfo?bsn=@Model.Emp.BSN" class="btn btn-primary">Edit</a>
+
+                    
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="mb-0">Shifts</p>
@@ -127,30 +170,30 @@
                             {
                                 <p class="text-muted mb-0">No sick leave scheduled</p>
                             }
-                            <form method="post" >
+                            <form method="post" asp-page-handler="AssignSickLeave">
                                 <div class="mb-3">
                                     <input type="hidden" name="bsn" asp-for="Emp.BSN" class="form-control">
                                     <span asp-validation-for="Emp.BSN" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label asp-for="SickLeave.StartDate" class="form-label"></label>
-                                    <input asp-for="SickLeave.StartDate" type="date" class="form-control">
-                                    <span asp-validation-for="SickLeave.StartDate" class="text-danger"></span>
+                                    <label asp-for="SickLeaveViewModel.StartDate" class="form-label"></label>
+                                    <input asp-for="SickLeaveViewModel.StartDate" type="date" class="form-control">
+                                    <span asp-validation-for="SickLeaveViewModel.StartDate" class="text-danger"></span>
                                 </div>
                                <div class="mb-3">
-                                    <label asp-for="SickLeave.EndDate" class="form-label"></label>
-                                    <input asp-for="SickLeave.EndDate" type="date" class="form-control">
-                                    <span asp-validation-for="SickLeave.EndDate" class="text-danger"></span>
+                                    <label asp-for="SickLeaveViewModel.EndDate" class="form-label"></label>
+                                    <input asp-for="SickLeaveViewModel.EndDate" type="date" class="form-control">
+                                    <span asp-validation-for="SickLeaveViewModel.EndDate" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label asp-for="SickLeave.Reason" class="form-label"></label>
-                                    <input asp-for="SickLeave.Reason" class="form-control">
-                                    <span asp-validation-for="SickLeave.Reason" class="text-danger"></span>
+                                    <label asp-for="SickLeaveViewModel.Reason" class="form-label"></label>
+                                    <input asp-for="SickLeaveViewModel.Reason" class="form-control">
+                                    <span asp-validation-for="SickLeaveViewModel.Reason" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3">
                                 
-                                    <input type="hidden" asp-for="SickLeave.IsScheduled" value ="false" class="form-control">
-                                    <span asp-validation-for="SickLeave.IsScheduled" class="text-danger"></span>
+                                    <input type="hidden" asp-for="SickLeaveViewModel.IsScheduled" value="false" class="form-control">
+                                    <span asp-validation-for="SickLeaveViewModel.IsScheduled" class="text-danger"></span>
                                 </div>
                                 <button type="submit" asp-page-handler="AssignSickLeave" class="btn btn-primary btn-sm">Schedule Sick Leave</button>
                             </form>

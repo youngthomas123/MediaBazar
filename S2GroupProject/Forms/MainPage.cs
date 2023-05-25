@@ -5,6 +5,7 @@ using MediaBazar.BusinessLogic.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using S2GroupProject.Forms;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static MediaBazar.BusinessLogic.Classes.MyEnums;
@@ -71,61 +72,47 @@ namespace S2GroupProject
 			}
 		}
 
-		public void LoadingData()
-		{
-			// contractCb.Items.Clear();
-			// daysOffClb.Items.Clear();
-			// jobPositionCb.Items.Clear();
-			employeesLb.Items.Clear();
-			shiftTypeCb.Items.Clear();
-			contractTypeFilterClb.Items.Clear();
-			jobPositionsFilterCb.Items.Clear();
-			employees = _employeeContainer.LoadEmployees();
-			foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-			{
-				//   daysOffClb.Items.Add(day.ToString());
-			}
-			foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
-			{
+        public void LoadingData()
+        {
+           // contractCb.Items.Clear();
+           // daysOffClb.Items.Clear();
+           // jobPositionCb.Items.Clear();
+            employeesLb.Items.Clear();
+            //shiftTypeCb.Items.Clear();
+            contractTypeFilterClb.Items.Clear();
+           // jobPositionsFilterCb.Items.Clear();
+            employees = _employeeContainer.LoadEmployees();
 
-				//    jobPositionCb.Items.Add(jobPosition);
-			}
 
-			foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
-			{
+            foreach (var employee in employees)
+            {
 
-				//  contractCb.Items.Add(contract);
-			}
+                employeesLb.Items.Add(employee);
+            }
 
-			foreach (var employee in employees)
-			{
-
-				employeesLb.Items.Add(employee);
-			}
-			//foreach (var emp in employees)
-			//{
-			//    Global.myManagement.AddEmployee(emp);
-			//    employeesLb.Items.Add(emp);
-			//}
-
-			foreach (var shiftType in Enum.GetValues(typeof(ShiftTypes)))
-			{
-
-				shiftTypeCb.Items.Add(shiftType);
-			}
-
-			foreach (var jobPosition in Enum.GetValues(typeof(JobPositions)))
-			{
-
-				jobPositionsFilterCb.Items.Add(jobPosition);
-			}
+            shiftTypeCb.DataSource = Enum.GetValues(typeof(ShiftTypes));
 
 			foreach (var contract in Enum.GetValues(typeof(ContractTypes)))
-			{
+            {
 
-				contractTypeFilterClb.Items.Add(contract);
+                contractTypeFilterClb.Items.Add(contract);
+            }
+            
+			jobPositionsFilterCb.DataSource = Enum.GetValues(typeof(JobPositions));
+			jobPositionsFilterCb.SelectedIndex = -1;
+
+			foreach (Control control in groupBox4.Controls)
+			{
+				if (control is System.Windows.Forms.ComboBox comboBox)
+				{
+					comboBox.Text = "NONE";
+				}
 			}
-		}
+
+			ScheduleShiftsMonthCbb.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
+
+
+        }
 
 		public void RefreshData()
 		{
@@ -312,10 +299,11 @@ namespace S2GroupProject
 			RefreshData();
 		}
 
-		private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			JobPositions jobPostion = (JobPositions)jobPositionsFilterCb.SelectedIndex;
-			employeesLb.Items.Clear();
+        private void jobPositionsFilterCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            JobPositions jobPostion = (JobPositions)jobPositionsFilterCb.SelectedIndex;
+            employeesLb.Items.Clear();
 
 			if (jobPostion == JobPositions.NONE)
 			{
@@ -453,56 +441,65 @@ namespace S2GroupProject
 			}
 		}
 
-		//public void AssignShifts()
-		//{
-		//    // Get all full-time employees
-		//    List<Employee> fullTimeEmployees = Employees.Where(e => e.ContractType == ContractTypes.FULL_TIME).ToList();
+        public void AssignShifts(int year, int month)
+        {
+            // Get all full-time employees
+			employees = _employeeContainer.LoadEmployees();
+            List<Employee> fullTimeEmployees = employees.Where(e => e.ContractType == ContractTypes.FULL_TIME || e.ContractType == ContractTypes.PART_TIME).ToList();
 
-		//    // Generate all possible shifts for the next month
-		//    DateTime currentDate = DateTime.Now.AddDays(1); // start from tomorrow
-		//    DateTime endDate = currentDate.AddMonths(1).AddDays(-1); // end at the last day of next month
-		//    List<Shift> allShifts = new List<Shift>();
-		//    while (currentDate <= endDate)
-		//    {
-		//        foreach (Employee employee in fullTimeEmployees)
-		//        {
-		//            if (!employee.DaysOff.Contains(currentDate.DayOfWeek))
-		//            {
-		//                allShifts.Add(new Shift(currentDate, ShiftTypes.Day, null)); // add day shift
-		//                allShifts.Add(new Shift(currentDate, ShiftTypes.Evening, null)); // add evening shift
-		//                allShifts.Add(new Shift(currentDate, ShiftTypes.Night, null)); // add night shift
-		//            }
-		//        }
-		//        currentDate = currentDate.AddDays(1); // move to the next day
-		//    }
+            // Generate all possible shifts for the specified month
+            DateTime currentDate = new DateTime(year, month, 1);
+            DateTime endDate = currentDate.AddMonths(1).AddDays(-1);
+            List<Shift> allShifts = new List<Shift>();
+			while (currentDate <= endDate)
+			{
+				foreach (Employee employee in fullTimeEmployees)
+				{
+					ShiftPreference preference = employee.ShiftPreferences.FirstOrDefault(s => s.Month == month);
+					bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
+					//false if emp has scheduled a sick leave xd
+					bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
+									 !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate);
 
-		//    // Assign shifts to employees
-		//    Random rnd = new Random();
-		//    foreach (Employee employee in fullTimeEmployees)
-		//    {
-		//        List<Shift> availableShifts = allShifts.Where(s => !employee.DaysOff.Contains(s.ShiftDate.DayOfWeek) && !employee.ShiftsDates.Contains(s)).ToList();
-		//        int shiftsToAssign = employee.HoursPerWeek / 8 * 3; // calculate the number of shifts to assign based on the employee's weekly hours
-		//        for (int i = 0; i < shiftsToAssign; i++)
-		//        {
-		//            if (availableShifts.Count > 0)
-		//            {
-		//                Shift shift = availableShifts[rnd.Next(availableShifts.Count)]; // randomly select a shift from the available shifts
-		//                employee.ShiftsDates.Add(shift);
-		//                availableShifts.Remove(shift);
-		//            }
-		//            else
-		//            {
-		//                break; // no more shifts available for this employee
-		//            }
-		//        }
-		//    }
-		//}
-		// }
+					if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
+					{
+						Shift newShift = new Shift(currentDate, preference.Preference, false);
+						employee.ShiftsDates.Add(newShift);
+						_employeeContainer.AddEmpShift(employee);
+					}
+				}
+				currentDate = currentDate.AddDays(1);
+			}
+		}
+		private void ScheduleMonthlyShifts_Click(object sender, EventArgs e)
+        {
+			int currentYear = DateTime.Now.Year;
+            string selectedMonth = ScheduleShiftsMonthCbb.SelectedItem.ToString();
+            int monthNumber;
+            if (DateTime.TryParseExact(selectedMonth, "MMMM", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime result))
+            {
+                monthNumber = result.Month;
+            }
+            else
+            {
+                // Handle invalid selection
+                monthNumber = -1;
+            }
+            AssignShifts(currentYear, monthNumber);
+            RefreshData();
+        }
 
+        private void employeesLb_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
 
+        }
 
-
-	}
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+			RefreshData();
+        }
+    }
 }
+
 
 

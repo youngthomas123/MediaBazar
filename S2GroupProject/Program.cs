@@ -41,6 +41,7 @@ namespace S2GroupProject
             services.AddTransient<Days>();
             services.AddTransient<CalendarDay>();
             services.AddTransient<CreateWarehousePopUp>();
+            services.AddTransient<Experiment>();
 
 
             var serviceProvider = services.BuildServiceProvider();

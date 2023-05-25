@@ -10,10 +10,10 @@ namespace MediaBazar.BusinessLogic.Classes
 	{
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
-		public string Reason { get; set; }
+		public string? Reason { get; set; }
 		public bool IsScheduled { get; set; }
 
-		public SickLeave(DateTime startDate, DateTime endDate, string reason, bool isScheduled)
+		public SickLeave(DateTime startDate, DateTime endDate, string? reason, bool isScheduled)
 		{
 			StartDate = startDate;
 			EndDate = endDate;
@@ -25,9 +25,26 @@ namespace MediaBazar.BusinessLogic.Classes
 		{
 
 		}
-        public override string ToString()
-        {
-			return $"From{StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} {IsScheduled}";
+		public override string ToString()
+		{
+			if (StartDate == null || EndDate == null)
+			{
+				return "";
+			}else
+			if (IsScheduled == false)
+			{
+				return $"From {StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} - Not Approved";
+			}
+			else
+			if(IsScheduled== true) 
+			{
+				return $"From {StartDate.ToString("d")} to {EndDate.ToString("d")} because {Reason} - Approved";
+			}
+			else
+			{
+				return "";
+			}
+			
         }
     }
 }

@@ -22,476 +22,492 @@
 
 		#region Windows Form Designer generated code
 
-		/// <summary>
-		///  Required method for Designer support - do not modify
-		///  the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			employeesLb = new ListBox();
-			monthLb = new Label();
-			groupBox2 = new GroupBox();
-			searchButton = new Button();
-			RemoveBtn = new Button();
-			searchTB = new TextBox();
-			bsnRemoveTb = new TextBox();
-			label13 = new Label();
-			label12 = new Label();
-			groupBox3 = new GroupBox();
-			addShiftBtn = new Button();
-			shiftBsnTb = new TextBox();
-			label21 = new Label();
-			shiftTypeCb = new ComboBox();
-			shiftDayPicker = new DateTimePicker();
-			createScheduleBtn = new Button();
-			button2 = new Button();
-			button1 = new Button();
-			label20 = new Label();
-			label19 = new Label();
-			label18 = new Label();
-			label17 = new Label();
-			label16 = new Label();
-			label15 = new Label();
-			label14 = new Label();
-			flowLayoutPanel1 = new FlowLayoutPanel();
-			backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-			groupBox4 = new GroupBox();
-			contractTypeFilterClb = new CheckedListBox();
-			shiftDayPickerFilter = new DateTimePicker();
-			jobPositionsFilterCb = new ComboBox();
-			AddAnEmpBtn = new Button();
-			groupBox2.SuspendLayout();
-			groupBox3.SuspendLayout();
-			groupBox4.SuspendLayout();
-			SuspendLayout();
-			// 
-			// employeesLb
-			// 
-			employeesLb.BackColor = SystemColors.ButtonHighlight;
-			employeesLb.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-			employeesLb.FormattingEnabled = true;
-			employeesLb.HorizontalScrollbar = true;
-			employeesLb.ItemHeight = 35;
-			employeesLb.Location = new Point(14, 238);
-			employeesLb.Margin = new Padding(4, 3, 4, 3);
-			employeesLb.Name = "employeesLb";
-			employeesLb.Size = new Size(2020, 529);
-			employeesLb.TabIndex = 0;
-			employeesLb.Click += listBox1_SelectedIndexChanged;
-			// 
-			// monthLb
-			// 
-			monthLb.AutoSize = true;
-			monthLb.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			monthLb.Location = new Point(40, 313);
-			monthLb.Margin = new Padding(4, 0, 4, 0);
-			monthLb.Name = "monthLb";
-			monthLb.Size = new Size(0, 31);
-			monthLb.TabIndex = 26;
-			// 
-			// groupBox2
-			// 
-			groupBox2.Controls.Add(searchButton);
-			groupBox2.Controls.Add(RemoveBtn);
-			groupBox2.Controls.Add(searchTB);
-			groupBox2.Controls.Add(bsnRemoveTb);
-			groupBox2.Controls.Add(label13);
-			groupBox2.Controls.Add(label12);
-			groupBox2.Location = new Point(10, 820);
-			groupBox2.Margin = new Padding(4, 5, 4, 5);
-			groupBox2.Name = "groupBox2";
-			groupBox2.Padding = new Padding(4, 5, 4, 5);
-			groupBox2.Size = new Size(539, 465);
-			groupBox2.TabIndex = 2;
-			groupBox2.TabStop = false;
-			groupBox2.Text = "Delete Employee";
-			// 
-			// searchButton
-			// 
-			searchButton.BackColor = SystemColors.ButtonHighlight;
-			searchButton.Location = new Point(144, 348);
-			searchButton.Margin = new Padding(4, 5, 4, 5);
-			searchButton.Name = "searchButton";
-			searchButton.Size = new Size(191, 47);
-			searchButton.TabIndex = 24;
-			searchButton.Text = "Search";
-			searchButton.UseVisualStyleBackColor = false;
-			searchButton.Click += searchButton_Click;
-			// 
-			// RemoveBtn
-			// 
-			RemoveBtn.BackColor = SystemColors.ButtonHighlight;
-			RemoveBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			RemoveBtn.ForeColor = SystemColors.ControlText;
-			RemoveBtn.Location = new Point(10, 170);
-			RemoveBtn.Margin = new Padding(4, 5, 4, 5);
-			RemoveBtn.Name = "RemoveBtn";
-			RemoveBtn.Size = new Size(227, 82);
-			RemoveBtn.TabIndex = 23;
-			RemoveBtn.Text = "Remove from Management";
-			RemoveBtn.UseVisualStyleBackColor = false;
-			RemoveBtn.Click += RemoveBtn_Click;
-			// 
-			// searchTB
-			// 
-			searchTB.BackColor = SystemColors.ButtonHighlight;
-			searchTB.Location = new Point(144, 300);
-			searchTB.Margin = new Padding(4, 5, 4, 5);
-			searchTB.Name = "searchTB";
-			searchTB.Size = new Size(190, 31);
-			searchTB.TabIndex = 23;
-			// 
-			// bsnRemoveTb
-			// 
-			bsnRemoveTb.BackColor = SystemColors.ButtonHighlight;
-			bsnRemoveTb.Location = new Point(66, 58);
-			bsnRemoveTb.Margin = new Padding(4, 5, 4, 5);
-			bsnRemoveTb.Name = "bsnRemoveTb";
-			bsnRemoveTb.Size = new Size(190, 31);
-			bsnRemoveTb.TabIndex = 23;
-			// 
-			// label13
-			// 
-			label13.AutoSize = true;
-			label13.Location = new Point(10, 307);
-			label13.Margin = new Padding(4, 0, 4, 0);
-			label13.Name = "label13";
-			label13.Size = new Size(133, 25);
-			label13.TabIndex = 0;
-			label13.Text = "Search via BSN:";
-			// 
-			// label12
-			// 
-			label12.AutoSize = true;
-			label12.Location = new Point(10, 63);
-			label12.Margin = new Padding(4, 0, 4, 0);
-			label12.Name = "label12";
-			label12.Size = new Size(49, 25);
-			label12.TabIndex = 23;
-			label12.Text = "BSN:";
-			// 
-			// groupBox3
-			// 
-			groupBox3.Controls.Add(addShiftBtn);
-			groupBox3.Controls.Add(shiftBsnTb);
-			groupBox3.Controls.Add(label21);
-			groupBox3.Controls.Add(shiftTypeCb);
-			groupBox3.Controls.Add(shiftDayPicker);
-			groupBox3.Controls.Add(createScheduleBtn);
-			groupBox3.Controls.Add(button2);
-			groupBox3.Controls.Add(button1);
-			groupBox3.Controls.Add(monthLb);
-			groupBox3.Controls.Add(label20);
-			groupBox3.Controls.Add(label19);
-			groupBox3.Controls.Add(label18);
-			groupBox3.Controls.Add(label17);
-			groupBox3.Controls.Add(label16);
-			groupBox3.Controls.Add(label15);
-			groupBox3.Controls.Add(label14);
-			groupBox3.Controls.Add(flowLayoutPanel1);
-			groupBox3.Location = new Point(570, 820);
-			groupBox3.Margin = new Padding(4, 5, 4, 5);
-			groupBox3.Name = "groupBox3";
-			groupBox3.Padding = new Padding(4, 5, 4, 5);
-			groupBox3.Size = new Size(1469, 465);
-			groupBox3.TabIndex = 3;
-			groupBox3.TabStop = false;
-			groupBox3.Text = "Schedule Shifts";
-			// 
-			// addShiftBtn
-			// 
-			addShiftBtn.BackColor = SystemColors.ButtonHighlight;
-			addShiftBtn.Location = new Point(920, 380);
-			addShiftBtn.Margin = new Padding(4, 5, 4, 5);
-			addShiftBtn.Name = "addShiftBtn";
-			addShiftBtn.Size = new Size(191, 47);
-			addShiftBtn.TabIndex = 25;
-			addShiftBtn.Text = "Add Shift";
-			addShiftBtn.UseVisualStyleBackColor = false;
-			addShiftBtn.Click += addShiftBtn_Click;
-			// 
-			// shiftBsnTb
-			// 
-			shiftBsnTb.BackColor = SystemColors.ButtonHighlight;
-			shiftBsnTb.Location = new Point(670, 380);
-			shiftBsnTb.Margin = new Padding(4, 5, 4, 5);
-			shiftBsnTb.Name = "shiftBsnTb";
-			shiftBsnTb.Size = new Size(190, 31);
-			shiftBsnTb.TabIndex = 33;
-			// 
-			// label21
-			// 
-			label21.AutoSize = true;
-			label21.Location = new Point(616, 385);
-			label21.Margin = new Padding(4, 0, 4, 0);
-			label21.Name = "label21";
-			label21.Size = new Size(49, 25);
-			label21.TabIndex = 32;
-			label21.Text = "BSN:";
-			// 
-			// shiftTypeCb
-			// 
-			shiftTypeCb.BackColor = SystemColors.ButtonFace;
-			shiftTypeCb.FormattingEnabled = true;
-			shiftTypeCb.Location = new Point(387, 380);
-			shiftTypeCb.Margin = new Padding(4, 5, 4, 5);
-			shiftTypeCb.Name = "shiftTypeCb";
-			shiftTypeCb.Size = new Size(194, 33);
-			shiftTypeCb.TabIndex = 31;
-			// 
-			// shiftDayPicker
-			// 
-			shiftDayPicker.CalendarForeColor = Color.Moccasin;
-			shiftDayPicker.CalendarMonthBackground = Color.Moccasin;
-			shiftDayPicker.CalendarTitleBackColor = Color.Moccasin;
-			shiftDayPicker.Location = new Point(387, 318);
-			shiftDayPicker.Margin = new Padding(4, 5, 4, 5);
-			shiftDayPicker.Name = "shiftDayPicker";
-			shiftDayPicker.Size = new Size(448, 31);
-			shiftDayPicker.TabIndex = 30;
-			// 
-			// createScheduleBtn
-			// 
-			createScheduleBtn.BackColor = SystemColors.ButtonHighlight;
-			createScheduleBtn.Location = new Point(120, 390);
-			createScheduleBtn.Margin = new Padding(4, 5, 4, 5);
-			createScheduleBtn.Name = "createScheduleBtn";
-			createScheduleBtn.Size = new Size(186, 60);
-			createScheduleBtn.TabIndex = 29;
-			createScheduleBtn.Text = "Create Schedule";
-			createScheduleBtn.UseVisualStyleBackColor = false;
-			createScheduleBtn.Click += createScheduleBtn_Click;
-			// 
-			// button2
-			// 
-			button2.Location = new Point(1439, 148);
-			button2.Margin = new Padding(4, 5, 4, 5);
-			button2.Name = "button2";
-			button2.Size = new Size(29, 42);
-			button2.TabIndex = 28;
-			button2.Text = ">";
-			button2.UseVisualStyleBackColor = true;
-			button2.Click += button2_Click;
-			// 
-			// button1
-			// 
-			button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-			button1.ImageAlign = ContentAlignment.TopCenter;
-			button1.Location = new Point(6, 148);
-			button1.Margin = new Padding(4, 5, 4, 5);
-			button1.Name = "button1";
-			button1.Size = new Size(29, 42);
-			button1.TabIndex = 27;
-			button1.Text = "<";
-			button1.UseVisualStyleBackColor = true;
-			button1.Click += button1_Click;
-			// 
-			// label20
-			// 
-			label20.AutoSize = true;
-			label20.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label20.Location = new Point(1063, 25);
-			label20.Margin = new Padding(4, 0, 4, 0);
-			label20.Name = "label20";
-			label20.Size = new Size(104, 31);
-			label20.TabIndex = 7;
-			label20.Text = "Saturday";
-			label20.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label19
-			// 
-			label19.AutoSize = true;
-			label19.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label19.Location = new Point(883, 25);
-			label19.Margin = new Padding(4, 0, 4, 0);
-			label19.Name = "label19";
-			label19.Size = new Size(76, 31);
-			label19.TabIndex = 6;
-			label19.Text = "Friday";
-			label19.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label18
-			// 
-			label18.AutoSize = true;
-			label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label18.Location = new Point(670, 25);
-			label18.Margin = new Padding(4, 0, 4, 0);
-			label18.Name = "label18";
-			label18.Size = new Size(107, 31);
-			label18.TabIndex = 5;
-			label18.Text = "Thursday";
-			label18.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label17
-			// 
-			label17.AutoSize = true;
-			label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label17.Location = new Point(461, 25);
-			label17.Margin = new Padding(4, 0, 4, 0);
-			label17.Name = "label17";
-			label17.Size = new Size(132, 31);
-			label17.TabIndex = 4;
-			label17.Text = "Wednesday";
-			label17.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label16
-			// 
-			label16.AutoSize = true;
-			label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label16.Location = new Point(281, 25);
-			label16.Margin = new Padding(4, 0, 4, 0);
-			label16.Name = "label16";
-			label16.Size = new Size(98, 31);
-			label16.TabIndex = 3;
-			label16.Text = "Tuesday";
-			label16.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label15
-			// 
-			label15.AutoSize = true;
-			label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label15.Location = new Point(104, 30);
-			label15.Margin = new Padding(4, 0, 4, 0);
-			label15.Name = "label15";
-			label15.Size = new Size(98, 31);
-			label15.TabIndex = 2;
-			label15.Text = "Monday";
-			label15.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// label14
-			// 
-			label14.AutoSize = true;
-			label14.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label14.Location = new Point(1236, 30);
-			label14.Margin = new Padding(4, 0, 4, 0);
-			label14.Name = "label14";
-			label14.Size = new Size(89, 31);
-			label14.TabIndex = 1;
-			label14.Text = "Sunday";
-			label14.TextAlign = ContentAlignment.MiddleCenter;
-			// 
-			// flowLayoutPanel1
-			// 
-			flowLayoutPanel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-			flowLayoutPanel1.Location = new Point(40, 63);
-			flowLayoutPanel1.Margin = new Padding(4, 5, 4, 5);
-			flowLayoutPanel1.Name = "flowLayoutPanel1";
-			flowLayoutPanel1.Size = new Size(1400, 233);
-			flowLayoutPanel1.TabIndex = 0;
-			// 
-			// groupBox4
-			// 
-			groupBox4.Controls.Add(contractTypeFilterClb);
-			groupBox4.Controls.Add(shiftDayPickerFilter);
-			groupBox4.Controls.Add(jobPositionsFilterCb);
-			groupBox4.Location = new Point(407, 18);
-			groupBox4.Margin = new Padding(4, 5, 4, 5);
-			groupBox4.Name = "groupBox4";
-			groupBox4.Padding = new Padding(4, 5, 4, 5);
-			groupBox4.Size = new Size(1626, 193);
-			groupBox4.TabIndex = 4;
-			groupBox4.TabStop = false;
-			groupBox4.Text = "Filtering Options";
-			// 
-			// contractTypeFilterClb
-			// 
-			contractTypeFilterClb.BackColor = SystemColors.ButtonHighlight;
-			contractTypeFilterClb.FormattingEnabled = true;
-			contractTypeFilterClb.Location = new Point(1240, 27);
-			contractTypeFilterClb.Margin = new Padding(4, 5, 4, 5);
-			contractTypeFilterClb.Name = "contractTypeFilterClb";
-			contractTypeFilterClb.Size = new Size(331, 144);
-			contractTypeFilterClb.TabIndex = 35;
-			contractTypeFilterClb.SelectedIndexChanged += contractTypeFilterClb_SelectedIndexChanged;
-			// 
-			// shiftDayPickerFilter
-			// 
-			shiftDayPickerFilter.Location = new Point(624, 42);
-			shiftDayPickerFilter.Margin = new Padding(4, 5, 4, 5);
-			shiftDayPickerFilter.Name = "shiftDayPickerFilter";
-			shiftDayPickerFilter.Size = new Size(448, 31);
-			shiftDayPickerFilter.TabIndex = 34;
-			shiftDayPickerFilter.ValueChanged += shiftDayPickerFilter_ValueChanged;
-			// 
-			// jobPositionsFilterCb
-			// 
-			jobPositionsFilterCb.BackColor = SystemColors.ButtonHighlight;
-			jobPositionsFilterCb.FormattingEnabled = true;
-			jobPositionsFilterCb.Location = new Point(4, 42);
-			jobPositionsFilterCb.Margin = new Padding(4, 5, 4, 5);
-			jobPositionsFilterCb.Name = "jobPositionsFilterCb";
-			jobPositionsFilterCb.Size = new Size(308, 33);
-			jobPositionsFilterCb.TabIndex = 0;
-			jobPositionsFilterCb.Click += jobPositionsFilterCb_SelectedIndexChanged;
-			// 
-			// AddAnEmpBtn
-			// 
-			AddAnEmpBtn.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-			AddAnEmpBtn.Location = new Point(20, 20);
-			AddAnEmpBtn.Margin = new Padding(4, 5, 4, 5);
-			AddAnEmpBtn.Name = "AddAnEmpBtn";
-			AddAnEmpBtn.Size = new Size(379, 210);
-			AddAnEmpBtn.TabIndex = 5;
-			AddAnEmpBtn.Text = "Add an Employee";
-			AddAnEmpBtn.UseVisualStyleBackColor = true;
-			AddAnEmpBtn.Click += AddAnEmpBtn_Click;
-			// 
-			// MainPage
-			// 
-			AutoScaleDimensions = new SizeF(10F, 25F);
-			AutoScaleMode = AutoScaleMode.Font;
-			BackColor = SystemColors.Control;
-			ClientSize = new Size(1924, 1050);
-			Controls.Add(AddAnEmpBtn);
-			Controls.Add(groupBox4);
-			Controls.Add(groupBox3);
-			Controls.Add(groupBox2);
-			Controls.Add(employeesLb);
-			Margin = new Padding(4, 3, 4, 3);
-			Name = "MainPage";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "MainPage";
-			groupBox2.ResumeLayout(false);
-			groupBox2.PerformLayout();
-			groupBox3.ResumeLayout(false);
-			groupBox3.PerformLayout();
-			groupBox4.ResumeLayout(false);
-			ResumeLayout(false);
-		}
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.employeesLb = new System.Windows.Forms.ListBox();
+            this.monthLb = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ScheduleShiftsMonthCbb = new System.Windows.Forms.ComboBox();
+            this.ScheduleMonthlyShifts = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.RemoveBtn = new System.Windows.Forms.Button();
+            this.searchTB = new System.Windows.Forms.TextBox();
+            this.bsnRemoveTb = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.addShiftBtn = new System.Windows.Forms.Button();
+            this.shiftBsnTb = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.shiftTypeCb = new System.Windows.Forms.ComboBox();
+            this.shiftDayPicker = new System.Windows.Forms.DateTimePicker();
+            this.createScheduleBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.contractTypeFilterClb = new System.Windows.Forms.CheckedListBox();
+            this.shiftDayPickerFilter = new System.Windows.Forms.DateTimePicker();
+            this.jobPositionsFilterCb = new System.Windows.Forms.ComboBox();
+            this.AddAnEmpBtn = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // employeesLb
+            // 
+            this.employeesLb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.employeesLb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.employeesLb.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.employeesLb.FormattingEnabled = true;
+            this.employeesLb.ItemHeight = 22;
+            this.employeesLb.Location = new System.Drawing.Point(10, 143);
+            this.employeesLb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.employeesLb.Name = "employeesLb";
+            this.employeesLb.Size = new System.Drawing.Size(1415, 334);
+            this.employeesLb.TabIndex = 0;
+            this.employeesLb.Click += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.employeesLb.SelectedIndexChanged += new System.EventHandler(this.employeesLb_SelectedIndexChanged_1);
+            // 
+            // monthLb
+            // 
+            this.monthLb.AutoSize = true;
+            this.monthLb.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.monthLb.Location = new System.Drawing.Point(28, 188);
+            this.monthLb.Name = "monthLb";
+            this.monthLb.Size = new System.Drawing.Size(0, 20);
+            this.monthLb.TabIndex = 26;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.ScheduleShiftsMonthCbb);
+            this.groupBox2.Controls.Add(this.ScheduleMonthlyShifts);
+            this.groupBox2.Controls.Add(this.searchButton);
+            this.groupBox2.Controls.Add(this.RemoveBtn);
+            this.groupBox2.Controls.Add(this.searchTB);
+            this.groupBox2.Controls.Add(this.bsnRemoveTb);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Location = new System.Drawing.Point(7, 481);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(377, 290);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Delete Employee";
+            // 
+            // ScheduleShiftsMonthCbb
+            // 
+            this.ScheduleShiftsMonthCbb.FormattingEnabled = true;
+            this.ScheduleShiftsMonthCbb.Location = new System.Drawing.Point(210, 36);
+            this.ScheduleShiftsMonthCbb.Name = "ScheduleShiftsMonthCbb";
+            this.ScheduleShiftsMonthCbb.Size = new System.Drawing.Size(146, 23);
+            this.ScheduleShiftsMonthCbb.TabIndex = 26;
+            // 
+            // ScheduleMonthlyShifts
+            // 
+            this.ScheduleMonthlyShifts.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ScheduleMonthlyShifts.Location = new System.Drawing.Point(210, 65);
+            this.ScheduleMonthlyShifts.Name = "ScheduleMonthlyShifts";
+            this.ScheduleMonthlyShifts.Size = new System.Drawing.Size(146, 49);
+            this.ScheduleMonthlyShifts.TabIndex = 25;
+            this.ScheduleMonthlyShifts.Text = "Schedule Monthly Shifts";
+            this.ScheduleMonthlyShifts.UseVisualStyleBackColor = false;
+            this.ScheduleMonthlyShifts.Click += new System.EventHandler(this.ScheduleMonthlyShifts_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchButton.Location = new System.Drawing.Point(99, 240);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(134, 28);
+            this.searchButton.TabIndex = 24;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // RemoveBtn
+            // 
+            this.RemoveBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.RemoveBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.RemoveBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.RemoveBtn.Location = new System.Drawing.Point(7, 64);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(173, 49);
+            this.RemoveBtn.TabIndex = 23;
+            this.RemoveBtn.Text = "Remove from Management";
+            this.RemoveBtn.UseVisualStyleBackColor = false;
+            this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click);
+            // 
+            // searchTB
+            // 
+            this.searchTB.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchTB.Location = new System.Drawing.Point(99, 211);
+            this.searchTB.Name = "searchTB";
+            this.searchTB.Size = new System.Drawing.Size(134, 23);
+            this.searchTB.TabIndex = 23;
+            // 
+            // bsnRemoveTb
+            // 
+            this.bsnRemoveTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bsnRemoveTb.Location = new System.Drawing.Point(46, 35);
+            this.bsnRemoveTb.Name = "bsnRemoveTb";
+            this.bsnRemoveTb.Size = new System.Drawing.Size(134, 23);
+            this.bsnRemoveTb.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 215);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Search via BSN:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 38);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "BSN:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.AutoSize = true;
+            this.groupBox3.Controls.Add(this.addShiftBtn);
+            this.groupBox3.Controls.Add(this.shiftBsnTb);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.shiftTypeCb);
+            this.groupBox3.Controls.Add(this.shiftDayPicker);
+            this.groupBox3.Controls.Add(this.createScheduleBtn);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.monthLb);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox3.Location = new System.Drawing.Point(399, 479);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1033, 292);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Schedule Shifts";
+            // 
+            // addShiftBtn
+            // 
+            this.addShiftBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addShiftBtn.Location = new System.Drawing.Point(644, 228);
+            this.addShiftBtn.Name = "addShiftBtn";
+            this.addShiftBtn.Size = new System.Drawing.Size(134, 28);
+            this.addShiftBtn.TabIndex = 25;
+            this.addShiftBtn.Text = "Add Shift";
+            this.addShiftBtn.UseVisualStyleBackColor = false;
+            this.addShiftBtn.Click += new System.EventHandler(this.addShiftBtn_Click);
+            // 
+            // shiftBsnTb
+            // 
+            this.shiftBsnTb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.shiftBsnTb.Location = new System.Drawing.Point(469, 228);
+            this.shiftBsnTb.Name = "shiftBsnTb";
+            this.shiftBsnTb.Size = new System.Drawing.Size(134, 23);
+            this.shiftBsnTb.TabIndex = 33;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(431, 231);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 15);
+            this.label21.TabIndex = 32;
+            this.label21.Text = "BSN:";
+            // 
+            // shiftTypeCb
+            // 
+            this.shiftTypeCb.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.shiftTypeCb.FormattingEnabled = true;
+            this.shiftTypeCb.Location = new System.Drawing.Point(271, 228);
+            this.shiftTypeCb.Name = "shiftTypeCb";
+            this.shiftTypeCb.Size = new System.Drawing.Size(137, 23);
+            this.shiftTypeCb.TabIndex = 31;
+            // 
+            // shiftDayPicker
+            // 
+            this.shiftDayPicker.CalendarForeColor = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarMonthBackground = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.CalendarTitleBackColor = System.Drawing.Color.Moccasin;
+            this.shiftDayPicker.Location = new System.Drawing.Point(271, 191);
+            this.shiftDayPicker.Name = "shiftDayPicker";
+            this.shiftDayPicker.Size = new System.Drawing.Size(315, 23);
+            this.shiftDayPicker.TabIndex = 30;
+            // 
+            // createScheduleBtn
+            // 
+            this.createScheduleBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.createScheduleBtn.Location = new System.Drawing.Point(84, 234);
+            this.createScheduleBtn.Name = "createScheduleBtn";
+            this.createScheduleBtn.Size = new System.Drawing.Size(130, 36);
+            this.createScheduleBtn.TabIndex = 29;
+            this.createScheduleBtn.Text = "Create Schedule";
+            this.createScheduleBtn.UseVisualStyleBackColor = false;
+            this.createScheduleBtn.Click += new System.EventHandler(this.createScheduleBtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1007, 89);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 25);
+            this.button2.TabIndex = 28;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(4, 89);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(20, 25);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "<";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(744, 15);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(67, 20);
+            this.label20.TabIndex = 7;
+            this.label20.Text = "Saturday";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(618, 15);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 20);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "Friday";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(469, 15);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(68, 20);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Thursday";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(323, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(85, 20);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Wednesday";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.Location = new System.Drawing.Point(197, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 20);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Tuesday";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(73, 18);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 20);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Monday";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(865, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 20);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Sunday";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(28, 38);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(980, 140);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.AutoSize = true;
+            this.groupBox4.Controls.Add(this.contractTypeFilterClb);
+            this.groupBox4.Controls.Add(this.shiftDayPickerFilter);
+            this.groupBox4.Controls.Add(this.jobPositionsFilterCb);
+            this.groupBox4.Location = new System.Drawing.Point(285, 11);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1138, 132);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Filtering Options";
+            // 
+            // contractTypeFilterClb
+            // 
+            this.contractTypeFilterClb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contractTypeFilterClb.FormattingEnabled = true;
+            this.contractTypeFilterClb.Location = new System.Drawing.Point(868, 16);
+            this.contractTypeFilterClb.Name = "contractTypeFilterClb";
+            this.contractTypeFilterClb.Size = new System.Drawing.Size(233, 94);
+            this.contractTypeFilterClb.TabIndex = 35;
+            this.contractTypeFilterClb.SelectedIndexChanged += new System.EventHandler(this.contractTypeFilterClb_SelectedIndexChanged);
+            // 
+            // shiftDayPickerFilter
+            // 
+            this.shiftDayPickerFilter.Location = new System.Drawing.Point(437, 25);
+            this.shiftDayPickerFilter.Name = "shiftDayPickerFilter";
+            this.shiftDayPickerFilter.Size = new System.Drawing.Size(315, 23);
+            this.shiftDayPickerFilter.TabIndex = 34;
+            this.shiftDayPickerFilter.ValueChanged += new System.EventHandler(this.shiftDayPickerFilter_ValueChanged);
+            // 
+            // jobPositionsFilterCb
+            // 
+            this.jobPositionsFilterCb.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.jobPositionsFilterCb.FormattingEnabled = true;
+            this.jobPositionsFilterCb.Location = new System.Drawing.Point(3, 25);
+            this.jobPositionsFilterCb.Name = "jobPositionsFilterCb";
+            this.jobPositionsFilterCb.Size = new System.Drawing.Size(217, 23);
+            this.jobPositionsFilterCb.TabIndex = 0;
+            this.jobPositionsFilterCb.Click += new System.EventHandler(this.jobPositionsFilterCb_SelectedIndexChanged);
+            // 
+            // AddAnEmpBtn
+            // 
+            this.AddAnEmpBtn.AutoSize = true;
+            this.AddAnEmpBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AddAnEmpBtn.Location = new System.Drawing.Point(14, 19);
+            this.AddAnEmpBtn.Name = "AddAnEmpBtn";
+            this.AddAnEmpBtn.Size = new System.Drawing.Size(265, 47);
+            this.AddAnEmpBtn.TabIndex = 5;
+            this.AddAnEmpBtn.Text = "Add an Employee";
+            this.AddAnEmpBtn.UseVisualStyleBackColor = true;
+            this.AddAnEmpBtn.Click += new System.EventHandler(this.AddAnEmpBtn_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // MainPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1435, 787);
+            this.Controls.Add(this.AddAnEmpBtn);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.employeesLb);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "MainPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "MainPage";
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
 
 		#endregion
 
-		private ListBox employeesLb;
-		private GroupBox groupBox2;
-		private GroupBox groupBox3;
-		private System.ComponentModel.BackgroundWorker backgroundWorker1;
-		private Button RemoveBtn;
-		private TextBox bsnRemoveTb;
-		private Label label12;
-		private Button searchButton;
-		private TextBox searchTB;
-		private Label label13;
-		private FlowLayoutPanel flowLayoutPanel1;
-		private Label label20;
-		private Label label19;
-		private Label label18;
-		private Label label17;
-		private Label label16;
-		private Label label15;
-		private Label label14;
-		private Label monthLb;
-		private Button button2;
-		private Button button1;
-		private Button createScheduleBtn;
-		private DateTimePicker shiftDayPicker;
-		private Button addShiftBtn;
-		private TextBox shiftBsnTb;
-		private Label label21;
-		private ComboBox shiftTypeCb;
-		private GroupBox groupBox4;
-		private ComboBox jobPositionsFilterCb;
-		private DateTimePicker shiftDayPickerFilter;
-		private CheckedListBox contractTypeFilterClb;
-		private Button AddAnEmpBtn;
-	}
+        private ListBox employeesLb;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button RemoveBtn;
+        private TextBox bsnRemoveTb;
+        private Label label12;
+        private Button searchButton;
+        private TextBox searchTB;
+        private Label label13;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label monthLb;
+        private Button button2;
+        private Button button1;
+        private Button createScheduleBtn;
+        private DateTimePicker shiftDayPicker;
+        private Button addShiftBtn;
+        private TextBox shiftBsnTb;
+        private Label label21;
+        private ComboBox shiftTypeCb;
+        private GroupBox groupBox4;
+        private ComboBox jobPositionsFilterCb;
+        private DateTimePicker shiftDayPickerFilter;
+        private CheckedListBox contractTypeFilterClb;
+        private Button AddAnEmpBtn;
+        private Button ScheduleMonthlyShifts;
+        private ComboBox ScheduleShiftsMonthCbb;
+        private System.Windows.Forms.Timer timer1;
+    }
 }

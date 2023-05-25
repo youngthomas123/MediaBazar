@@ -24,17 +24,19 @@ namespace MediaBazar.BusinessLogic.Containers
             _employeeDataAccess.AddEmployee(employee);
         }
 
-        public void AddEmployee(string firstName, string lastName, int bsn, int telNumber, string address,
+        public void AddEmployee(string firstName, string lastName, int bsn, string telNumber, string address,
                                 MyEnums.ContractTypes contractType, int hoursPerWeek, MyEnums.JobPositions jobposition, 
-                                double wage, List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves)
+                                double wage, List<DayOfWeek> daysOff, int age, List<Shift> shiftDates, List<SickLeave> sickLeaves, List<ShiftPreference> shiftPreferences)
         {
             
             shiftDates = new List<Shift>();
+            sickLeaves = new List<SickLeave>();
+            shiftPreferences= new List<ShiftPreference>();
             bool EmployeeExists = AlreadyExists(bsn);
             if (EmployeeExists == false)
             {
                 Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
-                                        wage, daysOff, age, shiftDates, sickLeaves);
+                                        wage, daysOff, age, shiftDates, sickLeaves, shiftPreferences);
                 employees.Add(newEmployee);
                 _employeeDataAccess.AddEmployee(newEmployee);
             }
@@ -118,6 +120,31 @@ namespace MediaBazar.BusinessLogic.Containers
         public void UpdateEmpSickLeaveApproval(Employee emp, SickLeave sickLeave)
         {
             _employeeDataAccess.UpdateEmpSickLeaveApproval(emp, sickLeave);
+        }
+
+        public void AddShiftPreference(Employee emp, ShiftPreference preference)
+        {
+            _employeeDataAccess.AddShiftPreference(emp, preference);
+        }
+
+        public void UpdateEmployeeFirstName(Employee emp, string newFirstName)
+        {
+            _employeeDataAccess.UpdateEmployeeFirstName(emp, newFirstName);
+        }
+
+        public void UpdateEmployeeLastName(Employee emp, string newLastName)
+        {
+            _employeeDataAccess.UpdateEmployeeLastName(emp, newLastName);
+        }
+
+        public void UpdateEmployeeTelNumber(Employee emp, string newTelNumber)
+        {
+            _employeeDataAccess.UpdateEmployeeTelNumber(emp, newTelNumber);
+        }
+
+        public void UpdateEmployeeAddress(Employee emp, string newAddress)
+        {
+            _employeeDataAccess.UpdateEmployeeAddress(emp, newAddress);
         }
     }
 }

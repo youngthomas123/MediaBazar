@@ -5,9 +5,9 @@ namespace MediaBazar.BusinessLogic.Classes
     public class Employee
 	{
 		//List<DateTime> shiftDates = new List<DateTime>();
-		public Employee( string firstName, string lastName, int bsn, int telNumber, string address, 
+		public Employee( string firstName, string lastName, int bsn, string telNumber, string address, 
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,
-						List<DayOfWeek> daysOff, int age, List<Shift> shiftsDates, List<SickLeave> sickLeaves)
+						List<DayOfWeek> daysOff, int age, List<Shift> shiftsDates, List<SickLeave> sickLeaves, List<ShiftPreference> shiftPreferences)
 		{
 		
 			FirstName= firstName;
@@ -23,33 +23,13 @@ namespace MediaBazar.BusinessLogic.Classes
 			Age= age;
 			ShiftsDates = shiftsDates;
 			SickLeaves= sickLeaves;
-		}
-
-		//public Employee(string firstName, string lastName, int bSN, int telNumber, 
-		//				string address, ContractTypes contractType, int hoursPerWeek, 
-		//					JobPositions jobposition, double wage, ShiftTypes? shift, bool? attendedShift, int age)
-		//{
-		//	FirstName = firstName;
-		//	LastName = lastName;
-		//	BSN = bSN;
-		//	TelNumber = telNumber;
-		//	Address = address;
-		//	ContractType = contractType;
-		//	HoursPerWeek = hoursPerWeek;
-		//	Jobposition = jobposition;
-		//	Wage = wage;
-		//	Shift = shift;
-		//	AttendedShift = attendedShift;
-			
-		//	Age = age;
-
-		//}
-
+            ShiftPreferences = shiftPreferences;
+        }
 		
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public int BSN { get; set; }
-		public int TelNumber { get; set; }
+		public string TelNumber { get; set; }
 		public string Address { get; set; }
 		public ContractTypes ContractType { get; set; }
 		public int HoursPerWeek { get; set; }
@@ -61,7 +41,8 @@ namespace MediaBazar.BusinessLogic.Classes
 		public int Age { get; set; }
 		public List<Shift> ShiftsDates { get; set; }
 		public List<SickLeave> SickLeaves { get; set; }
-		public override string ToString()
+        public List<ShiftPreference> ShiftPreferences { get; set; }
+        public override string ToString()
 		{
 
 			 string shiftDatesString = string.Join(", ", ShiftsDates); 

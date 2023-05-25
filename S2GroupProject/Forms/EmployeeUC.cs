@@ -24,6 +24,7 @@ namespace S2GroupProject
 			InitializeComponent();
 			_employeeContainer = employeeContainer;
 			this.emp = employee;
+			var newEmpData = _employeeContainer.GetEmployeeByBcn(employee.BSN);
 			employeeName.AutoSize = true;
 			employeeName.Text = emp.FirstName + " " + emp.LastName;
 			bsn.Text = emp.BSN.ToString();
@@ -39,6 +40,8 @@ namespace S2GroupProject
 				sickLeavesLb.Items.Add(sickLeave);
 
 			}
+
+			TabControlSettings();
 		}
         private void ApproveSickLeave_Click(object sender, EventArgs e)
         {
@@ -58,5 +61,17 @@ namespace S2GroupProject
             }
         }
 		
+
+		public void TabControlSettings()
+		{
+			tabControl1.TabPages[0].Text = "Shifts";
+			tabControl1.TabPages[1].Text = "Sick Leaves";
+
+			tabControl1.TabPages[0].BackColor = Color.LightGreen;
+			employeeShiftLb.BackColor = Color.LightGreen;
+			
+			tabControl1.TabPages[1].BackColor = Color.LightBlue;
+			sickLeavesLb.BackColor = Color.LightBlue;
+		}
     }
 }

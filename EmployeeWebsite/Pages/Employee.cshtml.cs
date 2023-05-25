@@ -5,13 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
-
-
-
-
 namespace EmployeeWebsite.Pages
 {
-   
+
     public class EmployeeModel : PageModel
     {
         IEmployeeContainer _employeeContainer;
@@ -22,7 +18,12 @@ namespace EmployeeWebsite.Pages
         public List<Employee> Emps { get; set; }
 
         [BindProperty]
-        public SickLeave SickLeave { get; set; }    
+        public SickLeaveViewModel SickLeaveViewModel { get; set; }
+        [BindProperty]
+        public ShiftPreferenceViewModel ShiftPreferenceViewModel { get; set; }
+        [BindProperty]
+        public string? ErrorMessage { get; set; }
+
         public EmployeeModel(IEmployeeContainer employeeContainer) 
         {
             _employeeContainer = employeeContainer;
@@ -48,12 +49,12 @@ namespace EmployeeWebsite.Pages
 
         public async Task<IActionResult> OnPostAssignSickLeaveAsync(int bsn)
         {
-           
             if (!ModelState.IsValid)
             {
                 IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return Page();
             }
+
             Emp = _employeeContainer.GetEmployeeByBcn(bsn);
 
             if (Emp == null)
@@ -61,8 +62,8 @@ namespace EmployeeWebsite.Pages
                 return NotFound();
             }
 
-            var startDate = SickLeave.StartDate.Date;
-            var endDate = SickLeave.EndDate.Date;
+            var startDate = SickLeaveViewModel.StartDate.Date;
+            var endDate = SickLeaveViewModel.EndDate.Date;
 
             if (endDate < startDate)
             {
@@ -74,7 +75,7 @@ namespace EmployeeWebsite.Pages
             {
                 Emp.SickLeaves = new List<SickLeave>();
             }
-            
+
             var overlappingSickLeaves = Emp.SickLeaves
                 .Where(sl => sl.IsScheduled && ((startDate >= sl.StartDate && startDate <= sl.EndDate) || (endDate >= sl.StartDate && endDate <= sl.EndDate)))
                 .ToList();
@@ -85,12 +86,50 @@ namespace EmployeeWebsite.Pages
                 return Page();
             }
 
-           
-            Emp.SickLeaves.Add(SickLeave);
+            // Create a new SickLeave object from the SickLeaveViewModel
+            SickLeave sickLeave = new SickLeave
+            {
+                StartDate = SickLeaveViewModel.StartDate,
+                EndDate = SickLeaveViewModel.EndDate,
+                Reason = SickLeaveViewModel.Reason,
+                IsScheduled = SickLeaveViewModel.IsScheduled
+            };
 
-             _employeeContainer.UpdateEmpSickLeave(Emp, SickLeave);
+            Emp.SickLeaves.Add(sickLeave);
+            _employeeContainer.UpdateEmpSickLeave(Emp, sickLeave);
 
             return RedirectToPage("./Employee", new { bsn = Emp.BSN });
+        }
+
+        public IActionResult OnPostCreateShiftPreference(int bsn)
+        {
+            if (!ModelState.IsValid)
+            {
+                IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                return Page();
+            }
+            Emp = _employeeContainer.GetEmployeeByBcn(bsn);
+            ShiftPreference shiftPreference = new ShiftPreference
+            {
+                Year = ShiftPreferenceViewModel.Year,
+                Month = ShiftPreferenceViewModel.Month,
+                Preference = ShiftPreferenceViewModel.Preference
+            };
+            
+
+            Emp.ShiftPreferences.Add(shiftPreference);
+            try
+            {
+                _employeeContainer.AddShiftPreference(Emp, shiftPreference);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return Page();
+               
+            }
+            
+            return RedirectToPage(new { bsn = Emp.BSN });
         }
     }
 }
