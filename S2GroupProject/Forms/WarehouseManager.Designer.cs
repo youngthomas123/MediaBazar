@@ -39,14 +39,16 @@
 			label1 = new Label();
 			tabControl1 = new TabControl();
 			WarehouseOverview = new TabPage();
+			groupBox6 = new GroupBox();
+			ShowWarehouseEmployeesBTN = new Button();
+			label11 = new Label();
+			ViewItemsBTN = new Button();
 			WarehouseItemRestocking = new ListBox();
 			ShopRequests = new ListBox();
+			RefreshDataBTN = new Button();
 			groupBox2 = new GroupBox();
 			button2 = new Button();
 			Restock = new Button();
-			ViewItemsBTN = new Button();
-			label11 = new Label();
-			RefreshDataBTN = new Button();
 			Add = new Button();
 			warehouseListbox = new ListBox();
 			ItemOverview = new TabPage();
@@ -98,12 +100,11 @@
 			AssignEmployeeToWarehouseBTN = new Button();
 			label16 = new Label();
 			employeeList = new ListBox();
-			groupBox6 = new GroupBox();
-			ShowWarehouseEmployeesBTN = new Button();
 			panel1.SuspendLayout();
 			panel2.SuspendLayout();
 			tabControl1.SuspendLayout();
 			WarehouseOverview.SuspendLayout();
+			groupBox6.SuspendLayout();
 			groupBox2.SuspendLayout();
 			ItemOverview.SuspendLayout();
 			groupBox3.SuspendLayout();
@@ -113,7 +114,6 @@
 			WarehouseEmployees.SuspendLayout();
 			groupBox5.SuspendLayout();
 			groupBox4.SuspendLayout();
-			groupBox6.SuspendLayout();
 			SuspendLayout();
 			// 
 			// panel1
@@ -258,6 +258,49 @@
 			WarehouseOverview.Text = "WarehouseOverview";
 			WarehouseOverview.UseVisualStyleBackColor = true;
 			// 
+			// groupBox6
+			// 
+			groupBox6.Controls.Add(ShowWarehouseEmployeesBTN);
+			groupBox6.Controls.Add(label11);
+			groupBox6.Controls.Add(ViewItemsBTN);
+			groupBox6.Location = new Point(3, 3);
+			groupBox6.Name = "groupBox6";
+			groupBox6.Size = new Size(295, 140);
+			groupBox6.TabIndex = 19;
+			groupBox6.TabStop = false;
+			groupBox6.Text = "Show the items and employees of a warehouse";
+			// 
+			// ShowWarehouseEmployeesBTN
+			// 
+			ShowWarehouseEmployeesBTN.Location = new Point(6, 72);
+			ShowWarehouseEmployeesBTN.Name = "ShowWarehouseEmployeesBTN";
+			ShowWarehouseEmployeesBTN.Size = new Size(275, 29);
+			ShowWarehouseEmployeesBTN.TabIndex = 10;
+			ShowWarehouseEmployeesBTN.Text = "Show Warehouse Employees";
+			ShowWarehouseEmployeesBTN.UseVisualStyleBackColor = true;
+			ShowWarehouseEmployeesBTN.Click += ShowWarehouseEmployeesBTN_Click;
+			// 
+			// label11
+			// 
+			label11.AutoSize = true;
+			label11.Location = new Point(27, 19);
+			label11.Margin = new Padding(2, 0, 2, 0);
+			label11.Name = "label11";
+			label11.Size = new Size(235, 15);
+			label11.TabIndex = 7;
+			label11.Text = "Select a warehouse first then press a button";
+			// 
+			// ViewItemsBTN
+			// 
+			ViewItemsBTN.Location = new Point(6, 38);
+			ViewItemsBTN.Margin = new Padding(2);
+			ViewItemsBTN.Name = "ViewItemsBTN";
+			ViewItemsBTN.Size = new Size(275, 26);
+			ViewItemsBTN.TabIndex = 8;
+			ViewItemsBTN.Text = "View Items";
+			ViewItemsBTN.UseVisualStyleBackColor = true;
+			ViewItemsBTN.Click += ViewDataBTN_Click;
+			// 
 			// WarehouseItemRestocking
 			// 
 			WarehouseItemRestocking.FormattingEnabled = true;
@@ -277,6 +320,17 @@
 			ShopRequests.Name = "ShopRequests";
 			ShopRequests.Size = new Size(429, 109);
 			ShopRequests.TabIndex = 10;
+			// 
+			// RefreshDataBTN
+			// 
+			RefreshDataBTN.Location = new Point(377, 219);
+			RefreshDataBTN.Margin = new Padding(2);
+			RefreshDataBTN.Name = "RefreshDataBTN";
+			RefreshDataBTN.Size = new Size(86, 20);
+			RefreshDataBTN.TabIndex = 6;
+			RefreshDataBTN.Text = "Refresh Data";
+			RefreshDataBTN.UseVisualStyleBackColor = true;
+			RefreshDataBTN.Click += RefreshDataBTN_Click;
 			// 
 			// groupBox2
 			// 
@@ -310,38 +364,6 @@
 			Restock.TabIndex = 0;
 			Restock.Text = "Restock Item";
 			Restock.UseVisualStyleBackColor = true;
-			// 
-			// ViewItemsBTN
-			// 
-			ViewItemsBTN.Location = new Point(6, 38);
-			ViewItemsBTN.Margin = new Padding(2);
-			ViewItemsBTN.Name = "ViewItemsBTN";
-			ViewItemsBTN.Size = new Size(275, 26);
-			ViewItemsBTN.TabIndex = 8;
-			ViewItemsBTN.Text = "View Items";
-			ViewItemsBTN.UseVisualStyleBackColor = true;
-			ViewItemsBTN.Click += ViewDataBTN_Click;
-			// 
-			// label11
-			// 
-			label11.AutoSize = true;
-			label11.Location = new Point(27, 19);
-			label11.Margin = new Padding(2, 0, 2, 0);
-			label11.Name = "label11";
-			label11.Size = new Size(235, 15);
-			label11.TabIndex = 7;
-			label11.Text = "Select a warehouse first then press a button";
-			// 
-			// RefreshDataBTN
-			// 
-			RefreshDataBTN.Location = new Point(377, 219);
-			RefreshDataBTN.Margin = new Padding(2);
-			RefreshDataBTN.Name = "RefreshDataBTN";
-			RefreshDataBTN.Size = new Size(86, 20);
-			RefreshDataBTN.TabIndex = 6;
-			RefreshDataBTN.Text = "Refresh Data";
-			RefreshDataBTN.UseVisualStyleBackColor = true;
-			RefreshDataBTN.Click += RefreshDataBTN_Click;
 			// 
 			// Add
 			// 
@@ -571,10 +593,10 @@
 			// 
 			ItemListBox.FormattingEnabled = true;
 			ItemListBox.ItemHeight = 15;
-			ItemListBox.Location = new Point(385, 2);
+			ItemListBox.Location = new Point(303, 2);
 			ItemListBox.Margin = new Padding(2);
 			ItemListBox.Name = "ItemListBox";
-			ItemListBox.Size = new Size(420, 529);
+			ItemListBox.Size = new Size(502, 529);
 			ItemListBox.TabIndex = 1;
 			// 
 			// ShowAllItems
@@ -882,28 +904,6 @@
 			employeeList.Size = new Size(410, 244);
 			employeeList.TabIndex = 5;
 			// 
-			// groupBox6
-			// 
-			groupBox6.Controls.Add(ShowWarehouseEmployeesBTN);
-			groupBox6.Controls.Add(label11);
-			groupBox6.Controls.Add(ViewItemsBTN);
-			groupBox6.Location = new Point(3, 3);
-			groupBox6.Name = "groupBox6";
-			groupBox6.Size = new Size(295, 140);
-			groupBox6.TabIndex = 19;
-			groupBox6.TabStop = false;
-			groupBox6.Text = "Show the items and employees of a warehouse";
-			// 
-			// ShowWarehouseEmployeesBTN
-			// 
-			ShowWarehouseEmployeesBTN.Location = new Point(6, 72);
-			ShowWarehouseEmployeesBTN.Name = "ShowWarehouseEmployeesBTN";
-			ShowWarehouseEmployeesBTN.Size = new Size(275, 29);
-			ShowWarehouseEmployeesBTN.TabIndex = 10;
-			ShowWarehouseEmployeesBTN.Text = "Show Warehouse Employees";
-			ShowWarehouseEmployeesBTN.UseVisualStyleBackColor = true;
-			ShowWarehouseEmployeesBTN.Click += ShowWarehouseEmployeesBTN_Click;
-			// 
 			// WarehouseManager
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -919,6 +919,8 @@
 			panel2.ResumeLayout(false);
 			tabControl1.ResumeLayout(false);
 			WarehouseOverview.ResumeLayout(false);
+			groupBox6.ResumeLayout(false);
+			groupBox6.PerformLayout();
 			groupBox2.ResumeLayout(false);
 			ItemOverview.ResumeLayout(false);
 			ItemOverview.PerformLayout();
@@ -935,8 +937,6 @@
 			groupBox5.PerformLayout();
 			groupBox4.ResumeLayout(false);
 			groupBox4.PerformLayout();
-			groupBox6.ResumeLayout(false);
-			groupBox6.PerformLayout();
 			ResumeLayout(false);
 		}
 

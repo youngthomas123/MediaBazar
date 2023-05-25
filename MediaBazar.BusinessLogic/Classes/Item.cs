@@ -29,7 +29,7 @@ namespace MediaBazar.BusinessLogic.Classes
 
 		public override string ToString()
 		{
-            return $"Name: {Name} | Category: {Category} | Quantity: {WarehouseQuantity}";
+            return $"Name: {Name} | Category: {Category} | In warehouse: {WarehouseQuantity} | In Shop: {ShopQuantity}";
 		}
 	}
 }
