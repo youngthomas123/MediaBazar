@@ -42,12 +42,12 @@ namespace S2GroupProject
             services.AddTransient<CalendarDay>();
             services.AddTransient<CreateWarehousePopUp>();
             services.AddTransient<Experiment>();
-
+            services.AddTransient<EmployeeManagement2>();
 
             var serviceProvider = services.BuildServiceProvider();
             //DI end
 
-            Application.Run(serviceProvider.GetService<LoginForm>());
+            Application.Run(serviceProvider.GetService<EmployeeManagement2>());
 		}
 	}
 }

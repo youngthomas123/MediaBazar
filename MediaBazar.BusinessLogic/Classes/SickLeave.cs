@@ -12,13 +12,14 @@ namespace MediaBazar.BusinessLogic.Classes
 		public DateTime EndDate { get; set; }
 		public string? Reason { get; set; }
 		public bool IsScheduled { get; set; }
-
-		public SickLeave(DateTime startDate, DateTime endDate, string? reason, bool isScheduled)
+        public string ManagerMessage { get; set; }
+        public SickLeave(DateTime startDate, DateTime endDate, string? reason, bool isScheduled)
 		{
 			StartDate = startDate;
 			EndDate = endDate;
 			Reason = reason;
 			IsScheduled = isScheduled;
+			ManagerMessage = "";
 		}
 
 		public SickLeave()

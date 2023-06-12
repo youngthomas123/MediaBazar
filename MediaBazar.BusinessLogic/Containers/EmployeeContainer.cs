@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 
 namespace MediaBazar.BusinessLogic.Containers
 {
@@ -55,6 +56,10 @@ namespace MediaBazar.BusinessLogic.Containers
             emp.ShiftsDates.Add(shift);
             _employeeDataAccess.AddEmpShift(emp);
         }
+        public void RemoveEmpShift(Employee emp, DateTime date)
+        {
+            _employeeDataAccess.RemoveEmpShift(emp, date);
+        }
 
         public void DeleateEmployee(int BSN)
         {
@@ -74,6 +79,20 @@ namespace MediaBazar.BusinessLogic.Containers
                 }
             }
             throw new Exception("Employee not found");
+        }
+        public List<Employee> GetEmployeesByJobPosition(JobPositions job)
+        {
+
+            employees = _employeeDataAccess.LoadEmployees();
+            List<Employee> employeeList = new List<Employee>();
+            foreach (Employee employee in employees)
+            {
+                if (employee.Jobposition == job)
+                {
+                    employeeList.Add(employee);
+                }
+            }
+            return employeeList;
         }
 
         public List<Employee> GetEmployees()
@@ -145,6 +164,11 @@ namespace MediaBazar.BusinessLogic.Containers
         public void UpdateEmployeeAddress(Employee emp, string newAddress)
         {
             _employeeDataAccess.UpdateEmployeeAddress(emp, newAddress);
+        }
+
+        public void UpdateEmployeSickLeaveManagerMessage(SickLeave sickLeave, Employee emp)
+        {
+            _employeeDataAccess.UpdateEmployeSickLeaveManagerMessage(sickLeave, emp);
         }
     }
 }

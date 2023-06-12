@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
+using System.Globalization;
+
 namespace EmployeeWebsite.Pages
 {
 
@@ -23,6 +25,8 @@ namespace EmployeeWebsite.Pages
         public ShiftPreferenceViewModel ShiftPreferenceViewModel { get; set; }
         [BindProperty]
         public string? ErrorMessage { get; set; }
+        [BindProperty]
+        public bool SetYearlyPreference { get; set; }
 
         public EmployeeModel(IEmployeeContainer employeeContainer) 
         {
@@ -83,6 +87,7 @@ namespace EmployeeWebsite.Pages
             if (overlappingSickLeaves.Count > 0)
             {
                 ModelState.AddModelError("", "Sick leave overlaps with an existing sick leave.");
+                ErrorMessage = "Sick leave overlaps with an existing sick leave.";
                 return Page();
             }
 
@@ -109,27 +114,56 @@ namespace EmployeeWebsite.Pages
                 return Page();
             }
             Emp = _employeeContainer.GetEmployeeByBcn(bsn);
-            ShiftPreference shiftPreference = new ShiftPreference
-            {
-                Year = ShiftPreferenceViewModel.Year,
-                Month = ShiftPreferenceViewModel.Month,
-                Preference = ShiftPreferenceViewModel.Preference
-            };
-            
 
-            Emp.ShiftPreferences.Add(shiftPreference);
-            try
+            if (!SetYearlyPreference)
             {
-                _employeeContainer.AddShiftPreference(Emp, shiftPreference);
+                ShiftPreference shiftPreference = new ShiftPreference
+                {
+                    Year = ShiftPreferenceViewModel.Year,
+                    Month = (int)ShiftPreferenceViewModel.Month,
+                    Preference = ShiftPreferenceViewModel.Preference
+                };
+
+
+                Emp.ShiftPreferences.Add(shiftPreference);
+                try
+                {
+                    _employeeContainer.AddShiftPreference(Emp, shiftPreference);
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                    return Page();
+
+                }
+
+                return RedirectToPage(new { bsn = Emp.BSN });
             }
-            catch (Exception ex)
+            else
             {
-                ErrorMessage = ex.Message;
-                return Page();
-               
+                foreach (var month in CultureInfo.CurrentCulture.DateTimeFormat.MonthNames.Skip(1))
+                {
+                    int monthIndex = Array.IndexOf(CultureInfo.CurrentCulture.DateTimeFormat.MonthNames, month);
+                    ShiftPreference shiftPreference = new ShiftPreference
+                    {
+                        Year = ShiftPreferenceViewModel.Year,
+                        Month = monthIndex,
+                        Preference = ShiftPreferenceViewModel.Preference
+                    };
+                    Emp.ShiftPreferences.Add(shiftPreference);
+                    try
+                    {
+                        _employeeContainer.AddShiftPreference(Emp, shiftPreference);
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorMessage = ex.Message;
+                        return Page();
+                    }
+                }
+                return RedirectToPage(new { bsn = Emp.BSN });
             }
-            
-            return RedirectToPage(new { bsn = Emp.BSN });
+
         }
     }
 }
