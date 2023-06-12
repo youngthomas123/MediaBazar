@@ -23,9 +23,9 @@ namespace MediaBazar.BusinessLogic.Containers
             _warehouseDataAccess.AddWarehouse(warehouse);
         }
 
-        public void AssignEmployeeToWarehouse(Guid employeeId, Guid warehouseId)
+        public void AssignEmployeeToWarehouse(int bsn, Guid warehouseId)
         {
-            _warehouseDataAccess.AssignEmployeeToWarehouse(employeeId, warehouseId);
+            _warehouseDataAccess.AssignEmployeeToWarehouse(bsn, warehouseId);
         }
 
         public void AssignItemToWarehouse(Guid itemId, Guid warehouseId)
@@ -48,7 +48,12 @@ namespace MediaBazar.BusinessLogic.Containers
            return _warehouseDataAccess.LoadWarehouse();
         }
 
-        public List<Item> LoadWarehouseItems(Guid warehouseId)
+		public List<Employee> LoadWarehouseEmployees(Guid warehouseId)
+		{
+			return _warehouseDataAccess.LoadWarehouseEmployees(warehouseId);
+		}
+
+		public List<Item> LoadWarehouseItems(Guid warehouseId)
         {
             return _warehouseDataAccess.LoadWarehouseItems(warehouseId);
         }

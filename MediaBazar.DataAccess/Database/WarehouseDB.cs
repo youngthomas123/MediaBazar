@@ -1,5 +1,6 @@
 ﻿using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
+using static MediaBazar.BusinessLogic.Classes.MyEnums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,14 +30,14 @@ namespace MediaBazar.DataAccess.Database
             conn.Close();
         }
 
-        public void AssignEmployeeToWarehouse(Guid employeeId, Guid warehouseId)
+        public void AssignEmployeeToWarehouse(int bsn, Guid warehouseId)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string assignEmployee = "insert into EmployeesAssigned(EmployeeID, WarehouseID) values(@EmployeeID, @WarehouseID);";
+            string assignEmployee = "insert into EmployeesAssigned(EmployeeBSN, WarehouseID) values(@EmployeeBSN, @WarehouseID);";
 
             SqlCommand cmd = new SqlCommand(assignEmployee, conn);
-            cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+            cmd.Parameters.AddWithValue("@EmployeeBSN", bsn);
             cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
 
             cmd.ExecuteNonQuery();
@@ -122,10 +123,6 @@ namespace MediaBazar.DataAccess.Database
                     {
                         throw new Exception("No warehouse has been found.");
                     }
-                    reader.Close();
-                    cmd.Dispose();
-                    conn.Dispose();
-                    conn.Close();
                 }
             }
         }
@@ -155,11 +152,70 @@ namespace MediaBazar.DataAccess.Database
             return items;
         }
 
+        public List<Employee> LoadWarehouseEmployees(Guid warehouseId)
+        {
+            List<Employee> employees = new List<Employee>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT EmployeeBSN FROM EmployeesAssigned " +
+                    "WHERE WarehouseID = @WarehouseID;";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@WarehouseID", warehouseId);
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int employeeBSN = (int)reader[0];
+                        Employee warehouseEmployee = GetEmployeeByBSN(employeeBSN);
+                        employees.Add(warehouseEmployee);
+                    }
+                }
+
+			}
+            return employees;
+        }
+
+        public Employee GetEmployeeByBSN(int bsn)
+        {
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM Employee2 WHERE BSN = @BSN;";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@BSN", bsn);
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string firstName = (string)reader[0];
+                        string lastName = (string)reader[1];
+                        string address = (string)reader[3];
+						MyEnums.ContractTypes contractType = (MyEnums.ContractTypes)Enum.Parse(typeof(MyEnums.ContractTypes), reader[4].ToString());
+						int hoursPerWeek = (int)reader[5];
+						MyEnums.JobPositions jobPosition = (MyEnums.JobPositions)Enum.Parse(typeof(MyEnums.JobPositions), reader[6].ToString());
+						decimal wage = (decimal)reader[7];
+                        int age = (int)reader[8];
+                        string telephoneNum = (string)reader[9];
+
+                        Employee foundEmployee = new Employee(firstName, lastName, bsn, telephoneNum, address, contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage), age);
+                        return foundEmployee;
+                    }
+                    else
+                    {
+                        throw new Exception("Employee not found");
+                    }
+                }
+            }
+        }
+
         public Item GetItemById(Guid itemId)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string sql = "SELECT * FROM Items WHERE Item_ID = @Item_ID";
+            string sql = "SELECT * FROM Items WHERE Item_ID = @Item_ID;";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@Item_ID", itemId);
 
@@ -170,10 +226,10 @@ namespace MediaBazar.DataAccess.Database
                     string name = (string)reader[1];
                     string description = (string)reader[2];
                     string category = (string)reader[3];
-                    int quantity = (int)reader[4];
+                    int warehouseQuantity = (int)reader[4];
+                    int shopQuantity = (int)reader[5];
 
-                    Item foundItem = new Item(itemId, name, description, quantity, category);
-                    foundItem.Id = itemId;
+                    Item foundItem = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
 
                     return foundItem;
                 }

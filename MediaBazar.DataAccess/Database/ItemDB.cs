@@ -20,7 +20,7 @@ namespace MediaBazar.DataAccess.Database
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category]) values(@Item_ID, @Name, @Description, @Category); ";
+            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category], [WarehouseQuantity], [ShopQuantity]) values(@Item_ID, @Name, @Description, @Category, @WarehouseQuantity, @ShopQuantity); ";
 
             SqlCommand cmd = new SqlCommand(insertItem, conn);
 
@@ -28,12 +28,16 @@ namespace MediaBazar.DataAccess.Database
             cmd.Parameters.Add("@Name", SqlDbType.VarChar);
             cmd.Parameters.Add("@Description", SqlDbType.VarChar);
 			cmd.Parameters.Add("@Category", SqlDbType.VarChar);
+            cmd.Parameters.Add("@WarehouseQuantity", SqlDbType.Int);
+            cmd.Parameters.Add("@ShopQuantity", SqlDbType.Int);
 
 
             cmd.Parameters["@Item_ID"].Value = item.Id;
 			cmd.Parameters["@Name"].Value = item.Name;
             cmd.Parameters["@Description"].Value = item.Description;
 			cmd.Parameters["@Category"].Value = item.Category;
+            cmd.Parameters["@WarehouseQuantity"].Value = item.WarehouseQuantity;
+            cmd.Parameters["@ShopQuantity"].Value = item.ShopQuantity;
 
 			cmd.ExecuteNonQuery();
 
@@ -69,7 +73,7 @@ namespace MediaBazar.DataAccess.Database
 
             while (dr.Read())
             {
-                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (string)dr[3]);
+                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (string)dr[3]);
                 LoadedItems.Add(item);
             }
             dr.Close();
@@ -93,9 +97,11 @@ namespace MediaBazar.DataAccess.Database
                     string name = (string)reader[1];
                     string description = (string)reader[2];
                     string category = (string)reader[3];
-                    int quantity = (int)reader[4];
+                    int wrehouseQuantity = (int)reader[4];
+                    int shopQuantity = (int)reader[5];
 
-                    Item foundItem = new Item(itemId, name, description, quantity, category);
+
+                    Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category);
 
                     return foundItem;
                 }
@@ -106,27 +112,46 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
-        public void UpdateItem(Guid itemId, string name, string description, int quantity)
+        public void UpdateItemQuantity(Item item, int quantity)
         {
-            if(itemId != Guid.Empty)
+            if(quantity != 0 && item != null)
             {
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
                 string sql = "UPDATE Items " +
-                    "SET Name = @Name, Description = @Description, Quantity = @Quantity " +
+					"SET WarehouseQuantity = @WarehouseQuantity " +
                     "WHERE Item_ID = @Item_ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Description", description);
-                cmd.Parameters.AddWithValue("@Quantity", quantity);
-                cmd.Parameters.AddWithValue("@Item_ID", itemId);
+                cmd.Parameters.AddWithValue("@WarehouseQuantity", quantity);
+                cmd.Parameters.AddWithValue("@Item_ID", item.Id);
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
             }
         }
+
+        public void UpdateItemNameAndDescription(Item item, string name, string description)
+        {
+            if (item != null && name != "" && description != "")
+            {
+				SqlConnection conn = new SqlConnection(connectionString);
+				conn.Open();
+				string sql = "UPDATE Items " +
+					"SET Name = @Name, Description = @Description " +
+					"WHERE Item_ID = @Item_ID";
+				SqlCommand cmd = new SqlCommand(sql, conn);
+				cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@Item_ID", item.Id);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+			}
+        }
+
 
 
         public void LoadDataIntoColumns(string ChartData)

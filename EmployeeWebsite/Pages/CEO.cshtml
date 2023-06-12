@@ -131,9 +131,187 @@
     </script>*@
 
 
-
-
 <html>
+<head>
+    <style>
+        #lineChart {
+            max-width: 550px;
+            height: 300px;
+        }
+
+        #stats {
+            margin-top: 20px;
+        }
+
+            #stats h3 {
+                margin: 10px 0;
+            }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <h2 id="currentYearText">Sales per Month (2021)</h2>
+    <canvas id="lineChart"></canvas>
+    <div id="output"></div>
+    <div id="stats"></div>
+    <script>
+        let output = document.getElementById('output');
+        let canvas = document.getElementById("lineChart");
+        let lineChart;
+        let currentYear = 2021; // Set the initial year
+
+        // Create an array of months for the x-axis labels
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Create arrays for each category of items
+        let categories = {
+            'UncategorizableItems': [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec],
+            'Electronics': [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec],
+            'Kitchen': [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec],
+            'Sports': [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
+        };
+
+        // Load categories from localStorage if available
+        let savedCategories = localStorage.getItem('categories');
+        if (savedCategories) {
+            categories = JSON.parse(savedCategories);
+        }
+
+        // Create a new line chart object
+        function createLineChart() {
+            lineChart = new Chart(canvas, {
+                type: "line",
+                data: {
+                    labels: months,
+                    datasets: Object.keys(categories).map((key) => {
+                        return {
+                            borderColor: getRandomColor(),
+                            pointBackgroundColor: getRandomColor(),
+                            fill: false,
+                            data: categories[key],
+                            label: key
+                        };
+                    })
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: 40
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Function to add a new category
+        function addCategory() {
+            let newCategoryName = prompt("Enter the name of the new category:");
+            let newData = prompt("Enter the data for the new category (separated by commas):");
+            let newDataArray = newData.split(",").map(Number);
+
+            // Add the new category to the categories object
+            categories[newCategoryName] = newDataArray;
+
+            // Save categories to localStorage
+            localStorage.setItem('categories', JSON.stringify(categories));
+
+            // Recreate the line chart
+            lineChart.destroy();
+            createLineChart();
+        }
+
+        // Function to navigate to the previous year
+        function navigateToPreviousYear() {
+            if (currentYear > 2020) {
+                currentYear--;
+                document.getElementById('currentYearText').innerText = `Sales per Month (${currentYear})`;
+                updateChartData();
+            }
+        }
+
+        // Function to navigate to the next year
+        function navigateToNextYear() {
+            if (currentYear < new Date().getFullYear()) {
+                currentYear++;
+                document.getElementById('currentYearText').innerText = `Sales per Month (${currentYear})`;
+                updateChartData();
+            }
+        }
+
+        // Function to update the chart data based on the current year
+        function updateChartData() {
+            lineChart.data.datasets.forEach((dataset, index) => {
+                dataset.data = categories[Object.keys(categories)[index]];
+            });
+            lineChart.update();
+        }
+
+        // Helper function to generate random color
+        function getRandomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Create the initial line chart
+        createLineChart();
+
+        // Add button click event listener
+        let addButton = document.createElement("button");
+        addButton.innerText = "Add Category";
+        addButton.addEventListener("click", addCategory);
+        output.appendChild(addButton);
+
+        // Add arrows to navigate to previous and next years
+        let previousYearButton = document.createElement("button");
+        previousYearButton.innerText = "Previous Year";
+        previousYearButton.addEventListener("click", navigateToPreviousYear);
+        output.appendChild(previousYearButton);
+
+        let nextYearButton = document.createElement("button");
+        nextYearButton.innerText = "Next Year";
+        nextYearButton.addEventListener("click", navigateToNextYear);
+        output.appendChild(nextYearButton);
+
+        // Display initial stats
+        updateStats();
+
+        // Function to update the stats based on the current year
+        function updateStats() {
+            let statsContainer = document.getElementById("stats");
+            statsContainer.innerHTML = "";
+
+            Object.keys(categories).forEach((key) => {
+                let categoryStats = categories[key];
+                let totalSales = categoryStats.reduce((a, b) => a + b, 0);
+                let averageSales = totalSales / categoryStats.length;
+                let maxSales = Math.max(...categoryStats);
+                let minSales = Math.min(...categoryStats);
+
+                let statsElement = document.createElement("div");
+                statsElement.innerHTML = `
+                                            <h3>${key} Stats</h3>
+                                            <p>Total Sales: ${totalSales}</p>
+                                            <p>Average Sales: ${averageSales.toFixed(2)}</p>
+                                            <p>Max Sales: ${maxSales}</p>
+                                            <p>Min Sales: ${minSales}</p>
+                                        `;
+                statsContainer.appendChild(statsElement);
+            });
+        }
+    </script>
+</body>
+</html>
+
+    @*old charts bellow:*@
+
+@*<html>
 <head>
     <style>
         #lineChart {
@@ -176,7 +354,7 @@
                         pointBackgroundColor: "green",
                         fill: false,
                         data: UncategorizableItems,
-                        label: "Uncategorizable Items"
+                        label: "Uncategorized Items"
                     },
                     {
                         borderColor: "black",
@@ -216,8 +394,111 @@
 
     <br />
     <br />
+</body>
+ 
+<head>
+    <title>Sales Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .arrow-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        .arrow-button:hover {
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="yearLabel">Profits per month of year 2022</h2>
+    <div class="container">
+        <button class="arrow-button" id="prevButton">&lt;</button>
+        <canvas id="barChart"></canvas>
+        <button class="arrow-button" id="nextButton">&gt;</button>
+    </div>
 
-    <h2>Profits per month</h2>
+    <script>
+        let canvasBar = document.getElementById("barChart");
+        let yearLabel = document.getElementById("yearLabel");
+        let prevButton = document.getElementById("prevButton");
+        let nextButton = document.getElementById("nextButton");
+
+        let year = 2022; // Initial year
+        let yearsData = {
+            2020: [5, 8, 12, 6, 10, 15, 9, 13, 8, 6, 4, 12],
+            2021: [7, 9, 14, 10, 12, 7, 6, 11, 14, 9, 5, 10],
+            2022: [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8],
+            // Add more years of data here
+        };
+
+        // Render the initial chart
+        renderChart(year);
+
+        // Function to render the chart based on the selected year
+        function renderChart(selectedYear) {
+            // Update the year label
+            yearLabel.innerText = "Profits per month of year " + selectedYear;
+
+            // Create an array of months for the x-axis labels
+            let monthsBar = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            // Get the data for the selected year
+            let dataBar = yearsData[selectedYear];
+
+            // Create a new bar chart object
+            new Chart(canvasBar, {
+                type: "bar",
+                data: {
+                    labels: monthsBar,
+                    datasets: [{
+                        backgroundColor: "blue",
+                        data: dataBar
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: -20,
+                                max: 20
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Event listener for the previous button
+        prevButton.addEventListener("click", function() {
+            if (year > 2020) {
+                year--;
+                renderChart(year);
+            }
+        });
+
+        // Event listener for the next button
+        nextButton.addEventListener("click", function() {
+            if (year < 2023) {
+                year++;
+                renderChart(year);
+            }
+        });
+    </script>
+
+
+    <h2>Profits per month of year 2022</h2>
     <canvas id="barChart"></canvas>
     <script>
         let canvasBar = document.getElementById("barChart");
@@ -253,5 +534,155 @@
     </script>
 </body>
 </html>
+*@
 
+
+
+@*
+HTML with arrows*@
+@*<html>
+<head>
+    <title>Sales Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .arrow-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+            .arrow-button:hover {
+                background-color: #e6e6e6;
+            }
+
+        #lineChart {
+            max-width: 550px;
+            height: 300px;
+        }
+
+        #barChart {
+            max-width: 550px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="yearLabel">Profits per month of year 2022</h2>
+    <div class="container">
+        <button class="arrow-button" id="prevButton">&lt;</button>
+        <canvas id="barChart"></canvas>
+        <button class="arrow-button" id="nextButton">&gt;</button>
+    </div>
+
+    <canvas id="lineChart"></canvas>
+    <script>
+        let canvasBar = document.getElementById("barChart");
+        let canvasLine = document.getElementById("lineChart");
+        let yearLabel = document.getElementById("yearLabel");
+        let prevButton = document.getElementById("prevButton");
+        let nextButton = document.getElementById("nextButton");
+
+        let yearsData = {
+            2020: [5, 8, 12, 6, 10, 15, 9, 13, 8, 6, 4, 12],
+            2021: [7, 9, 14, 10, 12, 7, 6, 11, 14, 9, 5, 10],
+            2022: [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8],
+            // Add more years of data here
+        };
+
+        let currentYear = 2022; // Initial year
+
+        // Render the initial chart
+        renderCharts(currentYear);
+
+        // Function to render both line and bar charts based on the selected year
+        function renderCharts(selectedYear) {
+            // Update the year label
+            yearLabel.innerText = "Profits per month of year " + selectedYear;
+
+            // Create an array of months for the x-axis labels
+            let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            // Get the data for the selected year
+            let dataLine = yearsData[selectedYear];
+
+            // Create a new line chart object
+            new Chart(canvasLine, {
+                type: "line",
+                data: {
+                    labels: months,
+                    datasets: [{
+                        borderColor: "red",
+                        pointBackgroundColor: "green",
+                        fill: false,
+                        data: dataLine,
+                        label: "Sales"
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Get the data for the selected year for the bar chart
+            let dataBar = yearsData[selectedYear];
+
+            // Create a new bar chart object
+            new Chart(canvasBar, {
+                type: "bar",
+                data: {
+                    labels: months,
+                    datasets: [{
+                        backgroundColor: "blue",
+                        data: dataBar
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: -20,
+                                max: 20
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Event listener for the previous button
+        prevButton.addEventListener("click", function () {
+            if (currentYear > 2020) {
+                currentYear--;
+                renderCharts(currentYear);
+            }
+        });
+
+        // Event listener for the next button
+        nextButton.addEventListener("click", function () {
+            if (currentYear < 2023) {
+                currentYear++;
+                renderCharts(currentYear);
+            }
+        });
+    </script>
+</body>
+</html>*@
 
