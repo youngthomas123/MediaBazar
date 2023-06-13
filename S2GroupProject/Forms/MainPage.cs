@@ -459,7 +459,7 @@ namespace S2GroupProject
 					bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
 					//false if emp has scheduled a sick leave xd
 					bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
-									 !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate);
+									 !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate && sickLeave.IsScheduled);
 
 					if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
 					{

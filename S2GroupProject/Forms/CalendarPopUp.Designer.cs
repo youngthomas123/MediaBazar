@@ -44,19 +44,17 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(284, 177);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(199, 106);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1376, 1137);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(963, 682);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // monthLb
             // 
             this.monthLb.AutoSize = true;
-            this.monthLb.Location = new System.Drawing.Point(919, 40);
-            this.monthLb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.monthLb.Location = new System.Drawing.Point(643, 24);
             this.monthLb.Name = "monthLb";
-            this.monthLb.Size = new System.Drawing.Size(59, 25);
+            this.monthLb.Size = new System.Drawing.Size(38, 15);
             this.monthLb.TabIndex = 12;
             this.monthLb.Text = "label1";
             // 
@@ -64,10 +62,9 @@
             // 
             this.prevBtn.BackColor = System.Drawing.Color.LightSkyBlue;
             this.prevBtn.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.prevBtn.Location = new System.Drawing.Point(284, 20);
-            this.prevBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.prevBtn.Location = new System.Drawing.Point(199, 12);
             this.prevBtn.Name = "prevBtn";
-            this.prevBtn.Size = new System.Drawing.Size(84, 58);
+            this.prevBtn.Size = new System.Drawing.Size(59, 35);
             this.prevBtn.TabIndex = 13;
             this.prevBtn.Text = "<=";
             this.prevBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -78,10 +75,9 @@
             // 
             this.nextBtn.BackColor = System.Drawing.Color.LightSkyBlue;
             this.nextBtn.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nextBtn.Location = new System.Drawing.Point(1576, 20);
-            this.nextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nextBtn.Location = new System.Drawing.Point(1103, 12);
             this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(84, 58);
+            this.nextBtn.Size = new System.Drawing.Size(59, 35);
             this.nextBtn.TabIndex = 14;
             this.nextBtn.Text = "=>";
             this.nextBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -92,10 +88,9 @@
             // 
             this.closeBtn.BackColor = System.Drawing.Color.IndianRed;
             this.closeBtn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.closeBtn.Location = new System.Drawing.Point(17, 1247);
-            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.closeBtn.Location = new System.Drawing.Point(12, 748);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(237, 67);
+            this.closeBtn.Size = new System.Drawing.Size(166, 40);
             this.closeBtn.TabIndex = 15;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = false;
@@ -105,10 +100,9 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(1499, 118);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(1049, 71);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(104, 31);
+            this.label20.Size = new System.Drawing.Size(67, 20);
             this.label20.TabIndex = 22;
             this.label20.Text = "Saturday";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -117,10 +111,9 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(1319, 118);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(923, 71);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 31);
+            this.label19.Size = new System.Drawing.Size(49, 20);
             this.label19.TabIndex = 21;
             this.label19.Text = "Friday";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,10 +122,9 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(1106, 118);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(774, 71);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(107, 31);
+            this.label18.Size = new System.Drawing.Size(68, 20);
             this.label18.TabIndex = 20;
             this.label18.Text = "Thursday";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -141,10 +133,9 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(897, 118);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(628, 71);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(132, 31);
+            this.label17.Size = new System.Drawing.Size(85, 20);
             this.label17.TabIndex = 19;
             this.label17.Text = "Wednesday";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -153,10 +144,9 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(717, 118);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(502, 71);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(98, 31);
+            this.label16.Size = new System.Drawing.Size(63, 20);
             this.label16.TabIndex = 18;
             this.label16.Text = "Tuesday";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -165,10 +155,9 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(537, 118);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(376, 71);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(98, 31);
+            this.label15.Size = new System.Drawing.Size(63, 20);
             this.label15.TabIndex = 17;
             this.label15.Text = "Monday";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -177,20 +166,19 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(349, 118);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(244, 71);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(89, 31);
+            this.label14.Size = new System.Drawing.Size(57, 20);
             this.label14.TabIndex = 16;
             this.label14.Text = "Sunday";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CalendarPopUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
-            this.ClientSize = new System.Drawing.Size(1677, 1333);
+            this.ClientSize = new System.Drawing.Size(1324, 862);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -203,7 +191,6 @@
             this.Controls.Add(this.prevBtn);
             this.Controls.Add(this.monthLb);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CalendarPopUp";
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

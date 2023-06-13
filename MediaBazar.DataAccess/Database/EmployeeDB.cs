@@ -1,6 +1,7 @@
 ﻿using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
 using System.Data.SqlClient;
+using System.Text;
 using static MediaBazar.BusinessLogic.Classes.MyEnums;
 
 namespace MediaBazar.DataAccess.Database
@@ -100,6 +101,23 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
+        public void RemoveEmpShift(Employee emp, DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string removeShiftQuery = "DELETE FROM SHIFT2 WHERE ShiftDate = @ShiftDate AND BSN = @BSN";
+
+                using (SqlCommand cmd = new SqlCommand(removeShiftQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ShiftDate", date);
+                    cmd.Parameters.AddWithValue("@BSN", emp.BSN);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void DeleateEmployee(int BSN)
         {
             SqlConnection conn = new SqlConnection(connectionString);
@@ -170,7 +188,7 @@ namespace MediaBazar.DataAccess.Database
                             }
                         }
                         List<SickLeave> sickLeaves = new List<SickLeave>();
-                        SqlCommand sickLeavesCommand = new SqlCommand("SELECT StartDate, EndDate, IsScheduled, Reason FROM SickLeave2 WHERE BSN = @BSN", connection);
+                        SqlCommand sickLeavesCommand = new SqlCommand("SELECT StartDate, EndDate, IsScheduled, Reason, ManagerMessage FROM SickLeave2 WHERE BSN = @BSN", connection);
                         sickLeavesCommand.Parameters.AddWithValue("@BSN", bsn);
 
                         using (SqlDataReader sickLeavesReader = sickLeavesCommand.ExecuteReader())
@@ -181,8 +199,12 @@ namespace MediaBazar.DataAccess.Database
                                 DateTime endDate = (DateTime)sickLeavesReader["EndDate"];
                                 bool isScheduled = sickLeavesReader.IsDBNull(sickLeavesReader.GetOrdinal("IsScheduled")) ? false : (bool)sickLeavesReader["IsScheduled"];
                                 string reason = sickLeavesReader["Reason"].ToString();
+                                string managerMessage = sickLeavesReader["ManagerMessage"].ToString();
 
-                                sickLeaves.Add(new SickLeave(startDate, endDate, reason, isScheduled));
+                                SickLeave sickLeave = new SickLeave(startDate, endDate, reason, isScheduled);
+                                sickLeave.ManagerMessage = managerMessage;
+
+                                sickLeaves.Add(sickLeave);
 
                             }
                         }
@@ -243,7 +265,7 @@ namespace MediaBazar.DataAccess.Database
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO SickLeave2 (BSN, StartDate, EndDate, IsScheduled, Reason) VALUES (@BSN, @StartDate, @EndDate, @IsScheduled, @Reason)";
+                string query = "INSERT INTO SickLeave2 (BSN, StartDate, EndDate, IsScheduled, Reason, ManagerMessage) VALUES (@BSN, @StartDate, @EndDate, @IsScheduled, @Reason, @ManagerMessage)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -252,6 +274,7 @@ namespace MediaBazar.DataAccess.Database
                     command.Parameters.AddWithValue("@EndDate", sickLeave.EndDate);
                     command.Parameters.AddWithValue("@IsScheduled", sickLeave.IsScheduled);
                     command.Parameters.AddWithValue("@Reason", sickLeave.Reason);
+                    command.Parameters.AddWithValue("@ManagerMessage", sickLeave.ManagerMessage);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -269,6 +292,22 @@ namespace MediaBazar.DataAccess.Database
                 {
                     command.Parameters.AddWithValue("@BSN", emp.BSN);
                     command.Parameters.AddWithValue("@StartDate", sickLeave.StartDate);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public void UpdateEmployeSickLeaveManagerMessage(SickLeave sickLeave, Employee emp)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE SickLeave2 SET ManagerMessage = @ManagerMessage WHERE BSN = @BSN";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@BSN", emp.BSN);
+                    command.Parameters.AddWithValue("@ManagerMessage", sickLeave.ManagerMessage);
 
                     connection.Open();
                     command.ExecuteNonQuery();
