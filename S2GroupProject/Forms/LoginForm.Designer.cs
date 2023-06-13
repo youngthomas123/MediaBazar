@@ -42,7 +42,7 @@
 			// 
 			// LoginBT
 			// 
-			LoginBT.BackColor = SystemColors.ActiveCaptionText;
+			LoginBT.BackColor = Color.DarkSlateBlue;
 			resources.ApplyResources(LoginBT, "LoginBT");
 			LoginBT.ForeColor = SystemColors.ButtonHighlight;
 			LoginBT.Name = "LoginBT";
@@ -89,7 +89,7 @@
 			// 
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
-			BackColor = Color.Moccasin;
+			BackColor = Color.LightBlue;
 			Controls.Add(label1);
 			Controls.Add(LoginBT);
 			Controls.Add(ShowPasswordCB);

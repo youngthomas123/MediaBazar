@@ -392,5 +392,10 @@ namespace S2GroupProject.Forms
 				ItemListBox.Items.Add(item);
 			}
 		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

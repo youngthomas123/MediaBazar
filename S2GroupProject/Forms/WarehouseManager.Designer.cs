@@ -53,9 +53,13 @@
 			Add = new Button();
 			warehouseListbox = new ListBox();
 			ItemOverview = new TabPage();
+			groupBox7 = new GroupBox();
+			label2 = new Label();
 			SortByName = new Button();
-			label7 = new Label();
+			textBox1 = new TextBox();
 			CategoriesBox = new ComboBox();
+			label7 = new Label();
+			SearchItembyName = new Button();
 			groupBox3 = new GroupBox();
 			warehouseComboBox = new ComboBox();
 			AssignItemBTN = new Button();
@@ -66,9 +70,6 @@
 			label10 = new Label();
 			textBox7 = new TextBox();
 			textBox8 = new TextBox();
-			SearchItembyName = new Button();
-			textBox1 = new TextBox();
-			label2 = new Label();
 			ItemListBox = new ListBox();
 			CreateItems = new TabPage();
 			textBox9 = new TextBox();
@@ -98,7 +99,6 @@
 			AssignEmployeeToWarehouseBTN = new Button();
 			label16 = new Label();
 			employeeList = new ListBox();
-			groupBox7 = new GroupBox();
 			panel1.SuspendLayout();
 			panel2.SuspendLayout();
 			tabControl1.SuspendLayout();
@@ -106,6 +106,7 @@
 			groupBox6.SuspendLayout();
 			groupBox2.SuspendLayout();
 			ItemOverview.SuspendLayout();
+			groupBox7.SuspendLayout();
 			groupBox3.SuspendLayout();
 			groupBox1.SuspendLayout();
 			CreateItems.SuspendLayout();
@@ -113,11 +114,11 @@
 			WarehouseEmployees.SuspendLayout();
 			groupBox5.SuspendLayout();
 			groupBox4.SuspendLayout();
-			groupBox7.SuspendLayout();
 			SuspendLayout();
 			// 
 			// panel1
 			// 
+			panel1.BackColor = Color.LightBlue;
 			panel1.Controls.Add(radioButton2);
 			panel1.Controls.Add(WarehouseEmployeeRBT);
 			panel1.Controls.Add(radioButton1);
@@ -208,15 +209,17 @@
 			// 
 			// label1
 			// 
+			label1.BackColor = Color.LightBlue;
 			label1.Dock = DockStyle.Fill;
 			label1.Font = new Font("MS Reference Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point);
-			label1.ForeColor = SystemColors.GradientInactiveCaption;
+			label1.ForeColor = SystemColors.Desktop;
 			label1.Location = new Point(0, 0);
 			label1.Name = "label1";
 			label1.Size = new Size(453, 93);
 			label1.TabIndex = 1;
 			label1.Text = "Dashboard";
 			label1.TextAlign = ContentAlignment.MiddleCenter;
+			label1.Click += label1_Click;
 			// 
 			// tabControl1
 			// 
@@ -394,6 +397,30 @@
 			ItemOverview.Text = "ItemOverview";
 			ItemOverview.UseVisualStyleBackColor = true;
 			// 
+			// groupBox7
+			// 
+			groupBox7.Controls.Add(label2);
+			groupBox7.Controls.Add(SortByName);
+			groupBox7.Controls.Add(textBox1);
+			groupBox7.Controls.Add(CategoriesBox);
+			groupBox7.Controls.Add(label7);
+			groupBox7.Controls.Add(SearchItembyName);
+			groupBox7.Location = new Point(8, 6);
+			groupBox7.Name = "groupBox7";
+			groupBox7.Size = new Size(419, 237);
+			groupBox7.TabIndex = 11;
+			groupBox7.TabStop = false;
+			groupBox7.Text = "Search and filter";
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new Point(7, 40);
+			label2.Name = "label2";
+			label2.Size = new Size(162, 25);
+			label2.TabIndex = 2;
+			label2.Text = "Search by keyword";
+			// 
 			// SortByName
 			// 
 			SortByName.Location = new Point(268, 140);
@@ -404,14 +431,12 @@
 			SortByName.UseVisualStyleBackColor = true;
 			SortByName.Click += SortByName_Click;
 			// 
-			// label7
+			// textBox1
 			// 
-			label7.AutoSize = true;
-			label7.Location = new Point(6, 114);
-			label7.Name = "label7";
-			label7.Size = new Size(149, 25);
-			label7.TabIndex = 9;
-			label7.Text = "Filter by category";
+			textBox1.Location = new Point(0, 68);
+			textBox1.Name = "textBox1";
+			textBox1.Size = new Size(284, 31);
+			textBox1.TabIndex = 3;
 			// 
 			// CategoriesBox
 			// 
@@ -421,6 +446,25 @@
 			CategoriesBox.Size = new Size(196, 33);
 			CategoriesBox.TabIndex = 8;
 			CategoriesBox.SelectedIndexChanged += CategoriesBox_SelectedIndexChanged;
+			// 
+			// label7
+			// 
+			label7.AutoSize = true;
+			label7.Location = new Point(6, 114);
+			label7.Name = "label7";
+			label7.Size = new Size(149, 25);
+			label7.TabIndex = 9;
+			label7.Text = "Filter by category";
+			// 
+			// SearchItembyName
+			// 
+			SearchItembyName.Location = new Point(286, 68);
+			SearchItembyName.Name = "SearchItembyName";
+			SearchItembyName.Size = new Size(133, 31);
+			SearchItembyName.TabIndex = 4;
+			SearchItembyName.Text = "Search";
+			SearchItembyName.UseVisualStyleBackColor = true;
+			SearchItembyName.Click += SearchItembyName_Click;
 			// 
 			// groupBox3
 			// 
@@ -519,32 +563,6 @@
 			textBox8.Name = "textBox8";
 			textBox8.Size = new Size(283, 31);
 			textBox8.TabIndex = 6;
-			// 
-			// SearchItembyName
-			// 
-			SearchItembyName.Location = new Point(286, 68);
-			SearchItembyName.Name = "SearchItembyName";
-			SearchItembyName.Size = new Size(133, 31);
-			SearchItembyName.TabIndex = 4;
-			SearchItembyName.Text = "Search";
-			SearchItembyName.UseVisualStyleBackColor = true;
-			SearchItembyName.Click += SearchItembyName_Click;
-			// 
-			// textBox1
-			// 
-			textBox1.Location = new Point(0, 68);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(284, 31);
-			textBox1.TabIndex = 3;
-			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(7, 40);
-			label2.Name = "label2";
-			label2.Size = new Size(162, 25);
-			label2.TabIndex = 2;
-			label2.Text = "Search by keyword";
 			// 
 			// ItemListBox
 			// 
@@ -829,21 +847,6 @@
 			employeeList.Size = new Size(584, 404);
 			employeeList.TabIndex = 5;
 			// 
-			// groupBox7
-			// 
-			groupBox7.Controls.Add(label2);
-			groupBox7.Controls.Add(SortByName);
-			groupBox7.Controls.Add(textBox1);
-			groupBox7.Controls.Add(CategoriesBox);
-			groupBox7.Controls.Add(label7);
-			groupBox7.Controls.Add(SearchItembyName);
-			groupBox7.Location = new Point(8, 6);
-			groupBox7.Name = "groupBox7";
-			groupBox7.Size = new Size(419, 381);
-			groupBox7.TabIndex = 11;
-			groupBox7.TabStop = false;
-			groupBox7.Text = "Search and filter";
-			// 
 			// WarehouseManager
 			// 
 			AutoScaleDimensions = new SizeF(10F, 25F);
@@ -863,6 +866,8 @@
 			groupBox6.PerformLayout();
 			groupBox2.ResumeLayout(false);
 			ItemOverview.ResumeLayout(false);
+			groupBox7.ResumeLayout(false);
+			groupBox7.PerformLayout();
 			groupBox3.ResumeLayout(false);
 			groupBox3.PerformLayout();
 			groupBox1.ResumeLayout(false);
@@ -876,8 +881,6 @@
 			groupBox5.PerformLayout();
 			groupBox4.ResumeLayout(false);
 			groupBox4.PerformLayout();
-			groupBox7.ResumeLayout(false);
-			groupBox7.PerformLayout();
 			ResumeLayout(false);
 		}
 
