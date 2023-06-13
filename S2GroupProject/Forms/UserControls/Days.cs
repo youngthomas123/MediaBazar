@@ -60,5 +60,33 @@ namespace S2GroupProject.Forms
 			MessageBox.Show($"The date for this day is {Date.ToShortDateString()} and there are {employeesWorkingThatDay.Count()} employees working");
 
 		}
-	}
+
+        private void SelectDate_DoubleClick(object sender, EventArgs e)
+        {
+			//SelectDateDoubleClick(sender);
+			var date = SelectDateDoubleClick(sender);
+			DateTime dateForUc = DateTime.Parse(date);
+            //MessageBox.Show(SelectDateDoubleClick(sender));
+            DaySchedule dayScheduleUC = new DaySchedule(_employeeContainer, dateForUc);
+           
+
+            // Create a Form to serve as the popup
+            Form popupForm = new Form();
+            popupForm.Controls.Add(dayScheduleUC); // Add the DayScheduleUC to the Form
+
+            // Set the Form properties
+            popupForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+            popupForm.StartPosition = FormStartPosition.CenterScreen;
+            popupForm.Size = new Size((Point)dayScheduleUC.Size);
+
+            // Show the Form as a dialog (blocking)
+            popupForm.ShowDialog();
+
+        }
+		private string SelectDateDoubleClick(object sender)
+		{
+			return Date.ToString("dd/MM/yyyy");
+		}
+    }
 }
+

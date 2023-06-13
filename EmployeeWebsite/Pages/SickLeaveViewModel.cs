@@ -6,5 +6,6 @@
         public DateTime EndDate { get; set; }
         public string? Reason { get; set; }
         public bool IsScheduled { get; set; }
+        public string? ManagerMessage { get; set; }
     }
 }
