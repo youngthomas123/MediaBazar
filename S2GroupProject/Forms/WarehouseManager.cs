@@ -21,6 +21,7 @@ namespace S2GroupProject.Forms
 		List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
 		List<Warehouse> warehouses = new List<Warehouse>();
+		List<string> categories = new List<string>();
 
 		public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
 		{
@@ -45,10 +46,13 @@ namespace S2GroupProject.Forms
 			ShopRequests.Items.Clear();
 			warehouseComboBox.Items.Clear();
 			warehouseComboBox2.Items.Clear();
+			CategoriesBox.Items.Clear();
 
 			warehouses = _warehouseContainer.LoadWarehouse();
 			items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
+			categories = _itemContainer.GetCategories();
+
 
 			foreach (Item item in items)
 			{
@@ -64,6 +68,10 @@ namespace S2GroupProject.Forms
 				warehouseListbox.Items.Add(warehouse);
 				warehouseComboBox.Items.Add(warehouse);
 				warehouseComboBox2.Items.Add(warehouse);
+			}
+			foreach (string category in categories)
+			{
+				CategoriesBox.Items.Add(category);
 			}
 		}
 
@@ -167,14 +175,11 @@ namespace S2GroupProject.Forms
 			try
 			{
 				ItemListBox.Items.Clear();
-				items = _itemContainer.LoadItem();
-				string searchedItemName = textBox1.Text;
-				foreach (Item item in items)
+				string keyword = textBox1.Text;
+				var foundItems = _itemContainer.SearchPostsByKeyword(keyword);
+				foreach (var item in foundItems)
 				{
-					if (searchedItemName == item.Name)
-					{
-						ItemListBox.Items.Add(item);
-					}
+					ItemListBox.Items.Add(item);
 				}
 			}
 			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
@@ -216,15 +221,15 @@ namespace S2GroupProject.Forms
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			string name = textBox2.Text;
-			string description = textBox3.Text;
-			int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
-			int shopQuantity = Convert.ToInt32(textBox9.Text);
-			string category = textBox4.Text;
+			//string name = textBox2.Text;
+			//string description = textBox3.Text;
+			//int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
+			//int shopQuantity = Convert.ToInt32(textBox9.Text);
+			//int category = textBox4.Text;
 
-			Item item = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopQuantity, category);
-			_itemContainer.AddItem(item);
-			RefreshData();
+			//Item item = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopQuantity, category);
+			//_itemContainer.AddItem(item);
+			//RefreshData();
 
 		}
 
@@ -353,6 +358,39 @@ namespace S2GroupProject.Forms
 				_itemContainer.UpdateItemQuantity(selectedItemForRestock, 200);
 			}
 			WarehouseRestockData();
+		}
+
+		private void CategoriesBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+			int categorySelected = CategoriesBox.SelectedIndex;
+			categorySelected++;
+
+			if (categorySelected != null)
+			{
+				foreach (Item item in items)
+				{
+					if (item.Category == categorySelected)
+					{
+						ItemListBox.Items.Add(item);
+					}
+				}
+			}
+			else
+			{
+				MessageBox.Show("Choose a ctegory");
+			}
+		}
+
+		private void SortByName_Click(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+			Sorting sortbyName = new Sorting();
+			var sortedItems = sortbyName.InsertionSort(items);
+			foreach (Item item in sortedItems)
+			{
+				ItemListBox.Items.Add(item);
+			}
 		}
 	}
 }
