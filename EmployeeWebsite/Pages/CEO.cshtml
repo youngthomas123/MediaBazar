@@ -4,133 +4,7 @@
 	ViewData["Title"] = "Stats";
 }
 
-
-
-
-    @*<style>
-        #sampleChart {
-            max-width: auto;
-            height: auto;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
-
-
-    <h2>Items sold per month</h2>
-    <canvas id="sampleChart"></canvas>
-    <div id="output"></div>
-    <script>
-        let output = document.getElementById('output');
-        let canvas = document.getElementById("sampleChart");
-
-        // Create an array of months for the x-axis labels
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        // Create an array of random data for the y-axis
-        let UncategorizableItems = [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb , @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec];
-        let Electronics = [@Model.Electronics.Jan,@Model.Electronics.Feb,@Model.Electronics.Mar,@Model.Electronics.Apr,@Model.Electronics.May,@Model.Electronics.Jun,@Model.Electronics.Jul,@Model.Electronics.Aug,@Model.Electronics.Sep,@Model.Electronics.Oct,@Model.Electronics.Nov,@Model.Electronics.Dec]
-        let Kitchen = [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec]
-        let Sports = [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
-        // Create a new chart object
-        new Chart(canvas, {
-            type: "line",
-            data: {
-                labels: months, // Use the months array for the x-axis labels
-                datasets: [
-                    {
-                    borderColor: "red",
-                    pointBackgroundColor: "green",
-                    fill: false,
-                    data: UncategorizableItems, // Use the data array for the y-axis values
-                    label: "UncategorizableItems"
-                }, 
-                {
-                    borderColor: "black",
-                    pointBackgroundColor: "pink",
-                    fill: false,
-                    data: Electronics,
-                    label: "Electronics"
-                },
-                {
-                        borderColor: "blue",
-                        pointBackgroundColor: "yellow",
-                        fill: false,
-                        data: Kitchen,
-                        label: "Kitchen"
-                },
-                {
-                        borderColor: "green",
-                        pointBackgroundColor: "black",
-                        fill: false,
-                        data: Sports,
-                        label: "Sports"
-                }
-                ]
-
-                
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50 // Set the maximum value of the y-axis to 50
-                        }
-                    }]
-                }
-            }
-        });
-    </script>*@
-
-
-
-
-
-  @*<style>
-        #sampleChart {
-            max-width: 550px;
-            height: 300px;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-
-    <h2>Item Sales This Year</h2>
-    <canvas id="sampleChart"></canvas>
-    <script>
-        let canvas = document.getElementById("sampleChart");
-
-        // Create an array of months for the x-axis labels
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        // Create an array of data for the y-axis
-        let data = [10, -5, 15, -10, 0, 5, -15, 20, -10, 5, -15, 10];
-
-        // Create a new chart object
-        new Chart(canvas, {
-            type: "bar",
-            data: {
-                labels: months, // Use the months array for the x-axis labels
-                datasets: [{
-                    backgroundColor: "blue",
-                    data: data // Use the data array for the y-axis values
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            min: -20, // Set the minimum value of the y-axis to -20
-                            max: 20 // Set the maximum value of the y-axis to 20
-                        }
-                    }]
-                }
-            }
-        });
-    </script>*@
-
-
+@*
 <html>
 <head>
     <style>
@@ -307,11 +181,9 @@
         }
     </script>
 </body>
-</html>
+</html>*@
 
-    @*old charts bellow:*@
-
-@*<html>
+<html>
 <head>
     <style>
         #lineChart {
@@ -319,160 +191,67 @@
             height: 300px;
         }
 
-        #barChart {
-            max-width: 550px;
-            height: 300px;
+        #stats {
+            margin-top: 20px;
         }
+
+            #stats h3 {
+                margin: 10px 0;
+            }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
-    <h2>Sales per Month</h2>
+    <h2 id="currentYearText">Sales per Month (2021)</h2>
     <canvas id="lineChart"></canvas>
     <div id="output"></div>
+    <div id="stats"></div>
     <script>
         let output = document.getElementById('output');
         let canvas = document.getElementById("lineChart");
+        let lineChart;
+        let currentYear = 2021; // Set the initial year
+        let showByWeeks = false; // Set the initial showByWeeks value to false
 
         // Create an array of months for the x-axis labels
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         // Create arrays for each category of items
-        let UncategorizableItems = [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec];
-        let Electronics = [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec];
-        let Kitchen = [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec];
-        let Sports = [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec];
-
-        // Create a new line chart object
-        new Chart(canvas, {
-            type: "line",
-            data: {
-                labels: months,
-                datasets: [
-                    {
-                        borderColor: "red",
-                        pointBackgroundColor: "green",
-                        fill: false,
-                        data: UncategorizableItems,
-                        label: "Uncategorized Items"
-                    },
-                    {
-                        borderColor: "black",
-                        pointBackgroundColor: "pink",
-                        fill: false,
-                        data: Electronics,
-                        label: "Electronics"
-                    },
-                    {
-                        borderColor: "blue",
-                        pointBackgroundColor: "yellow",
-                        fill: false,
-                        data: Kitchen,
-                        label: "Kitchen"
-                    },
-                    {
-                        borderColor: "green",
-                        pointBackgroundColor: "black",
-                        fill: false,
-                        data: Sports,
-                        label: "Sports"
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            max: 40
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-
-    <br />
-    <br />
-</body>
- 
-<head>
-    <title>Sales Data</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .arrow-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border: none;
-            background-color: #f2f2f2;
-            cursor: pointer;
-        }
-        .arrow-button:hover {
-            background-color: #e6e6e6;
-        }
-    </style>
-</head>
-<body>
-    <h2 id="yearLabel">Profits per month of year 2022</h2>
-    <div class="container">
-        <button class="arrow-button" id="prevButton">&lt;</button>
-        <canvas id="barChart"></canvas>
-        <button class="arrow-button" id="nextButton">&gt;</button>
-    </div>
-
-    <script>
-        let canvasBar = document.getElementById("barChart");
-        let yearLabel = document.getElementById("yearLabel");
-        let prevButton = document.getElementById("prevButton");
-        let nextButton = document.getElementById("nextButton");
-
-        let year = 2022; // Initial year
-        let yearsData = {
-            2020: [5, 8, 12, 6, 10, 15, 9, 13, 8, 6, 4, 12],
-            2021: [7, 9, 14, 10, 12, 7, 6, 11, 14, 9, 5, 10],
-            2022: [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8],
-            // Add more years of data here
+        let categories = {
+            'UncategorizableItems': [],
+            'Electronics': [],
+            'Kitchen': [],
+            'Sports': []
         };
 
-        // Render the initial chart
-        renderChart(year);
+        // Load categories from localStorage if available
+        let savedCategories = localStorage.getItem('categories');
+        if (savedCategories) {
+            categories = JSON.parse(savedCategories);
+        }
 
-        // Function to render the chart based on the selected year
-        function renderChart(selectedYear) {
-            // Update the year label
-            yearLabel.innerText = "Profits per month of year " + selectedYear;
-
-            // Create an array of months for the x-axis labels
-            let monthsBar = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-            // Get the data for the selected year
-            let dataBar = yearsData[selectedYear];
-
-            // Create a new bar chart object
-            new Chart(canvasBar, {
-                type: "bar",
+        // Create a new line chart object
+        function createLineChart() {
+            lineChart = new Chart(canvas, {
+                type: "line",
                 data: {
-                    labels: monthsBar,
-                    datasets: [{
-                        backgroundColor: "blue",
-                        data: dataBar
-                    }]
+                    labels: showByWeeks ? generateWeekLabels(currentYear) : months,
+                    datasets: Object.keys(categories).map((key) => {
+                        return {
+                            borderColor: getRandomColor(),
+                            pointBackgroundColor: getRandomColor(),
+                            fill: false,
+                            data: categories[key],
+                            label: key
+                        };
+                    })
                 },
                 options: {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                min: -20,
-                                max: 20
+                                beginAtZero: true,
+                                max: 40
                             }
                         }]
                     }
@@ -480,209 +259,125 @@
             });
         }
 
-        // Event listener for the previous button
-        prevButton.addEventListener("click", function() {
-            if (year > 2020) {
-                year--;
-                renderChart(year);
+        // Generate an array of week labels for the x-axis
+        function generateWeekLabels(year) {
+            let weeksInYear = getWeeksInYear(year);
+            let weekLabels = [];
+            for (let i = 1; i <= weeksInYear; i++) {
+                weekLabels.push(`Week ${i}`);
             }
-        });
+            return weekLabels;
+        }
 
-        // Event listener for the next button
-        nextButton.addEventListener("click", function() {
-            if (year < 2023) {
-                year++;
-                renderChart(year);
+        // Get the number of weeks in a given year
+        function getWeeksInYear(year) {
+            const firstDayOfYear = new Date(year, 0, 1);
+            const lastDayOfYear = new Date(year, 11, 31);
+            const daysInYear = (lastDayOfYear - firstDayOfYear) / (1000 * 60 * 60 * 24);
+            return Math.ceil((daysInYear + firstDayOfYear.getDay() + 1) / 7);
+        }
+
+        // Toggle between showing sales by months or weeks
+        function toggleSalesView() {
+            showByWeeks = !showByWeeks;
+            document.getElementById('currentYearText').innerText = `Sales per ${showByWeeks ? 'Week' : 'Month'} (${currentYear})`;
+            updateChartData();
+        }
+
+        // Function to update the chart data based on the current year and sales view
+        function updateChartData() {
+            if (showByWeeks) {
+                let weekLabels = generateWeekLabels(currentYear);
+                let categoryWeekSales = {};
+
+                Object.keys(categories).forEach((key) => {
+                    let categorySales = categories[key];
+                    let totalSales = categorySales.reduce((a, b) => a + b, 0);
+                    let weeksInYear = getWeeksInYear(currentYear);
+                    let averageSalesPerWeek = Math.round(totalSales / weeksInYear);
+                    let categoryWeekSalesArray = Array.from({ length: weeksInYear }, () => averageSalesPerWeek);
+
+                    let remainingSales = totalSales - averageSalesPerWeek * weeksInYear;
+                    let randomIndexes = Array.from({ length: weeksInYear }, (_, i) => i);
+                    shuffleArray(randomIndexes);
+
+                    for (let i = 0; i < remainingSales; i++) {
+                        categoryWeekSalesArray[randomIndexes[i]] += 1;
+                    }
+
+                    categoryWeekSales[key] = categoryWeekSalesArray;
+                });
+
+                lineChart.data.labels = weekLabels;
+                lineChart.data.datasets.forEach((dataset, index) => {
+                    let key = Object.keys(categories)[index];
+                    dataset.data = categoryWeekSales[key];
+                });
+            } else {
+                lineChart.data.labels = months;
+                lineChart.data.datasets.forEach((dataset, index) => {
+                    let key = Object.keys(categories)[index];
+                    dataset.data = categories[key];
+                });
             }
-        });
-    </script>
 
+            lineChart.update();
+        }
 
-    <h2>Profits per month of year 2022</h2>
-    <canvas id="barChart"></canvas>
-    <script>
-        let canvasBar = document.getElementById("barChart");
-
-        // Create an array of months for the x-axis labels
-        let monthsBar = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        // Create an array of data for the y-axis
-        let dataBar = [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8];
-
-        // Create a new bar chart object
-        new Chart(canvasBar, {
-            type: "bar",
-            data: {
-                labels: monthsBar,
-                datasets: [{
-                    backgroundColor: "blue",
-                    data: dataBar
-                   
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            min: -20,
-                            max: 20
-                        }
-                    }]
-                }
+        // Helper function to shuffle an array in place
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
-        });
+        }
+
+        // Helper function to generate random color
+        function getRandomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Create the initial line chart
+        createLineChart();
+
+        // Add toggle button for sales view
+        let toggleButton = document.createElement("button");
+        toggleButton.innerText = "Toggle View";
+        toggleButton.addEventListener("click", toggleSalesView);
+        output.appendChild(toggleButton);
+
+        // Display initial stats
+        updateStats();
+
+        // Function to update the stats based on the current year
+        function updateStats() {
+            let statsContainer = document.getElementById("stats");
+            statsContainer.innerHTML = "";
+
+            Object.keys(categories).forEach((key) => {
+                let categoryStats = categories[key];
+                let totalSales = categoryStats.reduce((a, b) => a + b, 0);
+                let averageSales = totalSales / categoryStats.length;
+                let maxSales = Math.max(...categoryStats);
+                let minSales = Math.min(...categoryStats);
+
+                let statsElement = document.createElement("div");
+                statsElement.innerHTML = `
+                            <h3>${key} Stats</h3>
+                            <p>Total Sales: ${totalSales}</p>
+                            <p>Average Sales: ${averageSales.toFixed(2)}</p>
+                            <p>Max Sales: ${maxSales}</p>
+                            <p>Min Sales: ${minSales}</p>
+                        `;
+                statsContainer.appendChild(statsElement);
+            });
+        }
     </script>
 </body>
 </html>
-*@
-
-
-
-@*
-HTML with arrows*@
-@*<html>
-<head>
-    <title>Sales Data</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .arrow-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border: none;
-            background-color: #f2f2f2;
-            cursor: pointer;
-        }
-
-            .arrow-button:hover {
-                background-color: #e6e6e6;
-            }
-
-        #lineChart {
-            max-width: 550px;
-            height: 300px;
-        }
-
-        #barChart {
-            max-width: 550px;
-            height: 300px;
-        }
-    </style>
-</head>
-<body>
-    <h2 id="yearLabel">Profits per month of year 2022</h2>
-    <div class="container">
-        <button class="arrow-button" id="prevButton">&lt;</button>
-        <canvas id="barChart"></canvas>
-        <button class="arrow-button" id="nextButton">&gt;</button>
-    </div>
-
-    <canvas id="lineChart"></canvas>
-    <script>
-        let canvasBar = document.getElementById("barChart");
-        let canvasLine = document.getElementById("lineChart");
-        let yearLabel = document.getElementById("yearLabel");
-        let prevButton = document.getElementById("prevButton");
-        let nextButton = document.getElementById("nextButton");
-
-        let yearsData = {
-            2020: [5, 8, 12, 6, 10, 15, 9, 13, 8, 6, 4, 12],
-            2021: [7, 9, 14, 10, 12, 7, 6, 11, 14, 9, 5, 10],
-            2022: [10, 5, 15, 10, 16, 5, -3, 20, -5, 5, 5, 8],
-            // Add more years of data here
-        };
-
-        let currentYear = 2022; // Initial year
-
-        // Render the initial chart
-        renderCharts(currentYear);
-
-        // Function to render both line and bar charts based on the selected year
-        function renderCharts(selectedYear) {
-            // Update the year label
-            yearLabel.innerText = "Profits per month of year " + selectedYear;
-
-            // Create an array of months for the x-axis labels
-            let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-            // Get the data for the selected year
-            let dataLine = yearsData[selectedYear];
-
-            // Create a new line chart object
-            new Chart(canvasLine, {
-                type: "line",
-                data: {
-                    labels: months,
-                    datasets: [{
-                        borderColor: "red",
-                        pointBackgroundColor: "green",
-                        fill: false,
-                        data: dataLine,
-                        label: "Sales"
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });
-
-            // Get the data for the selected year for the bar chart
-            let dataBar = yearsData[selectedYear];
-
-            // Create a new bar chart object
-            new Chart(canvasBar, {
-                type: "bar",
-                data: {
-                    labels: months,
-                    datasets: [{
-                        backgroundColor: "blue",
-                        data: dataBar
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                min: -20,
-                                max: 20
-                            }
-                        }]
-                    }
-                }
-            });
-        }
-
-        // Event listener for the previous button
-        prevButton.addEventListener("click", function () {
-            if (currentYear > 2020) {
-                currentYear--;
-                renderCharts(currentYear);
-            }
-        });
-
-        // Event listener for the next button
-        nextButton.addEventListener("click", function () {
-            if (currentYear < 2023) {
-                currentYear++;
-                renderCharts(currentYear);
-            }
-        });
-    </script>
-</body>
-</html>*@
 
