@@ -2,12 +2,15 @@
 using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Containers;
 using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Security.Claims;
 
 namespace EmployeeWebsite.Pages
 {
@@ -33,9 +36,20 @@ namespace EmployeeWebsite.Pages
      
         public IActionResult OnPost(string username, int bsn)
         {
+             Employee = _employeeContainer.GetEmployeeByBcn(bsn);
             if (CheckLogin(username, bsn))
             {
-                return RedirectToPage("/Employee", new { bsn });
+
+                var claims = new List<Claim>
+                 {
+                     new Claim("empBsn", Employee.BSN.ToString())
+                 };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                return RedirectToPage("/Employee", new { bsn = bsn });
             }
             else
             {
@@ -45,27 +59,6 @@ namespace EmployeeWebsite.Pages
             // Perform any necessary logic here
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

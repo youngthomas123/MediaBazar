@@ -33,6 +33,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
         void UpdateEmployeeLastName(Employee emp, string newLastName);
         void UpdateEmployeeTelNumber(Employee emp, string newTelNumber);
         void UpdateEmployeeAddress(Employee emp, string newAddress);
+        public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate);
+        public Dictionary<DayOfWeek, int> LoadQuotas();
 
         // management 
 

@@ -77,24 +77,7 @@ namespace S2GroupProject.Forms
             //MessageBox.Show(employees[index].ShiftsDates.Select(s => s.ToString())) ;
             //}
         }
-        //private EmployeePorfileUC selectedEmployeeControl = null;
-        //private void EmployeePorfileUC_MouseDoubleClick(object sender, MouseEventArgs e)
-        //{
-        //    if (selectedEmployeeControl != null)
-        //    {
-        //        selectedEmployeeControl.BackColor = Color.LightBlue; // Set the desired deselected color
-        //        selectedEmployeeControl = null;
-        //    }
-
-        //    BackColor = Color.DarkRed;
-        //    EmployeeProileUCDoubleClick(sender);
-
-        //}
-
-        //private Employee EmployeeProileUCDoubleClick(object sender)
-        //{
-        //    return employee;
-        //}
+        
 
         private bool isSelected = false;
 

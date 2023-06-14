@@ -18,14 +18,23 @@ namespace S2GroupProject.Forms
         private readonly IEmployeeContainer _empContainer;
         JobPositions[] jobPositions = ((JobPositions[])Enum.GetValues(typeof(JobPositions))).Skip(1).ToArray();
         Employee selectedEmployee;
-
+        Dictionary<DayOfWeek, int> dailyQuotas = new Dictionary<DayOfWeek, int>();
         public DaySchedule(IEmployeeContainer employeeContainer, DateTime date)
         {
             InitializeComponent();
             _empContainer = employeeContainer;
-
+            dailyQuotas = _empContainer.LoadQuotas();
             flowLayoutPanel1.Dock = DockStyle.Top;
-
+            //Dictionary<DayOfWeek, int> dailyQuotas = new Dictionary<DayOfWeek, int>
+            //{
+            //    { DayOfWeek.Monday, 1 },
+            //    { DayOfWeek.Tuesday, 2 },
+            //    { DayOfWeek.Wednesday, 3 },
+            //    {DayOfWeek.Thursday, 4 },
+            //    {DayOfWeek.Friday, 5 },
+            //    {DayOfWeek.Saturday, 6 },
+            //    {DayOfWeek.Sunday, 7 }
+            //};
             foreach (var job in jobPositions)
             {
                 // Create a container panel to hold the job panel and buttons panel
@@ -39,6 +48,7 @@ namespace S2GroupProject.Forms
                 FlowLayoutPanel jobPanel = new FlowLayoutPanel();
                 jobPanel.AutoSize = true;
                 jobPanel.BackColor = Color.White;
+                jobPanel.AutoScroll = true;
 
                 Label label = new Label();
                 label.Text = job.ToString();
@@ -49,7 +59,12 @@ namespace S2GroupProject.Forms
 
                 var employeesForJob = _empContainer.GetEmployeesByJobPosition(job);
 
-                foreach (var employee in employeesForJob)
+                DayOfWeek currentDayOfWeek = date.DayOfWeek;
+                int quota = dailyQuotas[currentDayOfWeek];
+                int count = 0;
+                var regularEmployees = employeesForJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
+                int regularEmployeeCount = regularEmployees.Count;
+                foreach (var employee in regularEmployees)
                 {
                     if (employee.ShiftsDates.Any(shift => shift.ShiftDate == date))
                     {
@@ -57,66 +72,97 @@ namespace S2GroupProject.Forms
                         employeeControl.MouseDoubleClick += EmployeeControl_MouseDoubleClick;
 
                         jobPanel.Controls.Add(employeeControl);
+                        count++;
                     }
-                    //if (date.DayOfWeek == DayOfWeek.Tuesday)
-                    //{
-                    //    EmployeePorfileUC employeeControl = new EmployeePorfileUC();
-                    //    employeeControl.BorderStyle = BorderStyle.FixedSingle;
-                    //    jobPanel.Controls.Add(employeeControl);
-                    //}
                 }
-                List<Employee> availableEmployees = employeesForJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
-                // Create the buttons panel
-                FlowLayoutPanel buttonsPanel = new FlowLayoutPanel();
-                buttonsPanel.AutoSize = true;
-                buttonsPanel.FlowDirection = FlowDirection.LeftToRight;
+                //if (count < quota)
+                //{
+                //    for (int i = count; i < quota; i++)
+                //    {
+                //        EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
+                //        emptyProfile.BorderStyle = BorderStyle.FixedSingle;
+                //        jobPanel.Controls.Add(emptyProfile);
+                //        jobPanel.AutoSize= true;
+                //        jobPanel.AutoScroll = true;
+                //    }
+                //}
+                int managersNeeded = (regularEmployeeCount / 10) + 1;
 
-                Button addShiftBtn = new Button();
-                addShiftBtn.Text = "+";
-                addShiftBtn.AutoSize = true;
-                addShiftBtn.Click += (sender, e) =>
+                if (count < quota)
                 {
-                    // Create an instance of AddShiftUC
-                    AddShiftUC addShiftUC = new AddShiftUC(_empContainer, availableEmployees, date);
+                    for (int i = 0; i < count; i++)
+                    {
+                        EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
+                        emptyProfile.BorderStyle = BorderStyle.FixedSingle;
+                        jobPanel.Controls.Add(emptyProfile);
+                        jobPanel.AutoSize = true;
+                        jobPanel.AutoScroll = true;
+                    }
+
+                    if (managersNeeded > 1)
+                    {
+                        for (int i = 0; i < managersNeeded - 1; i++)
+                        {
+                            EmployeePorfileUC managerProfile = new EmployeePorfileUC();
+                            managerProfile.BorderStyle = BorderStyle.FixedSingle;
+                            jobPanel.Controls.Add(managerProfile);
+                            jobPanel.AutoSize = true;
+                            jobPanel.AutoScroll = true;
+                        }
+                    }
+                    List<Employee> availableEmployees = employeesForJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
+                    // Create the buttons panel
+                    FlowLayoutPanel buttonsPanel = new FlowLayoutPanel();
+                    buttonsPanel.AutoSize = true;
+                    buttonsPanel.FlowDirection = FlowDirection.LeftToRight;
+
+                    Button addShiftBtn = new Button();
+                    addShiftBtn.Text = "+";
+                    addShiftBtn.AutoSize = true;
+                    addShiftBtn.Click += (sender, e) =>
+                    {
+                        // Create an instance of AddShiftUC
+                        AddShiftUC addShiftUC = new AddShiftUC(_empContainer, availableEmployees, date);
 
 
-                    Form popupForm = new Form();
-                    popupForm.Controls.Add(addShiftUC);
+                        Form popupForm = new Form();
+                        popupForm.Controls.Add(addShiftUC);
 
 
-                    popupForm.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    popupForm.StartPosition = FormStartPosition.CenterScreen;
-                    popupForm.Size = addShiftUC.Size;
+                        popupForm.FormBorderStyle = FormBorderStyle.FixedSingle;
+                        popupForm.StartPosition = FormStartPosition.CenterScreen;
+                        popupForm.Size = addShiftUC.Size;
 
 
-                    popupForm.ShowDialog();
-                    RefreshUI(date);
-                };
+                        popupForm.ShowDialog();
+                        RefreshUI(date);
+                    };
 
 
-                Button removeShiftBtn = new Button();
-                removeShiftBtn.Text = "-";
-                removeShiftBtn.AutoSize = true;
-                removeShiftBtn.Click += (sender, e) =>
-                {
-                    Shift shiftToRemove = (Shift)selectedEmployee.ShiftsDates.FirstOrDefault(s => s.ShiftDate == date);
-                    selectedEmployee.ShiftsDates.Remove(shiftToRemove);
-                    _empContainer.RemoveEmpShift(selectedEmployee, date);
-                    RefreshUI(date);
-                };
+                    Button removeShiftBtn = new Button();
+                    removeShiftBtn.Text = "-";
+                    removeShiftBtn.AutoSize = true;
+                    removeShiftBtn.Click += (sender, e) =>
+                    {
+                        Shift shiftToRemove = (Shift)selectedEmployee.ShiftsDates.FirstOrDefault(s => s.ShiftDate == date);
+                        selectedEmployee.ShiftsDates.Remove(shiftToRemove);
+                        _empContainer.RemoveEmpShift(selectedEmployee, date);
+                        RefreshUI(date);
+                    };
 
 
-                buttonsPanel.Controls.Add(addShiftBtn);
-                buttonsPanel.Controls.Add(removeShiftBtn);
+                    buttonsPanel.Controls.Add(addShiftBtn);
+                    buttonsPanel.Controls.Add(removeShiftBtn);
 
 
-                containerPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-                containerPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                containerPanel.Controls.Add(jobPanel, 0, 0);
-                containerPanel.Controls.Add(buttonsPanel, 1, 0);
+                    containerPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+                    containerPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    containerPanel.Controls.Add(jobPanel, 0, 0);
+                    containerPanel.Controls.Add(buttonsPanel, 1, 0);
 
 
-                flowLayoutPanel1.Controls.Add(containerPanel);
+                    flowLayoutPanel1.Controls.Add(containerPanel);
+                }
             }
         }
         private void EmployeeControl_MouseDoubleClick(object sender, MouseEventArgs e)

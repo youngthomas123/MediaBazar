@@ -416,6 +416,54 @@ namespace MediaBazar.DataAccess.Database
                 }
             }
         }
+        public Dictionary<DayOfWeek, int> LoadQuotas()
+        {
+            Dictionary<DayOfWeek, int> quotas = new Dictionary<DayOfWeek, int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectQuery = "SELECT DayOfWeek, Quota FROM Quotas";
+
+                using (SqlCommand command = new SqlCommand(selectQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DayOfWeek dayOfWeek = (DayOfWeek)reader.GetInt32(0);
+                            int quota = reader.GetInt32(1);
+
+                            quotas.Add(dayOfWeek, quota);
+                        }
+                    }
+                }
+            }
+
+            return quotas;
+        }
+        public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (KeyValuePair<DayOfWeek, int> quota in quotasToUpdate)
+                {
+                    string updateQuery = "UPDATE Quotas SET Quota = @Quota WHERE DayOfWeek = @DayOfWeek";
+
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@Quota", quota.Value);
+                        command.Parameters.AddWithValue("@DayOfWeek", (int)quota.Key);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
     }
 }
 

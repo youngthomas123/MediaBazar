@@ -109,7 +109,14 @@ namespace MediaBazar.BusinessLogic.Containers
             return employees;   
         }
 
-       
+        public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate)
+        {
+            _employeeDataAccess.UpdateQuotas(quotasToUpdate);
+        }
+        public Dictionary<DayOfWeek, int> LoadQuotas()
+        {
+            return _employeeDataAccess.LoadQuotas();    
+        }
 
         public void UpdateEmpShift(Employee emp)
         {

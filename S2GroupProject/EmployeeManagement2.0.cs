@@ -612,6 +612,25 @@ namespace S2GroupProject
             selectedEmployee = ((EmployeePorfileUC)sender).employee;
 
         }
+
+       
+        private void setQuoatasBtn_Click(object sender, EventArgs e)
+        {
+            //Dictionary<DayOfWeek, int> dailyQuotas = new Dictionary<DayOfWeek, int>
+            //{
+            //    { DayOfWeek.Monday, 1 },
+            //    { DayOfWeek.Tuesday, 2 },
+            //    { DayOfWeek.Wednesday, 5 },
+            //    {DayOfWeek.Thursday, 4 },
+            //    {DayOfWeek.Friday, 5 },
+            //    {DayOfWeek.Saturday, 6 },
+            //    {DayOfWeek.Sunday, 7 }
+            //};
+            // Create an instance of the QuotaSettingsForm and pass the current quotas
+            QuotaSettingsForm quotaSettingsForm = new QuotaSettingsForm(_employeeContainer);
+
+            quotaSettingsForm.ShowDialog();
+        }
     }
 }
 
