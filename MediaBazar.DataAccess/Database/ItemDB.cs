@@ -20,7 +20,7 @@ namespace MediaBazar.DataAccess.Database
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category], [WarehouseQuantity], [ShopQuantity]) values(@Item_ID, @Name, @Description, @Category, @WarehouseQuantity, @ShopQuantity); ";
+            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category], [WarehouseQuantity], [ShopQuantity], [Price]) values(@Item_ID, @Name, @Description, @Category, @WarehouseQuantity, @ShopQuantity, @Price); ";
 
             SqlCommand cmd = new SqlCommand(insertItem, conn);
 
@@ -30,6 +30,7 @@ namespace MediaBazar.DataAccess.Database
 			cmd.Parameters.Add("@Category", SqlDbType.Int);
             cmd.Parameters.Add("@WarehouseQuantity", SqlDbType.Int);
             cmd.Parameters.Add("@ShopQuantity", SqlDbType.Int);
+            cmd.Parameters.Add("@Price", SqlDbType.Decimal);
 
 
             cmd.Parameters["@Item_ID"].Value = item.Id;
@@ -38,6 +39,7 @@ namespace MediaBazar.DataAccess.Database
 			cmd.Parameters["@Category"].Value = item.Category;
             cmd.Parameters["@WarehouseQuantity"].Value = item.WarehouseQuantity;
             cmd.Parameters["@ShopQuantity"].Value = item.ShopQuantity;
+            cmd.Parameters["@Price"].Value = item.Price;
 
 			cmd.ExecuteNonQuery();
 
@@ -73,7 +75,7 @@ namespace MediaBazar.DataAccess.Database
 
             while (dr.Read())
             {
-                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (int)dr[3]);
+                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (int)dr[3], (decimal)dr[6]);
                 LoadedItems.Add(item);
             }
             dr.Close();
@@ -99,9 +101,10 @@ namespace MediaBazar.DataAccess.Database
                     int category = (int)reader[3];
                     int wrehouseQuantity = (int)reader[4];
                     int shopQuantity = (int)reader[5];
+                    decimal price = (decimal)reader[6];
 
 
-                    Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category);
+                    Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category, price);
 
                     return foundItem;
                 }
@@ -223,8 +226,9 @@ namespace MediaBazar.DataAccess.Database
 						int category = (int)reader["Category"];
 						int warehouseQuantity = (int)reader["WarehouseQuantity"];
                         int shopQuantity = (int)reader["ShopQuantity"];
+                        decimal price = (decimal)reader["Price"];
 
-						Item item = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
+						Item item = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category, price);
 						items.Add(item);
 					}
 				}

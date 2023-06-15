@@ -4,6 +4,7 @@ namespace MediaBazar.BusinessLogic.Classes
 {
     public class Employee
 	{
+		public Employee() { }
 		//List<DateTime> shiftDates = new List<DateTime>();
 		public Employee( string firstName, string lastName, int bsn, string telNumber, string address, 
 						ContractTypes contractType, int hoursPerWeek, JobPositions jobposition, double wage,

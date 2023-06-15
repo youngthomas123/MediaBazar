@@ -228,8 +228,9 @@ namespace MediaBazar.DataAccess.Database
                     int category = (int)reader[3];
                     int warehouseQuantity = (int)reader[4];
                     int shopQuantity = (int)reader[5];
+                    decimal price = (decimal)reader[6];
 
-                    Item foundItem = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
+                    Item foundItem = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category, price);
 
                     return foundItem;
                 }

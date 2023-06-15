@@ -47,6 +47,7 @@ namespace S2GroupProject.Forms
 			warehouseComboBox.Items.Clear();
 			warehouseComboBox2.Items.Clear();
 			CategoriesBox.Items.Clear();
+			categoryBox2.Items.Clear();
 
 			warehouses = _warehouseContainer.LoadWarehouse();
 			items = _itemContainer.LoadItem();
@@ -72,6 +73,7 @@ namespace S2GroupProject.Forms
 			foreach (string category in categories)
 			{
 				CategoriesBox.Items.Add(category);
+				categoryBox2.Items.Add(category);
 			}
 		}
 
@@ -221,16 +223,16 @@ namespace S2GroupProject.Forms
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			//string name = textBox2.Text;
-			//string description = textBox3.Text;
-			//int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
-			//int shopQuantity = Convert.ToInt32(textBox9.Text);
-			//int category = textBox4.Text;
+			string name = textBox2.Text;
+			string description = descriptionTB.Text;
+			int categorySelected = CategoriesBox.SelectedIndex;
+			categorySelected++;
+			int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
+			int shopquantity = Convert.ToInt32(textBox9.Text);
+			decimal price = Convert.ToDecimal(priceTB.Text);
 
-			//Item item = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopQuantity, category);
-			//_itemContainer.AddItem(item);
-			//RefreshData();
-
+			Item newItem = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopquantity, categorySelected, price);
+			_itemContainer.AddItem(newItem);
 		}
 
 		private void Add_Click(object sender, EventArgs e)
@@ -385,8 +387,16 @@ namespace S2GroupProject.Forms
 		private void SortByName_Click(object sender, EventArgs e)
 		{
 			ItemListBox.Items.Clear();
+
+			// Set the sorting key for each item to be the name
+			foreach (var item in items)
+			{
+				item.SortingKey = item.Name;
+			}
+
 			Sorting sortbyName = new Sorting();
 			var sortedItems = sortbyName.InsertionSort(items);
+
 			foreach (Item item in sortedItems)
 			{
 				ItemListBox.Items.Add(item);
@@ -394,6 +404,73 @@ namespace S2GroupProject.Forms
 		}
 
 		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label2_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+
+			// Set the sorting key for each item to be the name
+			foreach (var item in items)
+			{
+				item.SortingKey = item.Price.ToString();
+			}
+
+			Sorting sortbyName = new Sorting();
+			var sortedItems = sortbyName.InsertionSort(items);
+
+			foreach (Item item in sortedItems)
+			{
+				ItemListBox.Items.Add(item);
+			}
+		}
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+
+			// Set the sorting key for each item to be the name
+			foreach (var item in items)
+			{
+				item.SortingKey = item.WarehouseQuantity.ToString();
+			}
+
+			Sorting sortbyName = new Sorting();
+			var sortedItems = sortbyName.InsertionSort(items);
+
+			foreach (Item item in sortedItems)
+			{
+				ItemListBox.Items.Add(item);
+			}
+		}
+
+		private void button8_Click(object sender, EventArgs e)
+		{
+			ItemListBox.Items.Clear();
+
+			// Set the sorting key for each item to be the name
+			foreach (var item in items)
+			{
+				item.SortingKey = item.ShopQuantity.ToString();
+			}
+
+			Sorting sortbyName = new Sorting();
+			var sortedItems = sortbyName.InsertionSort(items);
+
+			foreach (Item item in sortedItems)
+			{
+				ItemListBox.Items.Add(item);
+			}
+		}
+
+		private void categoryBox2_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
