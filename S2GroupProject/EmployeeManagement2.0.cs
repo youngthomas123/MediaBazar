@@ -75,7 +75,17 @@ namespace S2GroupProject
                 {
                     continue;
                 }
-                empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
+                if (!emp.IsAccountActive)
+                {
+                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                    notActiveEmp.BackColor = Color.OrangeRed;
+                    empLayoutPanel.Controls.Add(notActiveEmp);
+                }
+                else
+                {
+                    empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
+                }
+                
             }
         }
 
@@ -582,9 +592,19 @@ namespace S2GroupProject
                 {
                     continue;
                 }
-                EmployeePorfileUC employeeControl = new EmployeePorfileUC(emp, _employeeContainer);
-                employeeControl.MouseDoubleClick += EmployeeControl_MouseDoubleClick;
-                deleteEmpLayoutPanel.Controls.Add(employeeControl);
+                if (emp.IsAccountActive == false)
+                {
+                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                    notActiveEmp.BackColor = Color.OrangeRed;
+                    deleteEmpLayoutPanel.Controls.Add(notActiveEmp);
+                }
+                else
+                {
+                    EmployeePorfileUC employeeControl = new EmployeePorfileUC(emp, _employeeContainer);
+                    employeeControl.MouseDoubleClick += EmployeeControl_MouseDoubleClick;
+                    deleteEmpLayoutPanel.Controls.Add(employeeControl);
+                }
+
             }
         }
         public bool IsEmployeeAddedToDeleteLayout(Employee emp)

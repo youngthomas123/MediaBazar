@@ -17,8 +17,8 @@ namespace MediaBazar.DataAccess.Database
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO Employee2 (FirstName, LastName, BSN, TelNumber, Address, ContractType, HoursPerWeek, JobPosition, Wage, Age) " +
-                    "VALUES (@FirstName, @LastName, @BSN, @TelNumber, @Address, @ContractType, @HoursPerWeek, @JobPosition, @Wage, @Age)";
+                command.CommandText = "INSERT INTO Employee2 (FirstName, LastName, BSN, TelNumber, Address, ContractType, HoursPerWeek, JobPosition, Wage, Age, IsAccountActive) " +
+                    "VALUES (@FirstName, @LastName, @BSN, @TelNumber, @Address, @ContractType, @HoursPerWeek, @JobPosition, @Wage, @Age, @IsAccountActive)";
 
                 command.Parameters.AddWithValue("@FirstName", employee.FirstName);
                 command.Parameters.AddWithValue("@LastName", employee.LastName);
@@ -30,6 +30,7 @@ namespace MediaBazar.DataAccess.Database
                 command.Parameters.AddWithValue("@JobPosition", Convert.ToString(employee.Jobposition));
                 command.Parameters.AddWithValue("@Wage", employee.Wage);
                 command.Parameters.AddWithValue("@Age", employee.Age);
+                command.Parameters.AddWithValue("@IsAccountActive", employee.IsAccountActive);
                 command.ExecuteNonQuery();
 
                 // Write the employee's days off to the DaysOff table
@@ -124,10 +125,11 @@ namespace MediaBazar.DataAccess.Database
 
             conn.Open();
 
-            string DeleateEmp = $"DELETE FROM DaysOff2 WHERE BSN = {BSN}; DELETE FROM Shift2 WHERE BSN = {BSN}; DELETE FROM Employee2 WHERE BSN = {BSN}; ";
+            string DeleateEmp = $"Update Employee2\r\nSet IsAccountActive = 0\r\nwhere BSN = @BSN";
 
 
             SqlCommand cmd = new SqlCommand(DeleateEmp, conn);
+            cmd.Parameters.AddWithValue("@BSN", BSN);
             cmd.ExecuteNonQuery();
 
             conn.Close();
@@ -156,6 +158,7 @@ namespace MediaBazar.DataAccess.Database
                         MyEnums.JobPositions jobPosition = (MyEnums.JobPositions)Enum.Parse(typeof(MyEnums.JobPositions), reader["JobPosition"].ToString());
                         decimal wage = (decimal)reader["Wage"];
                         int age = (int)reader["Age"];
+                        bool isAccountActive = Convert.ToBoolean(reader["IsAccountActive"]);
 
                         List<DayOfWeek> daysOff = new List<DayOfWeek>();
                         SqlCommand daysOffCommand = new SqlCommand("SELECT DayOfWeek FROM DaysOff2 WHERE BSN = @BSN", connection);
@@ -231,6 +234,7 @@ namespace MediaBazar.DataAccess.Database
                                                         contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage),
                                                         daysOff, age, shifts, sickLeaves, shiftPreferences);
                         employee.Preferences = LoadShiftPreference(employee.BSN);
+                        employee.IsAccountActive = isAccountActive;
                         employees.Add(employee);
                     }
                 }

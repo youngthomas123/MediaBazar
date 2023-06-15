@@ -25,6 +25,7 @@ namespace MediaBazar.BusinessLogic.Classes
 			SickLeaves= sickLeaves;
             ShiftPreferences = shiftPreferences;
 			Preferences = new Dictionary<DayOfWeek, ShiftTypes>();
+			
         }
 		
 		public Employee(string firstName, string lastName, int bsn, string telNumber, string address,
@@ -41,6 +42,7 @@ namespace MediaBazar.BusinessLogic.Classes
 			Wage = wage;
 			Age = age;
             Preferences = new Dictionary<DayOfWeek, ShiftTypes>();
+            
         }
 
 
@@ -61,6 +63,7 @@ namespace MediaBazar.BusinessLogic.Classes
 		public List<SickLeave> SickLeaves { get; set; }
         public List<ShiftPreference> ShiftPreferences { get; set; }
         public Dictionary<DayOfWeek, ShiftTypes> Preferences { get; set; }
+		public bool IsAccountActive { get; set; }
         public override string ToString()
 		{
 			if(ShiftsDates != null && SickLeaves != null)

@@ -39,6 +39,7 @@ namespace MediaBazar.BusinessLogic.Containers
                 Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
                                         wage, daysOff, age, shiftDates, sickLeaves, shiftPreferences);
                 employees.Add(newEmployee);
+                newEmployee.IsAccountActive= true;
                 _employeeDataAccess.AddEmployee(newEmployee);
             }
         }
