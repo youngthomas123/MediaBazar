@@ -44,9 +44,10 @@ namespace EmployeeWebsite.Pages
             
             var bsnClaim = user.FindFirst("empBsn");
 
-            if (bsnClaim != null && bsnClaim.Value == bsn.ToString())
+            if (bsnClaim != null )
             {
-                Emp = _employeeContainer.GetEmployeeByBcn(bsn);
+                int empBsn = Convert.ToInt32(bsnClaim.Value);
+                Emp = _employeeContainer.GetEmployeeByBcn(empBsn);
                 return Page();
             }
             else

@@ -67,12 +67,16 @@
 
                 <button type="submit" class="btn btn-primary btn-sm">Submit Preference</button>
             </form>
+            <form method="get">
+                <button type="submit" class="btn btn-primary" asp-page="CreateWeeklyTemplate" asp-page-handler="OnGet">Change ShiftTypes</button>
+            </form>
                 @if (!string.IsNullOrEmpty(Model.ErrorMessage))
                 {
                     <div class="alert alert-danger">@Model.ErrorMessage</div>
                 }
 
         </div>
+
         @if (Model.IsEditMode)
         {
             <form method="post">

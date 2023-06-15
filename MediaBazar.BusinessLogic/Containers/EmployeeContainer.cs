@@ -108,7 +108,14 @@ namespace MediaBazar.BusinessLogic.Containers
 
             return employees;   
         }
-
+        public void UpdateShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            _employeeDataAccess.UpdateShiftPreference(bsn, preferences);
+        }
+        public void WriteShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            _employeeDataAccess.WriteShiftPreference(bsn, preferences);
+        }
         public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate)
         {
             _employeeDataAccess.UpdateQuotas(quotasToUpdate);

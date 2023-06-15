@@ -225,15 +225,105 @@ namespace MediaBazar.DataAccess.Database
                             }
                         }
 
+                      
+
                         Employee employee = new Employee(firstName, lastName, bsn, telNumber, address,
                                                         contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage),
-                                                        daysOff, age, shifts, sickLeaves, shiftPreferences); 
+                                                        daysOff, age, shifts, sickLeaves, shiftPreferences);
+                        employee.Preferences = LoadShiftPreference(employee.BSN);
                         employees.Add(employee);
                     }
                 }
             }
 
             return employees;
+        }
+        public Dictionary<DayOfWeek, ShiftTypes> LoadShiftPreference(int bsn)
+        {
+            Dictionary<DayOfWeek, ShiftTypes> preferences = new Dictionary<DayOfWeek, ShiftTypes>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT PreferenceId, BSN, MondayShift, TuesdayShift, WednesdayShift, ThursdayShift, FridayShift, SaturdayShift, SundayShift FROM ShiftPreference3 WHERE BSN = @BSN", connection);
+                command.Parameters.AddWithValue("@BSN", bsn);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int preferenceId = (int)reader["PreferenceId"];
+
+
+
+
+                        // Loop through the days of the week and retrieve the shift preference
+                        for (int i = 0; i <= 6; i++)
+                        {
+                            DayOfWeek dayOfWeek = (DayOfWeek)i;
+                            string shiftTypeString = reader[dayOfWeek.ToString() + "Shift"].ToString();
+                            ShiftTypes shiftType = Enum.Parse<ShiftTypes>(shiftTypeString);
+                            preferences.Add(dayOfWeek, shiftType);
+                        }
+                    }
+                }
+            }
+
+            return preferences;
+        }
+
+        public void UpdateShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string updateQuery = "UPDATE ShiftPreference3 SET ";
+
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                int index = 0;
+
+                foreach (var preference in preferences)
+                {
+                    string columnName = $"{preference.Key.ToString()}Shift";
+                    string parameterName = $"@shiftType{index}";
+
+                    updateQuery += $"{columnName} = {parameterName}, ";
+                    parameters.Add(new SqlParameter(parameterName, preference.Value.ToString()));
+                    index++;
+                }
+
+                // Remove the trailing comma and space
+                updateQuery = updateQuery.TrimEnd(',', ' ');
+
+                updateQuery += " WHERE BSN = @bsn";
+
+                parameters.Add(new SqlParameter("@bsn", bsn));
+
+                SqlCommand command = new SqlCommand(updateQuery, connection);
+                command.Parameters.AddRange(parameters.ToArray());
+                command.ExecuteNonQuery();
+            }
+        }
+        public void WriteShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string insertQuery = "INSERT INTO ShiftPreference3 (BSN, MondayShift, TuesdayShift, WednesdayShift, ThursdayShift, FridayShift, SaturdayShift, SundayShift) " +
+                                     "VALUES (@bsn, @mondayShift, @tuesdayShift, @wednesdayShift, @thursdayShift, @fridayShift, @saturdayShift, @sundayShift)";
+
+                SqlCommand command = new SqlCommand(insertQuery, connection);
+                command.Parameters.AddWithValue("@bsn", bsn);
+
+                foreach (var preference in preferences)
+                {
+                    string columnName = $"{preference.Key.ToString()}Shift";
+                    command.Parameters.AddWithValue($"@{columnName.ToLower()}", preference.Value.ToString());
+                }
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public void UpdateEmpShift(Employee emp)
