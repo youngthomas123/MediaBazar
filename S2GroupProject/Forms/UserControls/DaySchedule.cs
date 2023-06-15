@@ -34,10 +34,6 @@ namespace S2GroupProject.Forms
             dateLabel.Dock = DockStyle.Top;
 
 
-
-
-
-
             flowLayoutPanel1.Controls.Add(dateLabel);
             foreach (var job in jobPositions)
             {
