@@ -41,7 +41,7 @@ namespace MediaBazar.BusinessLogic.Classes
 			Jobposition = jobposition;
 			Wage = wage;
 			Age = age;
-            Preferences = new Dictionary<DayOfWeek, ShiftTypes>();
+
             
         }
 

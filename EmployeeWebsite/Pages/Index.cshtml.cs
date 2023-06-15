@@ -37,6 +37,10 @@ namespace EmployeeWebsite.Pages
         public IActionResult OnPost(string username, int bsn)
         {
              Employee = _employeeContainer.GetEmployeeByBcn(bsn);
+            if (Employee.IsAccountActive == false)
+            {
+                return Page();
+            }
             if (CheckLogin(username, bsn))
             {
 
