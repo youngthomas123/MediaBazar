@@ -52,7 +52,6 @@ namespace EmployeeWebsite.Pages
             }
             else
             {
-                
                 return Forbid();
             }
         }

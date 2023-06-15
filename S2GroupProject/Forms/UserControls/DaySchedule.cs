@@ -25,30 +25,26 @@ namespace S2GroupProject.Forms
             _empContainer = employeeContainer;
             dailyQuotas = _empContainer.LoadQuotas();
             flowLayoutPanel1.Dock = DockStyle.Top;
-            //Dictionary<DayOfWeek, int> dailyQuotas = new Dictionary<DayOfWeek, int>
-            //{
-            //    { DayOfWeek.Monday, 1 },
-            //    { DayOfWeek.Tuesday, 2 },
-            //    { DayOfWeek.Wednesday, 3 },
-            //    {DayOfWeek.Thursday, 4 },
-            //    {DayOfWeek.Friday, 5 },
-            //    {DayOfWeek.Saturday, 6 },
-            //    {DayOfWeek.Sunday, 7 }
-            //};
+
             foreach (var job in jobPositions)
             {
+
                 // Create a container panel to hold the job panel and buttons panel
                 TableLayoutPanel containerPanel = new TableLayoutPanel();
                 containerPanel.Size = new Size(1000, 200);
                 containerPanel.Margin = new Padding(5, 20, 0, 10);
                 containerPanel.BackColor = Color.White;
                 containerPanel.ColumnCount = 2;
-
+                containerPanel.AutoScroll= true;
+                //containerPanel.AutoSize= true;
+                
                 // Create the job panel
                 FlowLayoutPanel jobPanel = new FlowLayoutPanel();
                 jobPanel.AutoSize = true;
                 jobPanel.BackColor = Color.White;
                 jobPanel.AutoScroll = true;
+                jobPanel.WrapContents = true;
+                jobPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                 Label label = new Label();
                 label.Text = job.ToString();
@@ -57,14 +53,14 @@ namespace S2GroupProject.Forms
 
                 jobPanel.Controls.Add(label);
 
-                var employeesForJob = _empContainer.GetEmployeesByJobPosition(job);
+                List<Employee> employeesByJob = _empContainer.GetEmployeesByJobPosition(job);
 
                 DayOfWeek currentDayOfWeek = date.DayOfWeek;
                 int quota = dailyQuotas[currentDayOfWeek];
                 int count = 0;
-                var regularEmployees = employeesForJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
-                int regularEmployeeCount = regularEmployees.Count;
-                foreach (var employee in regularEmployees)
+                //var regularEmployees = employeesByJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
+               // var regularEmployees = employeesByJob.ToList();
+                foreach (Employee employee in employeesByJob)
                 {
                     if (employee.ShiftsDates.Any(shift => shift.ShiftDate == date))
                     {
@@ -75,22 +71,11 @@ namespace S2GroupProject.Forms
                         count++;
                     }
                 }
-                //if (count < quota)
-                //{
-                //    for (int i = count; i < quota; i++)
-                //    {
-                //        EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
-                //        emptyProfile.BorderStyle = BorderStyle.FixedSingle;
-                //        jobPanel.Controls.Add(emptyProfile);
-                //        jobPanel.AutoSize= true;
-                //        jobPanel.AutoScroll = true;
-                //    }
-                //}
-                int managersNeeded = (regularEmployeeCount / 10) + 1;
 
-                if (count < quota)
+                int additionalEmptyProfiles = Math.Max(0, quota - count);
+                if (job != JobPositions.STORE_MANAGER && job != JobPositions.WAREHOUSE_MANAGER)
                 {
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < additionalEmptyProfiles; i++)
                     {
                         EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
                         emptyProfile.BorderStyle = BorderStyle.FixedSingle;
@@ -98,19 +83,27 @@ namespace S2GroupProject.Forms
                         jobPanel.AutoSize = true;
                         jobPanel.AutoScroll = true;
                     }
+                }
 
-                    if (managersNeeded > 1)
+
+                int managersNeeded = (quota * 4) / 10 + 1;
+
+                if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
+                {
+                    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
+                    //managersNeeded = Math.Min(managersNeeded, availableManagers);
+
+                    for (int i = 0; i < managersNeeded; i++)
                     {
-                        for (int i = 0; i < managersNeeded - 1; i++)
-                        {
-                            EmployeePorfileUC managerProfile = new EmployeePorfileUC();
-                            managerProfile.BorderStyle = BorderStyle.FixedSingle;
-                            jobPanel.Controls.Add(managerProfile);
-                            jobPanel.AutoSize = true;
-                            jobPanel.AutoScroll = true;
-                        }
+                        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
+                        managerProfile.BorderStyle = BorderStyle.FixedSingle;
+                        jobPanel.Controls.Add(managerProfile);
+                        jobPanel.AutoSize = true;
+                        jobPanel.AutoScroll = true;
                     }
-                    List<Employee> availableEmployees = employeesForJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
+                }
+
+                List<Employee> availableEmployees = employeesByJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
                     // Create the buttons panel
                     FlowLayoutPanel buttonsPanel = new FlowLayoutPanel();
                     buttonsPanel.AutoSize = true;
@@ -162,7 +155,7 @@ namespace S2GroupProject.Forms
 
 
                     flowLayoutPanel1.Controls.Add(containerPanel);
-                }
+                //}
             }
         }
         private void EmployeeControl_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -185,11 +178,15 @@ namespace S2GroupProject.Forms
                 containerPanel.Margin = new Padding(5, 20, 0, 10);
                 containerPanel.BackColor = Color.White;
                 containerPanel.ColumnCount = 2;
+                containerPanel.AutoScroll = true;
 
                 // Create the job panel
                 FlowLayoutPanel jobPanel = new FlowLayoutPanel();
                 jobPanel.AutoSize = true;
                 jobPanel.BackColor = Color.White;
+                jobPanel.AutoScroll = true;
+                jobPanel.WrapContents = true;
+                jobPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                 Label label = new Label();
                 label.Text = job.ToString();
@@ -197,10 +194,14 @@ namespace S2GroupProject.Forms
                 label.AutoSize = true;
 
                 jobPanel.Controls.Add(label);
+                List<Employee> employeesByJob = _empContainer.GetEmployeesByJobPosition(job);
 
-                var employeesForJob = _empContainer.GetEmployeesByJobPosition(job);
-
-                foreach (var employee in employeesForJob)
+                DayOfWeek currentDayOfWeek = date.DayOfWeek;
+                int quota = dailyQuotas[currentDayOfWeek];
+                int count = 0;
+                //var regularEmployees = employeesByJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
+                // var regularEmployees = employeesByJob.ToList();
+                foreach (Employee employee in employeesByJob)
                 {
                     if (employee.ShiftsDates.Any(shift => shift.ShiftDate == date))
                     {
@@ -208,10 +209,41 @@ namespace S2GroupProject.Forms
                         employeeControl.MouseDoubleClick += EmployeeControl_MouseDoubleClick;
 
                         jobPanel.Controls.Add(employeeControl);
+                        count++;
                     }
                 }
 
-                List<Employee> availableEmployees = employeesForJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
+                int additionalEmptyProfiles = Math.Max(0, quota - count);
+                if (job != JobPositions.STORE_MANAGER && job != JobPositions.WAREHOUSE_MANAGER)
+                {
+                    for (int i = 0; i < additionalEmptyProfiles; i++)
+                    {
+                        EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
+                        emptyProfile.BorderStyle = BorderStyle.FixedSingle;
+                        jobPanel.Controls.Add(emptyProfile);
+                        jobPanel.AutoSize = true;
+                        jobPanel.AutoScroll = true;
+                    }
+                }
+
+                int managersNeeded = (quota * 4) / 10 + 1;
+
+                if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
+                {
+                    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
+                    //managersNeeded = Math.Min(managersNeeded, availableManagers);
+
+                    for (int i = 0; i < managersNeeded; i++)
+                    {
+                        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
+                        managerProfile.BorderStyle = BorderStyle.FixedSingle;
+                        jobPanel.Controls.Add(managerProfile);
+                        jobPanel.AutoSize = true;
+                        jobPanel.AutoScroll = true;
+                    }
+                }
+
+                List<Employee> availableEmployees = employeesByJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
 
                 // Create the buttons panel
                 FlowLayoutPanel buttonsPanel = new FlowLayoutPanel();
@@ -333,6 +365,18 @@ namespace S2GroupProject.Forms
                 containerPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 containerPanel.Controls.Add(jobPanel, 0, 0);
                 containerPanel.Controls.Add(buttonsPanel, 1, 0);
+
+                //containerPanel.ColumnStyles.Clear();
+                //containerPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize)); // Set the column style to AutoSize
+
+                //containerPanel.RowStyles.Clear();
+                //containerPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // Set the row style to AutoSize
+
+                //containerPanel.Controls.Add(jobPanel, 0, 0); // Add jobPanel to column 0, row 0
+                //containerPanel.SetColumnSpan(jobPanel, 2); // Span the jobPanel across both columns
+
+                //containerPanel.Controls.Add(buttonsPanel, 0, 1); // Add buttonsPanel to column 0, row 1
+                //containerPanel.SetColumnSpan(buttonsPanel, 2); // Span the buttonsPanel across both columns
 
                 flowLayoutPanel1.Controls.Add(containerPanel);
             }

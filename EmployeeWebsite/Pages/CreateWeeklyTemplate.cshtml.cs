@@ -65,7 +65,9 @@ namespace EmployeeWebsite.Pages
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var empBsnClaim = claimsIdentity.FindFirst("empBsn");
             int bsn = int.Parse(empBsnClaim.Value);
+
             Emp = _employeeContainer.GetEmployeeByBcn(bsn);
+
             Preferences.Add(DayOfWeek.Monday, MondayShift);
             Preferences.Add(DayOfWeek.Tuesday, TuesdayShift);
             Preferences.Add(DayOfWeek.Wednesday, WednesdayShift);

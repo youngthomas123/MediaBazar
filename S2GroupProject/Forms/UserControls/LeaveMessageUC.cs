@@ -29,7 +29,7 @@ namespace S2GroupProject.Forms
         {
             sickLeave.ManagerMessage = messagetb.Text;
             _empContainer.UpdateEmployeSickLeaveManagerMessage(sickLeave, emp);
-            MessageBox.Show("Your message has been sent to the Employee");
+          
         }
     }
 }
