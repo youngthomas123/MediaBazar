@@ -24,8 +24,21 @@ namespace S2GroupProject.Forms
             InitializeComponent();
             _empContainer = employeeContainer;
             dailyQuotas = _empContainer.LoadQuotas();
-            flowLayoutPanel1.Dock = DockStyle.Top;
+            // flowLayoutPanel1.Dock = DockStyle.Top;
 
+            Label dateLabel = new Label();
+            dateLabel.Text = date.ToString("dddd, MMMM dd, yyyy");
+            dateLabel.Font = new Font(dateLabel.Font.FontFamily, 16, FontStyle.Bold);
+            dateLabel.AutoSize = true;
+            dateLabel.Margin = new Padding(10, 10, 1000, 0);
+            dateLabel.Dock = DockStyle.Top;
+
+
+
+
+
+
+            flowLayoutPanel1.Controls.Add(dateLabel);
             foreach (var job in jobPositions)
             {
 
