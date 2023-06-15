@@ -1,0 +1,150 @@
+﻿@page
+@using System.Security.Claims;
+@using static MediaBazar.BusinessLogic.Classes.MyEnums;
+@model EmployeeWebsite.Pages.CreateWeeklyTemplateModel
+@{
+    ViewData["Title"] = "Weekly Schedule";
+
+    var claimsIdentity = (ClaimsIdentity)User.Identity;
+    var userId = User.Identity.IsAuthenticated ? (User.FindFirstValue("empBsn") ?? string.Empty) : string.Empty;
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model.IsEditing)
+    {
+        <form method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="MondayShift">Monday</label>
+                        <select class="form-control" asp-for="MondayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Monday) && Model.Preferences[DayOfWeek.Monday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Monday) && Model.Preferences[DayOfWeek.Monday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Monday) && Model.Preferences[DayOfWeek.Monday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="TuesdayShift">Tuesday</label>
+                        <select class="form-control" asp-for="TuesdayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Tuesday) && Model.Preferences[DayOfWeek.Tuesday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Tuesday) && Model.Preferences[DayOfWeek.Tuesday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Tuesday) && Model.Preferences[DayOfWeek.Tuesday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="WednesdayShift">Wednesday</label>
+                        <select class="form-control" asp-for="WednesdayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Wednesday) && Model.Preferences[DayOfWeek.Wednesday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Wednesday) && Model.Preferences[DayOfWeek.Wednesday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Wednesday) && Model.Preferences[DayOfWeek.Wednesday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="ThursdayShift">Thursday</label>
+                        <select class="form-control" asp-for="ThursdayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Thursday) && Model.Preferences[DayOfWeek.Thursday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Thursday) && Model.Preferences[DayOfWeek.Thursday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Thursday) && Model.Preferences[DayOfWeek.Thursday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="FridayShift">Friday</label>
+                        <select class="form-control" asp-for="FridayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Friday) && Model.Preferences[DayOfWeek.Friday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Friday) && Model.Preferences[DayOfWeek.Friday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Friday) && Model.Preferences[DayOfWeek.Friday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="SaturdayShift">Saturday</label>
+                        <select class="form-control" asp-for="SaturdayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Saturday) && Model.Preferences[DayOfWeek.Saturday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Saturday) && Model.Preferences[DayOfWeek.Saturday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Saturday) && Model.Preferences[DayOfWeek.Saturday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="square">
+                        <label asp-for="SundayShift">Sunday</label>
+                        <select class="form-control" asp-for="SundayShift">
+                            <option value="MORNING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Sunday) && Model.Preferences[DayOfWeek.Sunday] == ShiftTypes.MORNING)">Morning</option>
+                            <option value="EVENING" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Sunday) && Model.Preferences[DayOfWeek.Sunday] == ShiftTypes.EVENING)">Evening</option>
+                            <option value="NIGHT" selected="@(Model.Preferences.ContainsKey(DayOfWeek.Sunday) && Model.Preferences[DayOfWeek.Sunday] == ShiftTypes.NIGHT)">Night</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                   <button type="submit" asp-page-handler="SavePreferences" class="btn-primary" >Save Preferences</button>
+        </form>
+    }else
+    {
+        <form method="post">
+                 <div class="row">
+                      <div class="col">
+                        <div class="square">
+                    <p><strong>Shift Preferences:</strong></p>
+                                    <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Monday, out var mondayShift) ? mondayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                        </div>
+
+                        <div class="col">
+                      <div class="square">
+                    <p><strong>Shift Preferences:</strong></p>
+                                    <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Tuesday, out var tuesdayShift) ? tuesdayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                        </div>
+                        <div class="col">
+                        <div class="square">
+                            <p><strong>Shift Preferences:</strong></p>
+                                    <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Wednesday, out var wednesdayShift) ? wednesdayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                        </div>
+
+                            <div class="col">
+                        <div class="square">
+                            <p><strong>Shift Preferences:</strong></p>
+                                    <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Thursday, out var thursdayShift) ? thursdayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                            </div>
+
+                            <div class="col">
+                        <div class="square">
+                            <p><strong>Shift Preferences:</strong></p>
+                                    <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Friday, out var fridayShift) ? fridayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                        </div>
+                          
+
+                             <div class="col">
+                        <div class="square">
+                                <p><strong>Shift Preferences:</strong></p>
+                                <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Saturday, out var saturdayShift) ? saturdayShift.ToString() : string.Empty)</strong></p>
+                       </div>
+                               </div>
+
+                            <div class="col">
+                        <div class="square">
+                                <p><strong>Shift Preferences:</strong></p>
+                                <p><strong>Monday: @(Model.Emp.Preferences.TryGetValue(DayOfWeek.Sunday, out var sundayShift) ? sundayShift.ToString() : string.Empty)</strong></p>
+                        </div>
+                            </div>
+
+                </div>
+            
+            <button type="submit" class="btn-primary" asp-page-handler="EnableEditing">Edit Preference</button>
+        </form>
+    }
+    
