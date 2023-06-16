@@ -223,16 +223,33 @@ namespace S2GroupProject.Forms
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			string name = textBox2.Text;
-			string description = descriptionTB.Text;
-			int categorySelected = CategoriesBox.SelectedIndex;
-			categorySelected++;
-			int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
-			int shopquantity = Convert.ToInt32(textBox9.Text);
-			decimal price = Convert.ToDecimal(priceTB.Text);
+			// Check if a category is selected
+			if (categoryBox2.SelectedIndex != -1)
+			{
+				// Retrieve the selected category index or value
+				int categorySelected = categoryBox2.SelectedIndex;
+				categorySelected++;
+				// Alternatively, you can retrieve the selected category value using CategoriesBox.SelectedItem
 
-			Item newItem = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopquantity, categorySelected, price);
-			_itemContainer.AddItem(newItem);
+				// Retrieve other item details from the input controls
+				string name = textBox2.Text;
+				string description = descriptionTB.Text;
+				int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
+				int shopquantity = Convert.ToInt32(textBox9.Text);
+				decimal price = Convert.ToDecimal(priceTB.Text);
+
+				// Create the new item using the selected category and other details
+				Item newItem = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopquantity, categorySelected, price);
+				_itemContainer.AddItem(newItem);
+
+				// Optionally, perform additional processing or display success message
+				MessageBox.Show("Item created successfully!");
+			}
+			else
+			{
+				// Category is not selected, display an error message or handle the scenario accordingly
+				MessageBox.Show("Please select a category.");
+			}
 		}
 
 		private void Add_Click(object sender, EventArgs e)
@@ -298,15 +315,12 @@ namespace S2GroupProject.Forms
 		{
 			try
 			{
-				ItemListBox.Items.Clear();
-				items = _itemContainer.LoadItem();
-				string searchedItemName = textBox5.Text;
-				foreach (Item item in items)
+				listBox1.Items.Clear();
+				string keyword = textBox5.Text;
+				var foundItems = _itemContainer.SearchPostsByKeyword(keyword);
+				foreach (var item in foundItems)
 				{
-					if (searchedItemName == item.Name)
-					{
-						ItemListBox.Items.Add(item);
-					}
+					listBox1.Items.Add(item);
 				}
 			}
 			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
@@ -368,7 +382,7 @@ namespace S2GroupProject.Forms
 			int categorySelected = CategoriesBox.SelectedIndex;
 			categorySelected++;
 
-			if (categorySelected != null)
+			if (categorySelected != 0)
 			{
 				foreach (Item item in items)
 				{
