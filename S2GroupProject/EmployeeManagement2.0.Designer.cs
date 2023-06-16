@@ -87,6 +87,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.deleteEmpLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.WarehouseEmployees = new System.Windows.Forms.TabPage();
+            this.setQuotasBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.RemoveEmployee.SuspendLayout();
             this.ScheduleOverview.SuspendLayout();
@@ -202,6 +203,7 @@
             // 
             // ScheduleOverview
             // 
+            this.ScheduleOverview.Controls.Add(this.setQuotasBtn);
             this.ScheduleOverview.Controls.Add(this.ScheduleShiftsMonthCbb);
             this.ScheduleOverview.Controls.Add(this.ScheduleMonthlyShifts);
             this.ScheduleOverview.Controls.Add(this.label20);
@@ -857,6 +859,16 @@
             this.WarehouseEmployees.Text = "WarehouseEmployees";
             this.WarehouseEmployees.UseVisualStyleBackColor = true;
             // 
+            // setQuotasBtn
+            // 
+            this.setQuotasBtn.Location = new System.Drawing.Point(43, 275);
+            this.setQuotasBtn.Name = "setQuotasBtn";
+            this.setQuotasBtn.Size = new System.Drawing.Size(125, 43);
+            this.setQuotasBtn.TabIndex = 49;
+            this.setQuotasBtn.Text = "Set Quotas";
+            this.setQuotasBtn.UseVisualStyleBackColor = true;
+            this.setQuotasBtn.Click += new System.EventHandler(this.setQuoatasBtn_Click);
+            // 
             // EmployeeManagement2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -942,5 +954,6 @@
         private Label label12;
         private FlowLayoutPanel deleteEmpLayoutPanel;
         private Button button2;
+        private Button setQuotasBtn;
     }
 }

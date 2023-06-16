@@ -18,7 +18,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
         Item GetItemById(Guid itemId);
         void UpdateItemQuantity(Item item, int quantity);
         void UpdateItemNameAndDescription(Item item, string name, string description);
-
+        List<string> GetCategories();
+        List<Item> SearchPostsByKeyword(string keyword);
 
 
 

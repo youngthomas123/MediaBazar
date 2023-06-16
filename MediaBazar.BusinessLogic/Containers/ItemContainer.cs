@@ -41,7 +41,12 @@ namespace MediaBazar.BusinessLogic.Containers
             _itemDataAccess.DeleteItem(item);
         }
 
-        public Item GetItem(string name, string description)
+		public List<string> GetCategories()
+		{
+			return _itemDataAccess.GetCategories();
+		}
+
+		public Item GetItem(string name, string description)
         {
             foreach (Item item in items)
             {
@@ -99,6 +104,11 @@ namespace MediaBazar.BusinessLogic.Containers
         {
             items.Remove(item);
         }
+
+		public List<Item> SearchPostsByKeyword(string keyword)
+		{
+			return _itemDataAccess.SearchPostsByKeyword(keyword);
+		}
 
 		public void UpdateItemNameAndDescription(Item item, string name, string description)
 		{

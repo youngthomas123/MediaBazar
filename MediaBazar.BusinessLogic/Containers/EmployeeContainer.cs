@@ -39,6 +39,7 @@ namespace MediaBazar.BusinessLogic.Containers
                 Employee newEmployee = new Employee(firstName, lastName, bsn, telNumber, address, contractType, hoursPerWeek, jobposition,
                                         wage, daysOff, age, shiftDates, sickLeaves, shiftPreferences);
                 employees.Add(newEmployee);
+                newEmployee.IsAccountActive= true;
                 _employeeDataAccess.AddEmployee(newEmployee);
             }
         }
@@ -108,8 +109,22 @@ namespace MediaBazar.BusinessLogic.Containers
 
             return employees;   
         }
-
-       
+        public void UpdateShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            _employeeDataAccess.UpdateShiftPreference(bsn, preferences);
+        }
+        public void WriteShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            _employeeDataAccess.WriteShiftPreference(bsn, preferences);
+        }
+        public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate)
+        {
+            _employeeDataAccess.UpdateQuotas(quotasToUpdate);
+        }
+        public Dictionary<DayOfWeek, int> LoadQuotas()
+        {
+            return _employeeDataAccess.LoadQuotas();    
+        }
 
         public void UpdateEmpShift(Employee emp)
         {

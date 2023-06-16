@@ -1,6 +1,7 @@
 
 using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +10,7 @@ using System.Globalization;
 
 namespace EmployeeWebsite.Pages
 {
-
+    [Authorize]
     public class EmployeeModel : PageModel
     {
         IEmployeeContainer _employeeContainer;
@@ -34,10 +35,28 @@ namespace EmployeeWebsite.Pages
         }  
          
         
-        public void OnGet(int bsn)
+
+        public IActionResult OnGet(int bsn)
         {
-            Emp = _employeeContainer.GetEmployeeByBcn(bsn);
+   
+            var user = HttpContext.User;
+
+            
+            var bsnClaim = user.FindFirst("empBsn");
+
+            if (bsnClaim != null )
+            {
+                int empBsn = Convert.ToInt32(bsnClaim.Value);
+                Emp = _employeeContainer.GetEmployeeByBcn(empBsn);
+                return Page();
+            }
+            else
+            {
+                return Forbid();
+            }
         }
+        
+       
 
         public void OnPost(int bsn, int shiftAtIndex)
         {

@@ -17,8 +17,8 @@ namespace MediaBazar.DataAccess.Database
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO Employee2 (FirstName, LastName, BSN, TelNumber, Address, ContractType, HoursPerWeek, JobPosition, Wage, Age) " +
-                    "VALUES (@FirstName, @LastName, @BSN, @TelNumber, @Address, @ContractType, @HoursPerWeek, @JobPosition, @Wage, @Age)";
+                command.CommandText = "INSERT INTO Employee2 (FirstName, LastName, BSN, TelNumber, Address, ContractType, HoursPerWeek, JobPosition, Wage, Age, IsAccountActive) " +
+                    "VALUES (@FirstName, @LastName, @BSN, @TelNumber, @Address, @ContractType, @HoursPerWeek, @JobPosition, @Wage, @Age, @IsAccountActive)";
 
                 command.Parameters.AddWithValue("@FirstName", employee.FirstName);
                 command.Parameters.AddWithValue("@LastName", employee.LastName);
@@ -30,6 +30,7 @@ namespace MediaBazar.DataAccess.Database
                 command.Parameters.AddWithValue("@JobPosition", Convert.ToString(employee.Jobposition));
                 command.Parameters.AddWithValue("@Wage", employee.Wage);
                 command.Parameters.AddWithValue("@Age", employee.Age);
+                command.Parameters.AddWithValue("@IsAccountActive", employee.IsAccountActive);
                 command.ExecuteNonQuery();
 
                 // Write the employee's days off to the DaysOff table
@@ -124,10 +125,11 @@ namespace MediaBazar.DataAccess.Database
 
             conn.Open();
 
-            string DeleateEmp = $"DELETE FROM DaysOff2 WHERE BSN = {BSN}; DELETE FROM Shift2 WHERE BSN = {BSN}; DELETE FROM Employee2 WHERE BSN = {BSN}; ";
+            string DeleateEmp = $"Update Employee2\r\nSet IsAccountActive = 0\r\nwhere BSN = @BSN";
 
 
             SqlCommand cmd = new SqlCommand(DeleateEmp, conn);
+            cmd.Parameters.AddWithValue("@BSN", BSN);
             cmd.ExecuteNonQuery();
 
             conn.Close();
@@ -156,6 +158,7 @@ namespace MediaBazar.DataAccess.Database
                         MyEnums.JobPositions jobPosition = (MyEnums.JobPositions)Enum.Parse(typeof(MyEnums.JobPositions), reader["JobPosition"].ToString());
                         decimal wage = (decimal)reader["Wage"];
                         int age = (int)reader["Age"];
+                        bool isAccountActive = Convert.ToBoolean(reader["IsAccountActive"]);
 
                         List<DayOfWeek> daysOff = new List<DayOfWeek>();
                         SqlCommand daysOffCommand = new SqlCommand("SELECT DayOfWeek FROM DaysOff2 WHERE BSN = @BSN", connection);
@@ -225,15 +228,106 @@ namespace MediaBazar.DataAccess.Database
                             }
                         }
 
+                      
+
                         Employee employee = new Employee(firstName, lastName, bsn, telNumber, address,
                                                         contractType, hoursPerWeek, jobPosition, Convert.ToDouble(wage),
-                                                        daysOff, age, shifts, sickLeaves, shiftPreferences); 
+                                                        daysOff, age, shifts, sickLeaves, shiftPreferences);
+                        employee.Preferences = LoadShiftPreference(employee.BSN);
+                        employee.IsAccountActive = isAccountActive;
                         employees.Add(employee);
                     }
                 }
             }
 
             return employees;
+        }
+        public Dictionary<DayOfWeek, ShiftTypes> LoadShiftPreference(int bsn)
+        {
+            Dictionary<DayOfWeek, ShiftTypes> preferences = new Dictionary<DayOfWeek, ShiftTypes>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT PreferenceId, BSN, MondayShift, TuesdayShift, WednesdayShift, ThursdayShift, FridayShift, SaturdayShift, SundayShift FROM ShiftPreference3 WHERE BSN = @BSN", connection);
+                command.Parameters.AddWithValue("@BSN", bsn);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int preferenceId = (int)reader["PreferenceId"];
+
+
+
+
+                        // Loop through the days of the week and retrieve the shift preference
+                        for (int i = 0; i <= 6; i++)
+                        {
+                            DayOfWeek dayOfWeek = (DayOfWeek)i;
+                            string shiftTypeString = reader[dayOfWeek.ToString() + "Shift"].ToString();
+                            ShiftTypes shiftType = Enum.Parse<ShiftTypes>(shiftTypeString);
+                            preferences.Add(dayOfWeek, shiftType);
+                        }
+                    }
+                }
+            }
+
+            return preferences;
+        }
+
+        public void UpdateShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string updateQuery = "UPDATE ShiftPreference3 SET ";
+
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                int index = 0;
+
+                foreach (var preference in preferences)
+                {
+                    string columnName = $"{preference.Key.ToString()}Shift";
+                    string parameterName = $"@shiftType{index}";
+
+                    updateQuery += $"{columnName} = {parameterName}, ";
+                    parameters.Add(new SqlParameter(parameterName, preference.Value.ToString()));
+                    index++;
+                }
+
+                // Remove the trailing comma and space
+                updateQuery = updateQuery.TrimEnd(',', ' ');
+
+                updateQuery += " WHERE BSN = @bsn";
+
+                parameters.Add(new SqlParameter("@bsn", bsn));
+
+                SqlCommand command = new SqlCommand(updateQuery, connection);
+                command.Parameters.AddRange(parameters.ToArray());
+                command.ExecuteNonQuery();
+            }
+        }
+        public void WriteShiftPreference(int bsn, Dictionary<DayOfWeek, ShiftTypes> preferences)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string insertQuery = "INSERT INTO ShiftPreference3 (BSN, MondayShift, TuesdayShift, WednesdayShift, ThursdayShift, FridayShift, SaturdayShift, SundayShift) " +
+                                     "VALUES (@bsn, @mondayShift, @tuesdayShift, @wednesdayShift, @thursdayShift, @fridayShift, @saturdayShift, @sundayShift)";
+
+                SqlCommand command = new SqlCommand(insertQuery, connection);
+                command.Parameters.AddWithValue("@bsn", bsn);
+
+                foreach (var preference in preferences)
+                {
+                    string columnName = $"{preference.Key.ToString()}Shift";
+                    command.Parameters.AddWithValue($"@{columnName.ToLower()}", preference.Value.ToString());
+                }
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public void UpdateEmpShift(Employee emp)
@@ -416,6 +510,54 @@ namespace MediaBazar.DataAccess.Database
                 }
             }
         }
+        public Dictionary<DayOfWeek, int> LoadQuotas()
+        {
+            Dictionary<DayOfWeek, int> quotas = new Dictionary<DayOfWeek, int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectQuery = "SELECT DayOfWeek, Quota FROM Quotas";
+
+                using (SqlCommand command = new SqlCommand(selectQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DayOfWeek dayOfWeek = (DayOfWeek)reader.GetInt32(0);
+                            int quota = reader.GetInt32(1);
+
+                            quotas.Add(dayOfWeek, quota);
+                        }
+                    }
+                }
+            }
+
+            return quotas;
+        }
+        public void UpdateQuotas(Dictionary<DayOfWeek, int> quotasToUpdate)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (KeyValuePair<DayOfWeek, int> quota in quotasToUpdate)
+                {
+                    string updateQuery = "UPDATE Quotas SET Quota = @Quota WHERE DayOfWeek = @DayOfWeek";
+
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@Quota", quota.Value);
+                        command.Parameters.AddWithValue("@DayOfWeek", (int)quota.Key);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
     }
 }
 

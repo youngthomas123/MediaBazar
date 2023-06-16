@@ -225,7 +225,7 @@ namespace MediaBazar.DataAccess.Database
                 {
                     string name = (string)reader[1];
                     string description = (string)reader[2];
-                    string category = (string)reader[3];
+                    int category = (int)reader[3];
                     int warehouseQuantity = (int)reader[4];
                     int shopQuantity = (int)reader[5];
 

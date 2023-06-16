@@ -34,6 +34,8 @@ namespace MediaBazar.BusinessLogic.Interfaces
 
         void UpdateItemQuantity(Item item, int quantity);
         void UpdateItemNameAndDescription(Item item, string name, string description);
+        List<string> GetCategories();
+        List<Item> SearchPostsByKeyword(string keyword);
 
 	}
 }

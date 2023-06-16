@@ -27,7 +27,7 @@ namespace MediaBazar.DataAccess.Database
             cmd.Parameters.Add("@Item_ID", SqlDbType.UniqueIdentifier);
             cmd.Parameters.Add("@Name", SqlDbType.VarChar);
             cmd.Parameters.Add("@Description", SqlDbType.VarChar);
-			cmd.Parameters.Add("@Category", SqlDbType.VarChar);
+			cmd.Parameters.Add("@Category", SqlDbType.Int);
             cmd.Parameters.Add("@WarehouseQuantity", SqlDbType.Int);
             cmd.Parameters.Add("@ShopQuantity", SqlDbType.Int);
 
@@ -73,7 +73,7 @@ namespace MediaBazar.DataAccess.Database
 
             while (dr.Read())
             {
-                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (string)dr[3]);
+                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (int)dr[3]);
                 LoadedItems.Add(item);
             }
             dr.Close();
@@ -96,7 +96,7 @@ namespace MediaBazar.DataAccess.Database
                 {
                     string name = (string)reader[1];
                     string description = (string)reader[2];
-                    string category = (string)reader[3];
+                    int category = (int)reader[3];
                     int wrehouseQuantity = (int)reader[4];
                     int shopQuantity = (int)reader[5];
 
@@ -180,5 +180,60 @@ namespace MediaBazar.DataAccess.Database
             ChartData = JsonConvert.SerializeObject(chartData);
         }
 
-    }
+        public List<string> GetCategories()
+        {
+            List <string> categories = new List<string>();
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "Select CategoryName From ItemCategories;";
+
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string category = (string)reader["CategoryName"];
+                        categories.Add(category);
+                    }
+                }
+            }
+            return categories;
+        }
+
+		public List<Item> SearchPostsByKeyword(string keyword)
+		{
+			List<Item> items = new List<Item>();
+
+			using (SqlConnection conn = new SqlConnection(connectionString))
+			{
+				conn.Open();
+				string sql = "SELECT * FROM Items WHERE Name LIKE @Keyword OR Description LIKE @Keyword ";
+				SqlCommand cmd = new SqlCommand(sql, conn);
+				cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+
+				using (SqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						Guid itemId = (Guid)reader["Item_ID"];
+						string name = (string)reader["Name"];
+                        string description = (string)reader["Description"];
+						int category = (int)reader["Category"];
+						int warehouseQuantity = (int)reader["WarehouseQuantity"];
+                        int shopQuantity = (int)reader["ShopQuantity"];
+
+						Item item = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
+						items.Add(item);
+					}
+				}
+			}
+
+			return items;
+		}
+
+
+
+	}
 }
