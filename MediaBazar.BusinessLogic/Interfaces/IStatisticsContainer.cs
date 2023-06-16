@@ -13,6 +13,10 @@ namespace MediaBazar.BusinessLogic.Interfaces
         double ShowShiftAttendance();
 
         ItemStatsDto GetItemStatsDto(string category);
+
+        void CreateCategory(string CategoryName);
+
+        List<string> GetCategories();
     }
     
 }

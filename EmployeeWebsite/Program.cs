@@ -13,6 +13,7 @@ builder.Services.AddTransient<IEmployeeContainer, EmployeeContainer>();
 builder.Services.AddTransient<IItemContainer, ItemContainer>();
 builder.Services.AddTransient<IStatisticsDataAccess, StatisticsDB>();
 builder.Services.AddTransient<IStatisticsContainer, StatisticsContainer>();
+builder.Services.AddTransient<IItemCategoryDataAccess, ItemCategoryDB>();
 
 
 var app = builder.Build();
