@@ -14,32 +14,38 @@ using System.Windows.Forms;
 
 namespace S2GroupProject.Forms
 {
-    public partial class Experiment : Form
-    {
-        private readonly IEmployeeContainer _employeeContainer;
-        public Experiment(IEmployeeContainer employeeContainer)
-        {
-            _employeeContainer = employeeContainer;
-            InitializeComponent();
-            FillLayoutPanel();
-        }
-        public void LoadingData2()
-        {
-            List<Employee> emps = new List<Employee>();
+	public partial class Experiment : Form
+	{
+		private readonly IEmployeeContainer _employeeContainer;
+		public Experiment(IEmployeeContainer employeeContainer)
+		{
+			_employeeContainer = employeeContainer;
+			InitializeComponent();
+			FillLayoutPanel();
+		}
+		public void LoadingData2()
+		{
+			List<Employee> emps = new List<Employee>();
 
-            emps = _employeeContainer.LoadEmployees();
-        }
-        
-        public void FillLayoutPanel()
-        {
-            List<Employee> emps = new List<Employee>();
+			emps = _employeeContainer.LoadEmployees();
+			
+		}
 
-            emps = _employeeContainer.LoadEmployees();
-            foreach (var emp in emps)
-            {
-                EmployeeUC empUC = new EmployeeUC(emp, _employeeContainer);
-                EmployeeFlowPanel.Controls.Add(empUC);
-            }
-        }
-    }
+		public void FillLayoutPanel()
+		{
+			List<Employee> emps = new List<Employee>();
+
+			emps = _employeeContainer.LoadEmployees();
+			foreach (var emp in emps)
+			{
+				EmployeeUC empUC = new EmployeeUC(emp, _employeeContainer);
+				EmployeeFlowPanel.Controls.Add(empUC);
+			}
+		}
+
+		private void EmployeeFlowPanel_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
+	}
 }
