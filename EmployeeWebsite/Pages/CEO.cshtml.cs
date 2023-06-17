@@ -2,12 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MediaBazar.BusinessLogic.Interfaces;
 using MediaBazar.BusinessLogic.Dtos;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EmployeeWebsite.Pages
 {
-    public class CEOModel : PageModel
-    {
-        public string ChartData { get; set; }
+	public class CEOModel : PageModel
+	{
+		public string ChartData { get; set; }
+
+		public List<string> Categories { get; set; }
 
 		public ItemStatsDto UncategorizableItems { get; set; }
 		public ItemStatsDto Electronics { get; set; }
@@ -35,6 +38,7 @@ namespace EmployeeWebsite.Pages
 			Kitchen = _statisticsContainer.GetItemStatsDto("kitchen");
 			Sports = _statisticsContainer.GetItemStatsDto("sports");
 
+			Categories = _statisticsContainer.GetCategories();
 
             AttendancePercentage = _statisticsDataAccess.ShowShiftAttendance();
 		}

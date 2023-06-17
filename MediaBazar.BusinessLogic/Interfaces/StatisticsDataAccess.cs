@@ -12,5 +12,7 @@ namespace MediaBazar.BusinessLogic.Interfaces
         double ShowShiftAttendance();
 
         int NumberOfSales(int month, string category);
+
+        int NumberOfSalesPerYer(int month, string category, int year);
     }
 }

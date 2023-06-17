@@ -27,5 +27,7 @@ namespace MediaBazar.BusinessLogic.Dtos
 
         public int Dec   { get; set; }
 
+
+        public List<int> SalesPerWeek = new List<int>();
     }
 }

@@ -183,7 +183,10 @@
 </body>
 </html>*@
 
-<html>
+
+
+
+@*<html>
 <head>
     <style>
         #lineChart {
@@ -379,5 +382,184 @@
         }
     </script>
 </body>
-</html>
+</html>*@
 
+
+
+<html>
+<head>
+    <style>
+        #lineChart {
+            max-width: 550px;
+            height: 300px;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+        }
+
+        #stats {
+            margin-top: 20px;
+        }
+
+            #stats h3 {
+                margin: 10px 0;
+            }
+
+        #categoryDropdown {
+            margin-left: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <h2 id="currentYearText">Sales per Month (2021)</h2>
+    <div id="container">
+        <canvas id="lineChart"></canvas>
+        <div id="categoryDropdown">
+            <select id="categorySelect">
+                <option value="">Select Category</option>
+            </select>
+
+
+        </div>
+    </div>
+    <div id="stats"></div>
+    <script>
+        let canvas = document.getElementById("lineChart");
+        let lineChart;
+        let currentYear = 2021; // Set the initial year
+        let categories = {
+            'UncategorizableItems': [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec],
+            'Electronics': [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec],
+            'Kitchen': [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec],
+            'Sports': [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
+        };
+
+        // Load categories from localStorage if available
+        let savedCategories = localStorage.getItem('categories');
+        if (savedCategories) {
+            categories = JSON.parse(savedCategories);
+        }
+
+        // Create a new line chart object
+        function createLineChart() {
+            lineChart = new Chart(canvas, {
+                type: "line",
+                data: {
+                    labels: getMonthLabels(),
+                    datasets: Object.keys(categories).map((key) => {
+                        return {
+                            borderColor: getRandomColor(),
+                            pointBackgroundColor: getRandomColor(),
+                            fill: false,
+                            data: categories[key],
+                            label: key
+                        };
+                    })
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: 40
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Generate an array of month labels for the x-axis
+        function getMonthLabels() {
+            return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        }
+
+        // Toggle between showing sales by months or weeks
+        function toggleSalesView() {
+            lineChart.data.labels = getMonthLabels();
+            lineChart.update();
+        }
+
+        // Function to add a new category (replace with your desired method)
+        function addCategory() {
+            // Your code here
+        }
+
+        // Helper function to generate random color
+        function getRandomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Function to update the stats based on the current data
+        function updateStats(selectedCategory) {
+            let statsContainer = document.getElementById("stats");
+            statsContainer.innerHTML = "";
+
+            if (selectedCategory) {
+                let categoryData = categories[selectedCategory];
+                let totalSales = categoryData.reduce((a, b) => a + b, 0);
+                let averageSales = totalSales / categoryData.length;
+                let maxSales = Math.max(...categoryData);
+                let minSales = Math.min(...categoryData);
+
+                let statsElement = document.createElement("div");
+                statsElement.innerHTML = `
+                                    <h3>${selectedCategory} Stats</h3>
+                                    <p>Total Sales: ${totalSales}</p>
+                                    <p>Average Sales: ${averageSales.toFixed(2)}</p>
+                                    <p>Max Sales: ${maxSales}</p>
+                                    <p>Min Sales: ${minSales}</p>
+                                `;
+                statsContainer.appendChild(statsElement);
+            }
+        }
+
+        // Create the initial line chart
+        createLineChart();
+
+        // Add toggle button for sales view
+        let toggleButton = document.createElement("button");
+        toggleButton.innerText = "Toggle View";
+        toggleButton.addEventListener("click", toggleSalesView);
+        document.body.insertBefore(toggleButton, canvas);
+
+        // Add input field and button for adding a new category
+        let newCategoryInput = document.createElement("input");
+        newCategoryInput.id = "newCategory";
+        newCategoryInput.type = "text";
+        newCategoryInput.placeholder = "Enter a new category";
+        document.body.insertBefore(newCategoryInput, canvas);
+
+        let addButton = document.createElement("button");
+        addButton.innerText = "Add Category";
+        addButton.addEventListener("click", addCategory);
+        document.body.insertBefore(addButton, canvas);
+
+        // Add event listener for category selection
+        let categorySelect = document.getElementById("categorySelect");
+        categorySelect.addEventListener("change", function () {
+            let selectedCategory = categorySelect.value;
+            updateStats(selectedCategory);
+        });
+
+        // Populate the category dropdown options
+        Object.keys(categories).forEach((category) => {
+            let option = document.createElement("option");
+            option.value = category;
+            option.text = category;
+            categorySelect.appendChild(option);
+        });
+
+        // Display initial stats
+        updateStats(null);
+    </script>
+</body>
+</html>
