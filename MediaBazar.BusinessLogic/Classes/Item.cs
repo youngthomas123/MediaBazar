@@ -8,7 +8,7 @@ namespace MediaBazar.BusinessLogic.Classes
 {
     public class Item : IComparable<Item>
     {
-
+		public Item() { }
         public Item(Guid id, string name, string description, int warehouseQuantity, int shopQuantity, int category, decimal price)
         {
 			Id = id;

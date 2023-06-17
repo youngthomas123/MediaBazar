@@ -8,7 +8,7 @@ namespace MediaBazar.BusinessLogic.Classes
 {
     public class Warehouse
     {
-
+        public Warehouse() { }
         public Warehouse(Guid id,string name, string address) 
         {
             Id = id;
