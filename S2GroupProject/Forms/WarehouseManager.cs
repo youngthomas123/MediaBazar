@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace S2GroupProject.Forms
@@ -31,6 +33,7 @@ namespace S2GroupProject.Forms
 			_warehouseContainer = warehouseContainer;
 			InitializeComponent();
 			LoadData();
+			LoadDataGrid();
 			WarehouseRestockData();
 			tabControl1.Appearance = TabAppearance.FlatButtons;
 			tabControl1.ItemSize = new Size(0, 1);
@@ -41,7 +44,6 @@ namespace S2GroupProject.Forms
 		{
 			warehouseListbox.Items.Clear();
 			employeeList.Items.Clear();
-			ItemListBox.Items.Clear();
 			listBox1.Items.Clear();
 			ShopRequests.Items.Clear();
 			warehouseComboBox.Items.Clear();
@@ -57,7 +59,6 @@ namespace S2GroupProject.Forms
 
 			foreach (Item item in items)
 			{
-				ItemListBox.Items.Add(item);
 				listBox1.Items.Add(item);
 			}
 			foreach (Employee employee in employees)
@@ -75,6 +76,50 @@ namespace S2GroupProject.Forms
 				CategoriesBox.Items.Add(category);
 				categoryBox2.Items.Add(category);
 			}
+		}
+
+		public void LoadDataGrid()
+		{
+			ItemDataGrid.Rows.Clear();
+
+			SortableBindingList<Item> sortableItems = new SortableBindingList<Item>(items);
+
+			ItemDataGrid.AutoGenerateColumns = false;
+			DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+			nameColumn.HeaderText = "Name";
+			nameColumn.DataPropertyName = "Name";
+			ItemDataGrid.Columns.Add(nameColumn);
+
+			DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
+			priceColumn.HeaderText = "Price €";
+			priceColumn.DataPropertyName = "Price";
+			ItemDataGrid.Columns.Add(priceColumn);
+
+			DataGridViewTextBoxColumn warehouseQuantityCol = new DataGridViewTextBoxColumn();
+			warehouseQuantityCol.HeaderText = "Warehouse Quantity";
+			warehouseQuantityCol.DataPropertyName = "WarehouseQuantity";
+			ItemDataGrid.Columns.Add(warehouseQuantityCol);
+
+			DataGridViewTextBoxColumn shopQuantityCol = new DataGridViewTextBoxColumn();
+			shopQuantityCol.HeaderText = "Shop Quantity";
+			shopQuantityCol.DataPropertyName = "ShopQuantity";
+			ItemDataGrid.Columns.Add(shopQuantityCol);
+
+
+			ItemDataGrid.DataSource = sortableItems;
+
+			panel3.AutoScroll = true;
+
+			foreach (DataGridViewColumn column in ItemDataGrid.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				column.FillWeight = 100f / ItemDataGrid.Columns.Count;
+			}
+
+			// Deselect any selected rows
+			ItemDataGrid.ClearSelection();
+
+			ItemDataGrid.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;
 		}
 
 		public void WarehouseRestockData()
@@ -95,6 +140,7 @@ namespace S2GroupProject.Forms
 		public void RefreshData()
 		{
 			LoadData();
+			LoadDataGrid();
 		}
 
 
@@ -108,6 +154,7 @@ namespace S2GroupProject.Forms
 
 			if (ItemOverviewRBT.Checked == true)
 			{
+				
 				ItemOverview.Show();
 				WarehouseOverview.Hide();
 				CreateItems.Hide();
@@ -161,27 +208,15 @@ namespace S2GroupProject.Forms
 			}
 		}
 
-		private void ShowAllItems_Click(object sender, EventArgs e)
-		{
-			ItemListBox.Items.Clear();
-			foreach (Item item in items)
-			{
-				ItemListBox.Items.Add(item);
-			}
-			int NumberOfItems = items.Count;
-			label7.Text = $"Number of items: {NumberOfItems}";
-		}
-
 		private void SearchItembyName_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				ItemListBox.Items.Clear();
 				string keyword = textBox1.Text;
 				var foundItems = _itemContainer.SearchPostsByKeyword(keyword);
 				foreach (var item in foundItems)
 				{
-					ItemListBox.Items.Add(item);
+
 				}
 			}
 			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
@@ -190,35 +225,50 @@ namespace S2GroupProject.Forms
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (ItemListBox.SelectedItem != null)
+			if (ItemDataGrid.SelectedRows.Count > 0)
 			{
-				try
-				{
-					Item item = (Item)ItemListBox.SelectedItem;
-					string newName = textBox8.Text.Trim();
-					string newDescription = textBox7.Text.Trim();
+				DataGridViewRow selectedRow = ItemDataGrid.SelectedRows[0];
+				Item selectedItem = (Item)selectedRow.DataBoundItem;
 
-					// Validate the user input
-					if (textBox7.Text == "" || textBox8.Text == null)
-					{
-						MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-					else
-					{
-						// Update the item properties
-						_itemContainer.UpdateItemNameAndDescription(item, newName, newDescription);
-						RefreshData();
-					}
-				}
-				catch (FormatException)
+				string newName = textBox8.Text.Trim();
+				string newDescription = textBox7.Text.Trim();
+				decimal price;
+				if (textBox3.Text == "")
 				{
-					MessageBox.Show("Please enter valid integer value for the Quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					price = 0;
+				}
+				else
+				{
+					price = decimal.Parse(textBox3.Text.Trim());
+				}
+
+				if (selectedItem != null)
+				{
+					if(newName != "" && newDescription == "" && price == 0)
+					{
+						_itemContainer.UpdateItemName(selectedItem, newName);
+					}
+					if(price != 0 && newName == "" && newDescription == "")
+					{
+						_itemContainer.UpdateItemPrice(selectedItem, price);
+					}
+					if(newDescription != "" && newName == "" && price == 0)
+					{
+						_itemContainer.UpdateItemDescription(selectedItem, newDescription);
+					}
+					if(price != 0 && newDescription != "" && newName != "")
+					{
+						_itemContainer.UpdateItemDescription(selectedItem, newDescription);
+						_itemContainer.UpdateItemName(selectedItem, newName);
+						_itemContainer.UpdateItemPrice(selectedItem, price);
+					}
 				}
 			}
 			else
 			{
 				MessageBox.Show("Please select an item to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+
 		}
 
 		private void button3_Click(object sender, EventArgs e)
@@ -271,15 +321,15 @@ namespace S2GroupProject.Forms
 
 		private void AssignItemBTN_Click(object sender, EventArgs e)
 		{
-			Item selectedItem = (Item)ItemListBox.SelectedItem;
-			Warehouse selectedWarehouse = (Warehouse)warehouseComboBox.SelectedItem;
-			if (selectedItem != null && selectedWarehouse != null)
-			{
-				_warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
+			//Item selectedItem = (Item)ItemListBox.SelectedItem;
+			//Warehouse selectedWarehouse = (Warehouse)warehouseComboBox.SelectedItem;
+			//if (selectedItem != null && selectedWarehouse != null)
+			//{
+			//	_warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
 
-			}
-			else
-			{ MessageBox.Show("Please select an item/warehouse!"); }
+			//}
+			//else
+			//{ MessageBox.Show("Please select an item/warehouse!"); }
 		}
 
 		private void ViewDataBTN_Click(object sender, EventArgs e)
@@ -378,44 +428,68 @@ namespace S2GroupProject.Forms
 
 		private void CategoriesBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			ItemListBox.Items.Clear();
-			int categorySelected = CategoriesBox.SelectedIndex;
-			categorySelected++;
+			// Get the selected category index from the combo box
+			int selectedCategoryIndex = CategoriesBox.SelectedIndex;
+			selectedCategoryIndex++;
 
-			if (categorySelected != 0)
-			{
-				foreach (Item item in items)
+			// Get the original data source of the DataGridView
+			var originalItems = (SortableBindingList<Item>)ItemDataGrid.DataSource;
+
+			// Convert the SortableBindingList to a DataTable
+			DataTable dataTable = ConvertToDataTable(originalItems);
+
+			// Create a DataView from the DataTable
+			DataView dataView = new DataView(dataTable);
+
+			// Apply the filter based on the selected category index
+			dataView.RowFilter = $"Category = {selectedCategoryIndex}";
+
+			// Convert the filtered DataView rows back to Item objects
+			var filteredItems = dataView.Cast<DataRowView>()
+				.Select(rowView =>
 				{
-					if (item.Category == categorySelected)
-					{
-						ItemListBox.Items.Add(item);
-					}
-				}
-			}
-			else
-			{
-				MessageBox.Show("Choose a ctegory");
-			}
-		}
+					DataRow row = rowView.Row;
+					return new Item(
+						(Guid)row["Id"],
+						(string)row["Name"],
+						(string)row["Description"],
+						(int)row["WarehouseQuantity"],
+						(int)row["ShopQuantity"],
+						(int)row["Category"],
+						(decimal)row["Price"]
+					);
+				})
+				.ToList();
 
-		private void SortByName_Click(object sender, EventArgs e)
+			// Create a new SortableBindingList<Item> from the filtered items
+			var filteredItemList = new SortableBindingList<Item>(filteredItems);
+
+			// Bind the filtered SortableBindingList<Item> to the DataGridView
+			ItemDataGrid.DataSource = filteredItemList;
+
+
+		}
+		private DataTable ConvertToDataTable<T>(IEnumerable<T> data)
 		{
-			ItemListBox.Items.Clear();
+			PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+			DataTable dataTable = new DataTable();
 
-			// Set the sorting key for each item to be the name
-			foreach (var item in items)
+			foreach (PropertyDescriptor prop in properties)
+				dataTable.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+
+			foreach (T item in data)
 			{
-				item.SortingKey = item.Name;
+				DataRow row = dataTable.NewRow();
+
+				foreach (PropertyDescriptor prop in properties)
+					row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+
+				dataTable.Rows.Add(row);
 			}
 
-			Sorting sortbyName = new Sorting();
-			var sortedItems = sortbyName.InsertionSort(items);
-
-			foreach (Item item in sortedItems)
-			{
-				ItemListBox.Items.Add(item);
-			}
+			return dataTable;
 		}
+
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -427,64 +501,45 @@ namespace S2GroupProject.Forms
 
 		}
 
-		private void button6_Click(object sender, EventArgs e)
-		{
-			ItemListBox.Items.Clear();
-
-			// Set the sorting key for each item to be the name
-			foreach (var item in items)
-			{
-				item.SortingKey = item.Price.ToString();
-			}
-
-			Sorting sortbyName = new Sorting();
-			var sortedItems = sortbyName.InsertionSort(items);
-
-			foreach (Item item in sortedItems)
-			{
-				ItemListBox.Items.Add(item);
-			}
-		}
-
-		private void button7_Click(object sender, EventArgs e)
-		{
-			ItemListBox.Items.Clear();
-
-			// Set the sorting key for each item to be the name
-			foreach (var item in items)
-			{
-				item.SortingKey = item.WarehouseQuantity.ToString();
-			}
-
-			Sorting sortbyName = new Sorting();
-			var sortedItems = sortbyName.InsertionSort(items);
-
-			foreach (Item item in sortedItems)
-			{
-				ItemListBox.Items.Add(item);
-			}
-		}
-
-		private void button8_Click(object sender, EventArgs e)
-		{
-			ItemListBox.Items.Clear();
-
-			// Set the sorting key for each item to be the name
-			foreach (var item in items)
-			{
-				item.SortingKey = item.ShopQuantity.ToString();
-			}
-
-			Sorting sortbyName = new Sorting();
-			var sortedItems = sortbyName.InsertionSort(items);
-
-			foreach (Item item in sortedItems)
-			{
-				ItemListBox.Items.Add(item);
-			}
-		}
-
 		private void categoryBox2_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+
+		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
+			string searchQuery = textBox1.Text.ToLower();
+
+
+			foreach (DataGridViewRow row in ItemDataGrid.Rows)
+			{
+				if (!row.IsNewRow) // Skip the uncommitted new row
+				{
+					DataGridViewCell cell = row.Cells[0];
+					if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchQuery))
+					{
+						row.Visible = true;
+					}
+					else
+					{
+						// Check if the row is selected or in focus
+						if (row.Selected || row.Cells[0].Selected)
+						{
+							ItemDataGrid.CurrentCell = null; // Deselect the row
+						}
+
+						row.Visible = false;
+					}
+				}
+			}
+		}
+
+		private void ItemDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 
 		}

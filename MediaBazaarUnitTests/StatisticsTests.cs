@@ -15,12 +15,14 @@ namespace MediaBazaarUnitTests
 	{
 		private Mock<IStatisticsDataAccess> _statisticsDataAccessMock;
 		private StatisticsContainer _statisticsContainer;
+		private Mock<IItemCategoryDataAccess> _itemCategoryDataAccessMock;
 
 		[TestInitialize]
 		public void Setup()
 		{
 			_statisticsDataAccessMock = new Mock<IStatisticsDataAccess>();
-			_statisticsContainer = new StatisticsContainer(_statisticsDataAccessMock.Object);
+			_itemCategoryDataAccessMock = new Mock<IItemCategoryDataAccess>();
+			_statisticsContainer = new StatisticsContainer(_statisticsDataAccessMock.Object, _itemCategoryDataAccessMock.Object);
 		}
 
 		[TestMethod]

@@ -98,9 +98,19 @@ namespace MediaBazar.BusinessLogic.Containers
 			return _itemDataAccess.SearchPostsByKeyword(keyword);
 		}
 
-		public void UpdateItemNameAndDescription(Item item, string name, string description)
+		public void UpdateItemDescription(Item item, string description)
 		{
-			_itemDataAccess.UpdateItemNameAndDescription(item, name, description);
+			_itemDataAccess.UpdateItemDescription(item, description);
+		}
+
+		public void UpdateItemName(Item item, string name)
+		{
+			_itemDataAccess.UpdateItemName(item, name);
+		}
+
+		public void UpdateItemPrice(Item item, decimal price)
+		{
+			_itemDataAccess.UpdateItemPrice(item, price);
 		}
 
 		public void UpdateItemQuantity(Item item, int quantity)

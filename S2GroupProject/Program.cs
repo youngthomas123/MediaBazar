@@ -43,6 +43,7 @@ namespace S2GroupProject
             services.AddTransient<CreateWarehousePopUp>();
             services.AddTransient<Experiment>();
             services.AddTransient<EmployeeManagement2>();
+            services.AddTransient<Experiment>();
 
             var serviceProvider = services.BuildServiceProvider();
             //DI end
