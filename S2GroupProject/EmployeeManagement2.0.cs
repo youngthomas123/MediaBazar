@@ -68,6 +68,7 @@ namespace S2GroupProject
         }
         public void LoadEmployeesIntoEmpOverview()
         {
+            empLayoutPanel.Controls.Clear();
             employees = _employeeContainer.LoadEmployees();
             foreach (var emp in employees)
             {
@@ -75,13 +76,20 @@ namespace S2GroupProject
                 {
                     continue;
                 }
-                if (!emp.IsAccountActive)
+                if (showAllEmployeesCb.Checked == true)
                 {
-                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
-                    notActiveEmp.BackColor = Color.OrangeRed;
-                    empLayoutPanel.Controls.Add(notActiveEmp);
+                    if (!emp.IsAccountActive)
+                    {
+                        EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                        notActiveEmp.BackColor = Color.OrangeRed;
+                        empLayoutPanel.Controls.Add(notActiveEmp);
+                    }
+                    else
+                    {
+                        empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
+                    }
                 }
-                else
+                else if (emp.IsAccountActive == true)
                 {
                     empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
                 }
@@ -363,36 +371,6 @@ namespace S2GroupProject
             }
         }
 
-        //public void AssignShifts(int year, int month)
-        //{
-        //    // Get all full-time employees
-        //    employees = _employeeContainer.LoadEmployees();
-        //    List<Employee> fullTimeEmployees = employees.Where(e => e.ContractType == ContractTypes.FULL_TIME || e.ContractType == ContractTypes.PART_TIME).ToList();
-
-        //    // Generate all possible shifts for the specified month
-        //    DateTime currentDate = new DateTime(year, month, 1);
-        //    DateTime endDate = currentDate.AddMonths(1).AddDays(-1);
-        //    List<Shift> allShifts = new List<Shift>();
-        //    while (currentDate <= endDate)
-        //    {
-        //        foreach (Employee employee in fullTimeEmployees)
-        //        {
-        //            ShiftPreference preference = employee.ShiftPreferences.FirstOrDefault(s => s.Month == month);
-        //            bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
-        //            //false if emp has scheduled a sick leave xd
-        //            bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
-        //                             !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate && sickLeave.IsScheduled);
-
-        //            if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
-        //            {
-        //                Shift newShift = new Shift(currentDate, preference.Preference, false);
-        //                employee.ShiftsDates.Add(newShift);
-        //                _employeeContainer.AddEmpShift(employee);
-        //            }
-        //        }
-        //        currentDate = currentDate.AddDays(1);
-        //    }
-        //}
         public void AssignShifts(int year, int month)
         {
             // Get all full-time employees
@@ -625,9 +603,10 @@ namespace S2GroupProject
                 }
                 if (emp.IsAccountActive == false)
                 {
-                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
-                    notActiveEmp.BackColor = Color.OrangeRed;
-                    deleteEmpLayoutPanel.Controls.Add(notActiveEmp);
+                    //EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                    //notActiveEmp.BackColor = Color.OrangeRed;
+                    //deleteEmpLayoutPanel.Controls.Add(notActiveEmp);
+                    continue;
                 }
                 else
                 {
@@ -681,6 +660,11 @@ namespace S2GroupProject
             QuotaSettingsForm quotaSettingsForm = new QuotaSettingsForm(_employeeContainer);
 
             quotaSettingsForm.ShowDialog();
+        }
+
+        private void showAllEmployeesCb_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadEmployeesIntoEmpOverview();
         }
     }
 }

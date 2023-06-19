@@ -67,8 +67,8 @@ namespace S2GroupProject.Forms
                 DayOfWeek currentDayOfWeek = date.DayOfWeek;
                 int quota = dailyQuotas[currentDayOfWeek];
                 int count = 0;
-                //var regularEmployees = employeesByJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
-               // var regularEmployees = employeesByJob.ToList();
+
+
                 foreach (Employee employee in employeesByJob)
                 {
                     if (employee.ShiftsDates.Any(shift => shift.ShiftDate == date))
@@ -103,23 +103,6 @@ namespace S2GroupProject.Forms
                     }
                 }
 
-
-                //int managersNeeded = (quota * 4) / 10 + 1;
-
-                //if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
-                //{
-                //    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
-                //    //managersNeeded = Math.Min(managersNeeded, availableManagers);
-
-                //    for (int i = 0; i < managersNeeded; i++)
-                //    {
-                //        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
-                //        managerProfile.BorderStyle = BorderStyle.FixedSingle;
-                //        jobPanel.Controls.Add(managerProfile);
-                //        jobPanel.AutoSize = true;
-                //        jobPanel.AutoScroll = true;
-                //    }
-                //}
 
                 List<Employee> availableEmployees = employeesByJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
                     // Create the buttons panel
@@ -223,8 +206,8 @@ namespace S2GroupProject.Forms
                 DayOfWeek currentDayOfWeek = date.DayOfWeek;
                 int quota = dailyQuotas[currentDayOfWeek];
                 int count = 0;
-                //var regularEmployees = employeesByJob.Where(emp => emp.Jobposition != JobPositions.STORE_MANAGER && emp.Jobposition != JobPositions.WAREHOUSE_MANAGER).ToList();
-                // var regularEmployees = employeesByJob.ToList();
+
+
                 foreach (Employee employee in employeesByJob)
                 {
                     if (employee.ShiftsDates.Any(shift => shift.ShiftDate == date))
@@ -244,24 +227,16 @@ namespace S2GroupProject.Forms
                     {
                         EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
                         emptyProfile.BorderStyle = BorderStyle.FixedSingle;
+                        emptyProfile.BackColor = Color.Red;
+
+                        Label label1 = new Label();
+                        label1.AutoSize = false;
+                        label1.Text = "Employee Needs To Be Added";
+                        label1.Font = new Font(dateLabel.Font.FontFamily, 16);
+                        label1.Size = new Size(emptyProfile.Width, emptyProfile.Height);
+
+                        emptyProfile.Controls.Add(label1);
                         jobPanel.Controls.Add(emptyProfile);
-                        jobPanel.AutoSize = true;
-                        jobPanel.AutoScroll = true;
-                    }
-                }
-
-                int managersNeeded = (quota * 4) / 10 + 1;
-
-                if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
-                {
-                    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
-                    //managersNeeded = Math.Min(managersNeeded, availableManagers);
-
-                    for (int i = 0; i < managersNeeded; i++)
-                    {
-                        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
-                        managerProfile.BorderStyle = BorderStyle.FixedSingle;
-                        jobPanel.Controls.Add(managerProfile);
                         jobPanel.AutoSize = true;
                         jobPanel.AutoScroll = true;
                     }

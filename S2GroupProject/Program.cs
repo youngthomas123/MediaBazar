@@ -48,7 +48,7 @@ namespace S2GroupProject
             var serviceProvider = services.BuildServiceProvider();
             //DI end
 
-            Application.Run(serviceProvider.GetService<WarehouseManager>());
+            Application.Run(serviceProvider.GetService<EmployeeManagement2>());
 		}
 	}
 }
