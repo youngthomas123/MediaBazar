@@ -4,386 +4,6 @@
 	ViewData["Title"] = "Stats";
 }
 
-@*
-<html>
-<head>
-    <style>
-        #lineChart {
-            max-width: 550px;
-            height: 300px;
-        }
-
-        #stats {
-            margin-top: 20px;
-        }
-
-            #stats h3 {
-                margin: 10px 0;
-            }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-</head>
-<body>
-    <h2 id="currentYearText">Sales per Month (2021)</h2>
-    <canvas id="lineChart"></canvas>
-    <div id="output"></div>
-    <div id="stats"></div>
-    <script>
-        let output = document.getElementById('output');
-        let canvas = document.getElementById("lineChart");
-        let lineChart;
-        let currentYear = 2021; // Set the initial year
-
-        // Create an array of months for the x-axis labels
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        // Create arrays for each category of items
-        let categories = {
-            'UncategorizableItems': [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec],
-            'Electronics': [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec],
-            'Kitchen': [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec],
-            'Sports': [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
-        };
-
-        // Load categories from localStorage if available
-        let savedCategories = localStorage.getItem('categories');
-        if (savedCategories) {
-            categories = JSON.parse(savedCategories);
-        }
-
-        // Create a new line chart object
-        function createLineChart() {
-            lineChart = new Chart(canvas, {
-                type: "line",
-                data: {
-                    labels: months,
-                    datasets: Object.keys(categories).map((key) => {
-                        return {
-                            borderColor: getRandomColor(),
-                            pointBackgroundColor: getRandomColor(),
-                            fill: false,
-                            data: categories[key],
-                            label: key
-                        };
-                    })
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                max: 40
-                            }
-                        }]
-                    }
-                }
-            });
-        }
-
-        // Function to add a new category
-        function addCategory() {
-            let newCategoryName = prompt("Enter the name of the new category:");
-            let newData = prompt("Enter the data for the new category (separated by commas):");
-            let newDataArray = newData.split(",").map(Number);
-
-            // Add the new category to the categories object
-            categories[newCategoryName] = newDataArray;
-
-            // Save categories to localStorage
-            localStorage.setItem('categories', JSON.stringify(categories));
-
-            // Recreate the line chart
-            lineChart.destroy();
-            createLineChart();
-        }
-
-        // Function to navigate to the previous year
-        function navigateToPreviousYear() {
-            if (currentYear > 2020) {
-                currentYear--;
-                document.getElementById('currentYearText').innerText = `Sales per Month (${currentYear})`;
-                updateChartData();
-            }
-        }
-
-        // Function to navigate to the next year
-        function navigateToNextYear() {
-            if (currentYear < new Date().getFullYear()) {
-                currentYear++;
-                document.getElementById('currentYearText').innerText = `Sales per Month (${currentYear})`;
-                updateChartData();
-            }
-        }
-
-        // Function to update the chart data based on the current year
-        function updateChartData() {
-            lineChart.data.datasets.forEach((dataset, index) => {
-                dataset.data = categories[Object.keys(categories)[index]];
-            });
-            lineChart.update();
-        }
-
-        // Helper function to generate random color
-        function getRandomColor() {
-            let letters = "0123456789ABCDEF";
-            let color = "#";
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        // Create the initial line chart
-        createLineChart();
-
-        // Add button click event listener
-        let addButton = document.createElement("button");
-        addButton.innerText = "Add Category";
-        addButton.addEventListener("click", addCategory);
-        output.appendChild(addButton);
-
-        // Add arrows to navigate to previous and next years
-        let previousYearButton = document.createElement("button");
-        previousYearButton.innerText = "Previous Year";
-        previousYearButton.addEventListener("click", navigateToPreviousYear);
-        output.appendChild(previousYearButton);
-
-        let nextYearButton = document.createElement("button");
-        nextYearButton.innerText = "Next Year";
-        nextYearButton.addEventListener("click", navigateToNextYear);
-        output.appendChild(nextYearButton);
-
-        // Display initial stats
-        updateStats();
-
-        // Function to update the stats based on the current year
-        function updateStats() {
-            let statsContainer = document.getElementById("stats");
-            statsContainer.innerHTML = "";
-
-            Object.keys(categories).forEach((key) => {
-                let categoryStats = categories[key];
-                let totalSales = categoryStats.reduce((a, b) => a + b, 0);
-                let averageSales = totalSales / categoryStats.length;
-                let maxSales = Math.max(...categoryStats);
-                let minSales = Math.min(...categoryStats);
-
-                let statsElement = document.createElement("div");
-                statsElement.innerHTML = `
-                                            <h3>${key} Stats</h3>
-                                            <p>Total Sales: ${totalSales}</p>
-                                            <p>Average Sales: ${averageSales.toFixed(2)}</p>
-                                            <p>Max Sales: ${maxSales}</p>
-                                            <p>Min Sales: ${minSales}</p>
-                                        `;
-                statsContainer.appendChild(statsElement);
-            });
-        }
-    </script>
-</body>
-</html>*@
-
-
-
-
-@*<html>
-<head>
-    <style>
-        #lineChart {
-            max-width: 550px;
-            height: 300px;
-        }
-
-        #stats {
-            margin-top: 20px;
-        }
-
-            #stats h3 {
-                margin: 10px 0;
-            }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-</head>
-<body>
-    <h2 id="currentYearText">Sales per Month (2021)</h2>
-    <canvas id="lineChart"></canvas>
-    <div id="output"></div>
-    <div id="stats"></div>
-    <script>
-        let output = document.getElementById('output');
-        let canvas = document.getElementById("lineChart");
-        let lineChart;
-        let currentYear = 2021; // Set the initial year
-        let showByWeeks = false; // Set the initial showByWeeks value to false
-
-        // Create an array of months for the x-axis labels
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        // Create arrays for each category of items
-        let categories = {
-            'UncategorizableItems': [],
-            'Electronics': [],
-            'Kitchen': [],
-            'Sports': []
-        };
-
-        // Load categories from localStorage if available
-        let savedCategories = localStorage.getItem('categories');
-        if (savedCategories) {
-            categories = JSON.parse(savedCategories);
-        }
-
-        // Create a new line chart object
-        function createLineChart() {
-            lineChart = new Chart(canvas, {
-                type: "line",
-                data: {
-                    labels: showByWeeks ? generateWeekLabels(currentYear) : months,
-                    datasets: Object.keys(categories).map((key) => {
-                        return {
-                            borderColor: getRandomColor(),
-                            pointBackgroundColor: getRandomColor(),
-                            fill: false,
-                            data: categories[key],
-                            label: key
-                        };
-                    })
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                max: 40
-                            }
-                        }]
-                    }
-                }
-            });
-        }
-
-        // Generate an array of week labels for the x-axis
-        function generateWeekLabels(year) {
-            let weeksInYear = getWeeksInYear(year);
-            let weekLabels = [];
-            for (let i = 1; i <= weeksInYear; i++) {
-                weekLabels.push(`Week ${i}`);
-            }
-            return weekLabels;
-        }
-
-        // Get the number of weeks in a given year
-        function getWeeksInYear(year) {
-            const firstDayOfYear = new Date(year, 0, 1);
-            const lastDayOfYear = new Date(year, 11, 31);
-            const daysInYear = (lastDayOfYear - firstDayOfYear) / (1000 * 60 * 60 * 24);
-            return Math.ceil((daysInYear + firstDayOfYear.getDay() + 1) / 7);
-        }
-
-        // Toggle between showing sales by months or weeks
-        function toggleSalesView() {
-            showByWeeks = !showByWeeks;
-            document.getElementById('currentYearText').innerText = `Sales per ${showByWeeks ? 'Week' : 'Month'} (${currentYear})`;
-            updateChartData();
-        }
-
-        // Function to update the chart data based on the current year and sales view
-        function updateChartData() {
-            if (showByWeeks) {
-                let weekLabels = generateWeekLabels(currentYear);
-                let categoryWeekSales = {};
-
-                Object.keys(categories).forEach((key) => {
-                    let categorySales = categories[key];
-                    let totalSales = categorySales.reduce((a, b) => a + b, 0);
-                    let weeksInYear = getWeeksInYear(currentYear);
-                    let averageSalesPerWeek = Math.round(totalSales / weeksInYear);
-                    let categoryWeekSalesArray = Array.from({ length: weeksInYear }, () => averageSalesPerWeek);
-
-                    let remainingSales = totalSales - averageSalesPerWeek * weeksInYear;
-                    let randomIndexes = Array.from({ length: weeksInYear }, (_, i) => i);
-                    shuffleArray(randomIndexes);
-
-                    for (let i = 0; i < remainingSales; i++) {
-                        categoryWeekSalesArray[randomIndexes[i]] += 1;
-                    }
-
-                    categoryWeekSales[key] = categoryWeekSalesArray;
-                });
-
-                lineChart.data.labels = weekLabels;
-                lineChart.data.datasets.forEach((dataset, index) => {
-                    let key = Object.keys(categories)[index];
-                    dataset.data = categoryWeekSales[key];
-                });
-            } else {
-                lineChart.data.labels = months;
-                lineChart.data.datasets.forEach((dataset, index) => {
-                    let key = Object.keys(categories)[index];
-                    dataset.data = categories[key];
-                });
-            }
-
-            lineChart.update();
-        }
-
-        // Helper function to shuffle an array in place
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        // Helper function to generate random color
-        function getRandomColor() {
-            let letters = "0123456789ABCDEF";
-            let color = "#";
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        // Create the initial line chart
-        createLineChart();
-
-        // Add toggle button for sales view
-        let toggleButton = document.createElement("button");
-        toggleButton.innerText = "Toggle View";
-        toggleButton.addEventListener("click", toggleSalesView);
-        output.appendChild(toggleButton);
-
-        // Display initial stats
-        updateStats();
-
-        // Function to update the stats based on the current year
-        function updateStats() {
-            let statsContainer = document.getElementById("stats");
-            statsContainer.innerHTML = "";
-
-            Object.keys(categories).forEach((key) => {
-                let categoryStats = categories[key];
-                let totalSales = categoryStats.reduce((a, b) => a + b, 0);
-                let averageSales = totalSales / categoryStats.length;
-                let maxSales = Math.max(...categoryStats);
-                let minSales = Math.min(...categoryStats);
-
-                let statsElement = document.createElement("div");
-                statsElement.innerHTML = `
-                            <h3>${key} Stats</h3>
-                            <p>Total Sales: ${totalSales}</p>
-                            <p>Average Sales: ${averageSales.toFixed(2)}</p>
-                            <p>Max Sales: ${maxSales}</p>
-                            <p>Min Sales: ${minSales}</p>
-                        `;
-                statsContainer.appendChild(statsElement);
-            });
-        }
-    </script>
-</body>
-</html>*@
-
 
 
 <html>
@@ -417,13 +37,13 @@
     <h2 id="currentYearText">Sales per Month (2021)</h2>
     <div id="container">
         <canvas id="lineChart"></canvas>
-        <div id="categoryDropdown">
+        @*<div id="categoryDropdown">
             <select id="categorySelect">
                 <option value="">Select Category</option>
             </select>
 
 
-        </div>
+        </div>*@
     </div>
     <div id="stats"></div>
     <script>
@@ -431,10 +51,21 @@
         let lineChart;
         let currentYear = 2021; // Set the initial year
         let categories = {
-            'UncategorizableItems': [@Model.UncategorizableItems.Jan, @Model.UncategorizableItems.Feb, @Model.UncategorizableItems.Mar, @Model.UncategorizableItems.Apr, @Model.UncategorizableItems.May, @Model.UncategorizableItems.Jun, @Model.UncategorizableItems.Jul, @Model.UncategorizableItems.Aug, @Model.UncategorizableItems.Sep, @Model.UncategorizableItems.Oct, @Model.UncategorizableItems.Nov, @Model.UncategorizableItems.Dec],
+            
             'Electronics': [@Model.Electronics.Jan, @Model.Electronics.Feb, @Model.Electronics.Mar, @Model.Electronics.Apr, @Model.Electronics.May, @Model.Electronics.Jun, @Model.Electronics.Jul, @Model.Electronics.Aug, @Model.Electronics.Sep, @Model.Electronics.Oct, @Model.Electronics.Nov, @Model.Electronics.Dec],
+            'Furniture': [@Model.Furniture.Jan, @Model.Furniture.Feb, @Model.Furniture.Mar, @Model.Furniture.Apr, @Model.Furniture.May, @Model.Furniture.Jun, @Model.Furniture.Jul, @Model.Furniture.Aug, @Model.Furniture.Sep, @Model.Furniture.Oct, @Model.Furniture.Nov, @Model.Furniture.Dec],
+            'Gaming': [@Model.Gaming.Jan, @Model.Gaming.Feb, @Model.Gaming.Mar, @Model.Gaming.Apr, @Model.Gaming.May, @Model.Gaming.Jun, @Model.Gaming.Jul, @Model.Gaming.Aug, @Model.Gaming.Sep, @Model.Gaming.Oct, @Model.Gaming.Nov, @Model.Gaming.Dec],
+
             'Kitchen': [@Model.Kitchen.Jan, @Model.Kitchen.Feb, @Model.Kitchen.Mar, @Model.Kitchen.Apr, @Model.Kitchen.May, @Model.Kitchen.Jun, @Model.Kitchen.Jul, @Model.Kitchen.Aug, @Model.Kitchen.Sep, @Model.Kitchen.Oct, @Model.Kitchen.Nov, @Model.Kitchen.Dec],
-            'Sports': [@Model.Sports.Jan, @Model.Sports.Feb, @Model.Sports.Mar, @Model.Sports.Apr, @Model.Sports.May, @Model.Sports.Jun, @Model.Sports.Jul, @Model.Sports.Aug, @Model.Sports.Sep, @Model.Sports.Oct, @Model.Sports.Nov, @Model.Sports.Dec]
+
+            'Office Supplies': [@Model.Office_Supplies.Jan, @Model.Office_Supplies.Feb, @Model.Office_Supplies.Mar, @Model.Office_Supplies.Apr, @Model.Office_Supplies.May, @Model.Office_Supplies.Jun, @Model.Office_Supplies.Jul, @Model.Office_Supplies.Aug, @Model.Office_Supplies.Sep, @Model.Office_Supplies.Oct, @Model.Office_Supplies.Nov, @Model.Office_Supplies.Dec],
+
+            'Sports & outdoors': [@Model.Sports_outdoors.Jan, @Model.Sports_outdoors.Feb, @Model.Sports_outdoors.Mar, @Model.Sports_outdoors.Apr, @Model.Sports_outdoors.May, @Model.Sports_outdoors.Jun, @Model.Sports_outdoors.Jul, @Model.Sports_outdoors.Aug, @Model.Sports_outdoors.Sep, @Model.Sports_outdoors.Oct, @Model.Sports_outdoors.Nov, @Model.Sports_outdoors.Dec],
+
+            'Clothing': [@Model.Clothing.Jan, @Model.Clothing.Feb, @Model.Clothing.Mar, @Model.Clothing.Apr, @Model.Clothing.May, @Model.Clothing.Jun, @Model.Clothing.Jul, @Model.Clothing.Aug, @Model.Clothing.Sep, @Model.Clothing.Oct, @Model.Clothing.Nov, @Model.Clothing.Dec],
+
+            'Toys & Games': [@Model.Toys_Games.Jan, @Model.Toys_Games.Feb, @Model.Toys_Games.Mar, @Model.Toys_Games.Apr, @Model.Toys_Games.May, @Model.Toys_Games.Jun, @Model.Toys_Games.Jul, @Model.Toys_Games.Aug, @Model.Toys_Games.Sep, @Model.Toys_Games.Oct, @Model.Toys_Games.Nov, @Model.Toys_Games.Dec],
+
         };
 
         // Load categories from localStorage if available
@@ -563,3 +194,5 @@
     </script>
 </body>
 </html>
+
+

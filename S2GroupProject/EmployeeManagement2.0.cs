@@ -68,6 +68,7 @@ namespace S2GroupProject
         }
         public void LoadEmployeesIntoEmpOverview()
         {
+            empLayoutPanel.Controls.Clear();
             employees = _employeeContainer.LoadEmployees();
             foreach (var emp in employees)
             {
@@ -75,13 +76,20 @@ namespace S2GroupProject
                 {
                     continue;
                 }
-                if (!emp.IsAccountActive)
+                if (showAllEmployeesCb.Checked == true)
                 {
-                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
-                    notActiveEmp.BackColor = Color.OrangeRed;
-                    empLayoutPanel.Controls.Add(notActiveEmp);
+                    if (!emp.IsAccountActive)
+                    {
+                        EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                        notActiveEmp.BackColor = Color.OrangeRed;
+                        empLayoutPanel.Controls.Add(notActiveEmp);
+                    }
+                    else
+                    {
+                        empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
+                    }
                 }
-                else
+                else if (emp.IsAccountActive == true)
                 {
                     empLayoutPanel.Controls.Add(new EmployeePorfileUC(emp, _employeeContainer));
                 }
@@ -377,15 +385,16 @@ namespace S2GroupProject
             {
                 foreach (Employee employee in fullTimeEmployees)
                 {
-                    ShiftPreference preference = employee.ShiftPreferences.FirstOrDefault(s => s.Month == month);
+                    ShiftTypes shiftPreference;
+                    bool preferenceFound = employee.Preferences.TryGetValue(currentDate.DayOfWeek, out shiftPreference);
                     bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
-                    //false if emp has scheduled a sick leave xd
+                    // false if emp has scheduled a sick leave
                     bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
                                      !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate && sickLeave.IsScheduled);
 
-                    if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
+                    if (preferenceFound && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
                     {
-                        Shift newShift = new Shift(currentDate, preference.Preference, false);
+                        Shift newShift = new Shift(currentDate, shiftPreference, false);
                         employee.ShiftsDates.Add(newShift);
                         _employeeContainer.AddEmpShift(employee);
                     }
@@ -594,9 +603,10 @@ namespace S2GroupProject
                 }
                 if (emp.IsAccountActive == false)
                 {
-                    EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
-                    notActiveEmp.BackColor = Color.OrangeRed;
-                    deleteEmpLayoutPanel.Controls.Add(notActiveEmp);
+                    //EmployeePorfileUC notActiveEmp = new EmployeePorfileUC(emp, _employeeContainer);
+                    //notActiveEmp.BackColor = Color.OrangeRed;
+                    //deleteEmpLayoutPanel.Controls.Add(notActiveEmp);
+                    continue;
                 }
                 else
                 {
@@ -650,6 +660,11 @@ namespace S2GroupProject
             QuotaSettingsForm quotaSettingsForm = new QuotaSettingsForm(_employeeContainer);
 
             quotaSettingsForm.ShowDialog();
+        }
+
+        private void showAllEmployeesCb_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadEmployeesIntoEmpOverview();
         }
     }
 }
