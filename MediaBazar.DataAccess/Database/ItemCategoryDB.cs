@@ -15,25 +15,24 @@ namespace MediaBazar.DataAccess.Database
         private const string connectionString = "Server=mssqlstud.fhict.local;Database=dbi493730_s2project;User Id=dbi493730_s2project;Password=123456;MultipleActiveResultSets=true;";
 
 
-        public void AddCategory(string categoryName)
-        {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            string insertItem = $"insert into ItemCategories " +
-                                $"values (@categoryName) ";
+		public void AddCategory(string categoryName)
+		{
+			using (SqlConnection conn = new SqlConnection(connectionString))
+			{
+				conn.Open();
 
-            SqlCommand cmd = new SqlCommand(insertItem, conn);
+				string insertItem = "INSERT INTO ItemCategories (CategoryName) VALUES (@categoryName)";
 
-            cmd.Parameters.AddWithValue("@categoryName", categoryName);
-           
+				SqlCommand cmd = new SqlCommand(insertItem, conn);
+				cmd.Parameters.AddWithValue("@categoryName", categoryName);
 
-            cmd.ExecuteNonQuery();
+				int categoryId = Convert.ToInt32(cmd.ExecuteScalar());
+				// Use the categoryId if needed
+			}
+		}
 
 
-            conn.Close();
-        }
-
-        public void DeleteCategory(string categoryName)
+		public void DeleteCategory(string categoryName)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
