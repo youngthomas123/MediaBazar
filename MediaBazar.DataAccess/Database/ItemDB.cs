@@ -115,6 +115,40 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
+        public Item GetItemByName(string name)
+        {
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+				string sql = "SELECT * FROM Items WHERE Name = @Name";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Name", name);
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+					if (reader.Read())
+					{
+                        Guid itemId = (Guid)reader[0];
+						string description = (string)reader[2];
+						int category = (int)reader[3];
+						int wrehouseQuantity = (int)reader[4];
+						int shopQuantity = (int)reader[5];
+						decimal price = (decimal)reader[6];
+
+
+						Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category, price);
+
+						return foundItem;
+					}
+					else
+					{
+						throw new Exception("Item not found");
+					}
+				}
+
+			}
+        }
+
+
         public void UpdateItemQuantity(Item item, int quantity)
         {
             if(quantity != 0 && item != null)
@@ -133,6 +167,21 @@ namespace MediaBazar.DataAccess.Database
 
                 conn.Close();
             }
+        }
+
+        public void UpdateItemShopQuantity(Item item, int quantity)
+        {
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE Items " +
+					"SET ShopQuantity = @ShopQuantity " +
+					"WHERE Item_ID = @Item_ID";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ShopQuantity", quantity);
+                cmd.Parameters.AddWithValue("@Item_ID", item.Id);
+                cmd.ExecuteNonQuery();
+			}
         }
 
         public void UpdateItemName(Item item, string name)
@@ -232,7 +281,7 @@ namespace MediaBazar.DataAccess.Database
             return categories;
         }
 
-		public List<Item> SearchPostsByKeyword(string keyword)
+		public List<Item> SearchItemsByKeyword(string keyword)
 		{
 			List<Item> items = new List<Item>();
 
