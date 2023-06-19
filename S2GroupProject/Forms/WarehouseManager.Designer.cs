@@ -38,20 +38,6 @@
 			panel2 = new Panel();
 			label1 = new Label();
 			tabControl1 = new TabControl();
-			WarehouseOverview = new TabPage();
-			label18 = new Label();
-			groupBox6 = new GroupBox();
-			ShowWarehouseEmployeesBTN = new Button();
-			label11 = new Label();
-			ViewItemsBTN = new Button();
-			WarehouseItemRestocking = new ListBox();
-			ShopRequests = new ListBox();
-			RefreshDataBTN = new Button();
-			groupBox2 = new GroupBox();
-			button2 = new Button();
-			Restock = new Button();
-			Add = new Button();
-			warehouseListbox = new ListBox();
 			ItemOverview = new TabPage();
 			ResetDataGrid = new Button();
 			label2 = new Label();
@@ -71,6 +57,20 @@
 			label10 = new Label();
 			textBox7 = new TextBox();
 			textBox8 = new TextBox();
+			WarehouseOverview = new TabPage();
+			label18 = new Label();
+			groupBox6 = new GroupBox();
+			ShowWarehouseEmployeesBTN = new Button();
+			label11 = new Label();
+			ViewItemsBTN = new Button();
+			WarehouseItemRestocking = new ListBox();
+			ShopRequests = new ListBox();
+			RefreshDataBTN = new Button();
+			groupBox2 = new GroupBox();
+			button2 = new Button();
+			Restock = new Button();
+			Add = new Button();
+			warehouseListbox = new ListBox();
 			CreateItems = new TabPage();
 			priceTB = new TextBox();
 			label8 = new Label();
@@ -103,14 +103,14 @@
 			panel1.SuspendLayout();
 			panel2.SuspendLayout();
 			tabControl1.SuspendLayout();
-			WarehouseOverview.SuspendLayout();
-			groupBox6.SuspendLayout();
-			groupBox2.SuspendLayout();
 			ItemOverview.SuspendLayout();
 			panel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)ItemDataGrid).BeginInit();
 			groupBox3.SuspendLayout();
 			groupBox1.SuspendLayout();
+			WarehouseOverview.SuspendLayout();
+			groupBox6.SuspendLayout();
+			groupBox2.SuspendLayout();
 			CreateItems.SuspendLayout();
 			DeleteItems.SuspendLayout();
 			panel4.SuspendLayout();
@@ -238,161 +238,6 @@
 			tabControl1.SelectedIndex = 0;
 			tabControl1.Size = new Size(1167, 945);
 			tabControl1.TabIndex = 2;
-			// 
-			// WarehouseOverview
-			// 
-			WarehouseOverview.Controls.Add(label18);
-			WarehouseOverview.Controls.Add(groupBox6);
-			WarehouseOverview.Controls.Add(WarehouseItemRestocking);
-			WarehouseOverview.Controls.Add(ShopRequests);
-			WarehouseOverview.Controls.Add(RefreshDataBTN);
-			WarehouseOverview.Controls.Add(groupBox2);
-			WarehouseOverview.Controls.Add(Add);
-			WarehouseOverview.Controls.Add(warehouseListbox);
-			WarehouseOverview.Location = new Point(4, 34);
-			WarehouseOverview.Name = "WarehouseOverview";
-			WarehouseOverview.Size = new Size(1159, 907);
-			WarehouseOverview.TabIndex = 4;
-			WarehouseOverview.Text = "WarehouseOverview";
-			WarehouseOverview.UseVisualStyleBackColor = true;
-			// 
-			// label18
-			// 
-			label18.AutoSize = true;
-			label18.Location = new Point(539, 592);
-			label18.Margin = new Padding(4, 0, 4, 0);
-			label18.Name = "label18";
-			label18.Size = new Size(223, 25);
-			label18.TabIndex = 20;
-			label18.Text = "Items that need restocking";
-			// 
-			// groupBox6
-			// 
-			groupBox6.Controls.Add(ShowWarehouseEmployeesBTN);
-			groupBox6.Controls.Add(label11);
-			groupBox6.Controls.Add(ViewItemsBTN);
-			groupBox6.Location = new Point(4, 5);
-			groupBox6.Margin = new Padding(4, 5, 4, 5);
-			groupBox6.Name = "groupBox6";
-			groupBox6.Padding = new Padding(4, 5, 4, 5);
-			groupBox6.Size = new Size(421, 233);
-			groupBox6.TabIndex = 19;
-			groupBox6.TabStop = false;
-			groupBox6.Text = "Show the items and employees of a warehouse";
-			// 
-			// ShowWarehouseEmployeesBTN
-			// 
-			ShowWarehouseEmployeesBTN.Location = new Point(9, 120);
-			ShowWarehouseEmployeesBTN.Margin = new Padding(4, 5, 4, 5);
-			ShowWarehouseEmployeesBTN.Name = "ShowWarehouseEmployeesBTN";
-			ShowWarehouseEmployeesBTN.Size = new Size(393, 48);
-			ShowWarehouseEmployeesBTN.TabIndex = 10;
-			ShowWarehouseEmployeesBTN.Text = "Show Warehouse Employees";
-			ShowWarehouseEmployeesBTN.UseVisualStyleBackColor = true;
-			ShowWarehouseEmployeesBTN.Click += ShowWarehouseEmployeesBTN_Click;
-			// 
-			// label11
-			// 
-			label11.AutoSize = true;
-			label11.Location = new Point(39, 32);
-			label11.Name = "label11";
-			label11.Size = new Size(357, 25);
-			label11.TabIndex = 7;
-			label11.Text = "Select a warehouse first then press a button";
-			// 
-			// ViewItemsBTN
-			// 
-			ViewItemsBTN.Location = new Point(9, 63);
-			ViewItemsBTN.Name = "ViewItemsBTN";
-			ViewItemsBTN.Size = new Size(393, 43);
-			ViewItemsBTN.TabIndex = 8;
-			ViewItemsBTN.Text = "View Items";
-			ViewItemsBTN.UseVisualStyleBackColor = true;
-			ViewItemsBTN.Click += ViewDataBTN_Click;
-			// 
-			// WarehouseItemRestocking
-			// 
-			WarehouseItemRestocking.FormattingEnabled = true;
-			WarehouseItemRestocking.HorizontalScrollbar = true;
-			WarehouseItemRestocking.ItemHeight = 25;
-			WarehouseItemRestocking.Location = new Point(537, 620);
-			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
-			WarehouseItemRestocking.ScrollAlwaysVisible = true;
-			WarehouseItemRestocking.Size = new Size(611, 279);
-			WarehouseItemRestocking.TabIndex = 11;
-			// 
-			// ShopRequests
-			// 
-			ShopRequests.FormattingEnabled = true;
-			ShopRequests.ItemHeight = 25;
-			ShopRequests.Location = new Point(537, 407);
-			ShopRequests.Name = "ShopRequests";
-			ShopRequests.ScrollAlwaysVisible = true;
-			ShopRequests.Size = new Size(611, 179);
-			ShopRequests.TabIndex = 10;
-			// 
-			// RefreshDataBTN
-			// 
-			RefreshDataBTN.Location = new Point(539, 365);
-			RefreshDataBTN.Name = "RefreshDataBTN";
-			RefreshDataBTN.Size = new Size(123, 33);
-			RefreshDataBTN.TabIndex = 6;
-			RefreshDataBTN.Text = "Refresh Data";
-			RefreshDataBTN.UseVisualStyleBackColor = true;
-			RefreshDataBTN.Click += RefreshDataBTN_Click;
-			// 
-			// groupBox2
-			// 
-			groupBox2.Controls.Add(button2);
-			groupBox2.Controls.Add(Restock);
-			groupBox2.Location = new Point(13, 676);
-			groupBox2.Name = "groupBox2";
-			groupBox2.Size = new Size(421, 223);
-			groupBox2.TabIndex = 9;
-			groupBox2.TabStop = false;
-			groupBox2.Text = "Manage and restock";
-			// 
-			// button2
-			// 
-			button2.Location = new Point(17, 33);
-			button2.Name = "button2";
-			button2.Size = new Size(230, 53);
-			button2.TabIndex = 1;
-			button2.Text = "Send requested items";
-			button2.UseVisualStyleBackColor = true;
-			button2.Click += button2_Click;
-			// 
-			// Restock
-			// 
-			Restock.Location = new Point(17, 93);
-			Restock.Name = "Restock";
-			Restock.Size = new Size(230, 55);
-			Restock.TabIndex = 0;
-			Restock.Text = "Restock Item";
-			Restock.UseVisualStyleBackColor = true;
-			Restock.Click += Restock_Click;
-			// 
-			// Add
-			// 
-			Add.Location = new Point(1119, 362);
-			Add.Name = "Add";
-			Add.Size = new Size(31, 33);
-			Add.TabIndex = 3;
-			Add.Text = "+";
-			Add.UseVisualStyleBackColor = true;
-			Add.Click += Add_Click;
-			// 
-			// warehouseListbox
-			// 
-			warehouseListbox.FormattingEnabled = true;
-			warehouseListbox.HorizontalScrollbar = true;
-			warehouseListbox.ItemHeight = 25;
-			warehouseListbox.Location = new Point(539, 2);
-			warehouseListbox.Name = "warehouseListbox";
-			warehouseListbox.ScrollAlwaysVisible = true;
-			warehouseListbox.Size = new Size(611, 354);
-			warehouseListbox.TabIndex = 2;
-			warehouseListbox.SelectedIndexChanged += warehouseListbox_SelectedIndexChanged;
 			// 
 			// ItemOverview
 			// 
@@ -581,6 +426,161 @@
 			textBox8.Name = "textBox8";
 			textBox8.Size = new Size(283, 31);
 			textBox8.TabIndex = 6;
+			// 
+			// WarehouseOverview
+			// 
+			WarehouseOverview.Controls.Add(label18);
+			WarehouseOverview.Controls.Add(groupBox6);
+			WarehouseOverview.Controls.Add(WarehouseItemRestocking);
+			WarehouseOverview.Controls.Add(ShopRequests);
+			WarehouseOverview.Controls.Add(RefreshDataBTN);
+			WarehouseOverview.Controls.Add(groupBox2);
+			WarehouseOverview.Controls.Add(Add);
+			WarehouseOverview.Controls.Add(warehouseListbox);
+			WarehouseOverview.Location = new Point(4, 34);
+			WarehouseOverview.Name = "WarehouseOverview";
+			WarehouseOverview.Size = new Size(1159, 907);
+			WarehouseOverview.TabIndex = 4;
+			WarehouseOverview.Text = "WarehouseOverview";
+			WarehouseOverview.UseVisualStyleBackColor = true;
+			// 
+			// label18
+			// 
+			label18.AutoSize = true;
+			label18.Location = new Point(539, 592);
+			label18.Margin = new Padding(4, 0, 4, 0);
+			label18.Name = "label18";
+			label18.Size = new Size(223, 25);
+			label18.TabIndex = 20;
+			label18.Text = "Items that need restocking";
+			// 
+			// groupBox6
+			// 
+			groupBox6.Controls.Add(ShowWarehouseEmployeesBTN);
+			groupBox6.Controls.Add(label11);
+			groupBox6.Controls.Add(ViewItemsBTN);
+			groupBox6.Location = new Point(4, 5);
+			groupBox6.Margin = new Padding(4, 5, 4, 5);
+			groupBox6.Name = "groupBox6";
+			groupBox6.Padding = new Padding(4, 5, 4, 5);
+			groupBox6.Size = new Size(421, 233);
+			groupBox6.TabIndex = 19;
+			groupBox6.TabStop = false;
+			groupBox6.Text = "Show the items and employees of a warehouse";
+			// 
+			// ShowWarehouseEmployeesBTN
+			// 
+			ShowWarehouseEmployeesBTN.Location = new Point(9, 120);
+			ShowWarehouseEmployeesBTN.Margin = new Padding(4, 5, 4, 5);
+			ShowWarehouseEmployeesBTN.Name = "ShowWarehouseEmployeesBTN";
+			ShowWarehouseEmployeesBTN.Size = new Size(393, 48);
+			ShowWarehouseEmployeesBTN.TabIndex = 10;
+			ShowWarehouseEmployeesBTN.Text = "Show Warehouse Employees";
+			ShowWarehouseEmployeesBTN.UseVisualStyleBackColor = true;
+			ShowWarehouseEmployeesBTN.Click += ShowWarehouseEmployeesBTN_Click;
+			// 
+			// label11
+			// 
+			label11.AutoSize = true;
+			label11.Location = new Point(39, 32);
+			label11.Name = "label11";
+			label11.Size = new Size(357, 25);
+			label11.TabIndex = 7;
+			label11.Text = "Select a warehouse first then press a button";
+			// 
+			// ViewItemsBTN
+			// 
+			ViewItemsBTN.Location = new Point(9, 63);
+			ViewItemsBTN.Name = "ViewItemsBTN";
+			ViewItemsBTN.Size = new Size(393, 43);
+			ViewItemsBTN.TabIndex = 8;
+			ViewItemsBTN.Text = "View Items";
+			ViewItemsBTN.UseVisualStyleBackColor = true;
+			ViewItemsBTN.Click += ViewDataBTN_Click;
+			// 
+			// WarehouseItemRestocking
+			// 
+			WarehouseItemRestocking.FormattingEnabled = true;
+			WarehouseItemRestocking.HorizontalScrollbar = true;
+			WarehouseItemRestocking.ItemHeight = 25;
+			WarehouseItemRestocking.Location = new Point(537, 620);
+			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
+			WarehouseItemRestocking.ScrollAlwaysVisible = true;
+			WarehouseItemRestocking.Size = new Size(611, 279);
+			WarehouseItemRestocking.TabIndex = 11;
+			// 
+			// ShopRequests
+			// 
+			ShopRequests.FormattingEnabled = true;
+			ShopRequests.ItemHeight = 25;
+			ShopRequests.Location = new Point(537, 407);
+			ShopRequests.Name = "ShopRequests";
+			ShopRequests.ScrollAlwaysVisible = true;
+			ShopRequests.Size = new Size(611, 179);
+			ShopRequests.TabIndex = 10;
+			// 
+			// RefreshDataBTN
+			// 
+			RefreshDataBTN.Location = new Point(539, 365);
+			RefreshDataBTN.Name = "RefreshDataBTN";
+			RefreshDataBTN.Size = new Size(123, 33);
+			RefreshDataBTN.TabIndex = 6;
+			RefreshDataBTN.Text = "Refresh Data";
+			RefreshDataBTN.UseVisualStyleBackColor = true;
+			RefreshDataBTN.Click += RefreshDataBTN_Click;
+			// 
+			// groupBox2
+			// 
+			groupBox2.Controls.Add(button2);
+			groupBox2.Controls.Add(Restock);
+			groupBox2.Location = new Point(13, 676);
+			groupBox2.Name = "groupBox2";
+			groupBox2.Size = new Size(421, 223);
+			groupBox2.TabIndex = 9;
+			groupBox2.TabStop = false;
+			groupBox2.Text = "Manage and restock";
+			// 
+			// button2
+			// 
+			button2.Location = new Point(17, 33);
+			button2.Name = "button2";
+			button2.Size = new Size(230, 53);
+			button2.TabIndex = 1;
+			button2.Text = "Send requested items";
+			button2.UseVisualStyleBackColor = true;
+			button2.Click += button2_Click;
+			// 
+			// Restock
+			// 
+			Restock.Location = new Point(17, 93);
+			Restock.Name = "Restock";
+			Restock.Size = new Size(230, 55);
+			Restock.TabIndex = 0;
+			Restock.Text = "Restock Item";
+			Restock.UseVisualStyleBackColor = true;
+			Restock.Click += Restock_Click;
+			// 
+			// Add
+			// 
+			Add.Location = new Point(1119, 362);
+			Add.Name = "Add";
+			Add.Size = new Size(31, 33);
+			Add.TabIndex = 3;
+			Add.Text = "+";
+			Add.UseVisualStyleBackColor = true;
+			Add.Click += Add_Click;
+			// 
+			// warehouseListbox
+			// 
+			warehouseListbox.FormattingEnabled = true;
+			warehouseListbox.HorizontalScrollbar = true;
+			warehouseListbox.ItemHeight = 25;
+			warehouseListbox.Location = new Point(539, 2);
+			warehouseListbox.Name = "warehouseListbox";
+			warehouseListbox.ScrollAlwaysVisible = true;
+			warehouseListbox.Size = new Size(611, 354);
+			warehouseListbox.TabIndex = 2;
+			warehouseListbox.SelectedIndexChanged += warehouseListbox_SelectedIndexChanged;
 			// 
 			// CreateItems
 			// 
@@ -876,11 +876,6 @@
 			panel1.ResumeLayout(false);
 			panel2.ResumeLayout(false);
 			tabControl1.ResumeLayout(false);
-			WarehouseOverview.ResumeLayout(false);
-			WarehouseOverview.PerformLayout();
-			groupBox6.ResumeLayout(false);
-			groupBox6.PerformLayout();
-			groupBox2.ResumeLayout(false);
 			ItemOverview.ResumeLayout(false);
 			ItemOverview.PerformLayout();
 			panel3.ResumeLayout(false);
@@ -889,6 +884,11 @@
 			groupBox3.PerformLayout();
 			groupBox1.ResumeLayout(false);
 			groupBox1.PerformLayout();
+			WarehouseOverview.ResumeLayout(false);
+			WarehouseOverview.PerformLayout();
+			groupBox6.ResumeLayout(false);
+			groupBox6.PerformLayout();
+			groupBox2.ResumeLayout(false);
 			CreateItems.ResumeLayout(false);
 			CreateItems.PerformLayout();
 			DeleteItems.ResumeLayout(false);

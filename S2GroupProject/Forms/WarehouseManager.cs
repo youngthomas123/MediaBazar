@@ -19,6 +19,7 @@ namespace S2GroupProject.Forms
 		private readonly IEmployeeContainer _employeeContainer;
 		private readonly IItemContainer _itemContainer;
 		private readonly IWarehouseContainer _warehouseContainer;
+		private readonly IItemCategoryDataAccess _itemCategoryDataAccess;
 
 		List<Item> items = new List<Item>();
 		List<Employee> employees = new List<Employee>();
@@ -26,7 +27,7 @@ namespace S2GroupProject.Forms
 		List<string> categories = new List<string>();
 
 
-		public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
+		public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer, IItemCategoryDataAccess itemCategoryDataAccess)
 		{
 			_serviceProvider = serviceProvider;
 			_employeeContainer = employeeContainer;
@@ -41,6 +42,7 @@ namespace S2GroupProject.Forms
 			tabControl1.Appearance = TabAppearance.FlatButtons;
 			tabControl1.ItemSize = new Size(0, 1);
 			tabControl1.SizeMode = TabSizeMode.Fixed;
+			_itemCategoryDataAccess = itemCategoryDataAccess;
 		}
 
 		public void LoadData()
@@ -703,5 +705,6 @@ namespace S2GroupProject.Forms
 				}
 			}
 		}
+
 	}
 }

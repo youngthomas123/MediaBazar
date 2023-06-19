@@ -31,6 +31,7 @@ namespace S2GroupProject
             services.AddTransient<IItemContainer, ItemContainer>();
             services.AddTransient<IWarehouseDataAccess, WarehouseDB>();
             services.AddTransient<IWarehouseContainer, WarehouseContainer>();
+            services.AddTransient<IItemCategoryDataAccess, ItemCategoryDB>();
 
             //regestring services for forms
             services.AddTransient<MainPage>();
