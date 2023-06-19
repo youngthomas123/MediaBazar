@@ -151,7 +151,7 @@
 			// WarehouseEmployeeRBT
 			// 
 			WarehouseEmployeeRBT.Appearance = Appearance.Button;
-			WarehouseEmployeeRBT.Location = new Point(-1, 393);
+			WarehouseEmployeeRBT.Location = new Point(0, 393);
 			WarehouseEmployeeRBT.Name = "WarehouseEmployeeRBT";
 			WarehouseEmployeeRBT.Size = new Size(451, 78);
 			WarehouseEmployeeRBT.TabIndex = 5;
@@ -162,7 +162,7 @@
 			// radioButton1
 			// 
 			radioButton1.Appearance = Appearance.Button;
-			radioButton1.Location = new Point(-1, 98);
+			radioButton1.Location = new Point(0, 169);
 			radioButton1.Name = "radioButton1";
 			radioButton1.Size = new Size(451, 78);
 			radioButton1.TabIndex = 4;
@@ -173,7 +173,7 @@
 			// DeleteItemsRBT
 			// 
 			DeleteItemsRBT.Appearance = Appearance.Button;
-			DeleteItemsRBT.Location = new Point(-1, 243);
+			DeleteItemsRBT.Location = new Point(0, 243);
 			DeleteItemsRBT.Name = "DeleteItemsRBT";
 			DeleteItemsRBT.Size = new Size(451, 78);
 			DeleteItemsRBT.TabIndex = 2;
@@ -195,9 +195,9 @@
 			// ItemOverviewRBT
 			// 
 			ItemOverviewRBT.Appearance = Appearance.Button;
-			ItemOverviewRBT.Location = new Point(0, 172);
+			ItemOverviewRBT.Location = new Point(1, 98);
 			ItemOverviewRBT.Name = "ItemOverviewRBT";
-			ItemOverviewRBT.Size = new Size(451, 78);
+			ItemOverviewRBT.Size = new Size(450, 78);
 			ItemOverviewRBT.TabIndex = 0;
 			ItemOverviewRBT.Text = "Items Overview";
 			ItemOverviewRBT.UseVisualStyleBackColor = true;
@@ -228,8 +228,8 @@
 			// 
 			// tabControl1
 			// 
-			tabControl1.Controls.Add(WarehouseOverview);
 			tabControl1.Controls.Add(ItemOverview);
+			tabControl1.Controls.Add(WarehouseOverview);
 			tabControl1.Controls.Add(CreateItems);
 			tabControl1.Controls.Add(DeleteItems);
 			tabControl1.Controls.Add(WarehouseEmployees);
@@ -313,6 +313,7 @@
 			// WarehouseItemRestocking
 			// 
 			WarehouseItemRestocking.FormattingEnabled = true;
+			WarehouseItemRestocking.HorizontalScrollbar = true;
 			WarehouseItemRestocking.ItemHeight = 25;
 			WarehouseItemRestocking.Location = new Point(537, 620);
 			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
