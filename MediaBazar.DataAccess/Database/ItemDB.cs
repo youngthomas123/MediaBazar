@@ -20,7 +20,7 @@ namespace MediaBazar.DataAccess.Database
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category], [WarehouseQuantity], [ShopQuantity]) values(@Item_ID, @Name, @Description, @Category, @WarehouseQuantity, @ShopQuantity); ";
+            string insertItem = "insert into Items([Item_ID], [Name], [Description], [Category], [WarehouseQuantity], [ShopQuantity], [Price]) values(@Item_ID, @Name, @Description, @Category, @WarehouseQuantity, @ShopQuantity, @Price); ";
 
             SqlCommand cmd = new SqlCommand(insertItem, conn);
 
@@ -30,6 +30,7 @@ namespace MediaBazar.DataAccess.Database
 			cmd.Parameters.Add("@Category", SqlDbType.Int);
             cmd.Parameters.Add("@WarehouseQuantity", SqlDbType.Int);
             cmd.Parameters.Add("@ShopQuantity", SqlDbType.Int);
+            cmd.Parameters.Add("@Price", SqlDbType.Decimal);
 
 
             cmd.Parameters["@Item_ID"].Value = item.Id;
@@ -38,6 +39,7 @@ namespace MediaBazar.DataAccess.Database
 			cmd.Parameters["@Category"].Value = item.Category;
             cmd.Parameters["@WarehouseQuantity"].Value = item.WarehouseQuantity;
             cmd.Parameters["@ShopQuantity"].Value = item.ShopQuantity;
+            cmd.Parameters["@Price"].Value = item.Price;
 
 			cmd.ExecuteNonQuery();
 
@@ -73,7 +75,7 @@ namespace MediaBazar.DataAccess.Database
 
             while (dr.Read())
             {
-                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (int)dr[3]);
+                Item item = new Item((Guid)dr[0], (string)dr[1], (string)dr[2], (int)dr[4], (int)dr[5], (int)dr[3], (decimal)dr[6]);
                 LoadedItems.Add(item);
             }
             dr.Close();
@@ -99,9 +101,10 @@ namespace MediaBazar.DataAccess.Database
                     int category = (int)reader[3];
                     int wrehouseQuantity = (int)reader[4];
                     int shopQuantity = (int)reader[5];
+                    decimal price = (decimal)reader[6];
 
 
-                    Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category);
+                    Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category, price);
 
                     return foundItem;
                 }
@@ -111,6 +114,40 @@ namespace MediaBazar.DataAccess.Database
                 }
             }
         }
+
+        public Item GetItemByName(string name)
+        {
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+				string sql = "SELECT * FROM Items WHERE Name = @Name";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Name", name);
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+					if (reader.Read())
+					{
+                        Guid itemId = (Guid)reader[0];
+						string description = (string)reader[2];
+						int category = (int)reader[3];
+						int wrehouseQuantity = (int)reader[4];
+						int shopQuantity = (int)reader[5];
+						decimal price = (decimal)reader[6];
+
+
+						Item foundItem = new Item(itemId, name, description, wrehouseQuantity, shopQuantity, category, price);
+
+						return foundItem;
+					}
+					else
+					{
+						throw new Exception("Item not found");
+					}
+				}
+
+			}
+        }
+
 
         public void UpdateItemQuantity(Item item, int quantity)
         {
@@ -132,23 +169,65 @@ namespace MediaBazar.DataAccess.Database
             }
         }
 
-        public void UpdateItemNameAndDescription(Item item, string name, string description)
+        public void UpdateItemShopQuantity(Item item, int quantity)
         {
-            if (item != null && name != "" && description != "")
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE Items " +
+					"SET ShopQuantity = @ShopQuantity " +
+					"WHERE Item_ID = @Item_ID";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ShopQuantity", quantity);
+                cmd.Parameters.AddWithValue("@Item_ID", item.Id);
+                cmd.ExecuteNonQuery();
+			}
+        }
+
+        public void UpdateItemName(Item item, string name)
+        {
+            if (item != null && name != "")
             {
 				SqlConnection conn = new SqlConnection(connectionString);
 				conn.Open();
 				string sql = "UPDATE Items " +
-					"SET Name = @Name, Description = @Description " +
+					"SET Name = @Name " +
 					"WHERE Item_ID = @Item_ID";
 				SqlCommand cmd = new SqlCommand(sql, conn);
 				cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Description", description);
                 cmd.Parameters.AddWithValue("@Item_ID", item.Id);
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
+			}
+        }
+        public void UpdateItemDescription(Item item, string description)
+        {
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE Items " +
+					"SET Description = @Description " +
+					"WHERE Item_ID = @Item_ID";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue ("@Description", description);
+                cmd.ExecuteNonQuery();
+			}
+        }
+
+        public void UpdateItemPrice(Item item, decimal price)
+        {
+            using( SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+				string sql = "UPDATE Items " +
+					"SET Price = @Price " +
+					"WHERE Item_ID = @Item_ID";
+				SqlCommand cmd = new SqlCommand(sql, conn);
+				cmd.Parameters.AddWithValue("@Price", price);
+				cmd.ExecuteNonQuery();
 			}
         }
 
@@ -202,7 +281,7 @@ namespace MediaBazar.DataAccess.Database
             return categories;
         }
 
-		public List<Item> SearchPostsByKeyword(string keyword)
+		public List<Item> SearchItemsByKeyword(string keyword)
 		{
 			List<Item> items = new List<Item>();
 
@@ -223,8 +302,9 @@ namespace MediaBazar.DataAccess.Database
 						int category = (int)reader["Category"];
 						int warehouseQuantity = (int)reader["WarehouseQuantity"];
                         int shopQuantity = (int)reader["ShopQuantity"];
+                        decimal price = (decimal)reader["Price"];
 
-						Item item = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category);
+						Item item = new Item(itemId, name, description, warehouseQuantity, shopQuantity, category, price);
 						items.Add(item);
 					}
 				}

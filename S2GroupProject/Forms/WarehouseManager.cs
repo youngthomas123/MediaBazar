@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace S2GroupProject.Forms
@@ -23,6 +25,7 @@ namespace S2GroupProject.Forms
 		List<Warehouse> warehouses = new List<Warehouse>();
 		List<string> categories = new List<string>();
 
+
 		public WarehouseManager(IServiceProvider serviceProvider, IItemContainer itemContainer, IEmployeeContainer employeeContainer, IWarehouseContainer warehouseContainer)
 		{
 			_serviceProvider = serviceProvider;
@@ -31,6 +34,9 @@ namespace S2GroupProject.Forms
 			_warehouseContainer = warehouseContainer;
 			InitializeComponent();
 			LoadData();
+			LoadDataGrid();
+			LoadDataGrid2();
+			LoadEmployeeDataGrid();
 			WarehouseRestockData();
 			tabControl1.Appearance = TabAppearance.FlatButtons;
 			tabControl1.ItemSize = new Size(0, 1);
@@ -40,29 +46,18 @@ namespace S2GroupProject.Forms
 		public void LoadData()
 		{
 			warehouseListbox.Items.Clear();
-			employeeList.Items.Clear();
-			ItemListBox.Items.Clear();
-			listBox1.Items.Clear();
+
 			ShopRequests.Items.Clear();
 			warehouseComboBox.Items.Clear();
 			warehouseComboBox2.Items.Clear();
 			CategoriesBox.Items.Clear();
+			categoryBox2.Items.Clear();
 
 			warehouses = _warehouseContainer.LoadWarehouse();
 			items = _itemContainer.LoadItem();
 			employees = _employeeContainer.LoadEmployees();
 			categories = _itemContainer.GetCategories();
 
-
-			foreach (Item item in items)
-			{
-				ItemListBox.Items.Add(item);
-				listBox1.Items.Add(item);
-			}
-			foreach (Employee employee in employees)
-			{
-				employeeList.Items.Add(employee);
-			}
 			foreach (Warehouse warehouse in warehouses)
 			{
 				warehouseListbox.Items.Add(warehouse);
@@ -72,7 +67,155 @@ namespace S2GroupProject.Forms
 			foreach (string category in categories)
 			{
 				CategoriesBox.Items.Add(category);
+				categoryBox2.Items.Add(category);
 			}
+		}
+
+		public void LoadDataGrid()
+		{
+			ItemDataGrid.Rows.Clear();
+			ItemDataGrid.Columns.Clear();
+
+			SortableBindingList<Item> sortableItems = new SortableBindingList<Item>(items);
+
+			ItemDataGrid.AutoGenerateColumns = false;
+			DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+			nameColumn.HeaderText = "Name";
+			nameColumn.DataPropertyName = "Name";
+			ItemDataGrid.Columns.Add(nameColumn);
+
+			DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
+			priceColumn.HeaderText = "Price €";
+			priceColumn.DataPropertyName = "Price";
+			ItemDataGrid.Columns.Add(priceColumn);
+
+			DataGridViewTextBoxColumn warehouseQuantityCol = new DataGridViewTextBoxColumn();
+			warehouseQuantityCol.HeaderText = "Warehouse Quantity";
+			warehouseQuantityCol.DataPropertyName = "WarehouseQuantity";
+			ItemDataGrid.Columns.Add(warehouseQuantityCol);
+
+			DataGridViewTextBoxColumn shopQuantityCol = new DataGridViewTextBoxColumn();
+			shopQuantityCol.HeaderText = "Shop Quantity";
+			shopQuantityCol.DataPropertyName = "ShopQuantity";
+			ItemDataGrid.Columns.Add(shopQuantityCol);
+
+			DataGridViewTextBoxColumn idCol = new DataGridViewTextBoxColumn();
+			idCol.HeaderText = "ID";
+			idCol.DataPropertyName = "Id";
+			ItemDataGrid.Columns.Add(idCol);
+
+
+			ItemDataGrid.DataSource = sortableItems;
+
+			panel3.AutoScroll = true;
+
+			foreach (DataGridViewColumn column in ItemDataGrid.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				column.FillWeight = 100f / ItemDataGrid.Columns.Count;
+			}
+
+			// Deselect any selected rows
+			ItemDataGrid.ClearSelection();
+
+			ItemDataGrid.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;
+		}
+
+		public void LoadDataGrid2()
+		{
+			ItemDataGrid2.Rows.Clear();
+			ItemDataGrid2.Columns.Clear();
+
+			SortableBindingList<Item> sortableItems = new SortableBindingList<Item>(items);
+
+			ItemDataGrid2.AutoGenerateColumns = false;
+			DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+			nameColumn.HeaderText = "Name";
+			nameColumn.DataPropertyName = "Name";
+			ItemDataGrid2.Columns.Add(nameColumn);
+
+			DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
+			priceColumn.HeaderText = "Price €";
+			priceColumn.DataPropertyName = "Price";
+			ItemDataGrid2.Columns.Add(priceColumn);
+
+			DataGridViewTextBoxColumn warehouseQuantityCol = new DataGridViewTextBoxColumn();
+			warehouseQuantityCol.HeaderText = "Warehouse Quantity";
+			warehouseQuantityCol.DataPropertyName = "WarehouseQuantity";
+			ItemDataGrid2.Columns.Add(warehouseQuantityCol);
+
+			DataGridViewTextBoxColumn shopQuantityCol = new DataGridViewTextBoxColumn();
+			shopQuantityCol.HeaderText = "Shop Quantity";
+			shopQuantityCol.DataPropertyName = "ShopQuantity";
+			ItemDataGrid2.Columns.Add(shopQuantityCol);
+
+			DataGridViewTextBoxColumn idCol = new DataGridViewTextBoxColumn();
+			idCol.HeaderText = "ID";
+			idCol.DataPropertyName = "Id";
+			ItemDataGrid2.Columns.Add(idCol);
+
+
+			ItemDataGrid2.DataSource = sortableItems;
+
+			panel4.AutoScroll = true;
+
+			foreach (DataGridViewColumn column in ItemDataGrid2.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				column.FillWeight = 100f / ItemDataGrid2.Columns.Count;
+			}
+
+			// Deselect any selected rows
+			ItemDataGrid2.ClearSelection();
+
+			ItemDataGrid2.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;
+		}
+
+		public void LoadEmployeeDataGrid()
+		{
+			EmployeeDataGrid.Columns.Clear();
+			EmployeeDataGrid.Rows.Clear();
+
+			SortableBindingList<Employee> sortableEmployees = new SortableBindingList<Employee>(employees);
+
+			EmployeeDataGrid.AutoGenerateColumns = false;
+
+			DataGridViewTextBoxColumn bsnColumn = new DataGridViewTextBoxColumn();
+			bsnColumn.HeaderText = "BSN";
+			bsnColumn.DataPropertyName = "BSN";
+			EmployeeDataGrid.Columns.Add(bsnColumn);
+
+
+			DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn();
+			firstNameColumn.HeaderText = "First Name";
+			firstNameColumn.DataPropertyName = "FirstName";
+			EmployeeDataGrid.Columns.Add(firstNameColumn);
+
+			DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn();
+			lastNameColumn.HeaderText = "Last Name";
+			lastNameColumn.DataPropertyName = "LastName";
+			EmployeeDataGrid.Columns.Add(lastNameColumn);
+
+			DataGridViewTextBoxColumn jobPosition = new DataGridViewTextBoxColumn();
+			jobPosition.HeaderText = "Job Position";
+			jobPosition.DataPropertyName = "JobPosition";
+			EmployeeDataGrid.Columns.Add(jobPosition);
+
+
+			EmployeeDataGrid.DataSource = sortableEmployees;
+
+			panel5.AutoScroll = true;
+
+			foreach (DataGridViewColumn column in EmployeeDataGrid.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+				column.FillWeight = 100f / EmployeeDataGrid.Columns.Count;
+			}
+
+			// Deselect any selected rows
+			EmployeeDataGrid.ClearSelection();
+
+			EmployeeDataGrid.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;
 		}
 
 		public void WarehouseRestockData()
@@ -81,9 +224,14 @@ namespace S2GroupProject.Forms
 			items = _itemContainer.LoadItem();
 			foreach (Item item in items)
 			{
-				if (item.WarehouseQuantity <= 50)
+				if (item.WarehouseQuantity <= 3000)
 				{
 					WarehouseItemRestocking.Items.Add(item);
+				}
+				if (item.ShopQuantity <= 1000)
+				{
+					ShopRequest newShopRequest = new ShopRequest(item.Name, 5000);
+					ShopRequests.Items.Add(newShopRequest);
 				}
 			}
 		}
@@ -93,6 +241,9 @@ namespace S2GroupProject.Forms
 		public void RefreshData()
 		{
 			LoadData();
+			LoadDataGrid();
+			LoadDataGrid2();
+			LoadEmployeeDataGrid();
 		}
 
 
@@ -106,6 +257,7 @@ namespace S2GroupProject.Forms
 
 			if (ItemOverviewRBT.Checked == true)
 			{
+
 				ItemOverview.Show();
 				WarehouseOverview.Hide();
 				CreateItems.Hide();
@@ -159,78 +311,83 @@ namespace S2GroupProject.Forms
 			}
 		}
 
-		private void ShowAllItems_Click(object sender, EventArgs e)
-		{
-			ItemListBox.Items.Clear();
-			foreach (Item item in items)
-			{
-				ItemListBox.Items.Add(item);
-			}
-			int NumberOfItems = items.Count;
-			label7.Text = $"Number of items: {NumberOfItems}";
-		}
-
-		private void SearchItembyName_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				ItemListBox.Items.Clear();
-				string keyword = textBox1.Text;
-				var foundItems = _itemContainer.SearchPostsByKeyword(keyword);
-				foreach (var item in foundItems)
-				{
-					ItemListBox.Items.Add(item);
-				}
-			}
-			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
-
-		}
-
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (ItemListBox.SelectedItem != null)
+			if (ItemDataGrid.SelectedRows.Count > 0)
 			{
-				try
-				{
-					Item item = (Item)ItemListBox.SelectedItem;
-					string newName = textBox8.Text.Trim();
-					string newDescription = textBox7.Text.Trim();
+				DataGridViewRow selectedRow = ItemDataGrid.SelectedRows[0];
+				Item selectedItem = (Item)selectedRow.DataBoundItem;
 
-					// Validate the user input
-					if (textBox7.Text == "" || textBox8.Text == null)
-					{
-						MessageBox.Show("Please enter valid values for the updated properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-					else
-					{
-						// Update the item properties
-						_itemContainer.UpdateItemNameAndDescription(item, newName, newDescription);
-						RefreshData();
-					}
-				}
-				catch (FormatException)
+				string newName = textBox8.Text.Trim();
+				string newDescription = textBox7.Text.Trim();
+				decimal price;
+				if (textBox3.Text == "")
 				{
-					MessageBox.Show("Please enter valid integer value for the Quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					price = 0;
+				}
+				else
+				{
+					price = decimal.Parse(textBox3.Text.Trim());
+				}
+
+				if (selectedItem != null)
+				{
+					if (newName != "" && newDescription == "" && price == 0)
+					{
+						_itemContainer.UpdateItemName(selectedItem, newName);
+					}
+					if (price != 0 && newName == "" && newDescription == "")
+					{
+						_itemContainer.UpdateItemPrice(selectedItem, price);
+					}
+					if (newDescription != "" && newName == "" && price == 0)
+					{
+						_itemContainer.UpdateItemDescription(selectedItem, newDescription);
+					}
+					if (price != 0 && newDescription != "" && newName != "")
+					{
+						_itemContainer.UpdateItemDescription(selectedItem, newDescription);
+						_itemContainer.UpdateItemName(selectedItem, newName);
+						_itemContainer.UpdateItemPrice(selectedItem, price);
+					}
 				}
 			}
 			else
 			{
 				MessageBox.Show("Please select an item to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+
 		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			//string name = textBox2.Text;
-			//string description = textBox3.Text;
-			//int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
-			//int shopQuantity = Convert.ToInt32(textBox9.Text);
-			//int category = textBox4.Text;
+			// Check if a category is selected
+			if (categoryBox2.SelectedIndex != -1)
+			{
+				// Retrieve the selected category index or value
+				int categorySelected = categoryBox2.SelectedIndex;
+				categorySelected++;
+				// Alternatively, you can retrieve the selected category value using CategoriesBox.SelectedItem
 
-			//Item item = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopQuantity, category);
-			//_itemContainer.AddItem(item);
-			//RefreshData();
+				// Retrieve other item details from the input controls
+				string name = textBox2.Text;
+				string description = descriptionTB.Text;
+				int warehouseQuantity = Convert.ToInt32(quantityTB.Text);
+				int shopquantity = Convert.ToInt32(textBox9.Text);
+				decimal price = Convert.ToDecimal(priceTB.Text);
 
+				// Create the new item using the selected category and other details
+				Item newItem = new Item(Guid.NewGuid(), name, description, warehouseQuantity, shopquantity, categorySelected, price);
+				_itemContainer.AddItem(newItem);
+
+				ItemDataGrid.Update();
+				ItemDataGrid.Refresh();
+			}
+			else
+			{
+				// Category is not selected, display an error message or handle the scenario accordingly
+				MessageBox.Show("Please select a category.");
+			}
 		}
 
 		private void Add_Click(object sender, EventArgs e)
@@ -252,62 +409,68 @@ namespace S2GroupProject.Forms
 
 		private void AssignItemBTN_Click(object sender, EventArgs e)
 		{
-			Item selectedItem = (Item)ItemListBox.SelectedItem;
+			DataGridViewRow selectedRow = ItemDataGrid.CurrentRow;
 			Warehouse selectedWarehouse = (Warehouse)warehouseComboBox.SelectedItem;
-			if (selectedItem != null && selectedWarehouse != null)
-			{
-				_warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
 
+			if (selectedRow != null && selectedWarehouse != null)
+			{
+				Item selectedItem = (Item)selectedRow.DataBoundItem;
+				_warehouseContainer.AssignItemToWarehouse(selectedItem.Id, selectedWarehouse.Id);
 			}
 			else
-			{ MessageBox.Show("Please select an item/warehouse!"); }
+			{
+				MessageBox.Show("Please select an item/warehouse!");
+			}
+
 		}
 
 		private void ViewDataBTN_Click(object sender, EventArgs e)
 		{
-			Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
-			if (selectedWarehouse != null)
+			try
 			{
-				warehouseListbox.Items.Clear();
-				List<Item> warehouseItems = _warehouseContainer.LoadWarehouseItems(selectedWarehouse.Id);
-
-				foreach (Item item in warehouseItems)
+				Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
+				if (selectedWarehouse != null)
 				{
-					warehouseListbox.Items.Add(item);
+					warehouseListbox.Items.Clear();
+					List<Item> warehouseItems = _warehouseContainer.LoadWarehouseItems(selectedWarehouse.Id);
+
+					foreach (Item item in warehouseItems)
+					{
+						warehouseListbox.Items.Add(item);
+					}
+				}
+				else
+				{
+					MessageBox.Show("Select a warehouse first");
 				}
 			}
-			else
+			catch (Exception ex)
 			{
-				MessageBox.Show("Select a warehouse first");
+				MessageBox.Show(ex.Message);
 			}
+
 		}
 
 		private void button5_Click(object sender, EventArgs e)
 		{
-			Item selectedItem = (Item)listBox1.SelectedItem;
-			if (selectedItem != null)
+			if (ItemDataGrid2.SelectedRows.Count > 0)
 			{
-				_itemContainer.DeleteItem(selectedItem);
-				RefreshData();
-			}
-		}
+				DataGridViewRow selectedRow = ItemDataGrid2.SelectedRows[0];
 
-		private void button4_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				ItemListBox.Items.Clear();
-				items = _itemContainer.LoadItem();
-				string searchedItemName = textBox5.Text;
-				foreach (Item item in items)
+				if (selectedRow.DataBoundItem is Item selectedItem)
 				{
-					if (searchedItemName == item.Name)
-					{
-						ItemListBox.Items.Add(item);
-					}
+					_itemContainer.DeleteItem(selectedItem);
+					RefreshData();
+				}
+				else
+				{
+					MessageBox.Show("Please select a valid item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
-			catch (NotImplementedException) { MessageBox.Show("Item not found"); }
+			else
+			{
+				MessageBox.Show("Please select an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -320,33 +483,43 @@ namespace S2GroupProject.Forms
 
 		private void AssignEmployeeToWarehouseBTN_Click(object sender, EventArgs e)
 		{
-			Employee selectedEmployee = (Employee)employeeList.SelectedItem;
+			DataGridViewRow selectedRow = EmployeeDataGrid.CurrentRow;
 			Warehouse selectedWarehouse = (Warehouse)warehouseComboBox2.SelectedItem;
-			if (selectedEmployee != null && selectedWarehouse != null)
-			{
-				_warehouseContainer.AssignEmployeeToWarehouse(selectedEmployee.BSN, selectedWarehouse.Id);
 
+			if (selectedRow != null && selectedWarehouse != null)
+			{
+				Employee selectedemployee = (Employee)selectedRow.DataBoundItem;
+				_warehouseContainer.AssignEmployeeToWarehouse(selectedemployee.BSN, selectedWarehouse.Id);
 			}
 			else
-			{ MessageBox.Show("Please select an employee/warehouse!"); }
+			{
+				MessageBox.Show("Please select an item/warehouse!");
+			}
 		}
 
 		private void ShowWarehouseEmployeesBTN_Click(object sender, EventArgs e)
 		{
-			Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
-			if (selectedWarehouse != null)
+			try
 			{
-				warehouseListbox.Items.Clear();
-				List<Employee> warehouseEmployees = _warehouseContainer.LoadWarehouseEmployees(selectedWarehouse.Id);
-
-				foreach (Employee employee in warehouseEmployees)
+				Warehouse selectedWarehouse = (Warehouse)warehouseListbox.SelectedItem;
+				if (selectedWarehouse != null)
 				{
-					warehouseListbox.Items.Add(employee);
+					warehouseListbox.Items.Clear();
+					List<Employee> warehouseEmployees = _warehouseContainer.LoadWarehouseEmployees(selectedWarehouse.Id);
+
+					foreach (Employee employee in warehouseEmployees)
+					{
+						warehouseListbox.Items.Add(employee);
+					}
+				}
+				else
+				{
+					MessageBox.Show("Select a warehouse first");
 				}
 			}
-			else
+			catch (Exception ex)
 			{
-				MessageBox.Show("Select a warehouse first");
+				MessageBox.Show(ex.Message);
 			}
 		}
 
@@ -355,47 +528,180 @@ namespace S2GroupProject.Forms
 			Item selectedItemForRestock = (Item)WarehouseItemRestocking.SelectedItem;
 			if (selectedItemForRestock != null)
 			{
-				_itemContainer.UpdateItemQuantity(selectedItemForRestock, 200);
+				_itemContainer.UpdateItemQuantity(selectedItemForRestock, 80000);
 			}
 			WarehouseRestockData();
 		}
 
 		private void CategoriesBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			ItemListBox.Items.Clear();
-			int categorySelected = CategoriesBox.SelectedIndex;
-			categorySelected++;
+			// Get the selected category index from the combo box
+			int selectedCategoryIndex = CategoriesBox.SelectedIndex;
+			selectedCategoryIndex++;
 
-			if (categorySelected != null)
-			{
-				foreach (Item item in items)
-				{
-					if (item.Category == categorySelected)
-					{
-						ItemListBox.Items.Add(item);
-					}
-				}
-			}
-			else
-			{
-				MessageBox.Show("Choose a ctegory");
-			}
+			// Get the original data source of the DataGridView
+			var items = (SortableBindingList<Item>)ItemDataGrid.DataSource;
+
+			// Filter the items based on the selected category index
+			var filteredItems = items.Where(item => item.Category == selectedCategoryIndex).ToList();
+
+			// Clear any previous selection and set the filtered items as the new data source
+			ItemDataGrid.ClearSelection();
+			ItemDataGrid.DataSource = new SortableBindingList<Item>(filteredItems);
+
 		}
-
-		private void SortByName_Click(object sender, EventArgs e)
+		private DataTable ConvertToDataTable<T>(IEnumerable<T> data)
 		{
-			ItemListBox.Items.Clear();
-			Sorting sortbyName = new Sorting();
-			var sortedItems = sortbyName.InsertionSort(items);
-			foreach (Item item in sortedItems)
+			PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+			DataTable dataTable = new DataTable();
+
+			foreach (PropertyDescriptor prop in properties)
+				dataTable.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+
+			foreach (T item in data)
 			{
-				ItemListBox.Items.Add(item);
+				DataRow row = dataTable.NewRow();
+
+				foreach (PropertyDescriptor prop in properties)
+					row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+
+				dataTable.Rows.Add(row);
 			}
+
+			return dataTable;
 		}
+
 
 		private void label1_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void label2_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void categoryBox2_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+
+		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
+			string searchQuery = textBox1.Text.ToLower();
+
+
+			foreach (DataGridViewRow row in ItemDataGrid.Rows)
+			{
+				if (!row.IsNewRow) // Skip the uncommitted new row
+				{
+					DataGridViewCell cell = row.Cells[0];
+					if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchQuery))
+					{
+						row.Visible = true;
+					}
+					else
+					{
+						// Check if the row is selected or in focus
+						if (row.Selected || row.Cells[0].Selected)
+						{
+							ItemDataGrid.CurrentCell = null; // Deselect the row
+						}
+
+						row.Visible = false;
+					}
+				}
+			}
+		}
+
+		private void ItemDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void ResetDataGrid_Click(object sender, EventArgs e)
+		{
+			LoadDataGrid();
+			ItemDataGrid.Refresh();
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			ShopRequest selectedRequest = (ShopRequest)ShopRequests.SelectedItem;
+			Item selectedItemFromRequest = _itemContainer.GetItemByName(selectedRequest.Name);
+
+			if (selectedItemFromRequest != null)
+			{
+				selectedItemFromRequest.ShopQuantity += selectedRequest.NumberOfItems;
+				_itemContainer.UpdateItemShopQuantity(selectedItemFromRequest, selectedItemFromRequest.ShopQuantity);
+				selectedItemFromRequest.WarehouseQuantity -= selectedRequest.NumberOfItems;
+				_itemContainer.UpdateItemQuantity(selectedItemFromRequest, selectedItemFromRequest.WarehouseQuantity);
+
+				ShopRequests.Items.Remove(selectedRequest);
+				WarehouseRestockData();
+			}
+		}
+
+		private void textBox5_TextChanged(object sender, EventArgs e)
+		{
+			string searchQuery = textBox5.Text.ToLower();
+
+
+			foreach (DataGridViewRow row in ItemDataGrid2.Rows)
+			{
+				if (!row.IsNewRow) // Skip the uncommitted new row
+				{
+					DataGridViewCell cell = row.Cells[0];
+					if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchQuery))
+					{
+						row.Visible = true;
+					}
+					else
+					{
+						// Check if the row is selected or in focus
+						if (row.Selected || row.Cells[0].Selected)
+						{
+							ItemDataGrid2.CurrentCell = null; // Deselect the row
+						}
+
+						row.Visible = false;
+					}
+				}
+			}
+		}
+
+		private void textBox11_TextChanged(object sender, EventArgs e)
+		{
+			string searchQuery = textBox11.Text.ToLower();
+
+
+			foreach (DataGridViewRow row in EmployeeDataGrid.Rows)
+			{
+				if (!row.IsNewRow) // Skip the uncommitted new row
+				{
+					DataGridViewCell cell = row.Cells[1];
+					if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchQuery))
+					{
+						row.Visible = true;
+					}
+					else
+					{
+						// Check if the row is selected or in focus
+						if (row.Selected || row.Cells[0].Selected)
+						{
+							EmployeeDataGrid.CurrentCell = null; // Deselect the row
+						}
+
+						row.Visible = false;
+					}
+				}
+			}
 		}
 	}
 }

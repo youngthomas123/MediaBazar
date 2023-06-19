@@ -88,6 +88,15 @@ namespace S2GroupProject.Forms
                     {
                         EmployeePorfileUC emptyProfile = new EmployeePorfileUC();
                         emptyProfile.BorderStyle = BorderStyle.FixedSingle;
+                        emptyProfile.BackColor = Color.Red;
+                        
+                        Label label1 = new Label();
+                        label1.AutoSize = false;
+                        label1.Text = "Employee Needs To Be Added";
+                        label1.Font = new Font(dateLabel.Font.FontFamily, 16);
+                        label1.Size = new Size(emptyProfile.Width, emptyProfile.Height);
+
+                        emptyProfile.Controls.Add(label1);
                         jobPanel.Controls.Add(emptyProfile);
                         jobPanel.AutoSize = true;
                         jobPanel.AutoScroll = true;
@@ -95,22 +104,22 @@ namespace S2GroupProject.Forms
                 }
 
 
-                int managersNeeded = (quota * 4) / 10 + 1;
+                //int managersNeeded = (quota * 4) / 10 + 1;
 
-                if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
-                {
-                    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
-                    //managersNeeded = Math.Min(managersNeeded, availableManagers);
+                //if (job == JobPositions.STORE_MANAGER || job == JobPositions.WAREHOUSE_MANAGER)
+                //{
+                //    //int availableManagers = employeesByJob.Count(emp => emp.Jobposition == job);
+                //    //managersNeeded = Math.Min(managersNeeded, availableManagers);
 
-                    for (int i = 0; i < managersNeeded; i++)
-                    {
-                        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
-                        managerProfile.BorderStyle = BorderStyle.FixedSingle;
-                        jobPanel.Controls.Add(managerProfile);
-                        jobPanel.AutoSize = true;
-                        jobPanel.AutoScroll = true;
-                    }
-                }
+                //    for (int i = 0; i < managersNeeded; i++)
+                //    {
+                //        EmployeePorfileUC managerProfile = new EmployeePorfileUC();
+                //        managerProfile.BorderStyle = BorderStyle.FixedSingle;
+                //        jobPanel.Controls.Add(managerProfile);
+                //        jobPanel.AutoSize = true;
+                //        jobPanel.AutoScroll = true;
+                //    }
+                //}
 
                 List<Employee> availableEmployees = employeesByJob.Where(e => !e.ShiftsDates.Any(s => s.ShiftDate == date) && !e.DaysOff.Contains(date.DayOfWeek)).ToList();
                     // Create the buttons panel
@@ -178,7 +187,13 @@ namespace S2GroupProject.Forms
         {
             // Clear the existing controls in flowLayoutPanel1
             flowLayoutPanel1.Controls.Clear();
-
+            Label dateLabel = new Label();
+            dateLabel.Text = date.ToString("dddd, MMMM dd, yyyy");
+            dateLabel.Font = new Font(dateLabel.Font.FontFamily, 16, FontStyle.Bold);
+            dateLabel.AutoSize = true;
+            dateLabel.Margin = new Padding(10, 10, 1000, 0);
+            dateLabel.Dock = DockStyle.Top;
+            flowLayoutPanel1.Controls.Add(dateLabel);
             foreach (var job in jobPositions)
             {
                 // Create a container panel to hold the job panel and buttons panel

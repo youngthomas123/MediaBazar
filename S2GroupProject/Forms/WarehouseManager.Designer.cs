@@ -53,52 +53,53 @@
 			Add = new Button();
 			warehouseListbox = new ListBox();
 			ItemOverview = new TabPage();
-			groupBox7 = new GroupBox();
+			ResetDataGrid = new Button();
 			label2 = new Label();
-			SortByName = new Button();
-			textBox1 = new TextBox();
+			panel3 = new Panel();
+			ItemDataGrid = new DataGridView();
 			CategoriesBox = new ComboBox();
-			label7 = new Label();
-			SearchItembyName = new Button();
+			textBox1 = new TextBox();
 			groupBox3 = new GroupBox();
 			warehouseComboBox = new ComboBox();
 			AssignItemBTN = new Button();
 			label12 = new Label();
 			groupBox1 = new GroupBox();
 			button1 = new Button();
+			label7 = new Label();
+			textBox3 = new TextBox();
 			label9 = new Label();
 			label10 = new Label();
 			textBox7 = new TextBox();
 			textBox8 = new TextBox();
-			ItemListBox = new ListBox();
 			CreateItems = new TabPage();
+			priceTB = new TextBox();
+			label8 = new Label();
+			categoryBox2 = new ComboBox();
+			descriptionTB = new RichTextBox();
+			label5 = new Label();
 			textBox9 = new TextBox();
 			label14 = new Label();
 			quantityTB = new TextBox();
 			label13 = new Label();
 			button3 = new Button();
-			textBox4 = new TextBox();
-			textBox3 = new TextBox();
 			textBox2 = new TextBox();
-			label5 = new Label();
 			label4 = new Label();
 			label3 = new Label();
 			DeleteItems = new TabPage();
+			panel4 = new Panel();
+			ItemDataGrid2 = new DataGridView();
 			button5 = new Button();
-			button4 = new Button();
 			textBox5 = new TextBox();
 			label6 = new Label();
-			listBox1 = new ListBox();
 			WarehouseEmployees = new TabPage();
-			groupBox5 = new GroupBox();
-			SearchForEmployeesBTN = new Button();
+			panel5 = new Panel();
+			EmployeeDataGrid = new DataGridView();
 			label17 = new Label();
 			textBox11 = new TextBox();
 			groupBox4 = new GroupBox();
 			warehouseComboBox2 = new ComboBox();
 			AssignEmployeeToWarehouseBTN = new Button();
 			label16 = new Label();
-			employeeList = new ListBox();
 			panel1.SuspendLayout();
 			panel2.SuspendLayout();
 			tabControl1.SuspendLayout();
@@ -106,13 +107,17 @@
 			groupBox6.SuspendLayout();
 			groupBox2.SuspendLayout();
 			ItemOverview.SuspendLayout();
-			groupBox7.SuspendLayout();
+			panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)ItemDataGrid).BeginInit();
 			groupBox3.SuspendLayout();
 			groupBox1.SuspendLayout();
 			CreateItems.SuspendLayout();
 			DeleteItems.SuspendLayout();
+			panel4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)ItemDataGrid2).BeginInit();
 			WarehouseEmployees.SuspendLayout();
-			groupBox5.SuspendLayout();
+			panel5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)EmployeeDataGrid).BeginInit();
 			groupBox4.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -146,7 +151,7 @@
 			// WarehouseEmployeeRBT
 			// 
 			WarehouseEmployeeRBT.Appearance = Appearance.Button;
-			WarehouseEmployeeRBT.Location = new Point(-1, 393);
+			WarehouseEmployeeRBT.Location = new Point(0, 393);
 			WarehouseEmployeeRBT.Name = "WarehouseEmployeeRBT";
 			WarehouseEmployeeRBT.Size = new Size(451, 78);
 			WarehouseEmployeeRBT.TabIndex = 5;
@@ -157,7 +162,7 @@
 			// radioButton1
 			// 
 			radioButton1.Appearance = Appearance.Button;
-			radioButton1.Location = new Point(-1, 98);
+			radioButton1.Location = new Point(0, 169);
 			radioButton1.Name = "radioButton1";
 			radioButton1.Size = new Size(451, 78);
 			radioButton1.TabIndex = 4;
@@ -168,7 +173,7 @@
 			// DeleteItemsRBT
 			// 
 			DeleteItemsRBT.Appearance = Appearance.Button;
-			DeleteItemsRBT.Location = new Point(-1, 243);
+			DeleteItemsRBT.Location = new Point(0, 243);
 			DeleteItemsRBT.Name = "DeleteItemsRBT";
 			DeleteItemsRBT.Size = new Size(451, 78);
 			DeleteItemsRBT.TabIndex = 2;
@@ -190,9 +195,9 @@
 			// ItemOverviewRBT
 			// 
 			ItemOverviewRBT.Appearance = Appearance.Button;
-			ItemOverviewRBT.Location = new Point(0, 172);
+			ItemOverviewRBT.Location = new Point(1, 98);
 			ItemOverviewRBT.Name = "ItemOverviewRBT";
-			ItemOverviewRBT.Size = new Size(451, 78);
+			ItemOverviewRBT.Size = new Size(450, 78);
 			ItemOverviewRBT.TabIndex = 0;
 			ItemOverviewRBT.Text = "Items Overview";
 			ItemOverviewRBT.UseVisualStyleBackColor = true;
@@ -223,8 +228,8 @@
 			// 
 			// tabControl1
 			// 
-			tabControl1.Controls.Add(WarehouseOverview);
 			tabControl1.Controls.Add(ItemOverview);
+			tabControl1.Controls.Add(WarehouseOverview);
 			tabControl1.Controls.Add(CreateItems);
 			tabControl1.Controls.Add(DeleteItems);
 			tabControl1.Controls.Add(WarehouseEmployees);
@@ -308,9 +313,11 @@
 			// WarehouseItemRestocking
 			// 
 			WarehouseItemRestocking.FormattingEnabled = true;
+			WarehouseItemRestocking.HorizontalScrollbar = true;
 			WarehouseItemRestocking.ItemHeight = 25;
 			WarehouseItemRestocking.Location = new Point(537, 620);
 			WarehouseItemRestocking.Name = "WarehouseItemRestocking";
+			WarehouseItemRestocking.ScrollAlwaysVisible = true;
 			WarehouseItemRestocking.Size = new Size(611, 279);
 			WarehouseItemRestocking.TabIndex = 11;
 			// 
@@ -320,6 +327,7 @@
 			ShopRequests.ItemHeight = 25;
 			ShopRequests.Location = new Point(537, 407);
 			ShopRequests.Name = "ShopRequests";
+			ShopRequests.ScrollAlwaysVisible = true;
 			ShopRequests.Size = new Size(611, 179);
 			ShopRequests.TabIndex = 10;
 			// 
@@ -337,7 +345,7 @@
 			// 
 			groupBox2.Controls.Add(button2);
 			groupBox2.Controls.Add(Restock);
-			groupBox2.Location = new Point(4, 247);
+			groupBox2.Location = new Point(13, 676);
 			groupBox2.Name = "groupBox2";
 			groupBox2.Size = new Size(421, 223);
 			groupBox2.TabIndex = 9;
@@ -352,12 +360,13 @@
 			button2.TabIndex = 1;
 			button2.Text = "Send requested items";
 			button2.UseVisualStyleBackColor = true;
+			button2.Click += button2_Click;
 			// 
 			// Restock
 			// 
 			Restock.Location = new Point(17, 93);
 			Restock.Name = "Restock";
-			Restock.Size = new Size(126, 33);
+			Restock.Size = new Size(230, 55);
 			Restock.TabIndex = 0;
 			Restock.Text = "Restock Item";
 			Restock.UseVisualStyleBackColor = true;
@@ -376,19 +385,24 @@
 			// warehouseListbox
 			// 
 			warehouseListbox.FormattingEnabled = true;
+			warehouseListbox.HorizontalScrollbar = true;
 			warehouseListbox.ItemHeight = 25;
 			warehouseListbox.Location = new Point(539, 2);
 			warehouseListbox.Name = "warehouseListbox";
+			warehouseListbox.ScrollAlwaysVisible = true;
 			warehouseListbox.Size = new Size(611, 354);
 			warehouseListbox.TabIndex = 2;
 			warehouseListbox.SelectedIndexChanged += warehouseListbox_SelectedIndexChanged;
 			// 
 			// ItemOverview
 			// 
-			ItemOverview.Controls.Add(groupBox7);
+			ItemOverview.Controls.Add(ResetDataGrid);
+			ItemOverview.Controls.Add(label2);
+			ItemOverview.Controls.Add(panel3);
+			ItemOverview.Controls.Add(CategoriesBox);
+			ItemOverview.Controls.Add(textBox1);
 			ItemOverview.Controls.Add(groupBox3);
 			ItemOverview.Controls.Add(groupBox1);
-			ItemOverview.Controls.Add(ItemListBox);
 			ItemOverview.Location = new Point(4, 34);
 			ItemOverview.Name = "ItemOverview";
 			ItemOverview.Padding = new Padding(3);
@@ -397,83 +411,69 @@
 			ItemOverview.Text = "ItemOverview";
 			ItemOverview.UseVisualStyleBackColor = true;
 			// 
-			// groupBox7
+			// ResetDataGrid
 			// 
-			groupBox7.Controls.Add(label2);
-			groupBox7.Controls.Add(SortByName);
-			groupBox7.Controls.Add(textBox1);
-			groupBox7.Controls.Add(CategoriesBox);
-			groupBox7.Controls.Add(label7);
-			groupBox7.Controls.Add(SearchItembyName);
-			groupBox7.Location = new Point(8, 6);
-			groupBox7.Name = "groupBox7";
-			groupBox7.Size = new Size(419, 237);
-			groupBox7.TabIndex = 11;
-			groupBox7.TabStop = false;
-			groupBox7.Text = "Search and filter";
+			ResetDataGrid.Location = new Point(947, 829);
+			ResetDataGrid.Name = "ResetDataGrid";
+			ResetDataGrid.Size = new Size(195, 43);
+			ResetDataGrid.TabIndex = 14;
+			ResetDataGrid.Text = "Reset Table";
+			ResetDataGrid.UseVisualStyleBackColor = true;
+			ResetDataGrid.Click += ResetDataGrid_Click;
 			// 
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Location = new Point(7, 40);
+			label2.Location = new Point(547, 13);
 			label2.Name = "label2";
-			label2.Size = new Size(162, 25);
-			label2.TabIndex = 2;
-			label2.Text = "Search by keyword";
+			label2.Size = new Size(64, 25);
+			label2.TabIndex = 13;
+			label2.Text = "Search";
 			// 
-			// SortByName
+			// panel3
 			// 
-			SortByName.Location = new Point(268, 140);
-			SortByName.Name = "SortByName";
-			SortByName.Size = new Size(145, 34);
-			SortByName.TabIndex = 10;
-			SortByName.Text = "Sort by Name";
-			SortByName.UseVisualStyleBackColor = true;
-			SortByName.Click += SortByName_Click;
+			panel3.Controls.Add(ItemDataGrid);
+			panel3.Location = new Point(11, 78);
+			panel3.Name = "panel3";
+			panel3.Size = new Size(1131, 471);
+			panel3.TabIndex = 12;
 			// 
-			// textBox1
+			// ItemDataGrid
 			// 
-			textBox1.Location = new Point(0, 68);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(284, 31);
-			textBox1.TabIndex = 3;
+			ItemDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			ItemDataGrid.Location = new Point(3, 14);
+			ItemDataGrid.Name = "ItemDataGrid";
+			ItemDataGrid.RowHeadersWidth = 62;
+			ItemDataGrid.RowTemplate.Height = 33;
+			ItemDataGrid.Size = new Size(1124, 454);
+			ItemDataGrid.TabIndex = 13;
+			ItemDataGrid.CellContentClick += ItemDataGrid_CellContentClick;
 			// 
 			// CategoriesBox
 			// 
 			CategoriesBox.FormattingEnabled = true;
-			CategoriesBox.Location = new Point(6, 142);
+			CategoriesBox.Location = new Point(947, 569);
 			CategoriesBox.Name = "CategoriesBox";
-			CategoriesBox.Size = new Size(196, 33);
+			CategoriesBox.Size = new Size(195, 33);
 			CategoriesBox.TabIndex = 8;
 			CategoriesBox.SelectedIndexChanged += CategoriesBox_SelectedIndexChanged;
 			// 
-			// label7
+			// textBox1
 			// 
-			label7.AutoSize = true;
-			label7.Location = new Point(6, 114);
-			label7.Name = "label7";
-			label7.Size = new Size(149, 25);
-			label7.TabIndex = 9;
-			label7.Text = "Filter by category";
-			// 
-			// SearchItembyName
-			// 
-			SearchItembyName.Location = new Point(286, 68);
-			SearchItembyName.Name = "SearchItembyName";
-			SearchItembyName.Size = new Size(133, 31);
-			SearchItembyName.TabIndex = 4;
-			SearchItembyName.Text = "Search";
-			SearchItembyName.UseVisualStyleBackColor = true;
-			SearchItembyName.Click += SearchItembyName_Click;
+			textBox1.Location = new Point(442, 41);
+			textBox1.Name = "textBox1";
+			textBox1.Size = new Size(284, 31);
+			textBox1.TabIndex = 3;
+			textBox1.TextChanged += textBox1_TextChanged;
 			// 
 			// groupBox3
 			// 
 			groupBox3.Controls.Add(warehouseComboBox);
 			groupBox3.Controls.Add(AssignItemBTN);
 			groupBox3.Controls.Add(label12);
-			groupBox3.Location = new Point(15, 687);
+			groupBox3.Location = new Point(14, 557);
 			groupBox3.Name = "groupBox3";
-			groupBox3.Size = new Size(409, 195);
+			groupBox3.Size = new Size(509, 342);
 			groupBox3.TabIndex = 7;
 			groupBox3.TabStop = false;
 			groupBox3.Text = "Assign Item to warehouse";
@@ -483,14 +483,14 @@
 			warehouseComboBox.FormattingEnabled = true;
 			warehouseComboBox.Location = new Point(14, 68);
 			warehouseComboBox.Name = "warehouseComboBox";
-			warehouseComboBox.Size = new Size(381, 33);
+			warehouseComboBox.Size = new Size(489, 33);
 			warehouseComboBox.TabIndex = 16;
 			// 
 			// AssignItemBTN
 			// 
-			AssignItemBTN.Location = new Point(7, 122);
+			AssignItemBTN.Location = new Point(6, 272);
 			AssignItemBTN.Name = "AssignItemBTN";
-			AssignItemBTN.Size = new Size(393, 43);
+			AssignItemBTN.Size = new Size(496, 43);
 			AssignItemBTN.TabIndex = 15;
 			AssignItemBTN.Text = "Assign selected item to warehouse";
 			AssignItemBTN.UseVisualStyleBackColor = true;
@@ -508,29 +508,47 @@
 			// groupBox1
 			// 
 			groupBox1.Controls.Add(button1);
+			groupBox1.Controls.Add(label7);
+			groupBox1.Controls.Add(textBox3);
 			groupBox1.Controls.Add(label9);
 			groupBox1.Controls.Add(label10);
 			groupBox1.Controls.Add(textBox7);
 			groupBox1.Controls.Add(textBox8);
-			groupBox1.Location = new Point(8, 460);
+			groupBox1.Location = new Point(530, 557);
 			groupBox1.Margin = new Padding(4, 5, 4, 5);
 			groupBox1.Name = "groupBox1";
 			groupBox1.Padding = new Padding(4, 5, 4, 5);
-			groupBox1.Size = new Size(416, 228);
+			groupBox1.Size = new Size(410, 345);
 			groupBox1.TabIndex = 6;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Update Items";
 			// 
 			// button1
 			// 
-			button1.Location = new Point(117, 168);
+			button1.Location = new Point(17, 272);
 			button1.Margin = new Padding(4, 5, 4, 5);
 			button1.Name = "button1";
-			button1.Size = new Size(280, 42);
+			button1.Size = new Size(383, 43);
 			button1.TabIndex = 12;
 			button1.Text = "Update";
 			button1.UseVisualStyleBackColor = true;
 			button1.Click += button1_Click;
+			// 
+			// label7
+			// 
+			label7.AutoSize = true;
+			label7.Location = new Point(7, 181);
+			label7.Name = "label7";
+			label7.Size = new Size(49, 25);
+			label7.TabIndex = 12;
+			label7.Text = "Price";
+			// 
+			// textBox3
+			// 
+			textBox3.Location = new Point(117, 175);
+			textBox3.Name = "textBox3";
+			textBox3.Size = new Size(283, 31);
+			textBox3.TabIndex = 11;
 			// 
 			// label9
 			// 
@@ -564,26 +582,19 @@
 			textBox8.Size = new Size(283, 31);
 			textBox8.TabIndex = 6;
 			// 
-			// ItemListBox
-			// 
-			ItemListBox.FormattingEnabled = true;
-			ItemListBox.ItemHeight = 25;
-			ItemListBox.Location = new Point(433, 3);
-			ItemListBox.Name = "ItemListBox";
-			ItemListBox.Size = new Size(715, 879);
-			ItemListBox.TabIndex = 1;
-			// 
 			// CreateItems
 			// 
+			CreateItems.Controls.Add(priceTB);
+			CreateItems.Controls.Add(label8);
+			CreateItems.Controls.Add(categoryBox2);
+			CreateItems.Controls.Add(descriptionTB);
+			CreateItems.Controls.Add(label5);
 			CreateItems.Controls.Add(textBox9);
 			CreateItems.Controls.Add(label14);
 			CreateItems.Controls.Add(quantityTB);
 			CreateItems.Controls.Add(label13);
 			CreateItems.Controls.Add(button3);
-			CreateItems.Controls.Add(textBox4);
-			CreateItems.Controls.Add(textBox3);
 			CreateItems.Controls.Add(textBox2);
-			CreateItems.Controls.Add(label5);
 			CreateItems.Controls.Add(label4);
 			CreateItems.Controls.Add(label3);
 			CreateItems.Location = new Point(4, 34);
@@ -594,9 +605,51 @@
 			CreateItems.Text = "CreateItems";
 			CreateItems.UseVisualStyleBackColor = true;
 			// 
+			// priceTB
+			// 
+			priceTB.Location = new Point(40, 332);
+			priceTB.Name = "priceTB";
+			priceTB.Size = new Size(283, 31);
+			priceTB.TabIndex = 15;
+			// 
+			// label8
+			// 
+			label8.AutoSize = true;
+			label8.Location = new Point(40, 303);
+			label8.Name = "label8";
+			label8.Size = new Size(49, 25);
+			label8.TabIndex = 14;
+			label8.Text = "Price";
+			// 
+			// categoryBox2
+			// 
+			categoryBox2.FormattingEnabled = true;
+			categoryBox2.Location = new Point(714, 83);
+			categoryBox2.Name = "categoryBox2";
+			categoryBox2.Size = new Size(375, 33);
+			categoryBox2.TabIndex = 13;
+			categoryBox2.SelectedIndexChanged += categoryBox2_SelectedIndexChanged;
+			// 
+			// descriptionTB
+			// 
+			descriptionTB.Location = new Point(40, 472);
+			descriptionTB.Name = "descriptionTB";
+			descriptionTB.Size = new Size(1088, 227);
+			descriptionTB.TabIndex = 12;
+			descriptionTB.Text = "";
+			// 
+			// label5
+			// 
+			label5.AutoSize = true;
+			label5.Location = new Point(714, 55);
+			label5.Name = "label5";
+			label5.Size = new Size(84, 25);
+			label5.TabIndex = 11;
+			label5.Text = "Category";
+			// 
 			// textBox9
 			// 
-			textBox9.Location = new Point(241, 233);
+			textBox9.Location = new Point(40, 170);
 			textBox9.Name = "textBox9";
 			textBox9.Size = new Size(283, 31);
 			textBox9.TabIndex = 10;
@@ -604,7 +657,7 @@
 			// label14
 			// 
 			label14.AutoSize = true;
-			label14.Location = new Point(40, 238);
+			label14.Location = new Point(40, 142);
 			label14.Name = "label14";
 			label14.Size = new Size(127, 25);
 			label14.TabIndex = 9;
@@ -612,7 +665,7 @@
 			// 
 			// quantityTB
 			// 
-			quantityTB.Location = new Point(241, 158);
+			quantityTB.Location = new Point(40, 252);
 			quantityTB.Name = "quantityTB";
 			quantityTB.Size = new Size(283, 31);
 			quantityTB.TabIndex = 8;
@@ -620,7 +673,7 @@
 			// label13
 			// 
 			label13.AutoSize = true;
-			label13.Location = new Point(40, 165);
+			label13.Location = new Point(40, 223);
 			label13.Name = "label13";
 			label13.Size = new Size(173, 25);
 			label13.TabIndex = 7;
@@ -628,7 +681,7 @@
 			// 
 			// button3
 			// 
-			button3.Location = new Point(40, 370);
+			button3.Location = new Point(359, 847);
 			button3.Name = "button3";
 			button3.Size = new Size(454, 42);
 			button3.TabIndex = 6;
@@ -636,40 +689,17 @@
 			button3.UseVisualStyleBackColor = true;
 			button3.Click += button3_Click;
 			// 
-			// textBox4
-			// 
-			textBox4.Location = new Point(241, 292);
-			textBox4.Name = "textBox4";
-			textBox4.Size = new Size(283, 31);
-			textBox4.TabIndex = 5;
-			// 
-			// textBox3
-			// 
-			textBox3.Location = new Point(241, 103);
-			textBox3.Name = "textBox3";
-			textBox3.Size = new Size(283, 31);
-			textBox3.TabIndex = 4;
-			// 
 			// textBox2
 			// 
-			textBox2.Location = new Point(241, 48);
+			textBox2.Location = new Point(40, 83);
 			textBox2.Name = "textBox2";
 			textBox2.Size = new Size(283, 31);
 			textBox2.TabIndex = 3;
 			// 
-			// label5
-			// 
-			label5.AutoSize = true;
-			label5.Location = new Point(40, 298);
-			label5.Name = "label5";
-			label5.Size = new Size(84, 25);
-			label5.TabIndex = 2;
-			label5.Text = "Category";
-			// 
 			// label4
 			// 
 			label4.AutoSize = true;
-			label4.Location = new Point(40, 108);
+			label4.Location = new Point(40, 433);
 			label4.Name = "label4";
 			label4.Size = new Size(102, 25);
 			label4.TabIndex = 1;
@@ -686,11 +716,10 @@
 			// 
 			// DeleteItems
 			// 
+			DeleteItems.Controls.Add(panel4);
 			DeleteItems.Controls.Add(button5);
-			DeleteItems.Controls.Add(button4);
 			DeleteItems.Controls.Add(textBox5);
 			DeleteItems.Controls.Add(label6);
-			DeleteItems.Controls.Add(listBox1);
 			DeleteItems.Location = new Point(4, 34);
 			DeleteItems.Name = "DeleteItems";
 			DeleteItems.Padding = new Padding(3);
@@ -699,9 +728,27 @@
 			DeleteItems.Text = "DeleteItems";
 			DeleteItems.UseVisualStyleBackColor = true;
 			// 
+			// panel4
+			// 
+			panel4.Controls.Add(ItemDataGrid2);
+			panel4.Location = new Point(4, 99);
+			panel4.Name = "panel4";
+			panel4.Size = new Size(1145, 550);
+			panel4.TabIndex = 7;
+			// 
+			// ItemDataGrid2
+			// 
+			ItemDataGrid2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			ItemDataGrid2.Location = new Point(7, 21);
+			ItemDataGrid2.Name = "ItemDataGrid2";
+			ItemDataGrid2.RowHeadersWidth = 62;
+			ItemDataGrid2.RowTemplate.Height = 33;
+			ItemDataGrid2.Size = new Size(1132, 524);
+			ItemDataGrid2.TabIndex = 0;
+			// 
 			// button5
 			// 
-			button5.Location = new Point(6, 118);
+			button5.Location = new Point(326, 654);
 			button5.Name = "button5";
 			button5.Size = new Size(534, 62);
 			button5.TabIndex = 6;
@@ -709,46 +756,29 @@
 			button5.UseVisualStyleBackColor = true;
 			button5.Click += button5_Click;
 			// 
-			// button4
-			// 
-			button4.Location = new Point(373, 43);
-			button4.Name = "button4";
-			button4.Size = new Size(133, 42);
-			button4.TabIndex = 5;
-			button4.Text = "Search";
-			button4.UseVisualStyleBackColor = true;
-			button4.Click += button4_Click;
-			// 
 			// textBox5
 			// 
-			textBox5.Location = new Point(61, 50);
+			textBox5.Location = new Point(455, 62);
 			textBox5.Name = "textBox5";
 			textBox5.Size = new Size(284, 31);
 			textBox5.TabIndex = 4;
+			textBox5.TextChanged += textBox5_TextChanged;
 			// 
 			// label6
 			// 
 			label6.AutoSize = true;
-			label6.Location = new Point(159, 17);
+			label6.Location = new Point(542, 29);
 			label6.Name = "label6";
 			label6.Size = new Size(104, 25);
 			label6.TabIndex = 3;
 			label6.Text = "Search item";
 			// 
-			// listBox1
-			// 
-			listBox1.FormattingEnabled = true;
-			listBox1.ItemHeight = 25;
-			listBox1.Location = new Point(546, 3);
-			listBox1.Name = "listBox1";
-			listBox1.Size = new Size(607, 904);
-			listBox1.TabIndex = 2;
-			// 
 			// WarehouseEmployees
 			// 
-			WarehouseEmployees.Controls.Add(groupBox5);
+			WarehouseEmployees.Controls.Add(panel5);
+			WarehouseEmployees.Controls.Add(label17);
+			WarehouseEmployees.Controls.Add(textBox11);
 			WarehouseEmployees.Controls.Add(groupBox4);
-			WarehouseEmployees.Controls.Add(employeeList);
 			WarehouseEmployees.Location = new Point(4, 34);
 			WarehouseEmployees.Name = "WarehouseEmployees";
 			WarehouseEmployees.Padding = new Padding(3);
@@ -757,54 +787,49 @@
 			WarehouseEmployees.Text = "WarehouseEmployees";
 			WarehouseEmployees.UseVisualStyleBackColor = true;
 			// 
-			// groupBox5
+			// panel5
 			// 
-			groupBox5.Controls.Add(SearchForEmployeesBTN);
-			groupBox5.Controls.Add(label17);
-			groupBox5.Controls.Add(textBox11);
-			groupBox5.Location = new Point(7, 8);
-			groupBox5.Margin = new Padding(4, 5, 4, 5);
-			groupBox5.Name = "groupBox5";
-			groupBox5.Padding = new Padding(4, 5, 4, 5);
-			groupBox5.Size = new Size(554, 195);
-			groupBox5.TabIndex = 11;
-			groupBox5.TabStop = false;
-			groupBox5.Text = "Search for employees";
+			panel5.Controls.Add(EmployeeDataGrid);
+			panel5.Location = new Point(9, 91);
+			panel5.Name = "panel5";
+			panel5.Size = new Size(1138, 476);
+			panel5.TabIndex = 12;
 			// 
-			// SearchForEmployeesBTN
+			// EmployeeDataGrid
 			// 
-			SearchForEmployeesBTN.Location = new Point(456, 33);
-			SearchForEmployeesBTN.Margin = new Padding(4, 5, 4, 5);
-			SearchForEmployeesBTN.Name = "SearchForEmployeesBTN";
-			SearchForEmployeesBTN.Size = new Size(94, 38);
-			SearchForEmployeesBTN.TabIndex = 2;
-			SearchForEmployeesBTN.Text = "Search";
-			SearchForEmployeesBTN.UseVisualStyleBackColor = true;
+			EmployeeDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			EmployeeDataGrid.Location = new Point(9, 10);
+			EmployeeDataGrid.Name = "EmployeeDataGrid";
+			EmployeeDataGrid.RowHeadersWidth = 62;
+			EmployeeDataGrid.RowTemplate.Height = 33;
+			EmployeeDataGrid.Size = new Size(1125, 461);
+			EmployeeDataGrid.TabIndex = 0;
 			// 
 			// label17
 			// 
 			label17.AutoSize = true;
-			label17.Location = new Point(9, 40);
+			label17.Location = new Point(553, 22);
 			label17.Margin = new Padding(4, 0, 4, 0);
 			label17.Name = "label17";
-			label17.Size = new Size(138, 25);
+			label17.Size = new Size(64, 25);
 			label17.TabIndex = 1;
-			label17.Text = "Search by name";
+			label17.Text = "Search";
 			// 
 			// textBox11
 			// 
-			textBox11.Location = new Point(147, 35);
+			textBox11.Location = new Point(437, 52);
 			textBox11.Margin = new Padding(4, 5, 4, 5);
 			textBox11.Name = "textBox11";
 			textBox11.Size = new Size(295, 31);
 			textBox11.TabIndex = 0;
+			textBox11.TextChanged += textBox11_TextChanged;
 			// 
 			// groupBox4
 			// 
 			groupBox4.Controls.Add(warehouseComboBox2);
 			groupBox4.Controls.Add(AssignEmployeeToWarehouseBTN);
 			groupBox4.Controls.Add(label16);
-			groupBox4.Location = new Point(9, 220);
+			groupBox4.Location = new Point(6, 603);
 			groupBox4.Name = "groupBox4";
 			groupBox4.Size = new Size(553, 195);
 			groupBox4.TabIndex = 8;
@@ -838,15 +863,6 @@
 			label16.TabIndex = 14;
 			label16.Text = "select a warehouse";
 			// 
-			// employeeList
-			// 
-			employeeList.FormattingEnabled = true;
-			employeeList.ItemHeight = 25;
-			employeeList.Location = new Point(564, 5);
-			employeeList.Name = "employeeList";
-			employeeList.Size = new Size(584, 404);
-			employeeList.TabIndex = 5;
-			// 
 			// WarehouseManager
 			// 
 			AutoScaleDimensions = new SizeF(10F, 25F);
@@ -866,8 +882,9 @@
 			groupBox6.PerformLayout();
 			groupBox2.ResumeLayout(false);
 			ItemOverview.ResumeLayout(false);
-			groupBox7.ResumeLayout(false);
-			groupBox7.PerformLayout();
+			ItemOverview.PerformLayout();
+			panel3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)ItemDataGrid).EndInit();
 			groupBox3.ResumeLayout(false);
 			groupBox3.PerformLayout();
 			groupBox1.ResumeLayout(false);
@@ -876,9 +893,12 @@
 			CreateItems.PerformLayout();
 			DeleteItems.ResumeLayout(false);
 			DeleteItems.PerformLayout();
+			panel4.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)ItemDataGrid2).EndInit();
 			WarehouseEmployees.ResumeLayout(false);
-			groupBox5.ResumeLayout(false);
-			groupBox5.PerformLayout();
+			WarehouseEmployees.PerformLayout();
+			panel5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)EmployeeDataGrid).EndInit();
 			groupBox4.ResumeLayout(false);
 			groupBox4.PerformLayout();
 			ResumeLayout(false);
@@ -896,22 +916,14 @@
 		private TabPage ItemOverview;
 		private TabPage CreateItems;
 		private TabPage DeleteItems;
-		private Button SearchItembyName;
 		private TextBox textBox1;
-		private Label label2;
-		private ListBox ItemListBox;
 		private Button button3;
-		private TextBox textBox4;
-		private TextBox textBox3;
 		private TextBox textBox2;
-		private Label label5;
 		private Label label4;
 		private Label label3;
 		private Button button5;
-		private Button button4;
 		private TextBox textBox5;
 		private Label label6;
-		private ListBox listBox1;
 		private RadioButton radioButton1;
 		private TabPage WarehouseOverview;
 		private ListBox warehouseListbox;
@@ -923,7 +935,6 @@
 		private TextBox textBox8;
 		private RadioButton WarehouseEmployeeRBT;
 		private TabPage WarehouseEmployees;
-		private ListBox employeeList;
 		private Button Add;
 		private ListBox ShopRequests;
 		private GroupBox groupBox2;
@@ -942,8 +953,6 @@
 		private ComboBox warehouseComboBox;
 		private RadioButton radioButton2;
 		private ListBox WarehouseItemRestocking;
-		private GroupBox groupBox5;
-		private Button SearchForEmployeesBTN;
 		private Label label17;
 		private TextBox textBox11;
 		private GroupBox groupBox4;
@@ -953,9 +962,21 @@
 		private GroupBox groupBox6;
 		private Button ShowWarehouseEmployeesBTN;
 		private Label label18;
-		private Label label7;
 		private ComboBox CategoriesBox;
-		private Button SortByName;
-		private GroupBox groupBox7;
+		private ComboBox categoryBox2;
+		private RichTextBox descriptionTB;
+		private Label label5;
+		private TextBox priceTB;
+		private Label label8;
+		private Panel panel3;
+		private DataGridView ItemDataGrid;
+		private Label label2;
+		private Label label7;
+		private TextBox textBox3;
+		private Button ResetDataGrid;
+		private Panel panel4;
+		private DataGridView ItemDataGrid2;
+		private Panel panel5;
+		private DataGridView EmployeeDataGrid;
 	}
 }

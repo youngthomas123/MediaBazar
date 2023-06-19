@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaBazar.BusinessLogic", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaBazar.DataAccess", "MediaBazar.DataAccess\MediaBazar.DataAccess.csproj", "{D65682CB-1862-455D-9399-092DA16EDD3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBazaarUnitTests", "MediaBazaarUnitTests\MediaBazaarUnitTests.csproj", "{B367A47D-2610-4D2A-A7AC-A3FE0B9CB2E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D65682CB-1862-455D-9399-092DA16EDD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D65682CB-1862-455D-9399-092DA16EDD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D65682CB-1862-455D-9399-092DA16EDD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B367A47D-2610-4D2A-A7AC-A3FE0B9CB2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B367A47D-2610-4D2A-A7AC-A3FE0B9CB2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B367A47D-2610-4D2A-A7AC-A3FE0B9CB2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B367A47D-2610-4D2A-A7AC-A3FE0B9CB2E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

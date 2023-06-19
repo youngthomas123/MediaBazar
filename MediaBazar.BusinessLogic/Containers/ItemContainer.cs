@@ -1,14 +1,9 @@
 ﻿using MediaBazar.BusinessLogic.Classes;
 using MediaBazar.BusinessLogic.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaBazar.BusinessLogic.Containers
 {
-    public class ItemContainer : IItemContainer
+	public class ItemContainer : IItemContainer
     {
         private readonly IItemDataAccess _itemDataAccess;
 
@@ -23,18 +18,6 @@ namespace MediaBazar.BusinessLogic.Containers
         {
              _itemDataAccess.AddItem(item);
         }
-
-        //public void AddItem(string name, string description, string category)
-        //{
-        //    bool ItemExists = ItemAlreadyExists(name, description);
-        //    if (ItemExists == false)
-        //    {
-        //        Item newItem = new Item(name, description, category);
-        //        items.Add(newItem);
-                
-        //    }
-            
-        //}
 
         public void DeleteItem(Item item)
         {
@@ -75,7 +58,12 @@ namespace MediaBazar.BusinessLogic.Containers
             return _itemDataAccess.GetItemById(itemId);
         }
 
-        public List<Item> GetItems()
+		public Item GetItemByName(string name)
+		{
+			return _itemDataAccess.GetItemByName(name);
+		}
+
+		public List<Item> GetItems()
         {
             return items;
         }
@@ -105,19 +93,34 @@ namespace MediaBazar.BusinessLogic.Containers
             items.Remove(item);
         }
 
-		public List<Item> SearchPostsByKeyword(string keyword)
+		public List<Item> SearchItemsByKeyword(string keyword)
 		{
-			return _itemDataAccess.SearchPostsByKeyword(keyword);
+			return _itemDataAccess.SearchItemsByKeyword(keyword);
 		}
 
-		public void UpdateItemNameAndDescription(Item item, string name, string description)
+		public void UpdateItemDescription(Item item, string description)
 		{
-			_itemDataAccess.UpdateItemNameAndDescription(item, name, description);
+			_itemDataAccess.UpdateItemDescription(item, description);
+		}
+
+		public void UpdateItemName(Item item, string name)
+		{
+			_itemDataAccess.UpdateItemName(item, name);
+		}
+
+		public void UpdateItemPrice(Item item, decimal price)
+		{
+			_itemDataAccess.UpdateItemPrice(item, price);
 		}
 
 		public void UpdateItemQuantity(Item item, int quantity)
 		{
 			_itemDataAccess.UpdateItemQuantity(item, quantity);
+		}
+
+		public void UpdateItemShopQuantity(Item item, int quantity)
+		{
+			_itemDataAccess.UpdateItemShopQuantity(item, quantity);
 		}
 	}
 }

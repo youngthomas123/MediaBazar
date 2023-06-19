@@ -363,6 +363,36 @@ namespace S2GroupProject
             }
         }
 
+        //public void AssignShifts(int year, int month)
+        //{
+        //    // Get all full-time employees
+        //    employees = _employeeContainer.LoadEmployees();
+        //    List<Employee> fullTimeEmployees = employees.Where(e => e.ContractType == ContractTypes.FULL_TIME || e.ContractType == ContractTypes.PART_TIME).ToList();
+
+        //    // Generate all possible shifts for the specified month
+        //    DateTime currentDate = new DateTime(year, month, 1);
+        //    DateTime endDate = currentDate.AddMonths(1).AddDays(-1);
+        //    List<Shift> allShifts = new List<Shift>();
+        //    while (currentDate <= endDate)
+        //    {
+        //        foreach (Employee employee in fullTimeEmployees)
+        //        {
+        //            ShiftPreference preference = employee.ShiftPreferences.FirstOrDefault(s => s.Month == month);
+        //            bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
+        //            //false if emp has scheduled a sick leave xd
+        //            bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
+        //                             !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate && sickLeave.IsScheduled);
+
+        //            if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
+        //            {
+        //                Shift newShift = new Shift(currentDate, preference.Preference, false);
+        //                employee.ShiftsDates.Add(newShift);
+        //                _employeeContainer.AddEmpShift(employee);
+        //            }
+        //        }
+        //        currentDate = currentDate.AddDays(1);
+        //    }
+        //}
         public void AssignShifts(int year, int month)
         {
             // Get all full-time employees
@@ -377,15 +407,16 @@ namespace S2GroupProject
             {
                 foreach (Employee employee in fullTimeEmployees)
                 {
-                    ShiftPreference preference = employee.ShiftPreferences.FirstOrDefault(s => s.Month == month);
+                    ShiftTypes shiftPreference;
+                    bool preferenceFound = employee.Preferences.TryGetValue(currentDate.DayOfWeek, out shiftPreference);
                     bool alreadyAssigned = employee.ShiftsDates.Any(shift => shift.ShiftDate == currentDate);
-                    //false if emp has scheduled a sick leave xd
+                    // false if emp has scheduled a sick leave
                     bool isEmpSick = employee.SickLeaves == null || employee.SickLeaves.Count == 0 ||
                                      !employee.SickLeaves.Any(sickLeave => sickLeave.StartDate <= currentDate && currentDate <= sickLeave.EndDate && sickLeave.IsScheduled);
 
-                    if (preference != null && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
+                    if (preferenceFound && !alreadyAssigned && !employee.DaysOff.Contains(currentDate.DayOfWeek) && isEmpSick)
                     {
-                        Shift newShift = new Shift(currentDate, preference.Preference, false);
+                        Shift newShift = new Shift(currentDate, shiftPreference, false);
                         employee.ShiftsDates.Add(newShift);
                         _employeeContainer.AddEmpShift(employee);
                     }
