@@ -34,7 +34,7 @@ namespace S2GroupProject
 		{
 			if (UserNameTB.Text == "Admin" && PasswordTB.Text == "123456")
 			{
-				MainPage form1 = _serviceProvider.GetService<MainPage>();
+				EmployeeManagement2 form1 = _serviceProvider.GetService<EmployeeManagement2>();
 				form1.Show();
 				//this.Hide();
 			}

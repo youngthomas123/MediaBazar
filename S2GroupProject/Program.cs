@@ -49,7 +49,7 @@ namespace S2GroupProject
             var serviceProvider = services.BuildServiceProvider();
             //DI end
 
-            Application.Run(serviceProvider.GetService<EmployeeManagement2>());
+            Application.Run(serviceProvider.GetService<LoginForm>());
 		}
 	}
 }
